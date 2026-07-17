@@ -1,0 +1,24 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents",
+  "description": "The 032 program needs a bounded documentation map for the agents surface.",
+  "keywords": [
+    "program",
+    "needs",
+    "bounded",
+    "documentation",
+    "map",
+    "agents",
+    "surface"
+  ],
+  "lastUpdated": "2026-07-17T14:29:47.287Z",
+  "specId": "014",
+  "folderSlug": "agents",
+  "parentChain": [
+    "sk-doc",
+    "020-hyphen-naming-convention",
+    "008-component-migration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

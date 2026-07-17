@@ -1,0 +1,231 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/014-sk-doc-parent/028-create-skill-contract-unification/005-code-cli-mcp-prompt-children",
+  "spec_folder": "sk-doc/014-sk-doc-parent/028-create-skill-contract-unification/005-code-cli-mcp-prompt-children",
+  "parent_id": "sk-doc/014-sk-doc-parent/028-create-skill-contract-unification",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "005-code-cli-mcp-prompt-children conformance",
+      "create-skill contract conformance",
+      "SKILL.md conformance code-cli-mcp-prompt-children",
+      "005-code-cli-mcp-prompt-children plan",
+      "LUNA MAX dispatch harness",
+      "Sonnet-5 verify",
+      "005-code-cli-mcp-prompt-children tasks",
+      "per-file conformance tasks",
+      "LUNA update Sonnet verify",
+      "005-code-cli-mcp-prompt-children checklist",
+      "conformance verification gates",
+      "per-file validator gate"
+    ],
+    "key_topics": [
+      "005-code-cli-mcp-prompt-children",
+      "conformance",
+      "create-skill",
+      "contract",
+      "skill",
+      "code-cli-mcp-prompt-children",
+      "plan",
+      "luna",
+      "max",
+      "dispatch",
+      "harness",
+      "sonnet-5"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/sk-code/code-opencode/SKILL.md",
+      ".opencode/skills/sk-code/code-quality/SKILL.md",
+      ".opencode/skills/sk-code/code-review/SKILL.md",
+      ".opencode/skills/sk-code/code-webflow/SKILL.md",
+      ".opencode/skills/cli-external-orchestration/cli-claude-code/SKILL.md",
+      ".opencode/skills/cli-external-orchestration/cli-codex/SKILL.md",
+      ".opencode/skills/cli-external-orchestration/cli-opencode/SKILL.md",
+      ".opencode/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md",
+      ".opencode/skills/mcp-tooling/mcp-click-up/SKILL.md",
+      ".opencode/skills/mcp-tooling/mcp-figma/SKILL.md",
+      ".opencode/skills/sk-prompt/prompt-improve/SKILL.md",
+      ".opencode/skills/sk-prompt/prompt-models/SKILL.md",
+      "tasks.md",
+      "plan.md",
+      "checklist.md",
+      "spec.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/code-opencode/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Children Contract Conformance",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "zero",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Each",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Concurrency Work",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Core Implementation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Update",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Verify",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Bring the 12 skill SKILL.md files in this batch into full conformance with the create-skill contract; each file is updated by a fresh GPT-5.6 LUNA MAX agent and independently verified by a fresh Sonnet-5 xhigh agent, then must pass its validator.",
+    "created_at": "2026-07-14T04:26:33.795Z",
+    "last_save_at": "2026-07-17T14:37:08.569Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:cdf0dd3cc94d6cff3bf9b3ea106766f51c39c4386852cde101f7225e6f0c4682",
+    "source_doc_hashes": {
+      "spec.md": "ed4b01f00845dfe5e2ac809cfcd8aebaa96f895f9d2ca2903201d9c81989d375",
+      "plan.md": "b1ff6a11942c6f096a90084bffcc08bb6f61da82c56c3b0eb455060da2fc59ce",
+      "tasks.md": "11a5cbcf796da3f98f52ae53a6ed61ff33e8a9ea54bed502bb6e6f3b8d1c27ec",
+      "checklist.md": "bfb049c86d0aef6a489ded1b295111f8ee874ddc21a98c57d25c634b94a5d905",
+      "implementation-summary.md": "12b1695128c725c47b435e30401b57ced3e827066f474d4c624e006ea02ddc3a"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/001-hub-root-and-shared",
+  "description": "The live hub root has exact routing files, delegated component trees, a root manual-testing-playbook tree, and an empty shared boundary.",
+  "keywords": [
+    "live",
+    "hub",
+    "root",
+    "exact",
+    "routing",
+    "files",
+    "delegated",
+    "component",
+    "trees",
+    "manual-testing-playbook",
+    "tree",
+    "empty",
+    "shared",
+    "boundary"
+  ],
+  "lastUpdated": "2026-07-17T14:29:47.308Z",
+  "specId": "001",
+  "folderSlug": "hub-root-and-shared",
+  "parentChain": [
+    "sk-doc",
+    "020-hyphen-naming-convention",
+    "008-component-migration",
+    "005-cli-external-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,31 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/007-skill-gate",
+  "description": "This verification-only rollup gate aggregates phases 001–006 and proves the complete sk-prompt skill surface is kebab-clean within the 032 exemption",
+  "keywords": [
+    "verification-only",
+    "rollup",
+    "gate",
+    "aggregates",
+    "phases",
+    "proves",
+    "complete",
+    "sk-prompt",
+    "skill",
+    "surface",
+    "kebab-clean",
+    "within",
+    "exemption"
+  ],
+  "lastUpdated": "2026-07-17T14:29:47.297Z",
+  "specId": "007",
+  "folderSlug": "skill-gate",
+  "parentChain": [
+    "sk-doc",
+    "020-hyphen-naming-convention",
+    "008-component-migration",
+    "004-sk-prompt"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

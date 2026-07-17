@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/015-hub-doc-conformance-fixes",
+  "spec_folder": "sk-doc/015-hub-doc-conformance-fixes",
+  "parent_id": null,
+  "children_ids": [
+    "sk-doc/015-hub-doc-conformance-fixes/001-hub-doc-conformance-review",
+    "sk-doc/015-hub-doc-conformance-fixes/002-hub-doc-conformance-fixes"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "hub doc conformance",
+      "cli-external mcp-tooling doc conformance",
+      "hub doc reality alignment",
+      "015-hub-doc-conformance-fixes"
+    ],
+    "key_topics": [
+      "hub",
+      "doc",
+      "conformance",
+      "cli-external",
+      "mcp-tooling",
+      "reality",
+      "alignment",
+      "015-hub-doc-conformance-fixes",
+      "docs",
+      "feature",
+      "catalogs",
+      "manual"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Packet Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Active Child",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose First",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The `cli-external` and `mcp-tooling` hub docs — feature catalogs, manual testing playbooks, references, vendored `mcp-servers//README.md` files, and SKILL.md prose — have drifted from the live CLI/MCP surfaces they document and from the sk-doc create-skill templates",
+    "created_at": "2026-07-11T08:56:59.117Z",
+    "last_save_at": "2026-07-17T13:38:30.011Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:1ad7147e66987cc4d751c50025b5e9151af0d3efe7596b4ac95cf80cce53e38b",
+    "source_doc_hashes": {
+      "spec.md": "ae8730a06f9bf8415ca6394e0f6cdcf05ba52b3b947fc5ec996d7debb62080b4"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

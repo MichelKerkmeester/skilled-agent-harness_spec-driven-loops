@@ -1,0 +1,26 @@
+{
+  "specFolder": "sk-doc/016-create-diff-mode/006-cmd-create-feature-catalog",
+  "description": "The repo has a shipped feature-catalog contract and `sk-doc` now teaches that contract through dedicated templates and creation references, but there",
+  "keywords": [
+    "repo",
+    "shipped",
+    "feature-catalog",
+    "contract",
+    "sk-doc",
+    "now",
+    "teaches",
+    "dedicated",
+    "templates",
+    "creation",
+    "references"
+  ],
+  "lastUpdated": "2026-07-17T14:36:50.891Z",
+  "specId": "006",
+  "folderSlug": "cmd-create-feature-catalog",
+  "parentChain": [
+    "sk-doc",
+    "016-create-diff-mode"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

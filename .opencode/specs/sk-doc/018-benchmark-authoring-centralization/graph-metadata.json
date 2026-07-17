@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/018-benchmark-authoring-centralization",
+  "spec_folder": "sk-doc/018-benchmark-authoring-centralization",
+  "parent_id": null,
+  "children_ids": [
+    "sk-doc/018-benchmark-authoring-centralization/001-create-benchmark-reorg-and-routing",
+    "sk-doc/018-benchmark-authoring-centralization/002-benchmark-authoring-completion-and-crosslinks",
+    "sk-doc/018-benchmark-authoring-centralization/003-create-benchmark-audit-remediation",
+    "sk-doc/018-benchmark-authoring-centralization/004-create-benchmark-contract-drift-remediation",
+    "sk-doc/018-benchmark-authoring-centralization/005-d5-registry-wiring-and-cli-test-repair",
+    "sk-doc/018-benchmark-authoring-centralization/006-command-recipe-choreography-relocation"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "create-benchmark centralization",
+      "benchmark templates single home",
+      "skill-benchmark model-benchmark templates",
+      "016 plan benchmark authoring centralization",
+      "016 tasks benchmark authoring centralization",
+      "016 checklist benchmark authoring centralization",
+      "016 decision record benchmark centralization",
+      "016 summary benchmark authoring centralization"
+    ],
+    "key_topics": [
+      "create-benchmark",
+      "centralization",
+      "benchmark",
+      "templates",
+      "single",
+      "home",
+      "skill-benchmark",
+      "model-benchmark",
+      "plan",
+      "authoring",
+      "tasks",
+      "checklist"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "decision-record.md",
+      "spec.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "plan.md"
+    ],
+    "entities": [
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Benchmark Authoring Centralization",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Lane",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Transition Rules",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "an",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "in-lane",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Smart Routing",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Apply",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Ready Benchmark",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "zero",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol Every",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Make sk-doc/create-benchmark the single home for benchmark-DOCUMENT templates and authoring standards across all repo benchmark families. Author skill-benchmark storage/README templates and model-benchmark fixture/profile templates plus the Lane A guide, add a complete family-disambiguation table (Lane A marked code-owned), and rewire deep-improvement consumer docs to point at create-benchmark for authoring while run/scoring logic stays in the deep-loop lanes. The Lane C report .md stays renderer-owned.",
+    "created_at": "2026-07-12T10:58:43.605Z",
+    "last_save_at": "2026-07-17T14:38:11.583Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:13e2bbc7737c8606d1f7ca76e31bdda233485786aa7254d87b40aa2104ebd349",
+    "source_doc_hashes": {
+      "spec.md": "a210f29bc71b3549fedecb37d488bed8df267a39cf74c594335c2d7d18948a03",
+      "plan.md": "fa37db549e3c22a2659afd0b6d998f929e343faa6be264e31be51e6a19cba6af",
+      "tasks.md": "1431bab2bb7f762eaa58df0d020220fda6548142b231e730dcf6329de0388680",
+      "checklist.md": "111953e1a25e25eb242f1e61002d6be051118a39ae72b7c249d70f6fa7e6ce14",
+      "decision-record.md": "8251c4a2b3e56f5e9a02826ce0bf6351921ae9be377dd1bc23697fb6c98205ab",
+      "implementation-summary.md": "38ea875f900318ca34fdde5b8ee0ecb580f9a57183c7bd96d0f6113a10fb465b"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

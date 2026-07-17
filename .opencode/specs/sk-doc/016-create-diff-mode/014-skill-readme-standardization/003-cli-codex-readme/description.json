@@ -1,0 +1,25 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/016-create-diff-mode/014-skill-readme-standardization/003-cli-codex-readme",
+  "description": "The cli-codex README is a tabular reference card with no problem-first entry point",
+  "keywords": [
+    "cli-codex",
+    "readme",
+    "tabular",
+    "reference",
+    "card",
+    "problem-first",
+    "entry",
+    "point"
+  ],
+  "lastUpdated": "2026-07-17T13:37:15.858Z",
+  "specId": "003",
+  "folderSlug": "cli-codex-readme",
+  "parentChain": [
+    "sk-doc",
+    "016-create-diff-mode",
+    "014-skill-readme-standardization"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

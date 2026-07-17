@@ -1,0 +1,32 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/006-references-and-assets",
+  "description": "The system-spec-kit reference and asset surfaces contain a broad set of underscore-bearing Markdown filenames, plus MCP documentation and curated",
+  "keywords": [
+    "system-spec-kit",
+    "reference",
+    "asset",
+    "surfaces",
+    "contain",
+    "broad",
+    "set",
+    "underscore-bearing",
+    "markdown",
+    "filenames",
+    "plus",
+    "mcp",
+    "documentation",
+    "curated"
+  ],
+  "lastUpdated": "2026-07-17T14:29:47.482Z",
+  "specId": "006",
+  "folderSlug": "references-and-assets",
+  "parentChain": [
+    "sk-doc",
+    "020-hyphen-naming-convention",
+    "008-component-migration",
+    "008-system-spec-kit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

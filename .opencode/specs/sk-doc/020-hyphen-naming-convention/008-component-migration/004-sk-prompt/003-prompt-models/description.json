@@ -1,0 +1,31 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/003-prompt-models",
+  "description": "The prompt-models packet has underscore-separated asset and reference filenames, including the model registry and budget data files that are named by",
+  "keywords": [
+    "prompt-models",
+    "packet",
+    "underscore-separated",
+    "asset",
+    "reference",
+    "filenames",
+    "including",
+    "model",
+    "registry",
+    "budget",
+    "data",
+    "files",
+    "named"
+  ],
+  "lastUpdated": "2026-07-17T14:29:47.299Z",
+  "specId": "003",
+  "folderSlug": "prompt-models",
+  "parentChain": [
+    "sk-doc",
+    "020-hyphen-naming-convention",
+    "008-component-migration",
+    "004-sk-prompt"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,29 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/006-deep-improvement",
+  "description": "The deep-improvement packet has 22 underscore-bearing directory families and 250 underscore-bearing files across three improvement lanes, benchmark",
+  "keywords": [
+    "deep-improvement",
+    "packet",
+    "underscore-bearing",
+    "directory",
+    "families",
+    "files",
+    "across",
+    "three",
+    "improvement",
+    "lanes",
+    "benchmark"
+  ],
+  "lastUpdated": "2026-07-17T14:29:47.409Z",
+  "specId": "006",
+  "folderSlug": "deep-improvement",
+  "parentChain": [
+    "sk-doc",
+    "020-hyphen-naming-convention",
+    "008-component-migration",
+    "007-system-deep-loop"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

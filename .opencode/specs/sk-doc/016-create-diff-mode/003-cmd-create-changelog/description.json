@@ -1,0 +1,19 @@
+{
+  "specFolder": "sk-doc/016-create-diff-mode/003-cmd-create-changelog",
+  "description": "No automated way to create changelog entries",
+  "keywords": [
+    "automated",
+    "way",
+    "changelog",
+    "entries"
+  ],
+  "lastUpdated": "2026-07-17T13:37:15.717Z",
+  "specId": "003",
+  "folderSlug": "cmd-create-changelog",
+  "parentChain": [
+    "sk-doc",
+    "016-create-diff-mode"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

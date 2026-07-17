@@ -1,0 +1,38 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/016-create-diff-mode/013-catalog-playbook-snippet-denumbering/007-link-integrity-guard",
+  "description": "The deep review found 295 broken markdown links across skills/commands/agents because feature removal/migration/deprecation edits deleted snippet",
+  "keywords": [
+    "deep",
+    "review",
+    "found",
+    "broken",
+    "markdown",
+    "links",
+    "across",
+    "skills",
+    "commands",
+    "agents",
+    "because",
+    "feature",
+    "removal",
+    "migration",
+    "deprecation",
+    "edits",
+    "deleted",
+    "snippet"
+  ],
+  "lastUpdated": "2026-07-17T13:37:15.814Z",
+  "specId": "007",
+  "folderSlug": "link-integrity-guard",
+  "parentChain": [
+    "sk-doc",
+    "016-create-diff-mode",
+    "013-catalog-playbook-snippet-denumbering"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "06-06-26_16-50__built-check-markdown-links-cjs-system-spec-kit.md",
+    "06-06-26_18-14__continued-the-link-integrity-guard-packet-007.md"
+  ]
+}

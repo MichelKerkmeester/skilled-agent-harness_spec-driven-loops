@@ -1,0 +1,32 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/010-commands-gate",
+  "description": "The commands surface is split across seven namespace migrations, a loose-root classification, a residual asset/reference closure, and this gate",
+  "keywords": [
+    "commands",
+    "surface",
+    "split",
+    "across",
+    "seven",
+    "namespace",
+    "migrations",
+    "loose-root",
+    "classification",
+    "residual",
+    "asset",
+    "reference",
+    "closure",
+    "gate"
+  ],
+  "lastUpdated": "2026-07-17T14:29:47.419Z",
+  "specId": "010",
+  "folderSlug": "commands-gate",
+  "parentChain": [
+    "sk-doc",
+    "020-hyphen-naming-convention",
+    "008-component-migration",
+    "013-commands"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

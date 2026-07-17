@@ -1,0 +1,30 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/010-benchmark",
+  "description": "Benchmark run snapshots use underscore-bearing after-label directories, while the benchmark README and changelog describe those paths as comparison",
+  "keywords": [
+    "benchmark",
+    "run",
+    "snapshots",
+    "underscore-bearing",
+    "after-label",
+    "directories",
+    "while",
+    "readme",
+    "changelog",
+    "describe",
+    "paths",
+    "comparison"
+  ],
+  "lastUpdated": "2026-07-17T14:29:47.347Z",
+  "specId": "010",
+  "folderSlug": "benchmark",
+  "parentChain": [
+    "sk-doc",
+    "020-hyphen-naming-convention",
+    "008-component-migration",
+    "002-sk-design"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

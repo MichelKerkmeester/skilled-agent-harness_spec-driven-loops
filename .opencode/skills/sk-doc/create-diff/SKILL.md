@@ -257,7 +257,7 @@ The task is successful when:
 - `manual-testing-playbook/manual-testing-playbook.md` — operator-facing manual validation scenarios.
 - `assets/fixtures/` — a runnable before/after worked example.
 - `../shared/` — shared sk-doc quality standards and document validator.
-- Engine and mode design: `.opencode/specs/sk-doc/033-create-diff-mode/` (parent spec, phase `006-opencode-skill-and-accessibility`, research synthesis in `001-research-and-requirements/research/research.md`).
+- Engine and mode design: `.opencode/specs/sk-doc/016-create-diff-mode/` (parent spec, phase `006-opencode-skill-and-accessibility`, research synthesis in `001-research-and-requirements/research/research.md`).
 
 ---
 

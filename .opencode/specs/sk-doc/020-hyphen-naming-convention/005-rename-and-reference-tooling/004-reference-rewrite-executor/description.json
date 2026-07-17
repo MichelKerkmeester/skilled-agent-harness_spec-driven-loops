@@ -1,0 +1,31 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/004-reference-rewrite-executor",
+  "description": "The checker only records reference sites read-only and the engine only moves files, so nothing deterministically rewrites in-file references to",
+  "keywords": [
+    "checker",
+    "only",
+    "records",
+    "reference",
+    "sites",
+    "read-only",
+    "engine",
+    "moves",
+    "files",
+    "nothing",
+    "deterministically",
+    "rewrites",
+    "in-file",
+    "references"
+  ],
+  "lastUpdated": "2026-07-17T14:29:47.226Z",
+  "specId": "004",
+  "folderSlug": "reference-rewrite-executor",
+  "parentChain": [
+    "sk-doc",
+    "020-hyphen-naming-convention",
+    "005-rename-and-reference-tooling"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

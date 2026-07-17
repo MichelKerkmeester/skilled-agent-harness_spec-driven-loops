@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/003-design-namespace",
+  "spec_folder": "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/003-design-namespace",
+  "parent_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "design command namespace naming",
+      "kebab-case design assets",
+      "hyphenate design workflow files",
+      "design namespace naming plan",
+      "design asset rename plan",
+      "design command path repair",
+      "design namespace naming tasks",
+      "design asset rename tasks",
+      "design command reference repair",
+      "design namespace naming checklist",
+      "design asset rename verification",
+      "design command path verification"
+    ],
+    "key_topics": [
+      "design",
+      "command",
+      "namespace",
+      "naming",
+      "kebab-case",
+      "assets",
+      "hyphenate",
+      "workflow",
+      "files",
+      "plan",
+      "asset",
+      "rename"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Rename",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Rename",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Core Implementation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "every",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "BASE",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "all",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The `.opencode/commands/design/assets/` tree contains `designauditauto.yaml`, `designfoundationspresentation.txt`, `designinterfaceconfirm.yaml`, `designmd-generatorauto.yaml`, and `designmotionpresentation.txt`",
+    "created_at": "2026-07-14T15:18:33Z",
+    "last_save_at": "2026-07-17T14:30:44.143Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:2eef5964dc466ce4ef3dd16ea0ffe24c46b66b5bd6e1a196620d3bd84796798e",
+    "source_doc_hashes": {
+      "spec.md": "0e792a016233c1171753889be1728780423d4bc80a6c46ce649c79fc3665b6e1",
+      "plan.md": "73466f1577ed1462d914126f6841977b39cc9e097f72b34716e7bb6b9087410c",
+      "tasks.md": "2cb9d913127d28b2c33204abca0baaa8272a1fd8305eafa1a7904af3002d2023",
+      "checklist.md": "3fc458b8ae17e1cf2f1e4ecd86f8fb58152e2a7e7a4cf9db9a4aa23e527261f3"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

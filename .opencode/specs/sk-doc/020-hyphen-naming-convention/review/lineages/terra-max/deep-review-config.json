@@ -1,0 +1,107 @@
+{
+  "topic": "Review: .opencode/specs/sk-doc/020-hyphen-naming-convention",
+  "mode": "review",
+  "reviewTarget": ".opencode/specs/sk-doc/020-hyphen-naming-convention",
+  "reviewTargetType": "spec-folder",
+  "reviewDimensions": [
+    "correctness",
+    "security",
+    "traceability",
+    "maintainability"
+  ],
+  "reviewScopeFiles": [
+    ".opencode/specs/sk-doc/020-hyphen-naming-convention/spec.md",
+    ".opencode/specs/sk-doc/020-hyphen-naming-convention/description.json",
+    ".opencode/specs/sk-doc/020-hyphen-naming-convention/graph-metadata.json",
+    ".opencode/specs/sk-doc/020-hyphen-naming-convention/manifest/phase-tree.json",
+    ".opencode/specs/sk-doc/020-hyphen-naming-convention/000-worktree-baseline-and-census/spec.md",
+    ".opencode/specs/sk-doc/020-hyphen-naming-convention/000-worktree-baseline-and-census/plan.md",
+    ".opencode/specs/sk-doc/020-hyphen-naming-convention/000-worktree-baseline-and-census/checklist.md",
+    ".opencode/specs/sk-doc/020-hyphen-naming-convention/001-convention-policy-and-scope/decision-record.md",
+    ".opencode/specs/sk-doc/020-hyphen-naming-convention/010-whole-repo-gate/spec.md",
+    ".opencode/specs/sk-doc/020-hyphen-naming-convention/011-integrate-and-closeout/spec.md"
+  ],
+  "resource_map_present": false,
+  "resource_map": {
+    "emit": true
+  },
+  "sessionId": "fanout-terra-max-1784064061456-29xqh9",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "maxIterations": 5,
+  "convergenceThreshold": 0.1,
+  "antiConvergence": {
+    "minIterations": 2,
+    "convergenceMode": "default",
+    "divergent": {}
+  },
+  "stopPolicy": "max-iterations",
+  "stuckThreshold": 2,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "severityThreshold": "P2",
+  "crossReference": {
+    "core": [
+      "spec_code",
+      "checklist_evidence"
+    ],
+    "overlay": [
+      "feature_catalog_code",
+      "playbook_capability"
+    ]
+  },
+  "qualityGateThreshold": true,
+  "releaseReadinessState": "conditional",
+  "specFolder": ".opencode/specs/sk-doc/020-hyphen-naming-convention",
+  "createdAt": "2026-07-14T21:26:00Z",
+  "status": "complete",
+  "completedAt": "2026-07-14T21:38:00Z",
+  "stopReason": "maxIterationsReached",
+  "finalVerdict": "CONDITIONAL",
+  "executionMode": "auto",
+  "fanoutLineageArtifactDir": ".opencode/specs/sk-doc/020-hyphen-naming-convention/review/lineages/terra-max",
+  "executor": {
+    "kind": "cli-codex",
+    "model": "gpt-5.6-terra",
+    "reasoningEffort": "max",
+    "serviceTier": "fast",
+    "sandboxMode": "workspace-write",
+    "timeoutSeconds": 900
+  },
+  "runtimeCapabilityResolver": ".opencode/skills/system-deep-loop/deep-review/scripts/runtime-capabilities.cjs",
+  "reducerScriptPath": ".opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+  "fileProtection": {
+    "deep-review-config.json": "immutable",
+    "deep-review-state.jsonl": "append-only",
+    "deep-review-findings-registry.json": "auto-generated",
+    "deep-review-strategy.md": "mutable",
+    "deep-review-dashboard.md": "auto-generated",
+    ".deep-review-pause": "operator-controlled",
+    "review-report.md": "mutable",
+    "review-report-v*.md": "write-once",
+    "iteration-*.md": "write-once"
+  },
+  "reducer": {
+    "enabled": true,
+    "inputs": [
+      "latestJSONLDelta",
+      "newIterationFile",
+      "priorReducedState"
+    ],
+    "outputs": [
+      "findingsRegistry",
+      "dashboardMetrics",
+      "strategyUpdates"
+    ],
+    "metrics": [
+      "dimensionsCovered",
+      "findingsBySeverity",
+      "openFindings",
+      "resolvedFindings",
+      "convergenceScore"
+    ]
+  }
+}

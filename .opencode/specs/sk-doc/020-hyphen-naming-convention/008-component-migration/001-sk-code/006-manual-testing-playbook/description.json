@@ -1,0 +1,27 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/006-manual-testing-playbook",
+  "description": "The hub-level playbook is a routable evidence corpus with the root manualtestingplaybook/ and categories crossbrowserandperformancegates,",
+  "keywords": [
+    "hub-level",
+    "playbook",
+    "routable",
+    "evidence",
+    "corpus",
+    "root",
+    "manualtestingplaybook",
+    "categories",
+    "crossbrowserandperformancegates"
+  ],
+  "lastUpdated": "2026-07-17T14:29:47.436Z",
+  "specId": "006",
+  "folderSlug": "manual-testing-playbook",
+  "parentChain": [
+    "sk-doc",
+    "020-hyphen-naming-convention",
+    "008-component-migration",
+    "001-sk-code"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

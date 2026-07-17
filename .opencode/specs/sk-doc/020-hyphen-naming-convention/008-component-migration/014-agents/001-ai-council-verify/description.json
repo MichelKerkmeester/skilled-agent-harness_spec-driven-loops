@@ -1,0 +1,30 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents/001-ai-council-verify",
+  "description": "The agents surface needs an explicit candidate audit for ai-council across the three runtime agent directories.",
+  "keywords": [
+    "agents",
+    "surface",
+    "needs",
+    "explicit",
+    "candidate",
+    "audit",
+    "ai-council",
+    "across",
+    "three",
+    "runtime",
+    "agent",
+    "directories"
+  ],
+  "lastUpdated": "2026-07-17T14:29:47.452Z",
+  "specId": "001",
+  "folderSlug": "ai-council-verify",
+  "parentChain": [
+    "sk-doc",
+    "020-hyphen-naming-convention",
+    "008-component-migration",
+    "014-agents"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

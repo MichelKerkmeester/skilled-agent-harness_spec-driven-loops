@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/005-memory-namespace",
+  "spec_folder": "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/005-memory-namespace",
+  "parent_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "memory command namespace naming",
+      "kebab-case memory assets",
+      "hyphenate memory presentation files",
+      "memory namespace naming plan",
+      "memory asset rename plan",
+      "memory presentation path repair",
+      "memory namespace naming tasks",
+      "memory asset rename tasks",
+      "memory presentation reference repair",
+      "memory namespace naming checklist",
+      "memory asset rename verification",
+      "memory presentation path verification"
+    ],
+    "key_topics": [
+      "memory",
+      "command",
+      "namespace",
+      "naming",
+      "kebab-case",
+      "assets",
+      "hyphenate",
+      "presentation",
+      "files",
+      "plan",
+      "asset",
+      "rename"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      ".opencode/commands/memory/README.txt",
+      ".opencode/commands/memory/assets/learn_presentation.txt",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".opencode/commands/memory/README.txt",
+        "source": "derived"
+      },
+      {
+        "name": "learn_presentation.txt",
+        "kind": "file",
+        "path": ".opencode/commands/memory/assets/learn_presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Rename",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "targets",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Rename",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Core Implementation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "all",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "BASE",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The `.opencode/commands/memory/assets/` tree contains `learnpresentation.txt`, `managepresentation.txt`, `savepresentation.txt`, and `searchpresentation.txt`",
+    "created_at": "2026-07-14T15:18:34Z",
+    "last_save_at": "2026-07-17T14:30:44.710Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:2734e68cfaf1939bbbafb073fa995ac48b62966dd52c0fd90007ea2614303c5f",
+    "source_doc_hashes": {
+      "spec.md": "c75b5c3ac6f733e4847a119e6099be72aa4cf7724d5a54d04d3370526705f34e",
+      "plan.md": "27d314f0038c95604e968a92aa4552b1def62eae0dbb0d72d6c1bbd9a716d96b",
+      "tasks.md": "0f6f780df7f82189c1fc687cdbf2c4277927bb8ca41197586788408112ab093c",
+      "checklist.md": "d9d791d5b2d6bced9669bf4c309ea2ef213b3f691bb12ca0ac2cdacc9e298495"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

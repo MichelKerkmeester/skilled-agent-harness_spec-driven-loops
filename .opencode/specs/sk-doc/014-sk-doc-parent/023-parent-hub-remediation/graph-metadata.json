@@ -1,0 +1,215 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/014-sk-doc-parent/023-parent-hub-remediation",
+  "spec_folder": "sk-doc/014-sk-doc-parent/023-parent-hub-remediation",
+  "parent_id": "sk-doc/014-sk-doc-parent",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "parent hub remediation plan",
+      "014 sk-doc phase 023",
+      "fix parent skill findings",
+      "parent hub remediation plan detail",
+      "014 sk-doc phase 023 plan",
+      "parent hub remediation tasks",
+      "014 sk-doc phase 023 tasks",
+      "parent hub remediation summary",
+      "014 sk-doc phase 023 summary"
+    ],
+    "key_topics": [
+      "parent",
+      "hub",
+      "remediation",
+      "plan",
+      "sk-doc",
+      "phase",
+      "skill",
+      "findings",
+      "detail",
+      "tasks",
+      "summary",
+      "deep"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/specs/sk-doc/014-sk-doc-parent/022-parent-skill-logic-review/review-report.md",
+      ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
+      "plan.md",
+      "spec.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-doc/014-sk-doc-parent/022-parent-skill-logic-review/review-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "parent-skill-check.cjs",
+        "kind": "file",
+        "path": ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Depends On",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Produce",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Fix",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Type",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "six",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "recommended",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a RED",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "WU5",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 022 deep review found 18 defects in the parent-hub pattern: one P0 (sk-design fails the canon checker on an un-canonized `transport` axis), seven P1s (surfaceBundle doctrine fiction, unenforced one-identity ingestion, two sk-code tool-contract contradictions, two unguarded advisor command-bridge lanes, sk-design's self-contradicting routing contract), and ten P2s (doctrine/checker/template staleness and cross-hub metadata dialect drift)",
+    "created_at": "2026-07-07T15:55:58.850Z",
+    "last_save_at": "2026-07-17T13:38:22.398Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:a7f52227432ee74a8338740dfe9bd133b95df1fd86ca3178825fe875f51567a0",
+    "source_doc_hashes": {
+      "spec.md": "a2276c9aad9e91c8b9c9950494f9b932bb24551562117b3577919285c35600f2",
+      "plan.md": "c485b074548689702b95dd06269072fcef5d3e64bca5aa95c5e2f2bb8edda177",
+      "tasks.md": "3c41067fbd86e6701c48c598ff86adfc49d87d6a2c915effc1a70d896866b0b7",
+      "implementation-summary.md": "99ddef8ec8f81e5d10a81e0b2a40875ac526bec40d6877ca94f0253f531c3677"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

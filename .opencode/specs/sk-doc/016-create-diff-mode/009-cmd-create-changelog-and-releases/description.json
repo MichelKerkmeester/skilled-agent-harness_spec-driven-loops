@@ -1,0 +1,20 @@
+{
+  "specFolder": "sk-doc/016-create-diff-mode/009-cmd-create-changelog-and-releases",
+  "description": "The `create:changelog` command generates changelog markdown files but stops there",
+  "keywords": [
+    "changelog",
+    "command",
+    "markdown",
+    "files",
+    "stops"
+  ],
+  "lastUpdated": "2026-07-17T13:37:15.732Z",
+  "specId": "009",
+  "folderSlug": "cmd-create-changelog-and-releases",
+  "parentChain": [
+    "sk-doc",
+    "016-create-diff-mode"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

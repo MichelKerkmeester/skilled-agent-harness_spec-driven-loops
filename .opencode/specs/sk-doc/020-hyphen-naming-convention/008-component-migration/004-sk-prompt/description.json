@@ -1,0 +1,29 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt",
+  "description": "The sk-prompt surface still contains underscore-separated filesystem names across the hub-level playbook, the prompt-improve and prompt-models",
+  "keywords": [
+    "sk-prompt",
+    "surface",
+    "still",
+    "contains",
+    "underscore-separated",
+    "filesystem",
+    "names",
+    "across",
+    "hub-level",
+    "playbook",
+    "prompt-improve",
+    "prompt-models"
+  ],
+  "lastUpdated": "2026-07-17T14:29:47.288Z",
+  "specId": "004",
+  "folderSlug": "sk-prompt",
+  "parentChain": [
+    "sk-doc",
+    "020-hyphen-naming-convention",
+    "008-component-migration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,31 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/012-skill-gate",
+  "description": "This rollup gate aggregates phases 001-011 and verifies that the complete system-spec-kit naming surface is kebab-clean outside the declared exemption",
+  "keywords": [
+    "rollup",
+    "gate",
+    "aggregates",
+    "phases",
+    "verifies",
+    "complete",
+    "system-spec-kit",
+    "naming",
+    "surface",
+    "kebab-clean",
+    "outside",
+    "declared",
+    "exemption"
+  ],
+  "lastUpdated": "2026-07-17T14:29:47.485Z",
+  "specId": "012",
+  "folderSlug": "skill-gate",
+  "parentChain": [
+    "sk-doc",
+    "020-hyphen-naming-convention",
+    "008-component-migration",
+    "008-system-spec-kit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

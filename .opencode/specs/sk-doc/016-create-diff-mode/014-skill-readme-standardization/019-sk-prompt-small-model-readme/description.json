@@ -1,0 +1,32 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/016-create-diff-mode/014-skill-readme-standardization/019-sk-prompt-small-model-readme",
+  "description": "The sk-prompt-models README is a tabular reference card with no problem-first entry point, and it carries a stale version line plus a wrong \"five",
+  "keywords": [
+    "sk-prompt-models",
+    "readme",
+    "tabular",
+    "reference",
+    "card",
+    "problem-first",
+    "entry",
+    "point",
+    "carries",
+    "stale",
+    "version",
+    "line",
+    "plus",
+    "wrong",
+    "five"
+  ],
+  "lastUpdated": "2026-07-17T13:37:15.850Z",
+  "specId": "019",
+  "folderSlug": "sk-prompt-small-model-readme",
+  "parentChain": [
+    "sk-doc",
+    "016-create-diff-mode",
+    "014-skill-readme-standardization"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

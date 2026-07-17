@@ -1,0 +1,32 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/001-hub-root-and-shared",
+  "description": "The shared sk-code layer is the source for surface detection, routing, universal verification, workflow doctrine, and reusable asset patterns",
+  "keywords": [
+    "shared",
+    "sk-code",
+    "layer",
+    "source",
+    "surface",
+    "detection",
+    "routing",
+    "universal",
+    "verification",
+    "workflow",
+    "doctrine",
+    "reusable",
+    "asset",
+    "patterns"
+  ],
+  "lastUpdated": "2026-07-17T14:29:47.428Z",
+  "specId": "001",
+  "folderSlug": "hub-root-and-shared",
+  "parentChain": [
+    "sk-doc",
+    "020-hyphen-naming-convention",
+    "008-component-migration",
+    "001-sk-code"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,28 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/005-manual-testing-playbook",
+  "description": "The mcp-code-mode manual-testing tree uses snake_case for its root, eight category directories, the index, and 27 scenario files.",
+  "keywords": [
+    "mcp-code-mode",
+    "manual-testing",
+    "tree",
+    "root",
+    "eight",
+    "category",
+    "directories",
+    "index",
+    "scenario",
+    "files"
+  ],
+  "lastUpdated": "2026-07-17T14:29:47.390Z",
+  "specId": "005",
+  "folderSlug": "manual-testing-playbook",
+  "parentChain": [
+    "sk-doc",
+    "020-hyphen-naming-convention",
+    "008-component-migration",
+    "011-mcp-code-mode"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

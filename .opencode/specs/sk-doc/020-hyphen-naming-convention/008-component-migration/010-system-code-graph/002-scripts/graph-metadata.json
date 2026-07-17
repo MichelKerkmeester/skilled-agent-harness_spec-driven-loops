@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/002-scripts",
+  "spec_folder": "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/002-scripts",
+  "parent_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "system-code-graph scripts naming",
+      "code graph script filename audit",
+      "kebab-case non-Python scripts",
+      "code graph script reference closure",
+      "system-code-graph scripts implementation plan",
+      "code graph script filename plan",
+      "script naming audit plan",
+      "system-code-graph script tasks",
+      "code graph script rename tasks",
+      "script census tasks",
+      "system-code-graph scripts checklist",
+      "code graph script filename verification"
+    ],
+    "key_topics": [
+      "system-code-graph",
+      "scripts",
+      "naming",
+      "code",
+      "graph",
+      "script",
+      "filename",
+      "audit",
+      "kebab-case",
+      "non-python",
+      "reference",
+      "closure"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      ".opencode/skills/system-code-graph/scripts/doctor.sh",
+      ".opencode/skills/system-code-graph/mcp_server/scripts/eval/score-seeded-ppr-retrieval.mjs",
+      ".opencode/skills/system-code-graph/SKILL.md",
+      ".opencode/skills/system-code-graph/README.md",
+      ".opencode/skills/system-code-graph/INSTALL_GUIDE.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "doctor.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-code-graph/scripts/doctor.sh",
+        "source": "derived"
+      },
+      {
+        "name": "score-seeded-ppr-retrieval.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-code-graph/mcp_server/scripts/eval/score-seeded-ppr-retrieval.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-code-graph/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-code-graph/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "INSTALL_GUIDE.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-code-graph/INSTALL_GUIDE.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Prove",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Treat",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Script",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Keep Python",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Preserve Python",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The system-code-graph surface has two actual script files: scripts/doctor.sh and",
+    "created_at": "2026-07-14T15:18:14Z",
+    "last_save_at": "2026-07-17T14:30:36.432Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:bed44793521e8e37452d142c0252202532e772145c8c6dc4085f25827e217530",
+    "source_doc_hashes": {
+      "spec.md": "63fec90dce76ca080c6d864e79668bbfbe4987576a3d07cd6011c542813a3cc9",
+      "plan.md": "165fac2d502577ae7891553203370f5b08a596354322ac4678f15889e194c423",
+      "tasks.md": "a245df065a295c64c9c37790ea0effc5589730dd15c8406b8eaeec3ff7305caf",
+      "checklist.md": "d33309e7089c06b55f564e07aa42427af6ada4b602b40c3f015e23255fa1f6ac"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

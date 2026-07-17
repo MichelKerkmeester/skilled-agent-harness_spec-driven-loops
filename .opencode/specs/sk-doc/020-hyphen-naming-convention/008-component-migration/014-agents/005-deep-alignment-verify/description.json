@@ -1,0 +1,30 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents/005-deep-alignment-verify",
+  "description": "The agents surface needs an explicit candidate audit for deep-alignment across the three runtime agent directories.",
+  "keywords": [
+    "agents",
+    "surface",
+    "needs",
+    "explicit",
+    "candidate",
+    "audit",
+    "deep-alignment",
+    "across",
+    "three",
+    "runtime",
+    "agent",
+    "directories"
+  ],
+  "lastUpdated": "2026-07-17T14:29:47.467Z",
+  "specId": "005",
+  "folderSlug": "deep-alignment-verify",
+  "parentChain": [
+    "sk-doc",
+    "020-hyphen-naming-convention",
+    "008-component-migration",
+    "014-agents"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

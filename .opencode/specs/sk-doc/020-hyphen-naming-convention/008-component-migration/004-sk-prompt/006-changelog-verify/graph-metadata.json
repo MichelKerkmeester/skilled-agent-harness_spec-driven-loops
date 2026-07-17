@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/006-changelog-verify",
+  "spec_folder": "sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/006-changelog-verify",
+  "parent_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-prompt changelog verification",
+      "sk-prompt rename release evidence",
+      "sk-prompt phase 006 verification",
+      "sk-prompt changelog verification plan",
+      "sk-prompt release evidence plan",
+      "sk-prompt phase 006 plan",
+      "sk-prompt changelog verification tasks",
+      "sk-prompt release evidence tasks",
+      "sk-prompt phase 006 tasks",
+      "sk-prompt changelog verification checklist",
+      "sk-prompt release evidence verifier",
+      "sk-prompt phase 006 acceptance"
+    ],
+    "key_topics": [
+      "sk-prompt",
+      "changelog",
+      "verification",
+      "rename",
+      "release",
+      "evidence",
+      "phase",
+      "plan",
+      "tasks",
+      "checklist",
+      "verifier",
+      "acceptance"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      ".opencode/skills/sk-prompt/SKILL.md",
+      ".opencode/skills/sk-prompt/prompt-improve/SKILL.md",
+      ".opencode/skills/sk-prompt/prompt-models/SKILL.md",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-prompt/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "active",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Use",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "new",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "versions",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "This verification-only phase confirms that the sk-prompt hub, prompt-improve, and prompt-models release records document the completed kebab-case rename set and that their version metadata agrees with the new changelog entries. It does not rename files or rewrite frozen historical changelogs.",
+    "created_at": "2026-07-14T15:17:33Z",
+    "last_save_at": "2026-07-17T14:30:19.747Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:54869a84c219416f94b8c434f6c69d796d971a63006582a276ff7d68a6e13ef2",
+    "source_doc_hashes": {
+      "spec.md": "711a86f2c033d7560950ab3a5dc695b9c1bb5b5e663d054e6e188e653cb85d4b",
+      "plan.md": "0e6248e43ae7de07a5fdce5be8224a1d0b41a5628afa8fed8c6d821a27284920",
+      "tasks.md": "ad7fa694ad05c5c94819814c4542ca28a004859a6f20a148d35f43997785a4dd",
+      "checklist.md": "bc46084d714a18f288a5109e3922f0c53377f1c8dbaa8769bef8c73bba1069fb"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

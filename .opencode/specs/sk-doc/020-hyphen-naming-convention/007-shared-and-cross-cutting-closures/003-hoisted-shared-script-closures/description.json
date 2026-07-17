@@ -1,0 +1,32 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures/003-hoisted-shared-script-closures",
+  "description": "Shared scripts used by more than one skill must move with their complete import, require, source, registry, fixture, and symlink closure rather than",
+  "keywords": [
+    "shared",
+    "scripts",
+    "one",
+    "skill",
+    "must",
+    "move",
+    "complete",
+    "import",
+    "require",
+    "source",
+    "registry",
+    "fixture",
+    "symlink",
+    "closure",
+    "rather"
+  ],
+  "lastUpdated": "2026-07-17T14:29:47.260Z",
+  "specId": "003",
+  "folderSlug": "hoisted-shared-script-closures",
+  "parentChain": [
+    "sk-doc",
+    "020-hyphen-naming-convention",
+    "007-shared-and-cross-cutting-closures"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

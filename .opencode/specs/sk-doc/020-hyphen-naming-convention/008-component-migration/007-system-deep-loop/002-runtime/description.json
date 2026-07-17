@@ -1,0 +1,30 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/002-runtime",
+  "description": "The runtime tree has six snake_case directories and 108 underscore-bearing files across its catalog, playbook, libraries, scripts, and tests.",
+  "keywords": [
+    "runtime",
+    "tree",
+    "six",
+    "directories",
+    "underscore-bearing",
+    "files",
+    "across",
+    "catalog",
+    "playbook",
+    "libraries",
+    "scripts",
+    "tests"
+  ],
+  "lastUpdated": "2026-07-17T14:29:47.405Z",
+  "specId": "002",
+  "folderSlug": "runtime",
+  "parentChain": [
+    "sk-doc",
+    "020-hyphen-naming-convention",
+    "008-component-migration",
+    "007-system-deep-loop"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

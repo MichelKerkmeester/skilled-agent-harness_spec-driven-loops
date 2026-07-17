@@ -1,0 +1,26 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/017-fenced-code-structure-parity",
+  "description": "Four sk-doc authoring templates each contain a fenced example that shows a copy-pasteable document skeleton",
+  "keywords": [
+    "four",
+    "sk-doc",
+    "authoring",
+    "templates",
+    "contain",
+    "fenced",
+    "example",
+    "shows",
+    "copy-pasteable",
+    "document",
+    "skeleton"
+  ],
+  "lastUpdated": "2026-07-17T14:38:02.160Z",
+  "specId": "017",
+  "folderSlug": "fenced-code-structure-parity",
+  "parentChain": [
+    "sk-doc"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

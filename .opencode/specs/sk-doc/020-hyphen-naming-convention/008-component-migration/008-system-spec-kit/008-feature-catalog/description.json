@@ -1,0 +1,29 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/008-feature-catalog",
+  "description": "The skill’s feature_catalog tree contains 366 underscore-bearing filesystem names: the root, 17 candidate category directories, and 348 files.",
+  "keywords": [
+    "skill",
+    "tree",
+    "contains",
+    "underscore-bearing",
+    "filesystem",
+    "names",
+    "root",
+    "candidate",
+    "category",
+    "directories",
+    "files"
+  ],
+  "lastUpdated": "2026-07-17T14:29:47.484Z",
+  "specId": "008",
+  "folderSlug": "feature-catalog",
+  "parentChain": [
+    "sk-doc",
+    "020-hyphen-naming-convention",
+    "008-component-migration",
+    "008-system-spec-kit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

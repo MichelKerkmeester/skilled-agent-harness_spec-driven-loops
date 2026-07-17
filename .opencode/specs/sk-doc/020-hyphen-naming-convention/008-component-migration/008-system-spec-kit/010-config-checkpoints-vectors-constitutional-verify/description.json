@@ -1,0 +1,31 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/010-config-checkpoints-vectors-constitutional-verify",
+  "description": "This verify-only phase audits the runtime agent directories and adjacent system-spec-kit config, checkpoint, vector, and constitutional surfaces for",
+  "keywords": [
+    "verify-only",
+    "phase",
+    "audits",
+    "runtime",
+    "agent",
+    "directories",
+    "adjacent",
+    "system-spec-kit",
+    "config",
+    "checkpoint",
+    "vector",
+    "constitutional",
+    "surfaces"
+  ],
+  "lastUpdated": "2026-07-17T14:29:47.473Z",
+  "specId": "010",
+  "folderSlug": "config-checkpoints-vectors-constitutional-verify",
+  "parentChain": [
+    "sk-doc",
+    "020-hyphen-naming-convention",
+    "008-component-migration",
+    "008-system-spec-kit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

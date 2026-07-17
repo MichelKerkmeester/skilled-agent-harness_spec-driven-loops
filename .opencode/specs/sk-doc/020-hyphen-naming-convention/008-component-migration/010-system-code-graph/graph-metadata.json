@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph",
+  "spec_folder": "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph",
+  "parent_id": "sk-doc/020-hyphen-naming-convention/008-component-migration",
+  "children_ids": [
+    "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/001-mcp-server-dir-and-manifest-closure",
+    "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/002-scripts",
+    "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/003-references",
+    "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/004-runtime",
+    "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/005-feature-catalog",
+    "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/006-manual-testing-playbook",
+    "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/007-changelog-verify",
+    "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/008-skill-gate"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "system-code-graph kebab-case migration",
+      "system-code-graph component migration",
+      "system-code-graph snake_case cleanup",
+      "system-code-graph naming phases"
+    ],
+    "key_topics": [
+      "system-code-graph",
+      "kebab-case",
+      "migration",
+      "component",
+      "cleanup",
+      "naming",
+      "phases",
+      "surface",
+      "still",
+      "exposes",
+      "snakecase",
+      "filesystem"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Drive",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "its",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The system-code-graph surface still exposes snakecase filesystem roots and content paths in its MCP package,",
+    "created_at": "2026-07-14T15:17:02Z",
+    "last_save_at": "2026-07-17T14:30:35.808Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:daf24d82d4f29bbc461e781854e411e63dd77b7ca6156753387b751dd5931d8c",
+    "source_doc_hashes": {
+      "spec.md": "349bfc3b94eded5ed98604cd741dd1b5a5e8edf70d98864432b27929540c5d66"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

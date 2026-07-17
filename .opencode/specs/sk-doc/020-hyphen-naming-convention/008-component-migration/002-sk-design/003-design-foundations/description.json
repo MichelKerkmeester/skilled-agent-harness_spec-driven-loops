@@ -1,0 +1,31 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/003-design-foundations",
+  "description": "The design-foundations mode contains underscore-bearing visual-system references and fixture directories, and its Python checker paths must remain",
+  "keywords": [
+    "design-foundations",
+    "mode",
+    "contains",
+    "underscore-bearing",
+    "visual-system",
+    "references",
+    "fixture",
+    "directories",
+    "python",
+    "checker",
+    "paths",
+    "must",
+    "remain"
+  ],
+  "lastUpdated": "2026-07-17T14:29:47.336Z",
+  "specId": "003",
+  "folderSlug": "design-foundations",
+  "parentChain": [
+    "sk-doc",
+    "020-hyphen-naming-convention",
+    "008-component-migration",
+    "002-sk-design"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

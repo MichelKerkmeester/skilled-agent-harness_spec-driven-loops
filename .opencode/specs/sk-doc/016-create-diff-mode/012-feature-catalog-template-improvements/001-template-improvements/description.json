@@ -1,0 +1,32 @@
+{
+  "title": "Template Improvements",
+  "level": 1,
+  "id": "001-template-improvements",
+  "status": "complete",
+  "track": "skilled-agent-orchestration",
+  "created": "2026-05-31",
+  "specFolder": "sk-doc/016-create-diff-mode/012-feature-catalog-template-improvements/001-template-improvements",
+  "description": "Cross-analysis of all 370 feature catalog files across three skills (system-spec-kit: 314 files, 25 categories; system-skill-advisor: 41 files, 7",
+  "keywords": [
+    "cross-analysis",
+    "feature",
+    "catalog",
+    "files",
+    "across",
+    "three",
+    "skills",
+    "system-spec-kit",
+    "categories",
+    "system-skill-advisor"
+  ],
+  "lastUpdated": "2026-07-17T13:37:15.801Z",
+  "specId": "001",
+  "folderSlug": "template-improvements",
+  "parentChain": [
+    "sk-doc",
+    "016-create-diff-mode",
+    "012-feature-catalog-template-improvements"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

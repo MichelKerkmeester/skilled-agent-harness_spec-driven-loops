@@ -1,0 +1,32 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/001-hub-root-and-shared",
+  "description": "The sk-prompt hub root owns routing and packet-entry files, while delegated playbook and benchmark trees have their own phases.",
+  "keywords": [
+    "sk-prompt",
+    "hub",
+    "root",
+    "owns",
+    "routing",
+    "packet-entry",
+    "files",
+    "while",
+    "delegated",
+    "playbook",
+    "benchmark",
+    "trees",
+    "own",
+    "phases"
+  ],
+  "lastUpdated": "2026-07-17T14:29:47.296Z",
+  "specId": "001",
+  "folderSlug": "hub-root-and-shared",
+  "parentChain": [
+    "sk-doc",
+    "020-hyphen-naming-convention",
+    "008-component-migration",
+    "004-sk-prompt"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

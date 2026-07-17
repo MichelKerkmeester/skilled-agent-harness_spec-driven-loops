@@ -1,0 +1,31 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/006-benchmark",
+  "description": "The mcp-tooling benchmark boundary is reserved for fixtures, profiles, and storage guides, but the current worktree contains only benchmark/.gitkeep",
+  "keywords": [
+    "mcp-tooling",
+    "benchmark",
+    "boundary",
+    "reserved",
+    "fixtures",
+    "profiles",
+    "storage",
+    "guides",
+    "current",
+    "worktree",
+    "contains",
+    "only",
+    "gitkeep"
+  ],
+  "lastUpdated": "2026-07-17T14:29:47.356Z",
+  "specId": "006",
+  "folderSlug": "benchmark",
+  "parentChain": [
+    "sk-doc",
+    "020-hyphen-naming-convention",
+    "008-component-migration",
+    "006-mcp-tooling"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

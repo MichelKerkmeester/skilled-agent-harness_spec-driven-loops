@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/015-hub-doc-conformance-fixes/001-hub-doc-conformance-review",
+  "spec_folder": "sk-doc/015-hub-doc-conformance-fixes/001-hub-doc-conformance-review",
+  "parent_id": "sk-doc/015-hub-doc-conformance-fixes",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "hub doc conformance review",
+      "cli-external mcp-tooling doc audit",
+      "015-hub-doc-conformance-fixes/001-hub-doc-conformance-review",
+      "hub doc conformance review plan",
+      "cli-external mcp-tooling doc audit plan",
+      "hub doc conformance review tasks",
+      "cli-external mcp-tooling doc audit tasks",
+      "hub doc conformance review summary",
+      "cli-external mcp-tooling doc audit summary"
+    ],
+    "key_topics": [
+      "hub",
+      "doc",
+      "conformance",
+      "review",
+      "cli-external",
+      "mcp-tooling",
+      "audit",
+      "015-hub-doc-conformance-fixes",
+      "001-hub-doc-conformance-review",
+      "plan",
+      "tasks",
+      "summary"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/specs/sk-doc/015-hub-doc-conformance-fixes/001-hub-doc-conformance-review/review/deep-review-findings-registry.json",
+      ".opencode/skills/mcp-tooling/SKILL.md",
+      "review/deep-review-findings-registry.json",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "deep-review-findings-registry.json",
+        "kind": "config",
+        "path": ".opencode/specs/sk-doc/015-hub-doc-conformance-fixes/001-hub-doc-conformance-review/review/deep-review-findings-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Review",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Packet Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Run",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Review Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Deep",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Mode",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Success Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "verify-every-claim",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The `cli-external` and `mcp-tooling` hub docs — feature catalogs, manual testing playbooks, references, vendored `mcp-servers//README.md` files, and SKILL.md prose — may have drifted from the live CLI/MCP surfaces they document and from the sk-doc create-skill templates",
+    "created_at": "2026-07-11T08:56:58.514Z",
+    "last_save_at": "2026-07-17T14:37:09.498Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:738fd1f61c7c78d932e986b3ad7ed4e8e4991da66a2937554cee07becfca7777",
+    "source_doc_hashes": {
+      "spec.md": "8bae3338343d287f90da4d45fdcda81fdd12fa719080a9e390e90489ab15fae2",
+      "plan.md": "ed26a923382052c7126674faf45b4b5fb953df4bfe4f70dc80caa2d281c4793e",
+      "tasks.md": "d14f580320bc5812c0f446ba6b02d156cd1785551220132c37276be47d7e350a",
+      "implementation-summary.md": "8b83339f1f37a7dfb96879f3318e753fcb35ef1c99633421d326e12fcb9cf797"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/018-benchmark-authoring-centralization/002-benchmark-authoring-completion-and-crosslinks",
+  "description": "Parent packet 015 made `sk-doc/create-benchmark` the single home for benchmark-document templates and standards for four families (MCP promotion,",
+  "keywords": [
+    "parent",
+    "packet",
+    "sk-doc",
+    "create-benchmark",
+    "single",
+    "home",
+    "benchmark-document",
+    "templates",
+    "standards",
+    "four",
+    "families",
+    "mcp",
+    "promotion"
+  ],
+  "lastUpdated": "2026-07-17T14:38:02.171Z",
+  "specId": "002",
+  "folderSlug": "benchmark-authoring-completion-and-crosslinks",
+  "parentChain": [
+    "sk-doc",
+    "018-benchmark-authoring-centralization"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

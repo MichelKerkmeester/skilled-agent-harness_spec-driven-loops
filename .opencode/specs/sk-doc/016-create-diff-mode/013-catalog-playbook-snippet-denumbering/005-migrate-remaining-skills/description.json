@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/016-create-diff-mode/013-catalog-playbook-snippet-denumbering/005-migrate-remaining-skills",
+  "description": "The remaining ~310 numbered snippet files live in twelve smaller skills (system-code-graph + 4 cli- + 5 sk- + 3 mcp-), most of which are playbook-only",
+  "keywords": [
+    "remaining",
+    "numbered",
+    "snippet",
+    "files",
+    "live",
+    "twelve",
+    "smaller",
+    "skills",
+    "system-code-graph",
+    "cli",
+    "mcp",
+    "playbook-only"
+  ],
+  "lastUpdated": "2026-07-17T13:37:15.818Z",
+  "specId": "005",
+  "folderSlug": "migrate-remaining-skills",
+  "parentChain": [
+    "sk-doc",
+    "016-create-diff-mode",
+    "013-catalog-playbook-snippet-denumbering"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,30 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/003-references",
+  "description": "The references tree contains 15 Markdown files with snakecase names across config/, decisions/, graph/, hooks/,",
+  "keywords": [
+    "references",
+    "tree",
+    "contains",
+    "markdown",
+    "files",
+    "snakecase",
+    "names",
+    "across",
+    "config",
+    "decisions",
+    "graph",
+    "hooks"
+  ],
+  "lastUpdated": "2026-07-17T14:29:47.327Z",
+  "specId": "003",
+  "folderSlug": "references",
+  "parentChain": [
+    "sk-doc",
+    "020-hyphen-naming-convention",
+    "008-component-migration",
+    "009-system-skill-advisor"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,31 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/008-changelog-verify",
+  "description": "The sk-code subtree can complete its physical path migration while its public release record omits affected surfaces,",
+  "keywords": [
+    "sk-code",
+    "subtree",
+    "complete",
+    "physical",
+    "path",
+    "migration",
+    "while",
+    "public",
+    "release",
+    "record",
+    "omits",
+    "affected",
+    "surfaces"
+  ],
+  "lastUpdated": "2026-07-17T14:29:47.429Z",
+  "specId": "008",
+  "folderSlug": "changelog-verify",
+  "parentChain": [
+    "sk-doc",
+    "020-hyphen-naming-convention",
+    "008-component-migration",
+    "001-sk-code"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

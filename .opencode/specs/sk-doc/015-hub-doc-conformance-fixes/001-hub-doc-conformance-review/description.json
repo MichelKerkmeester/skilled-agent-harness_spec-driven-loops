@@ -1,0 +1,30 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/015-hub-doc-conformance-fixes/001-hub-doc-conformance-review",
+  "description": "The `cli-external` and `mcp-tooling` hub docs — feature catalogs, manual testing playbooks, references, vendored `mcp-servers//README.md` files, and",
+  "keywords": [
+    "cli-external",
+    "mcp-tooling",
+    "hub",
+    "docs",
+    "feature",
+    "catalogs",
+    "manual",
+    "testing",
+    "playbooks",
+    "references",
+    "vendored",
+    "mcp-servers",
+    "readme",
+    "files"
+  ],
+  "lastUpdated": "2026-07-17T14:36:50.872Z",
+  "specId": "001",
+  "folderSlug": "hub-doc-conformance-review",
+  "parentChain": [
+    "sk-doc",
+    "015-hub-doc-conformance-fixes"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/014-sk-doc-parent/013-command-rebinding",
+  "spec_folder": "sk-doc/014-sk-doc-parent/013-command-rebinding",
+  "parent_id": "sk-doc/014-sk-doc-parent",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-doc command rebinding",
+      "125 command rebinding",
+      "sk-doc parent phase 013"
+    ],
+    "key_topics": [
+      "sk-doc",
+      "command",
+      "rebinding",
+      "parent",
+      "phase",
+      "monolith",
+      "parent-hub",
+      "conversion",
+      "feature",
+      "specification",
+      "repoint",
+      "yamls"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Depends On",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Repoint",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 013 of the sk-doc monolith to parent-hub conversion",
+    "created_at": "2026-07-06T06:30:36.726Z",
+    "last_save_at": "2026-07-09T10:02:44.767Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:b98ccf3279f208d9dd7759c7ac8fc3b8324fc95fdeb2ddcbbb98e95f7a3b5c5d",
+    "source_doc_hashes": {
+      "spec.md": "7c893221c203134a7870c11dc4fda4a76d685ebcbf9cdc306e47a83983bce0e1"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

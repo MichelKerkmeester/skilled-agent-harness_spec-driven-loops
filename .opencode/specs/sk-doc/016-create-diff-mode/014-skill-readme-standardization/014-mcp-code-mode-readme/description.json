@@ -1,0 +1,27 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/016-create-diff-mode/014-skill-readme-standardization/014-mcp-code-mode-readme",
+  "description": "The mcp-code-mode README is a tabular reference card with a table of contents and no problem-first entry point",
+  "keywords": [
+    "mcp-code-mode",
+    "readme",
+    "tabular",
+    "reference",
+    "card",
+    "table",
+    "contents",
+    "problem-first",
+    "entry",
+    "point"
+  ],
+  "lastUpdated": "2026-07-17T13:37:15.852Z",
+  "specId": "014",
+  "folderSlug": "mcp-code-mode-readme",
+  "parentChain": [
+    "sk-doc",
+    "016-create-diff-mode",
+    "014-skill-readme-standardization"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

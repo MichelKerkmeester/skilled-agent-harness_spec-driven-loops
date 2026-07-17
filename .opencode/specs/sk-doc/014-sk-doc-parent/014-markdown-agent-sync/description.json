@@ -1,0 +1,27 @@
+{
+  "level": 1,
+  "specFolder": "sk-doc/014-sk-doc-parent/014-markdown-agent-sync",
+  "description": "`.opencode/agents/markdown.md` and `.claude/agents/markdown.md` are the two runtime mirrors of the markdown-authoring agent, and both cite `sk-doc`",
+  "keywords": [
+    "opencode",
+    "agents",
+    "markdown",
+    "claude",
+    "two",
+    "runtime",
+    "mirrors",
+    "markdown-authoring",
+    "agent",
+    "cite",
+    "sk-doc"
+  ],
+  "lastUpdated": "2026-07-17T14:36:50.765Z",
+  "specId": "014",
+  "folderSlug": "markdown-agent-sync",
+  "parentChain": [
+    "sk-doc",
+    "014-sk-doc-parent"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

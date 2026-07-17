@@ -1,0 +1,29 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/003-design-namespace",
+  "description": "The `.opencode/commands/design/assets/` tree contains `designauditauto.yaml`, `designfoundationspresentation.txt`, `designinterfaceconfirm.yaml`,",
+  "keywords": [
+    "opencode",
+    "commands",
+    "design",
+    "assets",
+    "tree",
+    "contains",
+    "designauditauto",
+    "yaml",
+    "designfoundationspresentation",
+    "txt",
+    "designinterfaceconfirm"
+  ],
+  "lastUpdated": "2026-07-17T14:29:47.421Z",
+  "specId": "003",
+  "folderSlug": "design-namespace",
+  "parentChain": [
+    "sk-doc",
+    "020-hyphen-naming-convention",
+    "008-component-migration",
+    "013-commands"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

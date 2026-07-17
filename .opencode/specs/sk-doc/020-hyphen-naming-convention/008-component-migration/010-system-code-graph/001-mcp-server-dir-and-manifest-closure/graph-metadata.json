@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/001-mcp-server-dir-and-manifest-closure",
+  "spec_folder": "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/001-mcp-server-dir-and-manifest-closure",
+  "parent_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "system-code-graph mcp-server directory",
+      "code graph package root rename",
+      "mcp-server manifest closure",
+      "plugin-bridges stress-test rename",
+      "system-code-graph mcp-server implementation plan",
+      "code graph package root rename plan",
+      "mcp-server entrypoint closure",
+      "system-code-graph mcp-server closure tasks",
+      "code graph package root tasks",
+      "manifest and entrypoint rename tasks",
+      "system-code-graph mcp-server closure checklist",
+      "code graph package root checklist"
+    ],
+    "key_topics": [
+      "system-code-graph",
+      "mcp-server",
+      "directory",
+      "code",
+      "graph",
+      "package",
+      "root",
+      "rename",
+      "manifest",
+      "closure",
+      "plugin-bridges",
+      "stress-test"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      ".opencode/skills/system-code-graph/tsconfig.json",
+      ".opencode/skills/system-code-graph/vitest.config.ts",
+      ".opencode/bin/mk-code-index-launcher.cjs",
+      ".opencode/bin/code-index.cjs",
+      ".opencode/plugins/mk-code-graph.js",
+      ".opencode/skills/system-code-graph/package-lock.json",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md"
+    ],
+    "entities": [
+      {
+        "name": "tsconfig.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-code-graph/tsconfig.json",
+        "source": "derived"
+      },
+      {
+        "name": "vitest.config.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-code-graph/vitest.config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "mk-code-index-launcher.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/mk-code-index-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "code-index.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/code-index.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "mk-code-graph.js",
+        "kind": "code",
+        "path": ".opencode/plugins/mk-code-graph.js",
+        "source": "derived"
+      },
+      {
+        "name": "package-lock.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-code-graph/package-lock.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Move",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Create",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Dependency",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Type",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The system-code-graph runtime is rooted at mcpserver/, with pluginbridges/ and stresstest/ as ordinary direct",
+    "created_at": "2026-07-14T15:18:13Z",
+    "last_save_at": "2026-07-17T14:30:36.126Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md"
+    ],
+    "source_fingerprint": "sha256:585c2cd6ca5f501affed56e9c08afd764ff0ab1c26dd07b2d5845ea1a439754c",
+    "source_doc_hashes": {
+      "spec.md": "f6a24db6d2fbf877883ed1e2012e840e3d1f6b0db730943803133927f68192f2",
+      "plan.md": "dce0c9f1eefce1c003e2ef0d1973f6a48b1c93ac45e58c281461311aa8460a2b",
+      "tasks.md": "d696913bd6cf5d1569c1625c678d932abf574ce32fb0f73d7e4c9186aae5eac7",
+      "checklist.md": "5bd90599bd278c10b22baa5313fc9b0716cb317c2cf9ab34eba2d56ad51c66e1",
+      "decision-record.md": "d2657477e3210c7e709861f1aad50b509058b74375fb5734870482f37c395309"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/006-changelog-verify",
+  "description": "This verification-only phase confirms that the sk-prompt hub, prompt-improve, and prompt-models release records document the completed kebab-case",
+  "keywords": [
+    "verification-only",
+    "phase",
+    "confirms",
+    "sk-prompt",
+    "hub",
+    "prompt-improve",
+    "prompt-models",
+    "release",
+    "records",
+    "document",
+    "completed",
+    "kebab-case"
+  ],
+  "lastUpdated": "2026-07-17T14:29:47.291Z",
+  "specId": "006",
+  "folderSlug": "changelog-verify",
+  "parentChain": [
+    "sk-doc",
+    "020-hyphen-naming-convention",
+    "008-component-migration",
+    "004-sk-prompt"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

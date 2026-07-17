@@ -1,0 +1,30 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/016-create-diff-mode/011-skill-anchor-toc-removal/002-toc-removal",
+  "description": "384 in-scope skill markdown files carry a `## TABLE OF CONTENTS` block (heading plus a list of anchor links)",
+  "keywords": [
+    "in-scope",
+    "skill",
+    "markdown",
+    "files",
+    "carry",
+    "table",
+    "contents",
+    "block",
+    "heading",
+    "plus",
+    "list",
+    "anchor",
+    "links"
+  ],
+  "lastUpdated": "2026-07-17T13:37:15.743Z",
+  "specId": "002",
+  "folderSlug": "toc-removal",
+  "parentChain": [
+    "sk-doc",
+    "016-create-diff-mode",
+    "011-skill-anchor-toc-removal"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

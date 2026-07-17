@@ -1,0 +1,21 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/014-sk-doc-parent/027-catalog-naming-convention/001-deprecate-numbered-category-prefix/001-convention-docs",
+  "description": "Phase 001 of the numbered-prefix deprecation.",
+  "keywords": [
+    "phase",
+    "numbered-prefix",
+    "deprecation"
+  ],
+  "lastUpdated": "2026-07-17T14:36:50.807Z",
+  "specId": "001",
+  "folderSlug": "convention-docs",
+  "parentChain": [
+    "sk-doc",
+    "014-sk-doc-parent",
+    "027-catalog-naming-convention",
+    "001-deprecate-numbered-category-prefix"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

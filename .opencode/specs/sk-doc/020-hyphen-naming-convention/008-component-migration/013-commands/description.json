@@ -1,0 +1,33 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands",
+  "description": "The `.opencode/commands/` surface combines seven namespaced command families, two loose root command files, shared command tooling, and asset trees",
+  "keywords": [
+    "opencode",
+    "commands",
+    "surface",
+    "combines",
+    "seven",
+    "namespaced",
+    "command",
+    "families",
+    "two",
+    "loose",
+    "root",
+    "files",
+    "shared",
+    "tooling",
+    "asset",
+    "trees"
+  ],
+  "lastUpdated": "2026-07-17T14:29:47.281Z",
+  "specId": "013",
+  "folderSlug": "commands",
+  "parentChain": [
+    "sk-doc",
+    "020-hyphen-naming-convention",
+    "008-component-migration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

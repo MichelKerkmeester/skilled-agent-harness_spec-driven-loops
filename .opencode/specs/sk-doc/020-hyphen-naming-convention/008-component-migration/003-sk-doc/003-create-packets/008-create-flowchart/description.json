@@ -1,0 +1,29 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/008-create-flowchart",
+  "description": "The create-flowchart packet contains snake_case asset, reference, and validator filenames used by flowchart authoring and validation.",
+  "keywords": [
+    "create-flowchart",
+    "packet",
+    "contains",
+    "asset",
+    "reference",
+    "validator",
+    "filenames",
+    "flowchart",
+    "authoring",
+    "validation"
+  ],
+  "lastUpdated": "2026-07-17T14:29:47.499Z",
+  "specId": "008",
+  "folderSlug": "create-flowchart",
+  "parentChain": [
+    "sk-doc",
+    "020-hyphen-naming-convention",
+    "008-component-migration",
+    "003-sk-doc",
+    "003-create-packets"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,25 @@
+{
+  "level": "phase",
+  "specFolder": "sk-doc/014-sk-doc-parent/027-catalog-naming-convention",
+  "description": "Program parent grouping all naming-convention governance for feature_catalog / manual_testing_playbook content across every skill.",
+  "keywords": [
+    "program",
+    "parent",
+    "grouping",
+    "naming-convention",
+    "governance",
+    "content",
+    "across",
+    "every",
+    "skill"
+  ],
+  "lastUpdated": "2026-07-17T13:37:15.507Z",
+  "specId": "027",
+  "folderSlug": "catalog-naming-convention",
+  "parentChain": [
+    "sk-doc",
+    "014-sk-doc-parent"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

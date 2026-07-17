@@ -1,0 +1,26 @@
+{
+  "specFolder": "sk-doc/016-create-diff-mode/005-cmd-create-readme-install-merger",
+  "description": "The current command assets for `create:folderreadme` and `create:installguide` repeat the same orchestration structure: Phase 0 write-agent",
+  "keywords": [
+    "current",
+    "command",
+    "assets",
+    "folderreadme",
+    "installguide",
+    "repeat",
+    "same",
+    "orchestration",
+    "structure",
+    "phase",
+    "write-agent"
+  ],
+  "lastUpdated": "2026-07-17T13:37:15.736Z",
+  "specId": "005",
+  "folderSlug": "cmd-create-readme-install-merger",
+  "parentChain": [
+    "sk-doc",
+    "016-create-diff-mode"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

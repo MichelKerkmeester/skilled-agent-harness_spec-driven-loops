@@ -1,0 +1,30 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/005-code-webflow",
+  "description": "The code-webflow packet has snakecase names throughout its animation snippets, integration/pattern/template assets, manual-testing-playbook",
+  "keywords": [
+    "code-webflow",
+    "packet",
+    "snakecase",
+    "names",
+    "throughout",
+    "animation",
+    "snippets",
+    "integration",
+    "pattern",
+    "template",
+    "assets",
+    "manual-testing-playbook"
+  ],
+  "lastUpdated": "2026-07-17T14:29:47.435Z",
+  "specId": "005",
+  "folderSlug": "code-webflow",
+  "parentChain": [
+    "sk-doc",
+    "020-hyphen-naming-convention",
+    "008-component-migration",
+    "001-sk-code"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

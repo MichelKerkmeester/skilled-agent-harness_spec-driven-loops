@@ -1,0 +1,30 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/004-deep-review",
+  "description": "The deep-review packet contains 15 underscore-bearing directory families and 96 underscore-bearing files across review dimensions, severity, state,",
+  "keywords": [
+    "deep-review",
+    "packet",
+    "contains",
+    "underscore-bearing",
+    "directory",
+    "families",
+    "files",
+    "across",
+    "review",
+    "dimensions",
+    "severity",
+    "state"
+  ],
+  "lastUpdated": "2026-07-17T14:29:47.394Z",
+  "specId": "004",
+  "folderSlug": "deep-review",
+  "parentChain": [
+    "sk-doc",
+    "020-hyphen-naming-convention",
+    "008-component-migration",
+    "007-system-deep-loop"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

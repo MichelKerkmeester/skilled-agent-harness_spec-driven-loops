@@ -1,0 +1,26 @@
+{
+  "level": "3",
+  "specFolder": "sk-doc/014-sk-doc-parent/027-catalog-naming-convention/003-underscore-content-folders-and-files",
+  "description": "Catalog/playbook content was named in hyphen-case: category folders (`featurecatalog/mcp-tool-surface/`),",
+  "keywords": [
+    "catalog",
+    "playbook",
+    "content",
+    "named",
+    "hyphen-case",
+    "category",
+    "folders",
+    "featurecatalog",
+    "mcp-tool-surface"
+  ],
+  "lastUpdated": "2026-07-17T14:36:50.799Z",
+  "specId": "003",
+  "folderSlug": "underscore-content-folders-and-files",
+  "parentChain": [
+    "sk-doc",
+    "014-sk-doc-parent",
+    "027-catalog-naming-convention"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

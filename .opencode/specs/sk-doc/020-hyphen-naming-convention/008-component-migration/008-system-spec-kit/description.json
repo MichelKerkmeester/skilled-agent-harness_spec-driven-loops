@@ -1,0 +1,31 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit",
+  "description": "Lean phase parent for the kebab-case filesystem-name work across the system-spec-kit MCP surface, scripts, templates, references/assets,",
+  "keywords": [
+    "lean",
+    "phase",
+    "parent",
+    "kebab-case",
+    "filesystem-name",
+    "work",
+    "across",
+    "system-spec-kit",
+    "mcp",
+    "surface",
+    "scripts",
+    "templates",
+    "references",
+    "assets"
+  ],
+  "lastUpdated": "2026-07-17T14:29:47.287Z",
+  "specId": "008",
+  "folderSlug": "system-spec-kit",
+  "parentChain": [
+    "sk-doc",
+    "020-hyphen-naming-convention",
+    "008-component-migration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

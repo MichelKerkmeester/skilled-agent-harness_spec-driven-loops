@@ -1,0 +1,26 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/016-create-diff-mode/003-validation-security-and-quality-gates",
+  "description": "Rich document extraction can hide changes, manufacture noise, or execute hostile content",
+  "keywords": [
+    "rich",
+    "document",
+    "extraction",
+    "hide",
+    "changes",
+    "manufacture",
+    "noise",
+    "execute",
+    "hostile",
+    "content"
+  ],
+  "lastUpdated": "2026-07-17T13:37:15.708Z",
+  "specId": "003",
+  "folderSlug": "validation-security-and-quality-gates",
+  "parentChain": [
+    "sk-doc",
+    "016-create-diff-mode"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

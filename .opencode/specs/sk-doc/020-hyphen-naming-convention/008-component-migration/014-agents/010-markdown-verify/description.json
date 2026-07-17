@@ -1,0 +1,30 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents/010-markdown-verify",
+  "description": "The agents surface needs an explicit candidate audit for markdown across the three runtime agent directories.",
+  "keywords": [
+    "agents",
+    "surface",
+    "needs",
+    "explicit",
+    "candidate",
+    "audit",
+    "markdown",
+    "across",
+    "three",
+    "runtime",
+    "agent",
+    "directories"
+  ],
+  "lastUpdated": "2026-07-17T14:29:47.455Z",
+  "specId": "010",
+  "folderSlug": "markdown-verify",
+  "parentChain": [
+    "sk-doc",
+    "020-hyphen-naming-convention",
+    "008-component-migration",
+    "014-agents"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

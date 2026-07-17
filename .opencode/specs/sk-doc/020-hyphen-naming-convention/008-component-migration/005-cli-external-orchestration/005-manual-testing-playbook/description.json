@@ -1,0 +1,30 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/005-manual-testing-playbook",
+  "description": "The cli-external-orchestration surface contains four manual_testing_playbook roots and snake_case category/file names across hub, OpenCode, Claude",
+  "keywords": [
+    "cli-external-orchestration",
+    "surface",
+    "contains",
+    "four",
+    "roots",
+    "category",
+    "file",
+    "names",
+    "across",
+    "hub",
+    "opencode",
+    "claude"
+  ],
+  "lastUpdated": "2026-07-17T14:29:47.313Z",
+  "specId": "005",
+  "folderSlug": "manual-testing-playbook",
+  "parentChain": [
+    "sk-doc",
+    "020-hyphen-naming-convention",
+    "008-component-migration",
+    "005-cli-external-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

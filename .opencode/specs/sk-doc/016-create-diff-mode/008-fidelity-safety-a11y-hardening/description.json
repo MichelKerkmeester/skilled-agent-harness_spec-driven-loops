@@ -1,0 +1,30 @@
+{
+  "level": 2,
+  "specFolder": "sk-doc/016-create-diff-mode/008-fidelity-safety-a11y-hardening",
+  "description": "An adversarial review (GPT-5.6 SOL, ultra) of the `create-diff` engine and its redesigned HTML report, independently re-verified against the source,",
+  "keywords": [
+    "adversarial",
+    "review",
+    "gpt-5",
+    "sol",
+    "ultra",
+    "create-diff",
+    "engine",
+    "redesigned",
+    "html",
+    "report",
+    "independently",
+    "re-verified",
+    "against",
+    "source"
+  ],
+  "lastUpdated": "2026-07-17T14:36:50.898Z",
+  "specId": "008",
+  "folderSlug": "fidelity-safety-a11y-hardening",
+  "parentChain": [
+    "sk-doc",
+    "016-create-diff-mode"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

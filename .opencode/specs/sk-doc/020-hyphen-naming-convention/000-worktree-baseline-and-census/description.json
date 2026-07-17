@@ -1,0 +1,23 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/020-hyphen-naming-convention/000-worktree-baseline-and-census",
+  "description": "The migration must be reproducible and isolated from the actively-raced main checkout.",
+  "keywords": [
+    "migration",
+    "must",
+    "reproducible",
+    "isolated",
+    "actively-raced",
+    "main",
+    "checkout"
+  ],
+  "lastUpdated": "2026-07-17T14:29:47.193Z",
+  "specId": "000",
+  "folderSlug": "worktree-baseline-and-census",
+  "parentChain": [
+    "sk-doc",
+    "020-hyphen-naming-convention"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

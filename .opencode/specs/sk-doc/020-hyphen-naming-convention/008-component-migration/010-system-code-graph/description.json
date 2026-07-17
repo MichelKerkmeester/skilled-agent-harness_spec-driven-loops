@@ -1,0 +1,28 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph",
+  "description": "The system-code-graph surface still exposes snakecase filesystem roots and content paths in its MCP package,",
+  "keywords": [
+    "system-code-graph",
+    "surface",
+    "still",
+    "exposes",
+    "snakecase",
+    "filesystem",
+    "roots",
+    "content",
+    "paths",
+    "mcp",
+    "package"
+  ],
+  "lastUpdated": "2026-07-17T14:29:47.286Z",
+  "specId": "010",
+  "folderSlug": "system-code-graph",
+  "parentChain": [
+    "sk-doc",
+    "020-hyphen-naming-convention",
+    "008-component-migration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

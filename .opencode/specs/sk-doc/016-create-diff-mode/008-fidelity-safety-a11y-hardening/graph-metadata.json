@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/016-create-diff-mode/008-fidelity-safety-a11y-hardening",
+  "spec_folder": "sk-doc/016-create-diff-mode/008-fidelity-safety-a11y-hardening",
+  "parent_id": "sk-doc/016-create-diff-mode",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "create-diff hardening",
+      "diff report contrast fix",
+      "diff engine strict decode",
+      "validate report safety gate",
+      "create-diff hardening plan",
+      "diff strict decode plan",
+      "validate report rewrite",
+      "create-diff hardening tasks",
+      "diff strict decode tasks",
+      "validate report safety tasks",
+      "create-diff hardening checklist",
+      "diff safety gate verification"
+    ],
+    "key_topics": [
+      "create-diff",
+      "hardening",
+      "diff",
+      "report",
+      "contrast",
+      "engine",
+      "strict",
+      "decode",
+      "validate",
+      "safety",
+      "gate",
+      "plan"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "scripts/README.md",
+      ".opencode/skills/sk-doc/create-diff/scripts/create_diff.py",
+      ".opencode/skills/sk-doc/create-diff/scripts/validate_report.py",
+      ".opencode/skills/sk-doc/create-diff/scripts/test_create_diff.py",
+      ".opencode/skills/sk-doc/create-diff/references/capabilities-and-fidelity.md",
+      ".opencode/skills/sk-doc/create-diff/references/accessibility-contract.md",
+      ".opencode/specs/sk-doc/016-create-diff-mode/006-opencode-skill-and-accessibility/implementation-summary.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "scripts/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "create_diff.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/create-diff/scripts/create_diff.py",
+        "source": "derived"
+      },
+      {
+        "name": "validate_report.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/create-diff/scripts/validate_report.py",
+        "source": "derived"
+      },
+      {
+        "name": "test_create_diff.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/create-diff/scripts/test_create_diff.py",
+        "source": "derived"
+      },
+      {
+        "name": "capabilities-and-fidelity.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/create-diff/references/capabilities-and-fidelity.md",
+        "source": "derived"
+      },
+      {
+        "name": "accessibility-contract.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/create-diff/references/accessibility-contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement An",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Fix",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Single",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Unchanged",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "An adversarial review (GPT-5.6 SOL, ultra) of the `create-diff` engine and its redesigned HTML report, independently re-verified against the source, found real defects in three areas: (1) the engine decodes text with `errors=\"replace\"` and only sniffs a NUL byte for binary, so two files differing only in invalid bytes both become `�` and are reported identical at \"full fidelity\" — silent difference-erasure; (2) the diff line model splits on `\"\\n\"`, so empty files and trailing-newline-only differences produce phantom or mislabelled lines; (3) `validatereport.py` regex-matches tags and only",
+    "created_at": "2026-07-15T15:35:12.038Z",
+    "last_save_at": "2026-07-17T14:37:11.504Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:a0b6fdab292b427151b4f8d89fb81a7a245586b05cb5201dca6dd1209344f87a",
+    "source_doc_hashes": {
+      "spec.md": "31b80116f703c16b24630338c5fe696995a851be4715b4660dfad221a84ecffc",
+      "plan.md": "9b41f297c556252ff1926b75d8ecc117c0abf3538a23928f48534abe41596f51",
+      "tasks.md": "4f116c4199340eeb4d271bb1e2d71b55e3da4f85926908274eb7057dc0661b84",
+      "checklist.md": "31d7af944fcabec27b7f3e91680e20204a378ebc780be4b886fee71645a54915",
+      "implementation-summary.md": "2ae9a1a25edb4dd83bca485265febd630d30e789459ca43114fa8d804a80885d"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

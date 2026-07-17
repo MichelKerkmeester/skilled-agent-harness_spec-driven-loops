@@ -1,0 +1,30 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/008-loose-command-ids",
+  "description": "The loose command surface contains `agentrouter.md` and `goalopencode.md`, while the program's canonical filesystem form is kebab-case",
+  "keywords": [
+    "loose",
+    "command",
+    "surface",
+    "contains",
+    "agentrouter",
+    "goalopencode",
+    "while",
+    "program",
+    "canonical",
+    "filesystem",
+    "form",
+    "kebab-case"
+  ],
+  "lastUpdated": "2026-07-17T14:29:47.423Z",
+  "specId": "008",
+  "folderSlug": "loose-command-ids",
+  "parentChain": [
+    "sk-doc",
+    "020-hyphen-naming-convention",
+    "008-component-migration",
+    "013-commands"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

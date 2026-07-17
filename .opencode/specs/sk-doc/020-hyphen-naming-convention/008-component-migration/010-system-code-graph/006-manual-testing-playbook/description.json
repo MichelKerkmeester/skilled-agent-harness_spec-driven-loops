@@ -1,0 +1,27 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/006-manual-testing-playbook",
+  "description": "The code-graph manual playbook currently uses the snakecase manualtestingplaybook root, nine snakecase category",
+  "keywords": [
+    "code-graph",
+    "manual",
+    "playbook",
+    "currently",
+    "snakecase",
+    "manualtestingplaybook",
+    "root",
+    "nine",
+    "category"
+  ],
+  "lastUpdated": "2026-07-17T14:29:47.449Z",
+  "specId": "006",
+  "folderSlug": "manual-testing-playbook",
+  "parentChain": [
+    "sk-doc",
+    "020-hyphen-naming-convention",
+    "008-component-migration",
+    "010-system-code-graph"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

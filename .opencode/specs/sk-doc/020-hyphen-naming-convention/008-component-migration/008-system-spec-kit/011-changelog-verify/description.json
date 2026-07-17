@@ -1,0 +1,30 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/011-changelog-verify",
+  "description": "This verify-only phase confirms that the system-spec-kit changelog records the complete phase 001-010 filesystem rename set, the exemption boundary,",
+  "keywords": [
+    "verify-only",
+    "phase",
+    "confirms",
+    "system-spec-kit",
+    "changelog",
+    "records",
+    "complete",
+    "filesystem",
+    "rename",
+    "set",
+    "exemption",
+    "boundary"
+  ],
+  "lastUpdated": "2026-07-17T14:29:47.481Z",
+  "specId": "011",
+  "folderSlug": "changelog-verify",
+  "parentChain": [
+    "sk-doc",
+    "020-hyphen-naming-convention",
+    "008-component-migration",
+    "008-system-spec-kit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

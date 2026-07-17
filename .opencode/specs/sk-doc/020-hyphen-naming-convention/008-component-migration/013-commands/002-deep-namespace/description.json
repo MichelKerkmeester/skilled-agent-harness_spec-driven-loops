@@ -1,0 +1,30 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/002-deep-namespace",
+  "description": "The maintained deep asset tree contains names such as `deepai-councilauto.yaml`, `deepresearchpresentation.txt`, and `deepai-council.body.md`",
+  "keywords": [
+    "maintained",
+    "deep",
+    "asset",
+    "tree",
+    "contains",
+    "names",
+    "deepai-councilauto",
+    "yaml",
+    "deepresearchpresentation",
+    "txt",
+    "deepai-council",
+    "body"
+  ],
+  "lastUpdated": "2026-07-17T14:29:47.413Z",
+  "specId": "002",
+  "folderSlug": "deep-namespace",
+  "parentChain": [
+    "sk-doc",
+    "020-hyphen-naming-convention",
+    "008-component-migration",
+    "013-commands"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

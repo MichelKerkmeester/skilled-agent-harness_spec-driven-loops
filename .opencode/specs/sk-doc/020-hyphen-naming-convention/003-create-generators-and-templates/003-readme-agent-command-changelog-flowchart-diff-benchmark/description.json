@@ -1,0 +1,29 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/020-hyphen-naming-convention/003-create-generators-and-templates/003-readme-agent-command-changelog-flowchart-diff-benchmark",
+  "description": "Seven create-* workflow packets still carry output examples and path rules that can produce underscore names.",
+  "keywords": [
+    "seven",
+    "workflow",
+    "packets",
+    "still",
+    "carry",
+    "output",
+    "examples",
+    "path",
+    "rules",
+    "produce",
+    "underscore",
+    "names"
+  ],
+  "lastUpdated": "2026-07-17T14:29:47.263Z",
+  "specId": "003",
+  "folderSlug": "readme-agent-command-changelog-flowchart-diff-benchmark",
+  "parentChain": [
+    "sk-doc",
+    "020-hyphen-naming-convention",
+    "003-create-generators-and-templates"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

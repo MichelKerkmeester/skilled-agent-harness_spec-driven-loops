@@ -1,0 +1,31 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/006-design-md-generator",
+  "description": "The md-generator mode contains underscore-bearing authoring, extraction, and validation resource names, including its installation guide and private",
+  "keywords": [
+    "md-generator",
+    "mode",
+    "contains",
+    "underscore-bearing",
+    "authoring",
+    "extraction",
+    "validation",
+    "resource",
+    "names",
+    "including",
+    "installation",
+    "guide",
+    "private"
+  ],
+  "lastUpdated": "2026-07-17T14:29:47.340Z",
+  "specId": "006",
+  "folderSlug": "design-md-generator",
+  "parentChain": [
+    "sk-doc",
+    "020-hyphen-naming-convention",
+    "008-component-migration",
+    "002-sk-design"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

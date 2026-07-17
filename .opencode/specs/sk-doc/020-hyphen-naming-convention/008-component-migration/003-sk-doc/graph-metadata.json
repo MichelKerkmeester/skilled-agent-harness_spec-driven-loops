@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc",
+  "spec_folder": "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc",
+  "parent_id": "sk-doc/020-hyphen-naming-convention/008-component-migration",
+  "children_ids": [
+    "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/001-hub-root-and-shared",
+    "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/002-scripts",
+    "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets",
+    "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/004-manual-testing-playbook",
+    "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/005-benchmark",
+    "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/006-changelog-verify",
+    "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/007-skill-gate"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-doc component migration",
+      "sk-doc kebab-case phases",
+      "032 sk-doc surface"
+    ],
+    "key_topics": [
+      "sk-doc",
+      "component",
+      "migration",
+      "kebab-case",
+      "phases",
+      "surface",
+      "snakecase",
+      "several",
+      "directory",
+      "filename",
+      "families",
+      "while"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Child Count",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The sk-doc surface uses snakecase in several directory and filename families, while the 032 program defines kebab-case as the sole canonical form for in-scope filesystem names",
+    "created_at": "2026-07-14T15:16:56Z",
+    "last_save_at": "2026-07-17T14:30:12.563Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:13fbc8411ebc0c008ad4a7e2d7faba506d7ed14a52c1142e8d4866b0a7844c08",
+    "source_doc_hashes": {
+      "spec.md": "95f6e153a6a1aff127410be10262a67726fa793991c901f31c09c49d1cd881c9"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures/004-active-specs-and-docs",
+  "description": "Active spec folders and authored documents can retain snake_case names and path references even though numeric phase folders are already structurally",
+  "keywords": [
+    "active",
+    "spec",
+    "folders",
+    "authored",
+    "documents",
+    "retain",
+    "names",
+    "path",
+    "references",
+    "even",
+    "though",
+    "numeric",
+    "phase",
+    "already",
+    "structurally"
+  ],
+  "lastUpdated": "2026-07-17T14:29:47.257Z",
+  "specId": "004",
+  "folderSlug": "active-specs-and-docs",
+  "parentChain": [
+    "sk-doc",
+    "020-hyphen-naming-convention",
+    "007-shared-and-cross-cutting-closures"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

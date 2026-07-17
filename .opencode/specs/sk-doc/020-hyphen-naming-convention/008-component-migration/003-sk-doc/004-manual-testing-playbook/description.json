@@ -1,0 +1,26 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/004-manual-testing-playbook",
+  "description": "The root sk-doc manual_testing_playbook tree uses snake_case for its category directories, scenario filenames, and root index.",
+  "keywords": [
+    "root",
+    "sk-doc",
+    "tree",
+    "category",
+    "directories",
+    "scenario",
+    "filenames",
+    "index"
+  ],
+  "lastUpdated": "2026-07-17T14:29:47.374Z",
+  "specId": "004",
+  "folderSlug": "manual-testing-playbook",
+  "parentChain": [
+    "sk-doc",
+    "020-hyphen-naming-convention",
+    "008-component-migration",
+    "003-sk-doc"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

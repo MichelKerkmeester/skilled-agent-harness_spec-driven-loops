@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/014-sk-doc-parent/028-create-skill-contract-unification/000-create-skill-contract",
+  "spec_folder": "sk-doc/014-sk-doc-parent/028-create-skill-contract-unification/000-create-skill-contract",
+  "parent_id": "sk-doc/014-sk-doc-parent/028-create-skill-contract-unification",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "create-skill contract unification",
+      "014 sk-doc phase 028",
+      "create-skill findings remediation",
+      "create-skill contract unification plan",
+      "014 sk-doc phase 028 plan",
+      "028 tasks create-skill contract unification",
+      "028 checklist create-skill contract unification",
+      "028 create-skill contract decisions",
+      "014 sk-doc phase 028 adr",
+      "028 create-skill contract unification summary"
+    ],
+    "key_topics": [
+      "create-skill",
+      "contract",
+      "unification",
+      "sk-doc",
+      "phase",
+      "findings",
+      "remediation",
+      "plan",
+      "tasks",
+      "checklist",
+      "decisions",
+      "adr"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/sk-doc/create-skill/scripts/init_skill.py",
+      ".opencode/skills/sk-doc/create-skill/scripts/package_skill.py",
+      ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "spec.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "init_skill.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/create-skill/scripts/init_skill.py",
+        "source": "derived"
+      },
+      {
+        "name": "package_skill.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/create-skill/scripts/package_skill.py",
+        "source": "derived"
+      },
+      {
+        "name": "parent-skill-check.cjs",
+        "kind": "file",
+        "path": ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Source Audit",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Four Medium",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Convert",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Work Units",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Core Implementation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Type",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria One",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The create-skill creation/validation path does not enforce its documented contract",
+    "created_at": "2026-07-14T04:26:32.723Z",
+    "last_save_at": "2026-07-17T14:37:06.866Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:332cd22c58e5c8efe27639ee35d35526e8a5fb911ec040a4bb4fe186043ac5db",
+    "source_doc_hashes": {
+      "spec.md": "6e25443713f5ac05deeea9982dc05b0bed8173fe3fe569c448ac5de0021a13ec",
+      "plan.md": "c2ee98bd4eed2f255bd2c0fcfc120ce6c565b36c6542367c331700b87c0f23d3",
+      "tasks.md": "969d39c7189faa9cd56c8182eb394d0b6f093349a10b27bde0f2c51b0f331556",
+      "checklist.md": "773dc0e6ebe89e19dac61fc599941f16e3e683de6032f64428c5eecbb8b0e2cb",
+      "decision-record.md": "3cb1cc2b9194db50f3570ebb16413e494c6fc771a04f9c5302e95ad055635419",
+      "implementation-summary.md": "0b7aa0c89166e19e84232451b3c9a488bc26f8717d89723c162485f34430b577"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

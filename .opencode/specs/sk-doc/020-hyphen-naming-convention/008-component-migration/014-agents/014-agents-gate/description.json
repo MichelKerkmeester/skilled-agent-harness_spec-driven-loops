@@ -1,0 +1,33 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents/014-agents-gate",
+  "description": "The agents subtree needs one blocking rollup that aggregates the 13 definition audits and proves the whole runtime naming surface has no in-scope",
+  "keywords": [
+    "agents",
+    "subtree",
+    "needs",
+    "one",
+    "blocking",
+    "rollup",
+    "aggregates",
+    "definition",
+    "audits",
+    "proves",
+    "whole",
+    "runtime",
+    "naming",
+    "surface",
+    "in-scope"
+  ],
+  "lastUpdated": "2026-07-17T14:29:47.468Z",
+  "specId": "014",
+  "folderSlug": "agents-gate",
+  "parentChain": [
+    "sk-doc",
+    "020-hyphen-naming-convention",
+    "008-component-migration",
+    "014-agents"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

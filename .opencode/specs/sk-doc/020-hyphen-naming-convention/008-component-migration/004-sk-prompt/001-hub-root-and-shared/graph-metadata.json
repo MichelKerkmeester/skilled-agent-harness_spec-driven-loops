@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/001-hub-root-and-shared",
+  "spec_folder": "sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/001-hub-root-and-shared",
+  "parent_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-prompt hub root kebab-case",
+      "sk-prompt shared assets naming",
+      "sk-prompt phase 001 naming",
+      "sk-prompt hub root implementation plan",
+      "sk-prompt shared boundary plan",
+      "sk-prompt phase 001 plan",
+      "sk-prompt hub root tasks",
+      "sk-prompt shared boundary tasks",
+      "sk-prompt phase 001 tasks",
+      "sk-prompt hub root and shared checklist",
+      "sk-prompt phase 001 verifier",
+      "sk-prompt hub root decision record"
+    ],
+    "key_topics": [
+      "sk-prompt",
+      "hub",
+      "root",
+      "kebab-case",
+      "shared",
+      "assets",
+      "naming",
+      "phase",
+      "implementation",
+      "plan",
+      "boundary",
+      "tasks"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      ".opencode/skills/sk-prompt/SKILL.md",
+      ".opencode/skills/sk-prompt/README.md",
+      ".opencode/skills/sk-prompt/hub-router.json",
+      ".opencode/skills/sk-prompt/mode-registry.json",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "decision-record.md",
+      ".opencode/specs/sk-doc/020-hyphen-naming-convention/001-convention-policy-and-scope/decision-record.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-prompt/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-prompt/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-prompt/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-prompt/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "child",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Use",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Pinned",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The sk-prompt hub root owns routing and packet-entry files, while delegated playbook and benchmark trees have their own phases. This phase inventories the root/shared boundary, renames only owned snake_case paths if present, and protects tool-mandated hub names and routing semantics.",
+    "created_at": "2026-07-14T15:17:30Z",
+    "last_save_at": "2026-07-17T14:30:18.371Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md"
+    ],
+    "source_fingerprint": "sha256:3c3fe44b35a7e8b02366a328e985fc8567d11b3ec4bb71791962ad0a50cc11af",
+    "source_doc_hashes": {
+      "spec.md": "c140143e4a909634ab63fd89f493deafaf73fd8a4de05be5fc10731bb95ba16b",
+      "plan.md": "bd0d8ee94c8356ccbda569304e8300c8b57e59c04d090effc7dc7963c839500a",
+      "tasks.md": "61a156d17855a6cd7d23e2ce0c5a2d63b14b5e5bf4f84833bf06f796d18be558",
+      "checklist.md": "f4c0f9f98b2b7ad8e6aa9f2613676b8d848cd1da60af4a4bd1f1c3e0d4f3d260",
+      "decision-record.md": "13fa7007b3c14edb9ab8f6b5381954bbe15ad19b950123c1b027f8e91c14d6ed"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

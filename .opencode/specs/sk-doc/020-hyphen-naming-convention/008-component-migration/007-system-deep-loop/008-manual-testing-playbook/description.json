@@ -1,0 +1,28 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/008-manual-testing-playbook",
+  "description": "The root system-deep-loop manual-testing-playbook tree has five underscore-bearing category directories and 20 underscore-bearing Markdown files,",
+  "keywords": [
+    "root",
+    "system-deep-loop",
+    "manual-testing-playbook",
+    "tree",
+    "five",
+    "underscore-bearing",
+    "category",
+    "directories",
+    "markdown",
+    "files"
+  ],
+  "lastUpdated": "2026-07-17T14:29:47.396Z",
+  "specId": "008",
+  "folderSlug": "manual-testing-playbook",
+  "parentChain": [
+    "sk-doc",
+    "020-hyphen-naming-convention",
+    "008-component-migration",
+    "007-system-deep-loop"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

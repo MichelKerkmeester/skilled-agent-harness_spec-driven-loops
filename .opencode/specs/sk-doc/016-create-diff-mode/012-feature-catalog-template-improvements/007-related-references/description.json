@@ -1,0 +1,34 @@
+{
+  "title": "Related References — All Skills",
+  "level": 1,
+  "id": "007-related-references",
+  "status": "planned",
+  "track": "skilled-agent-orchestration",
+  "created": "2026-05-31",
+  "specFolder": "sk-doc/016-create-diff-mode/012-feature-catalog-template-improvements/007-related-references",
+  "description": "Script-driven: add 'Related references:' prev/next links to SOURCE METADATA in all 315 snippets currently missing them.",
+  "keywords": [
+    "script-driven",
+    "related",
+    "references",
+    "prev",
+    "next",
+    "links",
+    "source",
+    "metadata",
+    "snippets",
+    "currently",
+    "missing",
+    "them"
+  ],
+  "lastUpdated": "2026-07-17T13:37:15.805Z",
+  "specId": "007",
+  "folderSlug": "related-references",
+  "parentChain": [
+    "sk-doc",
+    "016-create-diff-mode",
+    "012-feature-catalog-template-improvements"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

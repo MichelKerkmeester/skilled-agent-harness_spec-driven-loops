@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/001-mcp-server-dir-and-manifest-closure",
+  "spec_folder": "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/001-mcp-server-dir-and-manifest-closure",
+  "parent_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "system-skill-advisor mcp-server directory",
+      "mcp-server manifest closure",
+      "advisor package root rename",
+      "plugin-bridges stress-test rename",
+      "mcp-server directory implementation plan",
+      "advisor manifest closure plan",
+      "package root rename verification",
+      "mcp-server closure tasks",
+      "advisor package root tasks",
+      "manifest rename tasks",
+      "mcp-server closure checklist",
+      "advisor package root checklist"
+    ],
+    "key_topics": [
+      "system-skill-advisor",
+      "mcp-server",
+      "directory",
+      "manifest",
+      "closure",
+      "advisor",
+      "package",
+      "root",
+      "rename",
+      "plugin-bridges",
+      "stress-test",
+      "implementation"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      ".opencode/skills/system-skill-advisor/mcp_server/package-lock.json",
+      ".opencode/skills/system-skill-advisor/mcp_server/skill-advisor-cli-manifest.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/tsconfig.build.json",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md"
+    ],
+    "entities": [
+      {
+        "name": "package-lock.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/package-lock.json",
+        "source": "derived"
+      },
+      {
+        "name": "skill-advisor-cli-manifest.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/skill-advisor-cli-manifest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "tsconfig.build.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/tsconfig.build.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Move",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Create",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Dependency",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Type",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The advisor runtime is rooted at mcpserver/, and the current surface also contains the non-Python directories",
+    "created_at": "2026-07-14T15:18:07Z",
+    "last_save_at": "2026-07-17T14:30:33.406Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md"
+    ],
+    "source_fingerprint": "sha256:afee8e7b4f8d56cb137b210939b27853ff61b81cd2c3b5a66c4f3085a15ccadc",
+    "source_doc_hashes": {
+      "spec.md": "49fd0be06923c73c55e111149b2ba2f198c3837e5ef8cae75596494837b06e2e",
+      "plan.md": "8ed037c5cd42da1eea660136cd3036dac386d8b8ad56808fcc0ff73dac1ddfb8",
+      "tasks.md": "3e742ee4b48986d8764cbbe81d9947d37aae0300a1da4dae9ced970841668a2b",
+      "checklist.md": "62c8117da178e458ac9cb45ce7abbfe3dbaa281c553f7fc77e2d5402b001556c",
+      "decision-record.md": "1ebc483d4300b923a25bae3cbf8561e33c1e4392e0172dd60dda60371c31a553"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/002-create-readme",
+  "description": "The create-readme packet contains an install_guide directory and snake_case template/reference filenames.",
+  "keywords": [
+    "create-readme",
+    "packet",
+    "contains",
+    "directory",
+    "template",
+    "reference",
+    "filenames"
+  ],
+  "lastUpdated": "2026-07-17T14:29:47.495Z",
+  "specId": "002",
+  "folderSlug": "create-readme",
+  "parentChain": [
+    "sk-doc",
+    "020-hyphen-naming-convention",
+    "008-component-migration",
+    "003-sk-doc",
+    "003-create-packets"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

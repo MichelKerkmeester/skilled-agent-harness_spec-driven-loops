@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor",
+  "spec_folder": "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor",
+  "parent_id": "sk-doc/020-hyphen-naming-convention/008-component-migration",
+  "children_ids": [
+    "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/001-mcp-server-dir-and-manifest-closure",
+    "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/002-scripts",
+    "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/003-references",
+    "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/004-hooks",
+    "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/005-feature-catalog",
+    "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/006-manual-testing-playbook",
+    "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/007-changelog-verify",
+    "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/008-skill-gate"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "system-skill-advisor kebab-case migration",
+      "system-skill-advisor component migration",
+      "advisor surface snake_case cleanup",
+      "system-skill-advisor naming phases"
+    ],
+    "key_topics": [
+      "system-skill-advisor",
+      "kebab-case",
+      "migration",
+      "component",
+      "advisor",
+      "surface",
+      "cleanup",
+      "naming",
+      "phases",
+      "contains",
+      "several",
+      "independent"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Drive",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "its",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The system-skill-advisor surface contains several independent filesystem-name groups that still use snakecase:",
+    "created_at": "2026-07-14T15:17:01Z",
+    "last_save_at": "2026-07-17T14:30:33.082Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:a61321617c6d2ffcc57dd561e52a59ed5e152de18de4ab6c781ad076132ca873",
+    "source_doc_hashes": {
+      "spec.md": "6eafe05e0942e6f4bc44dc9d6f8493aa2d4e43b4ed8923e0e3c6e91f03e19914"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

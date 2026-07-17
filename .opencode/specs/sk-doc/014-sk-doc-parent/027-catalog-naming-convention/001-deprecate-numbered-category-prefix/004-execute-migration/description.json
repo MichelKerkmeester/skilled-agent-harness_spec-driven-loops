@@ -1,0 +1,19 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/014-sk-doc-parent/027-catalog-naming-convention/001-deprecate-numbered-category-prefix/004-execute-migration",
+  "description": "Phase 004.",
+  "keywords": [
+    "phase"
+  ],
+  "lastUpdated": "2026-07-17T14:36:50.817Z",
+  "specId": "004",
+  "folderSlug": "execute-migration",
+  "parentChain": [
+    "sk-doc",
+    "014-sk-doc-parent",
+    "027-catalog-naming-convention",
+    "001-deprecate-numbered-category-prefix"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

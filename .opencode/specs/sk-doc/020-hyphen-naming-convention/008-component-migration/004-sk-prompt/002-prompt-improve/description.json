@@ -1,0 +1,30 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/002-prompt-improve",
+  "description": "The prompt-improve packet still uses underscore-separated names for its format-guide assets and core reference files, and those paths are repeated in",
+  "keywords": [
+    "prompt-improve",
+    "packet",
+    "still",
+    "underscore-separated",
+    "names",
+    "format-guide",
+    "assets",
+    "core",
+    "reference",
+    "files",
+    "paths",
+    "repeated"
+  ],
+  "lastUpdated": "2026-07-17T14:29:47.293Z",
+  "specId": "002",
+  "folderSlug": "prompt-improve",
+  "parentChain": [
+    "sk-doc",
+    "020-hyphen-naming-convention",
+    "008-component-migration",
+    "004-sk-prompt"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

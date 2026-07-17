@@ -1,0 +1,26 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/018-benchmark-authoring-centralization/005-d5-registry-wiring-and-cli-test-repair",
+  "description": "Packet 004 shipped the D5 exit-code hard-fail but recorded two limitations it left untouched as out-of-scope",
+  "keywords": [
+    "packet",
+    "shipped",
+    "exit-code",
+    "hard-fail",
+    "recorded",
+    "two",
+    "limitations",
+    "left",
+    "untouched",
+    "out-of-scope"
+  ],
+  "lastUpdated": "2026-07-17T14:38:02.175Z",
+  "specId": "005",
+  "folderSlug": "d5-registry-wiring-and-cli-test-repair",
+  "parentChain": [
+    "sk-doc",
+    "018-benchmark-authoring-centralization"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

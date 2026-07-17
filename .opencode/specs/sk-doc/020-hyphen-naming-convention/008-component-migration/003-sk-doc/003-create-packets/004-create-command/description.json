@@ -1,0 +1,27 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/004-create-command",
+  "description": "The create-command packet contains snake_case command templates and routing guidance filenames.",
+  "keywords": [
+    "create-command",
+    "packet",
+    "contains",
+    "command",
+    "templates",
+    "routing",
+    "guidance",
+    "filenames"
+  ],
+  "lastUpdated": "2026-07-17T14:29:47.494Z",
+  "specId": "004",
+  "folderSlug": "create-command",
+  "parentChain": [
+    "sk-doc",
+    "020-hyphen-naming-convention",
+    "008-component-migration",
+    "003-sk-doc",
+    "003-create-packets"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

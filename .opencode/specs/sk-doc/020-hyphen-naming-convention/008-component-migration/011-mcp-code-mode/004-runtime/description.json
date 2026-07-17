@@ -1,0 +1,32 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/004-runtime",
+  "description": "The runtime tree must be checked independently because hook and library paths are executed by Node and referenced by manual scenarios.",
+  "keywords": [
+    "runtime",
+    "tree",
+    "must",
+    "checked",
+    "independently",
+    "because",
+    "hook",
+    "library",
+    "paths",
+    "executed",
+    "node",
+    "referenced",
+    "manual",
+    "scenarios"
+  ],
+  "lastUpdated": "2026-07-17T14:29:47.388Z",
+  "specId": "004",
+  "folderSlug": "runtime",
+  "parentChain": [
+    "sk-doc",
+    "020-hyphen-naming-convention",
+    "008-component-migration",
+    "011-mcp-code-mode"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

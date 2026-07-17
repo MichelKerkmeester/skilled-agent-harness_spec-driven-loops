@@ -1,0 +1,21 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/014-sk-doc-parent/001-research-and-canon",
+  "description": "Phase 001 of the sk-doc monolith to parent-hub conversion",
+  "keywords": [
+    "phase",
+    "sk-doc",
+    "monolith",
+    "parent-hub",
+    "conversion"
+  ],
+  "lastUpdated": "2026-07-17T13:37:15.517Z",
+  "specId": "001",
+  "folderSlug": "research-and-canon",
+  "parentChain": [
+    "sk-doc",
+    "014-sk-doc-parent"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,33 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/010-changelog-verify",
+  "description": "The system-deep-loop subtree needs release evidence that names the complete rename set, exemption boundary, reference repair, and version bump.",
+  "keywords": [
+    "system-deep-loop",
+    "subtree",
+    "needs",
+    "release",
+    "evidence",
+    "names",
+    "complete",
+    "rename",
+    "set",
+    "exemption",
+    "boundary",
+    "reference",
+    "repair",
+    "version",
+    "bump"
+  ],
+  "lastUpdated": "2026-07-17T14:29:47.404Z",
+  "specId": "010",
+  "folderSlug": "changelog-verify",
+  "parentChain": [
+    "sk-doc",
+    "020-hyphen-naming-convention",
+    "008-component-migration",
+    "007-system-deep-loop"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

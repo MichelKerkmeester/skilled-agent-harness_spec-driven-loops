@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/008-loose-command-ids",
+  "spec_folder": "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/008-loose-command-ids",
+  "parent_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "loose command ID naming",
+      "root command filename migration",
+      "agent router goal command naming",
+      "loose command naming plan",
+      "root command filename plan",
+      "command ID preservation plan",
+      "loose command naming tasks",
+      "root command ID tasks",
+      "command path contract tasks",
+      "loose command ID checklist",
+      "root command filename verification",
+      "command ID preservation verification"
+    ],
+    "key_topics": [
+      "loose",
+      "command",
+      "naming",
+      "root",
+      "filename",
+      "migration",
+      "agent",
+      "router",
+      "goal",
+      "plan",
+      "preservation",
+      "tasks"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      ".opencode/commands/README.txt",
+      ".opencode/plugins/tests/mk-goal-tool-path.test.cjs",
+      ".codex/prompts/agent_router.md",
+      ".codex/prompts/goal_opencode.md",
+      ".opencode/skills/system-spec-kit/scripts/codex/sync-prompts.cjs",
+      ".opencode/commands/prompt-improve.md",
+      "spec.md",
+      "plan.md",
+      "decision-record.md",
+      "checklist.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".opencode/commands/README.txt",
+        "source": "derived"
+      },
+      {
+        "name": "mk-goal-tool-path.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/mk-goal-tool-path.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "agent_router.md",
+        "kind": "doc",
+        "path": ".codex/prompts/agent_router.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal_opencode.md",
+        "kind": "doc",
+        "path": ".codex/prompts/goal_opencode.md",
+        "source": "derived"
+      },
+      {
+        "name": "sync-prompts.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/scripts/codex/sync-prompts.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-improve.md",
+        "kind": "doc",
+        "path": ".opencode/commands/prompt-improve.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Classify",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "producer",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Definition of Ready",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Definition of Done",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. ARCHITECTURE",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The loose command surface contains `agentrouter.md` and `goalopencode.md`, while the program's canonical filesystem form is kebab-case",
+    "created_at": "2026-07-14T15:18:37Z",
+    "last_save_at": "2026-07-17T14:30:45.620Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md"
+    ],
+    "source_fingerprint": "sha256:a3b80d960e0a1c53807cd499a83816801057bcf403ea64c658548ef8434fd58d",
+    "source_doc_hashes": {
+      "spec.md": "3a07af26dff46dc0d4ad6678a9de95a216b8bbcb5e2ddccd0b81502fcd00ade7",
+      "plan.md": "cf19b01cbc12a91e2405b72cdbd62a784ba6599e2c14a9e3ef1b8533e974d8fb",
+      "tasks.md": "147c069c2cae7a21603c6e4fa3fc15707a70843e7a4a2515419e54ecfdd3cc0f",
+      "checklist.md": "adf63fdadef872714c3e0160b6d9daf36c314604414523daed7dbbe3e3c82735",
+      "decision-record.md": "b6dbbd29d88b4ecdab729174d6d03bdcd7a6eb6b2857925eda44c75029be8a6e"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

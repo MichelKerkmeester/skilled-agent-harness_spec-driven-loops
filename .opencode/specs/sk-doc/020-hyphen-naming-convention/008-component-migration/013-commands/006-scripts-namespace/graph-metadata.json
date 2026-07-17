@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/006-scripts-namespace",
+  "spec_folder": "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/006-scripts-namespace",
+  "parent_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "scripts command namespace naming",
+      "command reference checker naming audit",
+      "scripts surface kebab audit",
+      "scripts namespace naming plan",
+      "command checker naming audit plan",
+      "scripts no-op migration plan",
+      "scripts namespace naming tasks",
+      "scripts command audit tasks",
+      "command checker self-test tasks",
+      "scripts namespace naming checklist",
+      "command checker audit verification",
+      "scripts fixture preservation verification"
+    ],
+    "key_topics": [
+      "scripts",
+      "command",
+      "namespace",
+      "naming",
+      "reference",
+      "checker",
+      "audit",
+      "surface",
+      "kebab",
+      "plan",
+      "no-op",
+      "migration"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      ".opencode/commands/scripts/README.md",
+      ".opencode/commands/scripts/validate-command-references.cjs",
+      ".opencode/commands/scripts/fixtures/broken-command-refs.yaml",
+      ".opencode/commands/scripts/fixtures/README.md",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/commands/scripts/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate-command-references.cjs",
+        "kind": "file",
+        "path": ".opencode/commands/scripts/validate-command-references.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "broken-command-refs.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/scripts/fixtures/broken-command-refs.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Audit",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "its",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Definition of Ready",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria The",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The scripts namespace is part of the commands filesystem surface, so it must be checked against the program's canonical kebab-case rule",
+    "created_at": "2026-07-14T15:18:35Z",
+    "last_save_at": "2026-07-17T14:30:45.033Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:ae7da3a0a68e531c79a4eb0cbb0ce769fc376128fa7c51840fe95079b0563462",
+    "source_doc_hashes": {
+      "spec.md": "79412e66fd2f228ea5896f56214a6b75a8808eeec881efb80b4544002692336b",
+      "plan.md": "877d61bb351ded369627856471dba25f3ec3a7c1a772e00b2f8dba25138d7f2c",
+      "tasks.md": "b0b71357fcae11db7f049da7222aa723c70e50d7130a5a418b061381436c1fa3",
+      "checklist.md": "9bc84f1184b1d29a7fde4be2765592af03e4aa306c3244d739c2f9055d41a2fd"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

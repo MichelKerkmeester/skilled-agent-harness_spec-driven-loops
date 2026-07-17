@@ -1,0 +1,26 @@
+{
+  "specFolder": "sk-doc/016-create-diff-mode/004-cmd-create-skill-merger",
+  "description": "The create command surface for skills was fragmented across separate command files and YAML workflows (`/create:skill`, `/create:skillreference`,",
+  "keywords": [
+    "command",
+    "surface",
+    "skills",
+    "fragmented",
+    "across",
+    "separate",
+    "files",
+    "yaml",
+    "workflows",
+    "skill",
+    "skillreference"
+  ],
+  "lastUpdated": "2026-07-17T13:37:15.734Z",
+  "specId": "004",
+  "folderSlug": "cmd-create-skill-merger",
+  "parentChain": [
+    "sk-doc",
+    "016-create-diff-mode"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

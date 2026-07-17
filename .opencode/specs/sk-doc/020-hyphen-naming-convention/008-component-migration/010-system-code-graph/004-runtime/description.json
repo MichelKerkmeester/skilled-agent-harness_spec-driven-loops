@@ -1,0 +1,30 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/004-runtime",
+  "description": "The system-code-graph runtime tree is a named migration surface even though its current four files and directory",
+  "keywords": [
+    "system-code-graph",
+    "runtime",
+    "tree",
+    "named",
+    "migration",
+    "surface",
+    "even",
+    "though",
+    "current",
+    "four",
+    "files",
+    "directory"
+  ],
+  "lastUpdated": "2026-07-17T14:29:47.447Z",
+  "specId": "004",
+  "folderSlug": "runtime",
+  "parentChain": [
+    "sk-doc",
+    "020-hyphen-naming-convention",
+    "008-component-migration",
+    "010-system-code-graph"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

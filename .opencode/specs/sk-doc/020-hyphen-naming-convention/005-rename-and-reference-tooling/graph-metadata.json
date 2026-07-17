@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling",
+  "spec_folder": "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling",
+  "parent_id": "sk-doc/020-hyphen-naming-convention",
+  "children_ids": [
+    "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/001-rename-engine",
+    "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/002-reference-checker-and-disposition-ledger",
+    "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/003-fixture-corpus-and-dry-run-harness",
+    "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/004-reference-rewrite-executor"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "rename and reference tooling",
+      "semantic rename engine",
+      "whole-repo reference checker",
+      "rename disposition ledger"
+    ],
+    "key_topics": [
+      "rename",
+      "reference",
+      "tooling",
+      "semantic",
+      "engine",
+      "whole-repo",
+      "checker",
+      "disposition",
+      "ledger",
+      "phase",
+      "defines",
+      "deterministic"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Reference Tooling",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "dependency-closure",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The tooling phase defines a deterministic, exemption-aware rename engine, a read-only whole-repository reference checker with a disposition ledger, and a compare-and-swap static reference-rewrite executor, then proves them against disposable fixtures before any migration run.",
+    "created_at": "2026-07-13T14:34:05.527Z",
+    "last_save_at": "2026-07-17T14:30:02.921Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:93242ede1879514df8f6aaf5711803ba58cec71d091dc84feca612dac9b4f244",
+    "source_doc_hashes": {
+      "spec.md": "1af1e4f7a05cdeff2bb290a52c1eb4b12cd528f6de5929185885a78ea4686bc0"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

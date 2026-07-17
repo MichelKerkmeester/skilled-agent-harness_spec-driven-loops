@@ -1,0 +1,32 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/016-create-diff-mode/014-skill-readme-standardization/020-sk-prompt-readme",
+  "description": "The sk-prompt README is a tabular reference card with no problem-first entry point, and it carries a stale version line plus mode-count drift (it",
+  "keywords": [
+    "sk-prompt",
+    "readme",
+    "tabular",
+    "reference",
+    "card",
+    "problem-first",
+    "entry",
+    "point",
+    "carries",
+    "stale",
+    "version",
+    "line",
+    "plus",
+    "mode-count",
+    "drift"
+  ],
+  "lastUpdated": "2026-07-17T13:37:15.836Z",
+  "specId": "020",
+  "folderSlug": "sk-prompt-readme",
+  "parentChain": [
+    "sk-doc",
+    "016-create-diff-mode",
+    "014-skill-readme-standardization"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

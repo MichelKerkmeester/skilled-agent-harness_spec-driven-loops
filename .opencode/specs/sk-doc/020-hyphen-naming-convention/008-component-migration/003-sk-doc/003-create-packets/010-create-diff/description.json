@@ -1,0 +1,31 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/010-create-diff",
+  "description": "The create-diff packet is assigned a component-local naming phase, but its current filesystem inventory contains no non-exempt snake_case name to",
+  "keywords": [
+    "create-diff",
+    "packet",
+    "assigned",
+    "component-local",
+    "naming",
+    "phase",
+    "current",
+    "filesystem",
+    "inventory",
+    "contains",
+    "non-exempt",
+    "name"
+  ],
+  "lastUpdated": "2026-07-17T14:29:47.492Z",
+  "specId": "010",
+  "folderSlug": "create-diff",
+  "parentChain": [
+    "sk-doc",
+    "020-hyphen-naming-convention",
+    "008-component-migration",
+    "003-sk-doc",
+    "003-create-packets"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

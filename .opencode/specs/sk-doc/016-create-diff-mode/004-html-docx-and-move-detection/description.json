@@ -1,0 +1,30 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/016-create-diff-mode/004-html-docx-and-move-detection",
+  "description": "Text-only extraction cannot represent headings, lists, tables, links, repeated blocks, or moves in HTML and DOCX reliably",
+  "keywords": [
+    "text-only",
+    "extraction",
+    "cannot",
+    "represent",
+    "headings",
+    "lists",
+    "tables",
+    "links",
+    "repeated",
+    "blocks",
+    "moves",
+    "html",
+    "docx",
+    "reliably"
+  ],
+  "lastUpdated": "2026-07-17T13:37:15.730Z",
+  "specId": "004",
+  "folderSlug": "html-docx-and-move-detection",
+  "parentChain": [
+    "sk-doc",
+    "016-create-diff-mode"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

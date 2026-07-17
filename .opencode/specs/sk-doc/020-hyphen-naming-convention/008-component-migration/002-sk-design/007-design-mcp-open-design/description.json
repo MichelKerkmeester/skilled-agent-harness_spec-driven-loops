@@ -1,0 +1,31 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/007-design-mcp-open-design",
+  "description": "The nested Open Design transport packet contains underscore-bearing install, transport-reference, and shell-helper names, and the shell helper is",
+  "keywords": [
+    "nested",
+    "open",
+    "design",
+    "transport",
+    "packet",
+    "contains",
+    "underscore-bearing",
+    "install",
+    "transport-reference",
+    "shell-helper",
+    "names",
+    "shell",
+    "helper"
+  ],
+  "lastUpdated": "2026-07-17T14:29:47.339Z",
+  "specId": "007",
+  "folderSlug": "design-mcp-open-design",
+  "parentChain": [
+    "sk-doc",
+    "020-hyphen-naming-convention",
+    "008-component-migration",
+    "002-sk-design"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

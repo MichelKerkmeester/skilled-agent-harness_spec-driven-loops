@@ -1,0 +1,28 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/002-mcp-chrome-devtools",
+  "description": "The mcp-chrome-devtools component contains snake_case manual-testing categories, scenario filenames, reference filenames, and an uppercase underscored",
+  "keywords": [
+    "mcp-chrome-devtools",
+    "component",
+    "contains",
+    "manual-testing",
+    "categories",
+    "scenario",
+    "filenames",
+    "reference",
+    "uppercase",
+    "underscored"
+  ],
+  "lastUpdated": "2026-07-17T14:29:47.355Z",
+  "specId": "002",
+  "folderSlug": "mcp-chrome-devtools",
+  "parentChain": [
+    "sk-doc",
+    "020-hyphen-naming-convention",
+    "008-component-migration",
+    "006-mcp-tooling"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

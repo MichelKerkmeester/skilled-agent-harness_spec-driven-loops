@@ -1,0 +1,30 @@
+{
+  "title": "Sub-headings — advisor + code-graph",
+  "level": 1,
+  "id": "006-subheadings-advisor-codegraph",
+  "status": "planned",
+  "track": "skilled-agent-orchestration",
+  "created": "2026-05-31",
+  "specFolder": "sk-doc/016-create-diff-mode/012-feature-catalog-template-improvements/006-subheadings-advisor-codegraph",
+  "description": "Apply H3 sub-headings to long HOW IT WORKS sections in skill-advisor (40 files) and code-graph (14 files).",
+  "keywords": [
+    "apply",
+    "sub-headings",
+    "long",
+    "works",
+    "sections",
+    "skill-advisor",
+    "files",
+    "code-graph"
+  ],
+  "lastUpdated": "2026-07-17T13:37:15.802Z",
+  "specId": "006",
+  "folderSlug": "subheadings-advisor-codegraph",
+  "parentChain": [
+    "sk-doc",
+    "016-create-diff-mode",
+    "012-feature-catalog-template-improvements"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

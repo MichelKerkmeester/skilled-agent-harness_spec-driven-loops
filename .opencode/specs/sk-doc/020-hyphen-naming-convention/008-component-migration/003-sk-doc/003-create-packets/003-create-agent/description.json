@@ -1,0 +1,28 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/003-create-agent",
+  "description": "The create-agent packet contains snake_case template and reference filenames used to scaffold agent documentation.",
+  "keywords": [
+    "create-agent",
+    "packet",
+    "contains",
+    "template",
+    "reference",
+    "filenames",
+    "scaffold",
+    "agent",
+    "documentation"
+  ],
+  "lastUpdated": "2026-07-17T14:29:47.502Z",
+  "specId": "003",
+  "folderSlug": "create-agent",
+  "parentChain": [
+    "sk-doc",
+    "020-hyphen-naming-convention",
+    "008-component-migration",
+    "003-sk-doc",
+    "003-create-packets"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

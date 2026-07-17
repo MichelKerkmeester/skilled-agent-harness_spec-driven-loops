@@ -1,0 +1,31 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/016-create-diff-mode/014-skill-readme-standardization/002-cli-claude-code-readme",
+  "description": "The cli-claude-code README is a tabular reference card with no problem-first entry point, and it carries a stale fact: it lists 11 delegatable agents",
+  "keywords": [
+    "cli-claude-code",
+    "readme",
+    "tabular",
+    "reference",
+    "card",
+    "problem-first",
+    "entry",
+    "point",
+    "carries",
+    "stale",
+    "fact",
+    "lists",
+    "delegatable",
+    "agents"
+  ],
+  "lastUpdated": "2026-07-17T13:37:15.855Z",
+  "specId": "002",
+  "folderSlug": "cli-claude-code-readme",
+  "parentChain": [
+    "sk-doc",
+    "016-create-diff-mode",
+    "014-skill-readme-standardization"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

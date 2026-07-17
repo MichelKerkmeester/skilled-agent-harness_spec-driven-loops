@@ -1,0 +1,23 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/016-create-diff-mode",
+  "description": "AI-assisted document edits often happen outside a Git repository",
+  "keywords": [
+    "ai-assisted",
+    "document",
+    "edits",
+    "often",
+    "happen",
+    "outside",
+    "git",
+    "repository"
+  ],
+  "lastUpdated": "2026-07-17T13:37:15.669Z",
+  "specId": "016",
+  "folderSlug": "create-diff-mode",
+  "parentChain": [
+    "sk-doc"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

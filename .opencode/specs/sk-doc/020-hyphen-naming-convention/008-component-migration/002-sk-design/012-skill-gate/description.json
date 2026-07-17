@@ -1,0 +1,33 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/012-skill-gate",
+  "description": "The sibling phases need one blocking rollup gate that proves their evidence is complete and that no in-scope snake_case filesystem name or stale path",
+  "keywords": [
+    "sibling",
+    "phases",
+    "need",
+    "one",
+    "blocking",
+    "rollup",
+    "gate",
+    "proves",
+    "evidence",
+    "complete",
+    "in-scope",
+    "filesystem",
+    "name",
+    "stale",
+    "path"
+  ],
+  "lastUpdated": "2026-07-17T14:29:47.345Z",
+  "specId": "012",
+  "folderSlug": "skill-gate",
+  "parentChain": [
+    "sk-doc",
+    "020-hyphen-naming-convention",
+    "008-component-migration",
+    "002-sk-design"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

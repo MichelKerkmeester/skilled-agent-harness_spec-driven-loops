@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/017-fenced-code-structure-parity",
+  "spec_folder": "sk-doc/017-fenced-code-structure-parity",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "fenced code block",
+      "fence awareness",
+      "swallowed sections",
+      "template fence fix",
+      "markdown structure parity",
+      "fence fix plan",
+      "widen outer fence",
+      "template structure plan",
+      "commonmark fence",
+      "fence parity plan",
+      "fence fix tasks",
+      "template parity tasks"
+    ],
+    "key_topics": [
+      "fenced",
+      "code",
+      "block",
+      "fence",
+      "awareness",
+      "swallowed",
+      "sections",
+      "template",
+      "markdown",
+      "structure",
+      "parity",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/sk-doc/create-readme/assets/install_guide_template.md",
+      ".opencode/skills/sk-doc/create-skill/assets/parent_skill/parent_skill_hub_template.md",
+      ".opencode/skills/sk-doc/create-skill/assets/skill/skill_asset_template.md",
+      ".opencode/skills/sk-git/assets/pr-template.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "install_guide_template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/create-readme/assets/install_guide_template.md",
+        "source": "derived"
+      },
+      {
+        "name": "parent_skill_hub_template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/create-skill/assets/parent_skill/parent_skill_hub_template.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill_asset_template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/create-skill/assets/skill/skill_asset_template.md",
+        "source": "derived"
+      },
+      {
+        "name": "pr-template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-git/assets/pr-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fenced Code Block Structure Parity",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authored Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Four",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Restore",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Each",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Surgical",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Four sk-doc authoring templates each contain a fenced example that shows a copy-pasteable document skeleton",
+    "created_at": "2026-07-17T13:49:48.871Z",
+    "last_save_at": "2026-07-17T14:38:10.984Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:9d7be2772ed17283e438eb86a44c30796afc88fd320def9128ad71096e643a5e",
+    "source_doc_hashes": {
+      "spec.md": "898a3160ef1ae43993503ee167f9bd6f43552b578e3646d242c124295d28db04",
+      "plan.md": "c8c9293f2455f28ed849ceb99bbafb5dd695c8d05febf4d4d602cae15ad5cae5",
+      "tasks.md": "caa87d161950eb72bddd6040536995b85e077297e2491117494320fe0eecd782",
+      "implementation-summary.md": "cabf26150c74e7e5e95d2b3c5d3a4ce49047e2215fbf2098230f276bc31b649a"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

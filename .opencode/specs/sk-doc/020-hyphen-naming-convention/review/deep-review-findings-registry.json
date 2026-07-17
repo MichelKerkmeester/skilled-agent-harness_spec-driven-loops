@@ -1,0 +1,516 @@
+{
+  "mergedFrom": [
+    "sol-xhigh",
+    "terra-max"
+  ],
+  "mergedVerdict": "CONDITIONAL",
+  "openFindings": [
+    {
+      "findingId": "F003--3e991f979a7e",
+      "severity": "P1",
+      "title": "Apply is not required to revalidate the reviewed dry-run snapshot",
+      "file": ".opencode/specs/sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/001-rename-engine/decision-record.md",
+      "line": 77,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": "1397acc79a25172c10e68fb1a9718fd72acf2de52c093c0617167bb7a66e61c4",
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "sol-xhigh"
+      ],
+      "_conflictOf": "F003",
+      "_conflict_id": "F003--3e991f979a7e",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F003",
+          "peerId": "F003--45754c7a245d",
+          "peerLineages": [
+            "terra-max"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F005",
+      "severity": "P1",
+      "title": "Current phase-transition gates remain placeholder-only",
+      "file": ".opencode/specs/sk-doc/020-hyphen-naming-convention/spec.md",
+      "line": 232,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": "c4866b2574b34ac8b5d0ff19c8a4c90d2f990c132c0954044777f3d297518739",
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 9,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "sol-xhigh"
+      ]
+    },
+    {
+      "findingId": "F003--45754c7a245d",
+      "severity": "P2",
+      "title": "Duplicate partial phase map competes with the packet topology",
+      "file": ".opencode/specs/sk-doc/020-hyphen-naming-convention/spec.md",
+      "line": 214,
+      "description": "The second parent phase documentation map presents only phases 009–011 as the aggregate progress map, creating a competing and incomplete navigation contract.",
+      "findingClass": "duplicate-contract",
+      "deltaStatus": "open",
+      "scopeProof": "The issue is limited to parent documentation maintainability; no production or target artifact was changed.",
+      "affectedSurfaceHints": [
+        "parent-spec",
+        "graph-metadata",
+        "phase-navigation"
+      ],
+      "contentHash": "ebfa8d77fe3d690ff18c7893e413b7cb0c12d01419f9fc53f73a3b089535c6dc",
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        },
+        {
+          "iteration": 4,
+          "from": "P2",
+          "to": "P2",
+          "reason": "Claim adjudication"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "terra-max"
+      ],
+      "_conflictOf": "F003",
+      "_conflict_id": "F003--45754c7a245d",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F003",
+          "peerId": "F003--3e991f979a7e",
+          "peerLineages": [
+            "sol-xhigh"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F001--403c13bd43f4",
+      "severity": "P1",
+      "title": "Parent phase map targets an obsolete 16-phase topology",
+      "file": ".opencode/specs/sk-doc/020-hyphen-naming-convention/spec.md",
+      "line": 3,
+      "description": "The parent specification presents a current 16-phase 000–015 execution topology that conflicts with the authoritative re-decomposed phase tree and current terminal phase sequence.",
+      "findingClass": "topology-drift",
+      "deltaStatus": "open",
+      "scopeProof": "The mismatch is confined to packet documentation topology; no implementation target was modified.",
+      "affectedSurfaceHints": [
+        "parent-spec",
+        "phase-tree",
+        "phase-adjacency"
+      ],
+      "contentHash": "1f0b30f1525d55d78bfb26e5a4348cd1e308f78d1c6983cf7d0cb28c82533224",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        },
+        {
+          "iteration": 1,
+          "from": "P1",
+          "to": "P1",
+          "reason": "Claim adjudication"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "terra-max"
+      ],
+      "_conflictOf": "F001",
+      "_conflict_id": "F001--403c13bd43f4",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F001",
+          "peerId": "F001--8c09d484a62e",
+          "peerLineages": [
+            "sol-xhigh"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F004--cac9e6658d07",
+      "severity": "P1",
+      "title": "Phase 000 hard-codes a non-allocating legacy worktree identity",
+      "file": ".opencode/specs/sk-doc/020-hyphen-naming-convention/000-worktree-baseline-and-census/spec.md",
+      "line": 58,
+      "description": "Phase 000 directs creation of a literal legacy wt/ branch and numbered worktree instead of using the current clone-wide allocator and owner-first worktree contract.",
+      "findingClass": "workflow-contract",
+      "deltaStatus": "open",
+      "scopeProof": "The mismatch is between planned packet documentation and the current repository worktree workflow; no worktree was created during review.",
+      "affectedSurfaceHints": [
+        "phase-000-spec",
+        "phase-000-plan",
+        "sk-git-worktree-contract"
+      ],
+      "contentHash": "7da2c3e4710a83dea64db36479834bcdee8a83ab25b4e7f0fdbb13a35c0cc2df",
+      "dimension": "maintainability",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        },
+        {
+          "iteration": 5,
+          "from": "P1",
+          "to": "P1",
+          "reason": "Claim adjudication"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "terra-max"
+      ],
+      "_conflictOf": "F004",
+      "_conflict_id": "F004--cac9e6658d07",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F004",
+          "peerId": "F004--ea3cafa67535",
+          "peerLineages": [
+            "sol-xhigh"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F002--c845f7ec3f7d",
+      "severity": "P1",
+      "title": "Phase 000 requires unavailable predecessor and rename-map evidence",
+      "file": ".opencode/specs/sk-doc/020-hyphen-naming-convention/000-worktree-baseline-and-census/checklist.md",
+      "line": 32,
+      "description": "Phase 000 cannot satisfy its own blocking checklist because it is the first phase, while the checklist requires landed predecessors and a rename-map hash owned by a later phase.",
+      "findingClass": "bootstrap-contract",
+      "deltaStatus": "open",
+      "scopeProof": "The contradiction is within phase-000 planning and verification documents; no target artifact was changed.",
+      "affectedSurfaceHints": [
+        "phase-000-spec",
+        "phase-000-checklist",
+        "parent-phase-map"
+      ],
+      "contentHash": "06437096dd4d38e2477b4cc1641865148ea2fd304b43eba1d4bff810dc75b189",
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        },
+        {
+          "iteration": 3,
+          "from": "P1",
+          "to": "P1",
+          "reason": "Claim adjudication"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "terra-max"
+      ],
+      "_conflictOf": "F002",
+      "_conflict_id": "F002--c845f7ec3f7d",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F002",
+          "peerId": "F002--0557e63a1ce8",
+          "peerLineages": [
+            "sol-xhigh"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F002--0557e63a1ce8",
+      "severity": "P1",
+      "title": "The checked-in authoritative phase tree is not reproducible from its generator",
+      "file": ".opencode/specs/sk-doc/020-hyphen-naming-convention/manifest/build-phase-tree.mjs",
+      "line": 138,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": "de1777e77f89e3c84bd982738adeb1ed7892b9839e77fc357bf00e3ee1faf3ff",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 6,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "sol-xhigh"
+      ],
+      "_conflictOf": "F002",
+      "_conflict_id": "F002--0557e63a1ce8",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F002",
+          "peerId": "F002--c845f7ec3f7d",
+          "peerLineages": [
+            "terra-max"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F004--ea3cafa67535",
+      "severity": "P1",
+      "title": "The declared leading-hyphen CLI hazard has no rejecting engine or harness criterion",
+      "file": ".opencode/specs/sk-doc/020-hyphen-naming-convention/001-convention-policy-and-scope/decision-record.md",
+      "line": 72,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": "3cfc48c5af41bbb5cb820b62fd5197a420bbee291a111f1caa1b230289384ac7",
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "sol-xhigh"
+      ],
+      "_conflictOf": "F004",
+      "_conflict_id": "F004--ea3cafa67535",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F004",
+          "peerId": "F004--cac9e6658d07",
+          "peerLineages": [
+            "terra-max"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F007",
+      "severity": "P1",
+      "title": "The frozen-map phase does not define its durable consumer interface",
+      "file": ".opencode/specs/sk-doc/020-hyphen-naming-convention/006-inventory-and-frozen-map/plan.md",
+      "line": 37,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": "689821b124018cd37329b1ee637b37083c99cc6afcab1ffa6ae42fcff7a31050",
+      "dimension": "correctness",
+      "firstSeen": 7,
+      "lastSeen": 7,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 7,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "sol-xhigh"
+      ]
+    },
+    {
+      "findingId": "F001--8c09d484a62e",
+      "severity": "P1",
+      "title": "The phase parent routes execution through a superseded topology",
+      "file": ".opencode/specs/sk-doc/020-hyphen-naming-convention/spec.md",
+      "line": 3,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": "30fe25b481dc3aec832108f572e756fde0309f0121d6a0fb027193e8ad8ce402",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "sol-xhigh"
+      ],
+      "_conflictOf": "F001",
+      "_conflict_id": "F001--8c09d484a62e",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "F001",
+          "peerId": "F001--403c13bd43f4",
+          "peerLineages": [
+            "terra-max"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "F006",
+      "severity": "P2",
+      "title": "The phase-tree generator defaults to a developer-private scratch path",
+      "file": ".opencode/specs/sk-doc/020-hyphen-naming-convention/manifest/build-phase-tree.mjs",
+      "line": 218,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": "8b243653a7910ea0ad3ecdf1dae6a1d20399c46bd4ce6eb65292ce9f5b10f803",
+      "dimension": "correctness",
+      "firstSeen": 6,
+      "lastSeen": 6,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 6,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "sol-xhigh"
+      ]
+    }
+  ],
+  "resolvedFindings": [],
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 9,
+    "P2": 2
+  },
+  "openFindingsCount": 11,
+  "resolvedFindingsCount": 0,
+  "activeP0": 0,
+  "activeP1": 9,
+  "activeP2": 2
+}

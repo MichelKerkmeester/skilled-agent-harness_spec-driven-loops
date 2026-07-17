@@ -1,0 +1,28 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/003-fixture-corpus-and-dry-run-harness",
+  "description": "The rename engine and reference checker need representative, repeatable evidence before a real migration run.",
+  "keywords": [
+    "rename",
+    "engine",
+    "reference",
+    "checker",
+    "need",
+    "representative",
+    "repeatable",
+    "evidence",
+    "real",
+    "migration",
+    "run"
+  ],
+  "lastUpdated": "2026-07-17T14:29:47.209Z",
+  "specId": "003",
+  "folderSlug": "fixture-corpus-and-dry-run-harness",
+  "parentChain": [
+    "sk-doc",
+    "020-hyphen-naming-convention",
+    "005-rename-and-reference-tooling"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

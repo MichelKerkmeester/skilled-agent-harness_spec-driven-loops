@@ -1,0 +1,27 @@
+{
+  "level": 1,
+  "specFolder": "sk-doc/014-sk-doc-parent/010-subskill-doc-review",
+  "description": "The `creation.md` reference dissection split each sk-doc packet's authoring doctrine into its own creation-guideline reference (`skillcreation.md`,",
+  "keywords": [
+    "creation",
+    "reference",
+    "dissection",
+    "split",
+    "sk-doc",
+    "packet",
+    "authoring",
+    "doctrine",
+    "own",
+    "creation-guideline",
+    "skillcreation"
+  ],
+  "lastUpdated": "2026-07-17T14:36:50.751Z",
+  "specId": "010",
+  "folderSlug": "subskill-doc-review",
+  "parentChain": [
+    "sk-doc",
+    "014-sk-doc-parent"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

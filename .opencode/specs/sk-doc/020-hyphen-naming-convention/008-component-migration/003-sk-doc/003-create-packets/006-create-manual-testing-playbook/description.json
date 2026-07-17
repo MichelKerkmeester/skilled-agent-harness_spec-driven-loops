@@ -1,0 +1,26 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/006-create-manual-testing-playbook",
+  "description": "The create-manual-testing-playbook packet contains snake_case template and prompt-voice resource filenames.",
+  "keywords": [
+    "create-manual-testing-playbook",
+    "packet",
+    "contains",
+    "template",
+    "prompt-voice",
+    "resource",
+    "filenames"
+  ],
+  "lastUpdated": "2026-07-17T14:29:47.488Z",
+  "specId": "006",
+  "folderSlug": "create-manual-testing-playbook",
+  "parentChain": [
+    "sk-doc",
+    "020-hyphen-naming-convention",
+    "008-component-migration",
+    "003-sk-doc",
+    "003-create-packets"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

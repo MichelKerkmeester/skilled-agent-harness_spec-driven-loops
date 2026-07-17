@@ -1,0 +1,31 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/005-manual-testing-playbook",
+  "description": "The mcp-tooling hub-level manual-testing-playbook tree uses an underscored root, category directory, index file, and seven scenario filenames.",
+  "keywords": [
+    "mcp-tooling",
+    "hub-level",
+    "manual-testing-playbook",
+    "tree",
+    "underscored",
+    "root",
+    "category",
+    "directory",
+    "index",
+    "file",
+    "seven",
+    "scenario",
+    "filenames"
+  ],
+  "lastUpdated": "2026-07-17T14:29:47.357Z",
+  "specId": "005",
+  "folderSlug": "manual-testing-playbook",
+  "parentChain": [
+    "sk-doc",
+    "020-hyphen-naming-convention",
+    "008-component-migration",
+    "006-mcp-tooling"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
