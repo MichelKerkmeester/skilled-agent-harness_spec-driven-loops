@@ -47,7 +47,7 @@ The Agent Router **ADOPTS** the target system's identity and executes directly. 
 1. **Discovers** available systems by scanning the filesystem for `AGENTS.md` files
 2. **Resolves** the target system from user input, fuzzy matching, or explicit paths
 3. **Locates** and reads AGENTS.md for the target system
-4. **Finds** and reads the COMPLETE skill identity (`skill/SKILL.md`)
+4. **Finds** and reads the COMPLETE skill identity (the named `{skill_folder}/SKILL.md` that AGENTS.md points to)
 5. **BECOMES** the target agent by fully adopting its skill identity
 6. **Executes** the request directly as that agent
 
@@ -207,7 +207,7 @@ Reply with letter:
 | 0    | Discover Systems              | Scan filesystem for AGENTS.md files        | `discovered_systems[]`                        |
 | 1    | Resolve Target                | Match user input to a discovered system    | `agents_md_path`, `agent_scope_root`          |
 | 2    | Read AGENTS.md                | Parse routing instructions                 | `routing_directive`, `behavioral_guidelines`  |
-| 3    | Locate and Read Skill Identity | Load `skill/SKILL.md`                      | `skill_path`, `skill_content`                 |
+| 3    | Locate and Read Skill Identity | Load the AGENTS.md-named `{skill_folder}/SKILL.md` | `skill_path`, `skill_content`          |
 | 4    | Adopt Identity and Execute    | BECOME the agent, process request directly | `execution_result`                            |
 | 5    | Return Results                | Report completion                          | `STATUS`, formatted report                    |
 
@@ -273,9 +273,9 @@ Reply with letter:
 - Extract:
   - Behavioral guidelines
   - Routing instructions
-  - The "Load Skill Logic" / "Document Loading Order" directive pointing to `skill/SKILL.md`
+  - The "Load Skill Logic" / "Document Loading Order" directive pointing to the system's `{skill_folder}/SKILL.md`
 - Note: AGENTS.md is a BOOTSTRAP file, NOT the full identity
-- The full identity lives in the `skill/SKILL.md` it points to
+- The full identity lives in the named `{skill_folder}/SKILL.md` it points to
 
 **Validation checkpoint:**
 - [ ] AGENTS.md content parsed
@@ -285,34 +285,37 @@ Reply with letter:
 
 ### Step 3: Locate and Read Skill Identity
 
-**Purpose:** Find and read the COMPLETE skill identity (`skill/SKILL.md`) that defines the agent
+**Purpose:** Find and read the COMPLETE skill identity — the SKILL.md inside the system's **named skill folder** — that defines the agent
+
+**The skill folder is named, not literal `skill/`.** Each system keeps its identity in a slug-named folder inside the system root (for example `barter-copywriter/SKILL.md`, `sk-product-owner/SKILL.md`, `mcp-media-editor/SKILL.md`), not a directory literally called `skill/`. AGENTS.md names that folder.
 
 **Dual-runtime note:** Each migrated system ships two identity surfaces:
-- `{agent_scope_root}/skill/SKILL.md` — the CLI/skill identity. **This is what the router adopts.**
+- `{agent_scope_root}/{skill_folder}/SKILL.md` — the CLI/skill identity, where `{skill_folder}` is the slug AGENTS.md names. **This is what the router adopts.**
 - `{agent_scope_root}/claude project/Custom Instructions.md` — the claude.ai Project mirror for upload. **Never adopt this for routing.**
 
 **Activities:**
-- Follow the skill-loading directive in AGENTS.md (the "Load Skill Logic" / "Document Loading Order" / "Full DAG" block). It points to `skill/SKILL.md` plus the references and assets to load.
-- Primary: read `{agent_scope_root}/skill/SKILL.md` COMPLETELY. On load, its routing, references and assets define the identity.
-- Then load only what `SKILL.md` marks ALWAYS (for example `skill/references/*`); load mode references and assets on demand as the skill router directs. Do not bulk-read the whole reference set.
-- Legacy fallback (only when `skill/SKILL.md` is absent — e.g. a not-yet-migrated system), Glob in priority order:
+- **Resolve `{skill_folder}` from AGENTS.md (authoritative).** Read AGENTS.md's skill-loading directive (the "Load Skill Logic" / "Document Loading Order" / "Full DAG" block); it names the exact `{skill_folder}/SKILL.md` path plus the references and assets to load.
+- **Fallback resolution** when the directive cannot be parsed: Glob `{agent_scope_root}/*/SKILL.md` and select the skill folder — EXCLUDE `claude project/` (the claude.ai mirror) and any `z`/backup folders. If more than one remains, prefer the folder whose name matches the system slug.
+- Primary: read `{agent_scope_root}/{skill_folder}/SKILL.md` COMPLETELY. On load, its routing, references and assets define the identity.
+- Then load only what `SKILL.md` marks ALWAYS (for example `{skill_folder}/references/*`); load mode references and assets on demand as the skill router directs. Do not bulk-read the whole reference set.
+- Legacy fallback (only when no `{skill_folder}/SKILL.md` exists — e.g. a not-yet-migrated system), Glob in priority order:
   - `{agent_scope_root}/knowledge base/system/*System - Prompt*.md`
   - `{agent_scope_root}/knowledge base/system/*System Prompt*.md`
   - `{agent_scope_root}/knowledge base/*System Prompt*.md`
 - If multiple versions exist for the same file family, select the highest version number (e.g. `v1.1.0` over `v1.0.0`).
 - Store the loaded identity as `skill_content`.
 
-**Fallback:** If neither `skill/SKILL.md` nor a legacy System Prompt is found:
+**Fallback:** If neither `{skill_folder}/SKILL.md` nor a legacy System Prompt is found:
 - Check if AGENTS.md itself contains the full identity (Context Override, Skill Reading Instructions, Processing Hierarchy).
 - If yes, use AGENTS.md content as the identity source.
 - If no, report error.
 
 **Validation checkpoint:**
-- [ ] Skill identity located (`skill/SKILL.md` or legacy fallback)
+- [ ] Skill identity located (the AGENTS.md-named `{skill_folder}/SKILL.md`, glob fallback, or legacy fallback)
 - [ ] Full content loaded into `skill_content`
 - [ ] The `claude project/` mirror was NOT used as the identity
 
-**Failure:** `STATUS=FAIL ERROR="Skill identity (skill/SKILL.md) not found"`
+**Failure:** `STATUS=FAIL ERROR="Skill identity ({skill_folder}/SKILL.md) not found"`
 
 ---
 
@@ -325,7 +328,7 @@ Reply with letter:
 After reading the skill identity, you ARE that agent. This is not delegation—it is transformation:
 
 1. **You ARE now the target agent**
-   - The `skill/SKILL.md` you loaded IS your identity
+   - The `{skill_folder}/SKILL.md` you loaded IS your identity
    - All instructions in that skill identity ARE your instructions
    - You operate with full authority of that agent
 
@@ -379,7 +382,7 @@ After reading the skill identity, apply this protocol to BECOME the target agent
 BEFORE: You are the Agent Router
 AFTER:  You ARE the {system_name} agent
 
-The `skill/SKILL.md` you read IS your new identity.
+The `{skill_folder}/SKILL.md` you read IS your new identity.
 All its instructions ARE your instructions.
 Its operating mode IS your operating mode.
 ```
@@ -398,7 +401,7 @@ Its operating mode IS your operating mode.
 
 After adoption, operate within:
 - **Agent folder:** `{agent_scope_root}`
-- **Skill resources:** `{agent_scope_root}/skill/` (`SKILL.md`, `references/`, `assets/`)
+- **Skill resources:** the named skill folder `{agent_scope_root}/{skill_folder}/` (`SKILL.md`, `references/`, `assets/`)
 - **Export folder:** `{agent_scope_root}/export/`
 
 ### Execution
@@ -421,7 +424,7 @@ Once identity is adopted:
 | No systems discovered   | Report base path, check directory structure                | `STATUS=FAIL ERROR="No AI Systems found"`                       |
 | No match found          | Present dynamic selection menu from `discovered_systems[]` | (wait for selection)                                            |
 | AGENTS.md not found     | Report path tried, list discovered systems                 | `STATUS=FAIL ERROR="AGENTS.md not found at {path}"`             |
-| Skill identity not found | Report search order, suggest fixes                        | `STATUS=FAIL ERROR="Skill identity (skill/SKILL.md) not found"` |
+| Skill identity not found | Report search order, suggest fixes                        | `STATUS=FAIL ERROR="Skill identity ({skill_folder}/SKILL.md) not found"` |
 | Execution failure       | Report error details                                       | `STATUS=FAIL ERROR="{error_details}"`                           |
 | Missing required tool   | Report tool needed, suggest alternatives                   | `STATUS=FAIL ERROR="Required tool unavailable"`                 |
 
@@ -446,17 +449,18 @@ Skill identity not found.
 
 AGENTS.md location: {agents_md_path}
 Search order:
-- {agent_scope_root}/skill/SKILL.md                              (primary — migrated systems)
+- {agent_scope_root}/{skill_folder}/SKILL.md                     (primary — folder named by AGENTS.md, e.g. barter-copywriter/)
+- {agent_scope_root}/*/SKILL.md                                  (glob fallback — exclude "claude project/" and z*/backup dirs)
 - {agent_scope_root}/knowledge base/system/*System - Prompt*.md  (legacy fallback)
 - {agent_scope_root}/knowledge base/*System Prompt*.md           (legacy fallback)
 
 The AGENTS.md was found but no skill identity file exists.
 
 Options:
-1. Confirm the system was migrated to skill/SKILL.md
+1. Confirm the system was migrated to {skill_folder}/SKILL.md
 2. Check if AGENTS.md contains the full identity (Context Override, Skill Reading Instructions)
 
-STATUS=FAIL ERROR="Skill identity (skill/SKILL.md) not found"
+STATUS=FAIL ERROR="Skill identity ({skill_folder}/SKILL.md) not found"
 ```
 
 ---
