@@ -2,6 +2,11 @@
 title: "CM-017 -- Figma file metadata"
 description: "This scenario validates Figma file metadata fetch via Code Mode for `CM-017`. It focuses on confirming the Figma MCP returns name, lastModified, and document tree for a known file."
 version: 1.0.0.7
+id: CM-017
+category: third_party_via_cm
+stage: routing
+expected_workflow_mode: mcp-code-mode
+expected_leaf_resources: []
 ---
 
 # CM-017 -- Figma file metadata

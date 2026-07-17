@@ -1,0 +1,8 @@
+{
+  "workflowMode": "mcp-code-mode",
+  "packet": ".",
+  "leafRoots": ["references", "assets"],
+  "excludeIndexFiles": true,
+  "resourceContractVersion": 1,
+  "_note": "Standalone single-mode manifest config. mcp-code-mode is a normal skill (no mode-registry.json); its references/ knowledge docs and assets/ templates are the routed leaves that the in-SKILL.md INTENT_SIGNALS + RESOURCE_MAP router selects. Consumed by generate-leaf-manifest.cjs to emit leaf-manifest.json. Regenerate leaf-manifest.json (and keep leaf-aliases.json in sync) whenever the references/ or assets/ corpus changes."
+}

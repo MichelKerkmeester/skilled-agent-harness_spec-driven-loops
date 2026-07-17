@@ -2,6 +2,13 @@
 title: "CM-003 -- tool_info schema"
 description: "This scenario validates tool_info schema for `CM-003`. It focuses on confirming that `tool_info` returns parameter schema, description, and required fields for a known tool."
 version: 1.0.0.7
+id: CM-003
+category: core_tools
+stage: routing
+expected_workflow_mode: mcp-code-mode
+expected_leaf_resources:
+  - workflow_mode: mcp-code-mode
+    leaf_resource_id: references/tool_catalog.md
 ---
 
 # CM-003 -- tool_info schema

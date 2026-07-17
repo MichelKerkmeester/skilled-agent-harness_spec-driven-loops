@@ -2,6 +2,11 @@
 title: "CM-026 -- Missing manual entry"
 description: "This scenario validates the 'manual not found' error path for `CM-026`. It focuses on confirming calling a tool whose manual is not in `.utcp_config.json` returns a deterministic error referencing the missing manual."
 version: 1.0.0.7
+id: CM-026
+category: recovery_and_config
+stage: routing
+expected_workflow_mode: mcp-code-mode
+expected_leaf_resources: []
 ---
 
 # CM-026 -- Missing manual entry

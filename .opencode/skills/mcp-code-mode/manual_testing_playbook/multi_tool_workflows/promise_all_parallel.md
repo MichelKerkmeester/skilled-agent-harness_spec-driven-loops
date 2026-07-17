@@ -2,6 +2,13 @@
 title: "CM-012 -- Promise.all parallel"
 description: "This scenario validates Promise.all parallel execution for `CM-012`. It focuses on confirming that three independent tool calls inside `Promise.all` execute in parallel and all results return."
 version: 1.0.0.7
+id: CM-012
+category: multi_tool_workflows
+stage: routing
+expected_workflow_mode: mcp-code-mode
+expected_leaf_resources:
+  - workflow_mode: mcp-code-mode
+    leaf_resource_id: references/workflows.md
 ---
 
 # CM-012 -- Promise.all parallel

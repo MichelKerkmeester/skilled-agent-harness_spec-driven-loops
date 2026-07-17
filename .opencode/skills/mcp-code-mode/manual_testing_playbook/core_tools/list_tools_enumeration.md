@@ -2,6 +2,13 @@
 title: "CM-001 -- list_tools enumeration"
 description: "This scenario validates list_tools enumeration for `CM-001`. It focuses on confirming that `list_tools()` returns the full set of registered external MCP tools using the canonical `manual.manual_tool` namespace pattern."
 version: 1.0.0.6
+id: CM-001
+category: core_tools
+stage: routing
+expected_workflow_mode: mcp-code-mode
+expected_leaf_resources:
+  - workflow_mode: mcp-code-mode
+    leaf_resource_id: references/tool_catalog.md
 ---
 
 # CM-001 -- list_tools enumeration

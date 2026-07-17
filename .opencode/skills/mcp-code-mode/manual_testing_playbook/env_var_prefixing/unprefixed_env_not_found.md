@@ -2,6 +2,13 @@
 title: "CM-009 -- Unprefixed env not found"
 description: "This scenario validates the negative path for env-var prefixing in `CM-009`. It focuses on confirming an unprefixed `CLICKUP_API_KEY` (without `clickup_` prefix) is NOT visible to the wrapped server, producing a deterministic auth error."
 version: 1.0.0.7
+id: CM-009
+category: env_var_prefixing
+stage: routing
+expected_workflow_mode: mcp-code-mode
+expected_leaf_resources:
+  - workflow_mode: mcp-code-mode
+    leaf_resource_id: references/configuration.md
 ---
 
 # CM-009 -- Unprefixed env not found

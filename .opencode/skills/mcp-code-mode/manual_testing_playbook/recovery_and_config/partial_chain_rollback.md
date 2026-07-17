@@ -2,6 +2,11 @@
 title: "CM-025 -- Partial-chain rollback"
 description: "This scenario validates the partial-chain rollback contract for `CM-025`. It focuses on confirming a chain that creates a ClickUp task then fails on a follow-up call leaves the task created (no automatic rollback) and is recoverable via manual cleanup."
 version: 1.0.0.7
+id: CM-025
+category: recovery_and_config
+stage: routing
+expected_workflow_mode: mcp-code-mode
+expected_leaf_resources: []
 ---
 
 # CM-025 -- Partial-chain rollback

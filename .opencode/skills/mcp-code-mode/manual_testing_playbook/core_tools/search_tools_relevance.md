@@ -2,6 +2,13 @@
 title: "CM-002 -- search_tools relevance"
 description: "This scenario validates search_tools relevance for `CM-002`. It focuses on confirming that `search_tools` returns tools relevant to a task description, bounded by `limit`."
 version: 1.0.0.6
+id: CM-002
+category: core_tools
+stage: routing
+expected_workflow_mode: mcp-code-mode
+expected_leaf_resources:
+  - workflow_mode: mcp-code-mode
+    leaf_resource_id: references/tool_catalog.md
 ---
 
 # CM-002 -- search_tools relevance

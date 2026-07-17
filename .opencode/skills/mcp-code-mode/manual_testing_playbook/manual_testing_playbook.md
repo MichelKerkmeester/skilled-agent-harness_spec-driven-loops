@@ -504,7 +504,9 @@ Expected signals: Step 1: unit-test suite reports 16/16 assertions passed with e
 
 ---
 
-## 16. FEATURE CATALOG CROSS-REFERENCE INDEX
+## 16. SCENARIO DIRECTORY
+
+> Navigation index only. Per-scenario routing gold lives in each feature file's YAML frontmatter (`expected_workflow_mode` + `expected_leaf_resources`); this list is not a machine-parsed routing table.
 
 ### CORE TOOLS
 

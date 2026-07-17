@@ -2,6 +2,13 @@
 title: "CM-013 -- try/catch error path"
 description: "This scenario validates the try/catch error-recovery pattern for `CM-013`. It focuses on confirming that wrapping a failing call in try/catch lets the chain continue and return both the error and a fallback result."
 version: 1.0.0.6
+id: CM-013
+category: multi_tool_workflows
+stage: routing
+expected_workflow_mode: mcp-code-mode
+expected_leaf_resources:
+  - workflow_mode: mcp-code-mode
+    leaf_resource_id: references/workflows.md
 ---
 
 # CM-013 -- try/catch error path

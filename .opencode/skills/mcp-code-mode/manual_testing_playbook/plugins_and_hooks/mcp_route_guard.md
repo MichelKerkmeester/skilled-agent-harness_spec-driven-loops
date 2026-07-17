@@ -8,6 +8,11 @@ trigger_phrases:
   - "mcp routing advisory"
   - "code mode routing advisory"
 version: 1.0.0.0
+id: mcp-route-guard
+category: plugins_and_hooks
+stage: routing
+expected_workflow_mode: mcp-code-mode
+expected_leaf_resources: []
 ---
 
 # MCP Route Guard

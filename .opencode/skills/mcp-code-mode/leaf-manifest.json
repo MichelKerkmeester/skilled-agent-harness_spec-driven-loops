@@ -1,0 +1,18 @@
+{
+  "modes": [
+    {
+      "leaves": [
+        "assets/config_template.md",
+        "assets/env_template.md",
+        "references/architecture.md",
+        "references/configuration.md",
+        "references/naming_convention.md",
+        "references/tool_catalog.md",
+        "references/workflows.md"
+      ],
+      "packet": ".",
+      "workflowMode": "mcp-code-mode"
+    }
+  ],
+  "resourceContractVersion": 1
+}

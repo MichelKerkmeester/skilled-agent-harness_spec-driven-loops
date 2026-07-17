@@ -2,6 +2,11 @@
 title: "CM-018 -- MyService list sites"
 description: "This scenario validates MyService site listing via Code Mode for `CM-018`. It focuses on confirming `myservice_sites_list` returns the operator's MyService sites."
 version: 1.0.0.6
+id: CM-018
+category: third_party_via_cm
+stage: routing
+expected_workflow_mode: mcp-code-mode
+expected_leaf_resources: []
 ---
 
 # CM-018 -- MyService list sites

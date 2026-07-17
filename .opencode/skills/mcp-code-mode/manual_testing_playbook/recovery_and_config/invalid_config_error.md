@@ -2,6 +2,13 @@
 title: "CM-021 -- Invalid config error (DESTRUCTIVE)"
 description: "This scenario validates the invalid-config error path for `CM-021`. It focuses on confirming Code Mode reports a structured config-validation error when `.utcp_config.json` has malformed JSON, then restores cleanly."
 version: 1.0.0.6
+id: CM-021
+category: recovery_and_config
+stage: routing
+expected_workflow_mode: mcp-code-mode
+expected_leaf_resources:
+  - workflow_mode: mcp-code-mode
+    leaf_resource_id: references/configuration.md
 ---
 
 # CM-021 -- Invalid config error (DESTRUCTIVE)

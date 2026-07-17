@@ -2,6 +2,11 @@
 title: "CM-024 -- Deregister/re-register cycle (DESTRUCTIVE)"
 description: "This scenario validates dynamic manual deregister/re-register for `CM-024`. It focuses on confirming `deregister_manual` removes a manual at runtime and `register_manual` restores it without restarting Code Mode."
 version: 1.0.0.6
+id: CM-024
+category: recovery_and_config
+stage: routing
+expected_workflow_mode: mcp-code-mode
+expected_leaf_resources: []
 ---
 
 # CM-024 -- Deregister/re-register cycle (DESTRUCTIVE)
