@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/011-sk-design-styles-utilization/003-global-modes-utilization",
-  "spec_folder": "sk-design/011-sk-design-styles-utilization/003-global-modes-utilization",
+  "packet_id": "sk-design/011-sk-design-styles-utilization/004-retrieval-substrate",
+  "spec_folder": "sk-design/011-sk-design-styles-utilization/004-retrieval-substrate",
   "parent_id": "sk-design/011-sk-design-styles-utilization",
   "children_ids": [],
   "manual": {
@@ -11,40 +11,41 @@
   },
   "derived": {
     "trigger_phrases": [
-      "global styles utilization research",
-      "styles across design modes",
-      "sk-design hub library integration",
-      "global styles utilization plan",
-      "styles across design modes plan",
-      "sk-design hub integration plan",
-      "global styles utilization tasks",
-      "styles across design modes tasks",
-      "sk-design hub integration tasks",
-      "global styles utilization summary",
-      "styles across design modes status",
-      "sk-design hub integration status"
+      "styles retrieval substrate",
+      "retrieval manifest generator",
+      "corpus use proof gate",
+      "retrieval substrate plan",
+      "style-library.mjs plan",
+      "manifest generator plan",
+      "retrieval substrate tasks",
+      "style-library.mjs tasks",
+      "manifest generator tasks",
+      "retrieval substrate checklist",
+      "verification checklist retrieval",
+      "corpus use proof checklist"
     ],
     "key_topics": [
-      "global",
       "styles",
-      "utilization",
-      "research",
-      "across",
-      "design",
-      "modes",
-      "sk-design",
-      "hub",
-      "library",
-      "integration",
-      "plan"
+      "retrieval",
+      "substrate",
+      "manifest",
+      "generator",
+      "corpus",
+      "proof",
+      "gate",
+      "plan",
+      "style-library",
+      "mjs",
+      "tasks"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "planned",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "research/lineages/sol/research.md",
+      "decision-record.md",
+      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -67,6 +68,18 @@
         "source": "derived"
       },
       {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
@@ -79,31 +92,31 @@
         "source": "derived"
       },
       {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Problem Statement The",
+        "name": "Problem Statement Packet",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Purpose Run",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "In Scope",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "File Path",
+        "name": "Purpose Build",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -121,7 +134,13 @@
         "source": "derived"
       },
       {
-        "name": "Pattern Externalized",
+        "name": "Overview Implement",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Layered",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -133,14 +152,8 @@
         "source": "derived"
       },
       {
-        "name": "Current Role",
+        "name": "Data Flow",
         "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "cli-opencode",
-        "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
       },
@@ -157,59 +170,51 @@
         "source": "derived"
       },
       {
-        "name": "Completion Criteria",
+        "name": "Execution Protocol",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "evidence",
-        "kind": "key_phrase",
+        "name": "Task Checklist",
+        "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "per-strategy",
-        "kind": "key_phrase",
+        "name": "Task Execution Rules",
+        "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Implementation Summary",
+        "name": "Status Reporting Format Report",
         "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "What Was Built An",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
+        "path": "tasks.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "The 001 research settled a shared retrieval substrate and md-generator gets its own deep dive in 002, but the other sk-design modes — `design-interface`, `design-foundations`, `design-motion`, `design-audit`, plus the `design-mcp-open-design` transport — have no defined way to exploit the 1,290-style library",
-    "created_at": "2026-07-18T12:23:41.736Z",
-    "last_save_at": "2026-07-18T14:32:11.838Z",
+    "causal_summary": "Packet `010-sk-design-styles-from-refero` extracted 1,290 real design-system bundles into `.opencode/skills/sk-design/styles/` (1,291 child directories, one of which is `harness` infrastructure)",
+    "created_at": "2026-07-18T14:18:05.487Z",
+    "last_save_at": "2026-07-18T14:28:38.019Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
+      "checklist.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:76882a8dbecb6d350558d9fc07296e8b119c37860a21ad158e907c3cb8f1825a",
+    "source_fingerprint": "sha256:40853aab73d17406fc8b68edc387f7d158d6726d522405ea729f2622133b395f",
     "source_doc_hashes": {
-      "spec.md": "94489779ae437ef91c8ee4a787e94bbe040a0e32f6aaafe8f708c04535cb90e8",
-      "plan.md": "5dd15b6ea514349c213dd94eacab808f0bcea33acdc792fb12b6d53aa7e32520",
-      "tasks.md": "ca06567e4c1b6b3ad2a853a849793246008319c44fef0cca14a94d1e24bd76b6",
-      "implementation-summary.md": "1faf06ad60aa26122418ef99bbad5bfeb1b554025b58b4781363aa94e18269dd"
+      "spec.md": "0ceb90d3104e2eaa2a0bd5f53ba022816036432ea983b4853e65e39ca85095b5",
+      "plan.md": "d92e57dd85f5f71d913fc34e140fb5caa6aa3f916190d8b2ddf2d4e3c41dbe60",
+      "tasks.md": "da35474891b983bc3ca5a68f1f041af5e0963376dbfce2bc55175d7fd424ec26",
+      "checklist.md": "f79b7172286fd836d57ab2b47233120f706a5ddb2564ce2918dcbb14e1bfc93c",
+      "decision-record.md": "445b06e2927cf8fec0be76e3618cd22a495fad1f92e5ff8d15bc709b605baf5c",
+      "implementation-summary.md": "78999b295c7ce1d08cf3f716ccf6f2a7aee672b310f693860df343e2994dc928"
     },
     "last_active_child_id": null,
     "last_active_at": null

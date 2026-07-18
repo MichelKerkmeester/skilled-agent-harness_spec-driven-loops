@@ -1,0 +1,27 @@
+{
+  "level": "3",
+  "specFolder": "sk-design/011-sk-design-styles-utilization/004-retrieval-substrate",
+  "description": "Packet `010-sk-design-styles-from-refero` extracted 1,290 real design-system bundles into `.opencode/skills/sk-design/styles/` (1,291 child",
+  "keywords": [
+    "packet",
+    "010-sk-design-styles-from-refero",
+    "extracted",
+    "real",
+    "design-system",
+    "bundles",
+    "opencode",
+    "skills",
+    "sk-design",
+    "styles",
+    "child"
+  ],
+  "lastUpdated": "2026-07-18T14:28:15.772Z",
+  "specId": "004",
+  "folderSlug": "retrieval-substrate",
+  "parentChain": [
+    "sk-design",
+    "011-sk-design-styles-utilization"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

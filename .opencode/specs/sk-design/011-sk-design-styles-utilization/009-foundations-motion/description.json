@@ -1,0 +1,27 @@
+{
+  "level": "3",
+  "specFolder": "sk-design/011-sk-design-styles-utilization/009-foundations-motion",
+  "description": "The 003 research settled that the styles library is a mode-owned evidence system and ranked `design-foundations` (rank 4) and `design-motion` (rank 5)",
+  "keywords": [
+    "research",
+    "settled",
+    "styles",
+    "library",
+    "mode-owned",
+    "evidence",
+    "system",
+    "ranked",
+    "design-foundations",
+    "rank",
+    "design-motion"
+  ],
+  "lastUpdated": "2026-07-18T14:30:40.196Z",
+  "specId": "009",
+  "folderSlug": "foundations-motion",
+  "parentChain": [
+    "sk-design",
+    "011-sk-design-styles-utilization"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

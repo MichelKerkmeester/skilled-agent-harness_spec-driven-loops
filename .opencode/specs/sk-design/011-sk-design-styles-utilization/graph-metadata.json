@@ -6,7 +6,14 @@
   "children_ids": [
     "sk-design/011-sk-design-styles-utilization/001-research-utilization",
     "sk-design/011-sk-design-styles-utilization/002-md-generator-upgrade",
-    "sk-design/011-sk-design-styles-utilization/003-global-modes-utilization"
+    "sk-design/011-sk-design-styles-utilization/003-global-modes-utilization",
+    "sk-design/011-sk-design-styles-utilization/004-retrieval-substrate",
+    "sk-design/011-sk-design-styles-utilization/005-md-generator-schema-contract",
+    "sk-design/011-sk-design-styles-utilization/006-md-generator-study-exemplars",
+    "sk-design/011-sk-design-styles-utilization/007-shared-context-seam",
+    "sk-design/011-sk-design-styles-utilization/008-interface-audit-pilots",
+    "sk-design/011-sk-design-styles-utilization/009-foundations-motion",
+    "sk-design/011-sk-design-styles-utilization/010-open-design-transport"
   ],
   "manual": {
     "depends_on": [],
@@ -85,15 +92,15 @@
     ],
     "causal_summary": "Packet `010-sk-design-styles-from-refero` extracts ~1,290 real design systems into `.opencode/skills/sk-design/styles/`, each a folder of DESIGN.md + CSS-variables + Tailwind-v4 + design-tokens + provenance",
     "created_at": "2026-07-18T09:21:31.581Z",
-    "last_save_at": "2026-07-18T13:31:37.245Z",
+    "last_save_at": "2026-07-18T14:31:03.482Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:d48398da51fab66fef3a5a98444a75bede5000e18e9022d45c85440304488511",
+    "source_fingerprint": "sha256:22f28073fb66b6c37ef3a42883b36efbae383262f2ba0c061a6a0f53e8ab6d61",
     "source_doc_hashes": {
-      "spec.md": "31d2c6c247962596beccb09dc53036c7e6d4c247845d95c3b60cdb8d71024636"
+      "spec.md": "c573671842aef0aa61fb93e6b7d0c7a43fc1f1320f1e48a356adfa6db64a50fd"
     },
     "last_active_child_id": null,
     "last_active_at": null

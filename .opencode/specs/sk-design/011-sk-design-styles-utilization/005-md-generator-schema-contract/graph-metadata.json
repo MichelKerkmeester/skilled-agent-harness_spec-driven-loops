@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/011-sk-design-styles-utilization/003-global-modes-utilization",
-  "spec_folder": "sk-design/011-sk-design-styles-utilization/003-global-modes-utilization",
+  "packet_id": "sk-design/011-sk-design-styles-utilization/005-md-generator-schema-contract",
+  "spec_folder": "sk-design/011-sk-design-styles-utilization/005-md-generator-schema-contract",
   "parent_id": "sk-design/011-sk-design-styles-utilization",
   "children_ids": [],
   "manual": {
@@ -11,40 +11,41 @@
   },
   "derived": {
     "trigger_phrases": [
-      "global styles utilization research",
-      "styles across design modes",
-      "sk-design hub library integration",
-      "global styles utilization plan",
-      "styles across design modes plan",
-      "sk-design hub integration plan",
-      "global styles utilization tasks",
-      "styles across design modes tasks",
-      "sk-design hub integration tasks",
-      "global styles utilization summary",
-      "styles across design modes status",
-      "sk-design hub integration status"
+      "md generator schema contract",
+      "design-md-generator v3 schema",
+      "formatters-v3 quick start",
+      "md generator schema plan",
+      "v3 schema contract plan",
+      "formatters-v3 validation split",
+      "md generator schema tasks",
+      "v3 schema contract tasks",
+      "schema drift sentinel tasks",
+      "md generator schema checklist",
+      "v3 schema verification",
+      "schema contract checklist"
     ],
     "key_topics": [
-      "global",
-      "styles",
-      "utilization",
-      "research",
-      "across",
-      "design",
-      "modes",
-      "sk-design",
-      "hub",
-      "library",
-      "integration",
-      "plan"
+      "generator",
+      "schema",
+      "contract",
+      "design-md-generator",
+      "formatters-v3",
+      "quick",
+      "start",
+      "plan",
+      "validation",
+      "split",
+      "tasks",
+      "drift"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "planned",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "research/lineages/sol/research.md",
+      "checklist.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -67,6 +68,18 @@
         "source": "derived"
       },
       {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
@@ -79,31 +92,31 @@
         "source": "derived"
       },
       {
+        "name": "Quick Start",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Problem Statement The",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Purpose Run",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "In Scope",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "File Path",
+        "name": "Estimated Effort",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -121,7 +134,13 @@
         "source": "derived"
       },
       {
-        "name": "Pattern Externalized",
+        "name": "Overview Build",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Single",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -129,18 +148,6 @@
       {
         "name": "Key Components",
         "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "cli-opencode",
-        "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
       },
@@ -157,59 +164,57 @@
         "source": "derived"
       },
       {
+        "name": "Encode Quick Start",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Completion Criteria",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "evidence",
+        "name": "the",
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "per-strategy",
+        "name": "warnings",
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Implementation Summary",
+        "name": "Verification Checklist",
         "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "What Was Built An",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
+        "path": "checklist.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "The 001 research settled a shared retrieval substrate and md-generator gets its own deep dive in 002, but the other sk-design modes — `design-interface`, `design-foundations`, `design-motion`, `design-audit`, plus the `design-mcp-open-design` transport — have no defined way to exploit the 1,290-style library",
-    "created_at": "2026-07-18T12:23:41.736Z",
-    "last_save_at": "2026-07-18T14:32:11.838Z",
+    "causal_summary": "The `design-md-generator` backend defines DESIGN.md structure in several disconnected places: the formatter (`formatters-v3.ts`) decides emission, the write-prompt builds its own instructions, and `validate.ts` re-encodes section requiredness",
+    "created_at": "2026-07-18T14:19:11.358Z",
+    "last_save_at": "2026-07-18T14:29:18.280Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
+      "checklist.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:76882a8dbecb6d350558d9fc07296e8b119c37860a21ad158e907c3cb8f1825a",
+    "source_fingerprint": "sha256:751d48131157811367fc7a363746599b4584824ae4967bbbe2eb708036c8bc7a",
     "source_doc_hashes": {
-      "spec.md": "94489779ae437ef91c8ee4a787e94bbe040a0e32f6aaafe8f708c04535cb90e8",
-      "plan.md": "5dd15b6ea514349c213dd94eacab808f0bcea33acdc792fb12b6d53aa7e32520",
-      "tasks.md": "ca06567e4c1b6b3ad2a853a849793246008319c44fef0cca14a94d1e24bd76b6",
-      "implementation-summary.md": "1faf06ad60aa26122418ef99bbad5bfeb1b554025b58b4781363aa94e18269dd"
+      "spec.md": "10236e63e4111b94e324b0ef05874272775921f27c4c0392bab3239db63df7de",
+      "plan.md": "87fc927174a1df5922d59b2c01f7f07cf57433f4e52cda1a7ac1a16db47da8d5",
+      "tasks.md": "95ae0728b9add2cbf551e9b924632e2aa541b47fbd2d10ebeddbe2edff8004dc",
+      "checklist.md": "be4e1eb9b116d2a8f01d07bc5b0e60b606d56bbbb65374d79ba48a04830465ac",
+      "decision-record.md": "11775551b84d9b106dd0ba30df4ae35d01b38c9f5eaeb78d63104bea9448a76c",
+      "implementation-summary.md": "ab1d9582d1fb2bea0735b8e7f4a9e14ac492f7fae8658c94c5061274426f2d42"
     },
     "last_active_child_id": null,
     "last_active_at": null

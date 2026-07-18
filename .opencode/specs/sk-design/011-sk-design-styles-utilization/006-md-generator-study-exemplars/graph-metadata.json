@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/011-sk-design-styles-utilization/003-global-modes-utilization",
-  "spec_folder": "sk-design/011-sk-design-styles-utilization/003-global-modes-utilization",
+  "packet_id": "sk-design/011-sk-design-styles-utilization/006-md-generator-study-exemplars",
+  "spec_folder": "sk-design/011-sk-design-styles-utilization/006-md-generator-study-exemplars",
   "parent_id": "sk-design/011-sk-design-styles-utilization",
   "children_ids": [],
   "manual": {
@@ -11,40 +11,40 @@
   },
   "derived": {
     "trigger_phrases": [
-      "global styles utilization research",
-      "styles across design modes",
-      "sk-design hub library integration",
-      "global styles utilization plan",
-      "styles across design modes plan",
-      "sk-design hub integration plan",
-      "global styles utilization tasks",
-      "styles across design modes tasks",
-      "sk-design hub integration tasks",
-      "global styles utilization summary",
-      "styles across design modes status",
-      "sk-design hub integration status"
+      "md generator study exemplars",
+      "design-md-generator STUDY phase",
+      "bounded exemplar hydration",
+      "md generator study plan",
+      "STUDY exemplar build plan",
+      "source-leak gate plan",
+      "md generator study tasks",
+      "STUDY exemplar tasks",
+      "source-leak gate tasks",
+      "md generator study checklist",
+      "STUDY exemplar verification",
+      "source-leak gate checklist"
     ],
     "key_topics": [
-      "global",
-      "styles",
-      "utilization",
-      "research",
-      "across",
-      "design",
-      "modes",
-      "sk-design",
-      "hub",
-      "library",
-      "integration",
-      "plan"
+      "generator",
+      "study",
+      "exemplars",
+      "design-md-generator",
+      "phase",
+      "bounded",
+      "exemplar",
+      "hydration",
+      "plan",
+      "source-leak",
+      "gate",
+      "tasks"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "planned",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "research/lineages/sol/research.md",
+      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -64,6 +64,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -91,7 +97,7 @@
         "source": "derived"
       },
       {
-        "name": "Purpose Run",
+        "name": "Purpose Add",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -115,13 +121,13 @@
         "source": "derived"
       },
       {
-        "name": "Technical Context",
+        "name": "Reversible Phase",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Pattern Externalized",
+        "name": "Technical Context",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -139,8 +145,8 @@
         "source": "derived"
       },
       {
-        "name": "cli-opencode",
-        "kind": "key_phrase",
+        "name": "Depends On",
+        "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
@@ -163,53 +169,49 @@
         "source": "derived"
       },
       {
-        "name": "evidence",
+        "name": "no-STUDY",
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "per-strategy",
+        "name": "transformation",
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Spec Folder",
+        "name": "Verification Checklist",
         "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "What Was Built An",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
+        "path": "checklist.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "The 001 research settled a shared retrieval substrate and md-generator gets its own deep dive in 002, but the other sk-design modes — `design-interface`, `design-foundations`, `design-motion`, `design-audit`, plus the `design-mcp-open-design` transport — have no defined way to exploit the 1,290-style library",
-    "created_at": "2026-07-18T12:23:41.736Z",
-    "last_save_at": "2026-07-18T14:32:11.838Z",
+    "causal_summary": "The `design-md-generator` mode writes DESIGN.md prose with no grounding in any real, shipped design system",
+    "created_at": "2026-07-18T14:14:08.114Z",
+    "last_save_at": "2026-07-18T14:18:05.686Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
+      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:76882a8dbecb6d350558d9fc07296e8b119c37860a21ad158e907c3cb8f1825a",
+    "source_fingerprint": "sha256:c9c54553b9abb11a80acadf453df91669917cb22b16a12e7113bcbd4103c1c58",
     "source_doc_hashes": {
-      "spec.md": "94489779ae437ef91c8ee4a787e94bbe040a0e32f6aaafe8f708c04535cb90e8",
-      "plan.md": "5dd15b6ea514349c213dd94eacab808f0bcea33acdc792fb12b6d53aa7e32520",
-      "tasks.md": "ca06567e4c1b6b3ad2a853a849793246008319c44fef0cca14a94d1e24bd76b6",
-      "implementation-summary.md": "1faf06ad60aa26122418ef99bbad5bfeb1b554025b58b4781363aa94e18269dd"
+      "spec.md": "5d2be1beddf22032bde4e59d4bb0d4b73c7f3a54d1718ede78e6988f0c7918aa",
+      "plan.md": "380bc36c7ca5c40baece069fd932b9a59d46c2d33423d4811fc56e571ee784e7",
+      "tasks.md": "8da226107ca1f6ffdbcb5a7e63f00ddca82495fef2210c1ab7977dceb3fec545",
+      "checklist.md": "1bb5e82aca0183688e4dec5e6ece55949bd666538ce8d396418d127f100226d4",
+      "implementation-summary.md": "f2071690616ef8edf9a3d9a8b81fa6e9c5021634728aa1e79dbde780dfe30ccc"
     },
     "last_active_child_id": null,
     "last_active_at": null

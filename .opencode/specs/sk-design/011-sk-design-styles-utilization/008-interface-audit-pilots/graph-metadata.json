@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "sk-design/011-sk-design-styles-utilization/003-global-modes-utilization",
-  "spec_folder": "sk-design/011-sk-design-styles-utilization/003-global-modes-utilization",
+  "packet_id": "sk-design/011-sk-design-styles-utilization/008-interface-audit-pilots",
+  "spec_folder": "sk-design/011-sk-design-styles-utilization/008-interface-audit-pilots",
   "parent_id": "sk-design/011-sk-design-styles-utilization",
   "children_ids": [],
   "manual": {
@@ -11,40 +11,41 @@
   },
   "derived": {
     "trigger_phrases": [
-      "global styles utilization research",
-      "styles across design modes",
-      "sk-design hub library integration",
-      "global styles utilization plan",
-      "styles across design modes plan",
-      "sk-design hub integration plan",
-      "global styles utilization tasks",
-      "styles across design modes tasks",
-      "sk-design hub integration tasks",
-      "global styles utilization summary",
-      "styles across design modes status",
-      "sk-design hub integration status"
+      "interface audit pilots",
+      "design-interface styles pilot",
+      "design-audit comparison lane",
+      "interface audit pilots plan",
+      "design-interface pilot plan",
+      "design-audit comparison plan",
+      "interface audit pilots tasks",
+      "design-interface pilot tasks",
+      "design-audit comparison tasks",
+      "interface audit pilots checklist",
+      "design-interface pilot checklist",
+      "design-audit comparison checklist"
     ],
     "key_topics": [
-      "global",
+      "interface",
+      "audit",
+      "pilots",
+      "design-interface",
       "styles",
-      "utilization",
-      "research",
-      "across",
-      "design",
-      "modes",
-      "sk-design",
-      "hub",
-      "library",
-      "integration",
-      "plan"
+      "pilot",
+      "design-audit",
+      "comparison",
+      "lane",
+      "plan",
+      "tasks",
+      "checklist"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "planned",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "research/lineages/sol/research.md",
+      "decision-record.md",
+      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -67,6 +68,18 @@
         "source": "derived"
       },
       {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
@@ -74,6 +87,18 @@
       },
       {
         "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -91,19 +116,7 @@
         "source": "derived"
       },
       {
-        "name": "Purpose Run",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "In Scope",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "File Path",
+        "name": "Purpose Wire",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -121,7 +134,13 @@
         "source": "derived"
       },
       {
-        "name": "Pattern Externalized",
+        "name": "Overview Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Two",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -133,14 +152,8 @@
         "source": "derived"
       },
       {
-        "name": "Current Role",
+        "name": "Data Flow",
         "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "cli-opencode",
-        "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
       },
@@ -163,53 +176,45 @@
         "source": "derived"
       },
       {
-        "name": "evidence",
+        "name": "the",
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "per-strategy",
+        "name": "contrasting",
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "What Was Built An",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "tasks.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "The 001 research settled a shared retrieval substrate and md-generator gets its own deep dive in 002, but the other sk-design modes — `design-interface`, `design-foundations`, `design-motion`, `design-audit`, plus the `design-mcp-open-design` transport — have no defined way to exploit the 1,290-style library",
-    "created_at": "2026-07-18T12:23:41.736Z",
-    "last_save_at": "2026-07-18T14:32:11.838Z",
+    "causal_summary": "The phase-007 shared context seam defines a neutral `CORPUSCONTEXTPLAN` envelope with common generation, provenance, role, transformation, fallback, and proof fields, but no mode consumes it yet",
+    "created_at": "2026-07-18T14:17:16.591Z",
+    "last_save_at": "2026-07-18T14:25:21.563Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
+      "checklist.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:76882a8dbecb6d350558d9fc07296e8b119c37860a21ad158e907c3cb8f1825a",
+    "source_fingerprint": "sha256:4cbdd632b50d7e084b9d9c8f3d3ed6765cddb8120bab60a9a933a110b82504c0",
     "source_doc_hashes": {
-      "spec.md": "94489779ae437ef91c8ee4a787e94bbe040a0e32f6aaafe8f708c04535cb90e8",
-      "plan.md": "5dd15b6ea514349c213dd94eacab808f0bcea33acdc792fb12b6d53aa7e32520",
-      "tasks.md": "ca06567e4c1b6b3ad2a853a849793246008319c44fef0cca14a94d1e24bd76b6",
-      "implementation-summary.md": "1faf06ad60aa26122418ef99bbad5bfeb1b554025b58b4781363aa94e18269dd"
+      "spec.md": "6dbc22ca5540dcfa86483c9c9ffe01e535605591424b7ecb3996936285df6d26",
+      "plan.md": "ffeca1e6e6d5d43b0eb982879d8d3a07f2cf50a77c5e33132fc7e6b3ae3dcaae",
+      "tasks.md": "57be7cc75fddd27287967af39b58125cfe63015361f3f59c3bb4850dc2c82470",
+      "checklist.md": "15ec4c4b3ff6bc383c296f5f26a7be2d234b8d7f4aad20cdbc55525334c6c029",
+      "decision-record.md": "b03313fcaad846affdb25718341b44d47abc2efe917b03e3ad8a55432beccac2",
+      "implementation-summary.md": "14a01dbe7570c4d3b04bae827bb20d313df59b984535e640eb65a3d529bfba9f"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,0 +1,25 @@
+{
+  "level": "2",
+  "specFolder": "sk-design/011-sk-design-styles-utilization/006-md-generator-study-exemplars",
+  "description": "The `design-md-generator` mode writes DESIGN.md prose with no grounding in any real, shipped design system",
+  "keywords": [
+    "design-md-generator",
+    "mode",
+    "writes",
+    "design",
+    "prose",
+    "grounding",
+    "real",
+    "shipped",
+    "system"
+  ],
+  "lastUpdated": "2026-07-18T14:17:51.618Z",
+  "specId": "006",
+  "folderSlug": "md-generator-study-exemplars",
+  "parentChain": [
+    "sk-design",
+    "011-sk-design-styles-utilization"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

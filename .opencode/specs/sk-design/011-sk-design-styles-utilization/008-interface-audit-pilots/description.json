@@ -1,0 +1,30 @@
+{
+  "level": "3",
+  "specFolder": "sk-design/011-sk-design-styles-utilization/008-interface-audit-pilots",
+  "description": "The phase-007 shared context seam defines a neutral `CORPUSCONTEXTPLAN` envelope with common generation, provenance, role, transformation, fallback,",
+  "keywords": [
+    "phase-007",
+    "shared",
+    "context",
+    "seam",
+    "defines",
+    "neutral",
+    "corpuscontextplan",
+    "envelope",
+    "common",
+    "generation",
+    "provenance",
+    "role",
+    "transformation",
+    "fallback"
+  ],
+  "lastUpdated": "2026-07-18T14:24:56.608Z",
+  "specId": "008",
+  "folderSlug": "interface-audit-pilots",
+  "parentChain": [
+    "sk-design",
+    "011-sk-design-styles-utilization"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

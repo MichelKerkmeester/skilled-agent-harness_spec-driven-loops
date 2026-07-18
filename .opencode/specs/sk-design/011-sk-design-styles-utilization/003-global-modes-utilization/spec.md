@@ -49,7 +49,7 @@ _memory:
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | `../spec.md` |
 | **Predecessor** | `../002-md-generator-upgrade/` (prior phase; shared substrate in `../001-research-utilization/`) |
-| **Successor** | Implementation phases (planned) |
+| **Successor** | `../004-retrieval-substrate/` |
 <!-- /ANCHOR:metadata -->
 
 ---
