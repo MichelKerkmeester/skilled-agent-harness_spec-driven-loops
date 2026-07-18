@@ -53,9 +53,9 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Bind the phase-007 `CORPUS_CONTEXT_PLAN` envelope fields into both mode contracts (`.opencode/skills/sk-design/design-interface/**`, `.opencode/skills/sk-design/design-audit/**`)
-- [ ] T002 Fix the authority order (brief/owned system > mode judgment > target evidence > corpus > transport) in both contracts
-- [ ] T003 [P] Define the maintainer fixture-atlas naming convention (positive / no-fit / rejected-default / drift / comparison-unavailable)
+- [x] T001 Bind the phase-007 `CORPUS_CONTEXT_PLAN` envelope fields into both mode contracts (`.opencode/skills/sk-design/design-interface/**`, `.opencode/skills/sk-design/design-audit/**`)
+- [x] T002 Fix the authority order (brief/owned system > mode judgment > target evidence > corpus > transport) in both contracts [evidence: `node --test` 36/36; typed-schema authority guards]
+- [x] T003 [P] Define the maintainer fixture-atlas naming convention (positive / no-fit / rejected-default / drift / comparison-unavailable) [evidence: `node --test` 36/36; typed-schema authority guards]
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -64,17 +64,17 @@ _memory:
 ## Phase 2: Implementation
 
 ### Interface pilot
-- [ ] T004 Implement anchor retrieval: 1 coherent anchor via the phase-007 envelope (`design-interface/**`)
-- [ ] T005 Add optional bounded contrast / rejected-default retrieval (`design-interface/**`)
-- [ ] T006 Build the relational exemplar from anchor + optional contrast (`design-interface/**`)
-- [ ] T007 Emit the decision-only, source-aware handoff — decisions + sources, never raw style bodies (`design-interface/**`)
-- [ ] T008 Record the counterfactual no-corpus default that changed after grounding (`design-interface/**`)
+- [x] T004 Implement anchor retrieval: 1 coherent anchor via the phase-007 envelope (`design-interface/**`)
+- [x] T005 Add optional bounded contrast / rejected-default retrieval (`design-interface/**`)
+- [x] T006 Build the relational exemplar from anchor + optional contrast (`design-interface/**`)
+- [x] T007 Emit the decision-only, source-aware handoff — decisions + sources, never raw style bodies (`design-interface/**`)
+- [x] T008 Record the counterfactual no-corpus default that changed after grounding (`design-interface/**`)
 
 ### Audit lane
-- [ ] T009 Implement 0–2 comparison-reference retrieval as NON-AUTHORITATIVE context (`design-audit/**`)
-- [ ] T010 Add the intended-anchor drift detector + evidence labels (`design-audit/**`)
-- [ ] T011 Enforce non-authority guards — no severity/score, no WCAG/perf, no copying, no fix ownership (`design-audit/**`)
-- [ ] T012 [P] Emit `comparison-unavailable` as a first-class result when 0 refs (`design-audit/**`)
+- [x] T009 Implement 0–2 comparison-reference retrieval as NON-AUTHORITATIVE context (`design-audit/**`)
+- [x] T010 Add the intended-anchor drift detector + evidence labels (`design-audit/**`)
+- [x] T011 Enforce non-authority guards — no severity/score, no WCAG/perf, no copying, no fix ownership (`design-audit/**`)
+- [x] T012 [P] Emit `comparison-unavailable` as a first-class result when 0 refs (`design-audit/**`)
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -82,12 +82,12 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T013 Author falsification (counterexample) fixtures proving unsafe integrations fail closed
-- [ ] T014 [P] Author interface positive / no-fit / rejected-default fixtures
-- [ ] T015 [P] Author audit drift + comparison-unavailable fixtures
-- [ ] T016 Assemble the maintainer fixture atlas — assert no user-facing style gallery
-- [ ] T017 Verify both pilots populate the shared phase-007 proof/handoff fields with contrasting shapes
-- [ ] T018 Run `validate.sh <folder> --strict` and reconcile completion metadata
+- [x] T013 Author falsification (counterexample) fixtures proving unsafe integrations fail closed [evidence: `node --test` 36/36; typed-schema authority guards]
+- [x] T014 [P] Author interface positive / no-fit / rejected-default fixtures [evidence: `node --test` 36/36; typed-schema authority guards]
+- [x] T015 [P] Author audit drift + comparison-unavailable fixtures [evidence: `node --test` 36/36; typed-schema authority guards]
+- [x] T016 Assemble the maintainer fixture atlas — assert no user-facing style gallery [evidence: `node --test` 36/36; typed-schema authority guards]
+- [x] T017 Verify both pilots populate the shared phase-007 proof/handoff fields with contrasting shapes [evidence: `node --test` 36/36; typed-schema authority guards]
+- [x] T018 Run `validate.sh <folder> --strict` and reconcile completion metadata
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -95,13 +95,13 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Interface emits relational exemplar + decision-only handoff without overriding brief/target/preflight
-- [ ] Audit emits non-authoritative context + drift fixtures with no corpus verdict
-- [ ] Shared proof/handoff fields populated by both pilots
-- [ ] Fail-closed falsification fixtures pass
-- [ ] `validate.sh <folder> --strict` passes; all ADRs status: Accepted
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Interface emits relational exemplar + decision-only handoff without overriding brief/target/preflight
+- [x] Audit emits non-authoritative context + drift fixtures with no corpus verdict
+- [x] Shared proof/handoff fields populated by both pilots
+- [x] Fail-closed falsification fixtures pass
+- [x] `validate.sh <folder> --strict` passes; all ADRs status: Accepted
 <!-- /ANCHOR:completion -->
 
 ---

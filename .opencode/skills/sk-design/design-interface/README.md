@@ -35,7 +35,7 @@ AI-generated UI clusters around a handful of default looks that appear regardles
 
 ### What It Does
 
-The skill owns aesthetic direction, not implementation. It routes a design task through a two-pass process: ground the subject, brainstorm a compact token system (4-6 named colors, a display and body face, a layout concept, one signature element), then critique that plan against the known AI-default looks and revise anything generic with a stated reason. Only then does code get written, deriving every choice from the revised plan. It also carries interface-writing rules, because copy can make a design feel as templated as the visuals. Implementation is handed to `sk-code`, which builds and verifies against the detected web surface.
+The skill owns aesthetic direction, not implementation. It routes a design task through a two-pass process: ground the subject, brainstorm a compact token system (4-6 named colors, a display and body face, a layout concept, one signature element), then critique that plan against the known AI-default looks and revise anything generic with a stated reason. When local corpus grounding fits, it can add one coherent mode-selected anchor and an optional bounded contrast or rejected default. Only target-owned decisions and source provenance cross that path's handoff. Only then does code get written, deriving every choice from the revised plan. It also carries interface-writing rules, because copy can make a design feel as templated as the visuals. Implementation is handed to `sk-code`, which builds and verifies against the detected web surface.
 
 This is vendored from Anthropic's `frontend-design` skill (Apache-2.0). The full design guidance lives verbatim in `references/design_process/design_principles.md`, and the `SKILL.md` is a lean house-template router over it.
 
@@ -86,6 +86,10 @@ The skill never jumps straight to code. It grounds the subject, brainstorms a to
 ### Restraint Is The Mechanism
 
 Boldness is spent in one place. The signature element is the one memorable move and everything around it stays quiet and disciplined. Decoration that does not serve the brief is cut, including numbered markers when the content is not actually a sequence, and motion that piles up rather than serving one orchestrated moment. The build meets a quiet quality floor: responsive to mobile, visible keyboard focus, reduced motion respected.
+
+### Relational Corpus Grounding
+
+The maintainer-only adapter in [`corpus/`](./corpus/README.md) consumes the shared neutral context seam and styles engine after the brief and owned system are fixed. It selects no taste by itself. The mode chooses one anchor and at most one bounded secondary source, records preserve/transform/reject relationships and the no-corpus default that changed, then emits a decision-only handoff. No raw style body, token literal, source asset or screenshot crosses that boundary; provenance and rights state do.
 
 ### Copy Is Design Material
 
@@ -179,6 +183,7 @@ A: It is vendored from Anthropic's official `frontend-design` skill under Apache
 | [`references/design_process/mechanical_defaults.md`](./references/design_process/mechanical_defaults.md) | The mechanical layout gate: counted hero lines, gapless bento math, the eyebrow ceiling, button contrast, and section spacing |
 | [`references/design_process/copy_and_mock_data.md`](./references/design_process/copy_and_mock_data.md) | The content gate: no lorem, no AI-tell phrasing, plausible names and numbers, one copy register, and image-seed discipline |
 | [`assets/interface_preflight_card.md`](./assets/interface_preflight_card.md) | The binary fill-in PASS or FAIL pre-flight card: the checkable form of the layout gate, content gate, and dials, run as the last filter before delivery |
+| [`corpus/`](./corpus/README.md) | Maintainer-only relational-exemplar adapter and positive/no-fit/rejected-default falsification fixtures |
 | [`procedures/`](./procedures/) | Six maintainer-facing procedure cards for aesthetic direction, deck direction, discovery questions, prototype flow, variation sets and wireframe exploration |
 | [`references/design_process/ux_quality_reference.md`](./references/design_process/ux_quality_reference.md) | The objective quality floor (accessibility, motion, touch, responsive, forms, charts): the pass/fail gate after the direction is set |
 | [`references/design_process/real_ui_loop.md`](./references/design_process/real_ui_loop.md) | The real-UI loop: ground in a system, reuse before generating, fidelity check, handoff |

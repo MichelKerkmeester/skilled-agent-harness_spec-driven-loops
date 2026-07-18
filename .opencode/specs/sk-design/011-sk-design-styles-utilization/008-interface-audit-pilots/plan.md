@@ -59,17 +59,17 @@ Two modes are wired to the styles library as contrasting pilots over the phase-0
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Phase 004 retrieval substrate is landed and callable
-- [ ] Phase 007 `CORPUS_CONTEXT_PLAN` envelope + proof/handoff fields are frozen
-- [ ] The interface and audit contracts (authority order, non-authority rules) are agreed
-- [ ] Fixture atlas naming convention is defined
+- [x] Phase 004 retrieval substrate is landed and callable
+- [x] Phase 007 `CORPUS_CONTEXT_PLAN` envelope + proof/handoff fields are frozen
+- [x] The interface and audit contracts (authority order, non-authority rules) are agreed
+- [x] Fixture atlas naming convention is defined
 
 ### Definition of Done
-- [ ] Interface emits a relational exemplar + decision-only handoff without overriding brief/target/preflight
-- [ ] Audit emits non-authoritative comparison context + drift fixtures with no verdict from the corpus
-- [ ] Shared proof/handoff fields are populated by both pilots with contrasting shapes
-- [ ] Falsification + counterfactual fixtures demonstrate fail-closed behaviour
-- [ ] `validate.sh <folder> --strict` passes
+- [x] Interface emits a relational exemplar + decision-only handoff without overriding brief/target/preflight
+- [x] Audit emits non-authoritative comparison context + drift fixtures with no verdict from the corpus
+- [x] Shared proof/handoff fields are populated by both pilots with contrasting shapes
+- [x] Falsification + counterfactual fixtures demonstrate fail-closed behaviour
+- [x] `validate.sh <folder> --strict` passes
 
 <!-- /ANCHOR:quality-gates -->
 
@@ -102,24 +102,24 @@ brief/target ─▶ phase-004 retrieval ─▶ phase-007 envelope ─┬─▶ I
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Contract binding
-- [ ] Bind the phase-007 envelope fields into both mode contracts
-- [ ] Fix the authority order (brief > mode judgment > target evidence > corpus > transport)
+- [x] Bind the phase-007 envelope fields into both mode contracts
+- [x] Fix the authority order (brief > mode judgment > target evidence > corpus > transport)
 
 ### Phase 2: Interface pilot
-- [ ] Anchor + optional bounded-contrast retrieval
-- [ ] Relational exemplar builder
-- [ ] Decision-only, source-aware handoff emitter
-- [ ] Counterfactual (no-corpus default) recorder
+- [x] Anchor + optional bounded-contrast retrieval
+- [x] Relational exemplar builder
+- [x] Decision-only, source-aware handoff emitter
+- [x] Counterfactual (no-corpus default) recorder
 
 ### Phase 3: Audit lane
-- [ ] 0–2 non-authoritative comparison retrieval
-- [ ] Intended-anchor drift detector + evidence labels
-- [ ] Non-authority guards (no severity/score/WCAG/perf/copying/fix)
+- [x] 0–2 non-authoritative comparison retrieval
+- [x] Intended-anchor drift detector + evidence labels
+- [x] Non-authority guards (no severity/score/WCAG/perf/copying/fix)
 
 ### Phase 4: Fixtures + verification
-- [ ] Falsification (counterexample) fixtures — fail-closed
-- [ ] Maintainer fixture atlas (no user gallery)
-- [ ] Cross-pilot shared-field verification
+- [x] Falsification (counterexample) fixtures — fail-closed
+- [x] Maintainer fixture atlas (no user gallery)
+- [x] Cross-pilot shared-field verification
 
 <!-- /ANCHOR:phases -->
 
@@ -199,9 +199,9 @@ Phase 1 (Contract) ──▶ Phase 2 (Interface) ──┐
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-implementation Checklist
-- [ ] Phase 004 + 007 landed and tagged
-- [ ] Feature gate for each consumer defined
-- [ ] Fixture atlas baseline captured
+- [x] Phase 004 + 007 landed and tagged
+- [x] Feature gate for each consumer defined
+- [x] Fixture atlas baseline captured
 
 ### Rollback Procedure
 1. **Immediate**: disable the interface and audit corpus consumers via their feature gates.

@@ -109,6 +109,7 @@ DESIGN QA TASK
 | CONDITIONAL | Calibrating the Anti-Patterns dimension | `assets/anti_patterns_score_rubric.md` (0 to 4 ladder for model tells and generic design risk) |
 | CONDITIONAL | Production-readiness and edge-case probes | `references/hardening_edge_cases.md` (extreme inputs, errors, permissions, concurrency, i18n and RTL, text expansion, CJK and emoji) |
 | CONDITIONAL | Producing the audit report | `assets/audit_report_template.md` (fill-in 5-dimension score plus P0-P3 findings) |
+| CONDITIONAL | Comparing against an intended or contextual corpus reference | `corpus/README.md` and `corpus/comparison-lane.mjs` (zero to two non-authoritative references, drift context and evidence labels) |
 | CONDITIONAL | Citing the snippet-level accessibility fix | `assets/a11y_quick_fixes.md` (accessible names, keyboard, focus, semantics, forms, announcements, contrast, motion) |
 | CONDITIONAL | Routing accepted findings to sk-code | `../shared/sk_code_handoff.md` (backlog handoff card, routes only and applies nothing) |
 | CONDITIONAL | Internal procedure support | `procedures/accessibility_audit.md`, `procedures/ai_slop_check.md`, and `../shared/procedures/polish_gate_orchestration.md` when the trigger matches |
@@ -172,6 +173,21 @@ This mode must run directly with Read, Glob, and Grep only. If subagents are una
 
 When accepted findings move to implementation, emit the shared handoff envelope from `../shared/sk_code_handoff.md` as a backlog card. Each finding includes id, severity, owner, target, evidence label, one-line fix shape and verification. An audit with zero accepted findings emits an empty valid backlog. The audit never applies fixes, edits files or grants write authority.
 
+### Non-Authoritative Corpus Comparison
+
+`corpus/comparison-lane.mjs` is a distinct context lane, not a target-evidence class. It validates the neutral shared context plan, queries the styles engine, and accepts zero to two mode-selected comparison references. Every reference carries generation, content identity, provenance, rights state and an explicit non-authoritative evidence label. Hydrated prose, token values, assets and screenshots are discarded before output.
+
+An intended-anchor row may describe `aligned`, `intentional-delta` or `unexplained-drift`, but drift requires an actually owned anchor and labelled target evidence. With no eligible reference, emit `comparison-unavailable` and continue the audit on target evidence. Corpus context never assigns P0-P3 severity, contributes to the `/20` score, proves accessibility or performance, establishes copying, authorizes exact reuse or owns remediation. When corpus context conflicts with target evidence, target evidence wins.
+
+The audit mode remains Read/Glob/Grep-only. Execution belongs to a Bash-capable
+`sk-code` OpenCode runtime consumer: that consumer imports
+`corpus/comparison-lane.mjs`, calls `buildAuditComparisonLane()` with the closed
+typed comparison envelope, and returns the validated JSON result to this mode.
+The consumer is transport, not audit authority; it cannot add verdicts, scores,
+owners, or source prose. The Node test harness imports and executes the same
+public function, proving the runtime seam is reachable without granting this
+mode Bash.
+
 ### Severity Model
 
 Use the same findings-first spirit as `sk-code`'s code-review mode: concrete evidence, severity order, impact, and recommended fix.
@@ -207,6 +223,7 @@ Each dimension scores 0-4. Total `/20` rating:
 7. Map each fix to the right owner: foundations, motion, interface, spec/extraction, or code implementation.
 8. Celebrate positive findings briefly so teams know what to preserve.
 9. Cite the selected procedure card or no-procedure fallback before substantial audit output when a private procedure trigger matches.
+10. Keep every corpus comparison labelled non-authoritative, bounded to zero to two references, and subordinate to target evidence and deterministic checks.
 
 ### ⛔ NEVER
 
@@ -217,6 +234,7 @@ Each dimension scores 0-4. Total `/20` rating:
 5. Never bury a P0/P1 under polish comments.
 6. Never invent browser, screenshot, or detector evidence.
 7. Never recommend a sibling skill when it addresses zero findings.
+8. Never derive severity, score, accessibility, performance, copying, reuse authorization or fix ownership from corpus evidence.
 
 ### ⚠️ ESCALATE IF
 
@@ -242,6 +260,7 @@ Each dimension scores 0-4. Total `/20` rating:
 - [`references/corpus_map.md`](references/corpus_map.md) - Source traceability for the distilled corpus.
 - [`references/smart_router_pseudocode.md`](references/smart_router_pseudocode.md) - Implementation behind Section 2's smart router: intent classifier, resource map, and the `.md`/`.json` existence-guarded loader.
 - [`../shared/sk_code_handoff.md`](../shared/sk_code_handoff.md) - Shared sk-code handoff envelope. Audit uses it for accepted-finding backlog handoff without applying fixes.
+- [`corpus/README.md`](corpus/README.md) - Maintainer-only comparison-lane contract, drift/unavailable fixture atlas, non-authority guards and verification command.
 - [`procedures/accessibility_audit.md`](procedures/accessibility_audit.md) - Private support for accessibility-focused audit passes.
 - [`procedures/ai_slop_check.md`](procedures/ai_slop_check.md) - Private support for AI-template and generic-design risk review.
 - [`../shared/procedures/polish_gate_orchestration.md`](../shared/procedures/polish_gate_orchestration.md) - Shared private final-polish orchestration when audit owns the review verdict.
@@ -274,6 +293,7 @@ Use, do not duplicate, the parent references for shared vocabulary:
 - Accepted findings route through a backlog handoff card and preserve the audit-never-fixes boundary.
 - The selected private procedure card is cited by relative path, or the no-procedure fallback is explicitly stated.
 - Direct execution with Read, Glob, and Grep can produce the same context/proof result without subagent dispatch.
+- Corpus comparison, when used, stays at zero to two references, labels drift as context requiring target evidence, and treats `comparison-unavailable` as valid evidence.
 
 ---
 

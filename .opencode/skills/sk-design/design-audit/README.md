@@ -38,7 +38,7 @@ An interface can pass every automated scan and still fail real users: a focus tr
 
 ### What It Does
 
-`audit` produces a findings-first report: concrete findings come first, then a five-dimension score that summarizes them. Each finding carries evidence, user impact, a recommended direction and an owner. The mode reviews and routes, it does not implement. Accepted fixes go to `sk-code`, while direction goes to `interface`, tokens go to `foundations` and choreography goes to `motion`. If you want a new visual direction instead of a critique, reach for `interface`.
+`audit` produces a findings-first report: concrete findings come first, then a five-dimension score that summarizes them. Each finding carries evidence, user impact, a recommended direction and an owner. When an intended or contextual corpus reference is useful, a separate comparison lane can add zero to two non-authoritative rows; those rows never assign severity, score or proof. The mode reviews and routes, it does not implement. Accepted fixes go to `sk-code`, while direction goes to `interface`, tokens go to `foundations` and choreography goes to `motion`. If you want a new visual direction instead of a critique, reach for `interface`.
 
 ---
 
@@ -76,6 +76,10 @@ Before scoring, the audit reads the Brand-vs-Product register. That one call set
 
 The anti-patterns dimension leans on a model-specific tell catalog. A ghost-card border plus shadow, over-rounded cards, a diagonal stripe background, an image-hover transform, a cream body background: each is a structural pattern a generator reaches for by reflex, turned into a checkable rule. One isolated tell is polish. Three or more on one surface is the dimension failing.
 
+### Corpus Comparison Lane
+
+The maintainer-only adapter in [`corpus/`](./corpus/README.md) consumes the shared neutral context seam and styles engine without creating another finding class. It returns zero to two source-aware comparison rows labelled non-authoritative context. Intended-anchor drift requires target evidence; no eligible reference becomes `comparison-unavailable`, and the normal audit continues. Corpus material never supplies severity, the `/20` score, accessibility or performance proof, a copying determination, exact-reuse permission or a fix owner.
+
 ### Private Procedure Cards
 
 The maintainer-facing cards in [`procedures/`](./procedures/) support mode-local audit focus after the public `audit` mode is chosen. The two cards are `accessibility_audit.md` and `ai_slop_check.md`. They are not user-selectable routes.
@@ -96,6 +100,8 @@ Reach for `audit` when you need a verdict on an existing or planned surface: a r
 | `foundations` | Owns color, type, layout, responsive and theming token fixes |
 | `motion` | Owns motion choreography and reduced-motion fixes |
 | `sk-code` | Implements every accepted fix after the user approves it |
+
+The comparison lane and its intended-anchor-drift, comparison-unavailable and authority-attack fixtures live in [`corpus/`](./corpus/README.md). They are a maintainer atlas, never a user-facing style gallery.
 
 ---
 
@@ -125,5 +131,6 @@ The mode ships a manual testing playbook. Each scenario runs a prompt against th
 | [`references/hardening_edge_cases.md`](./references/hardening_edge_cases.md) | Production-readiness matrix of extreme inputs, errors, concurrency and i18n |
 | [`assets/audit_report_template.md`](./assets/audit_report_template.md) | Fill-in findings-first report skeleton with the five-dimension score |
 | [`assets/a11y_quick_fixes.md`](./assets/a11y_quick_fixes.md) | Snippet-level accessibility fixes the report cites by reference |
+| [`corpus/`](./corpus/README.md) | Maintainer-only non-authoritative comparison adapter and falsification fixtures |
 | [`procedures/`](./procedures/) | Two maintainer-facing procedure cards for accessibility audit focus and AI-slop checks |
 | [`../shared/register.md`](../shared/register.md) | The Brand-vs-Product register that sets the audit-severity dial |

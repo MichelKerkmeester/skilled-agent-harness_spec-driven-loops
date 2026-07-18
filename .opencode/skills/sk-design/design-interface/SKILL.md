@@ -83,6 +83,7 @@ DESIGN TASK
 | CONDITIONAL | Final mechanical pass before shipping | `references/design_process/mechanical_defaults.md` (the layout gate) and `assets/interface_preflight_card.md` (the fill-in PASS or FAIL pre-flight card) |
 | CONDITIONAL | Writing placeholder content, names, or numbers | `references/design_process/copy_and_mock_data.md` (realistic mock content, no lorem, no AI-tell copy) |
 | CONDITIONAL | Redesigning an existing surface | `references/design_process/redesign_intake.md` (classify greenfield, preserve or overhaul, then protect URLs, nav labels, form fields, legal copy and locked tokens) |
+| CONDITIONAL | Grounding a direction in the local styles corpus | `corpus/README.md` and `corpus/relational-exemplar.mjs` (one mode-selected anchor plus an optional bounded contrast or rejected default, with a decision-only handoff) |
 | CONDITIONAL | Internal procedure support | `procedures/discovery_question_round.md`, `procedures/aesthetic_direction.md`, `procedures/wireframe_exploration.md`, `procedures/variation_set.md`, `procedures/prototype_flow_spec.md`, `procedures/deck_direction_spec.md`, and `../shared/procedures/polish_gate_orchestration.md` when the trigger matches |
 | ON_DEMAND | Need a real design system to ground in, reuse, or name the default to deviate from | A real design system you own, read live and never copied. See `references/design_grounding/design_inventory.md` |
 | ON_DEMAND | Naming a realized look in one line as the default to critique against | The illustrative cues in `references/aesthetics/` (brutalist, minimalist, soft, apple-bento). Critique-against only, never a chooser or preset — see `references/aesthetics/README.md` and Reference Loading Notes §3. |
@@ -196,6 +197,23 @@ Run directly with Read, Glob, and Grep only. If subagents are unavailable or dis
 
 The five-step flow (ground, brainstorm a token system, critique against the brief, build from the revised plan, self-critique) is diagrammed once already, in Phase Detection (Section 2) — not repeated here. Calibration matters: current AI design clusters around three default looks (cream + serif + terracotta, near-black + one acid accent, broadsheet with hairline rules). They are defaults, not choices. When the brief frees an axis, do not spend it on one of these. The full step detail, calibration, and writing rules are in [`references/design_process/design_principles.md`](references/design_process/design_principles.md).
 
+### Corpus Relational Exemplar Pilot
+
+The corpus path is optional grounding after the brief, owned system, register and dials are resolved. `corpus/relational-exemplar.mjs` validates the neutral shared context plan, queries the styles engine, and accepts one mode-selected coherent anchor plus at most one bounded contrast or rejected default. The anchor may be hydrated for relationship and rationale evidence; the secondary source stays bounded. `no-fit`, corpus unavailability and an absent secondary are valid outcomes and never force a weak source.
+
+The authority order is fixed: user brief and owned system, selected-mode judgment, target evidence and deterministic checks, corpus reference evidence, then transport output. Corpus evidence can explain relationships, expose counterexamples, sharpen critique and preserve provenance. It cannot select this mode, override the target render or preflight, prove accessibility or performance, assign audit severity, establish copying, authorize exact reuse or accept transport output.
+
+The relational exemplar records target-owned preserve, transform or reject decisions and the counterfactual no-corpus default that changed. Its handoff is decision-only: decisions, source identity and provenance, transformation and fallback state, proof state and authority-preservation locks. Raw hydrated prose, token values, source assets and screenshots never cross the handoff. Values are never averaged.
+
+The mode itself remains Read/Glob/Grep-only. Execution belongs to a Bash-capable
+`sk-code` OpenCode runtime consumer: that consumer imports
+`corpus/relational-exemplar.mjs`, calls `buildRelationalExemplar()` with the
+closed typed request envelope, and returns the validated JSON result to this
+mode. The consumer is transport, not design authority; it cannot add decisions,
+change authority locks, or expose hydrated bodies. The Node test harness imports
+and executes the same public function, proving the runtime seam is reachable
+without granting this mode Bash.
+
 ### Quality Floor
 
 Build to it without announcing it: responsive down to mobile, visible keyboard focus, and reduced motion respected. Do most of the planning and iteration in thinking, and show the user ideas only at higher confidence.
@@ -223,6 +241,7 @@ When interface hands a built or specified UI to `sk-code`, emit the shared hando
 7. **ALWAYS debias multiple directions with the seed of thought** from `references/design_process/variation_diversity.md` when a brief asks for two or more: a committed seed picks a non-median start in the grounded option space and the rest are spread to be genuinely distinct, each still grounded and critiqued. Never surface it as a style chooser.
 8. **ALWAYS decide, at the critique step, whether a real-world reference would sharpen the default to deviate from.** Take the initiative to pull ONE Mobbin or Refero reference when the brief sits in a convention-heavy category and a subscription is connected; otherwise ask the user first; otherwise fall back to the generic anti-default process. Mobbin for app/iOS surfaces, Refero for web pages and visual style. One reference, read live, never copied, never a chooser. Mobbin and Refero are Code Mode (UTCP) manuals, not tools in this skill's `allowed-tools`, so co-load `mcp-code-mode` and route the lookup through it — Refero specifically runs as the `mcp-refero` transport over `mcp-code-mode` (the transport never decides taste); if Code Mode is unavailable, fall back to the generic process. See `references/design_grounding/design_references_mcp.md`.
 9. **ALWAYS cite the selected procedure card or the no-procedure fallback** before substantial output when a private procedure trigger matches.
+10. **ALWAYS keep corpus grounding subordinate to the brief, owned system, target render and preflight**, and preserve provenance and rights state for every selected reference.
 
 ### ⛔ NEVER
 
@@ -230,6 +249,7 @@ When interface hands a built or specified UI to `sk-code`, emit the shared hando
 2. **NEVER add decoration that does not serve the brief**, including numbered markers (01 / 02 / 03) when the content is not actually a sequence.
 3. **NEVER let motion pile up**. Scattered animation reads as AI-generated, so prefer one orchestrated moment.
 4. **NEVER override a brief that pins the direction**. The brief's own words always win, even when they ask for a default look.
+5. **NEVER average source token values, copy source-specific literals or assets, expose hydrated corpus bodies, or treat corpus rank as mode judgment.**
 
 ### ⚠️ ESCALATE IF
 
@@ -261,6 +281,7 @@ Full descriptions for every file below live in its own frontmatter and body; thi
 - [`references/design_process/transform_application.md`](references/design_process/transform_application.md) - Interface-side landing lane for a make-frame transform verb already routed here: application contract, per-verb ledgers, proof cards.
 - [`references/design_process/resource_loading_notes.md`](references/design_process/resource_loading_notes.md) - Extended rationale for the load-and-prove and citation-required table rows, plus reference-loading discipline notes.
 - [`assets/interface_preflight_card.md`](assets/interface_preflight_card.md) - The fill-in PASS/FAIL mechanical pre-flight card. Run before shipping.
+- [`corpus/README.md`](corpus/README.md) - Maintainer-only relational-exemplar contract, positive/no-fit/rejected-default fixture atlas, and verification command.
 - [`procedures/discovery_question_round.md`](procedures/discovery_question_round.md) - Private question-round support for under-specified briefs.
 - [`procedures/aesthetic_direction.md`](procedures/aesthetic_direction.md) - Private direction-setting support for greenfield or weakly grounded systems.
 - [`procedures/wireframe_exploration.md`](procedures/wireframe_exploration.md) - Private low-fidelity structure/storyboard exploration support.
@@ -295,6 +316,7 @@ Full reference-loading discipline notes (design_principles.md authority, quality
 - ✅ Direct execution with Read, Glob, and Grep can produce the same context/proof result without subagent dispatch.
 - ✅ Any child-agent or small-model dispatch carries the context manifest from `../shared/context_loading_contract.md`, requires `../shared/assets/context_loaded_card.md` before recommendations, requires `../shared/assets/proof_of_application_card.md` before any ready claim, and presents a valid `DESIGN_BOUNDARY_PROOF v1` envelope at the dispatch boundary per `../shared/design_dispatch_boundary.md`.
 - ✅ Any handoff to `sk-code` includes the required build manifest with locked values, signature moves, reuse list, open risks and never-change constraints.
+- ✅ Any corpus-grounded direction uses one coherent anchor by default, keeps the optional secondary bounded, records the changed no-corpus default, and emits no raw hydrated material.
 
 ---
 

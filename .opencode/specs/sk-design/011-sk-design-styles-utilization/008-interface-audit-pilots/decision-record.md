@@ -42,7 +42,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-07-18 |
 | **Deciders** | sk-design maintainers |
 
@@ -140,7 +140,7 @@ The styles library could be treated as an authority that selects direction, prov
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-07-18 |
 | **Deciders** | sk-design maintainers |
 
@@ -225,7 +225,7 @@ The styles library could be treated as an authority that selects direction, prov
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-07-18 |
 | **Deciders** | sk-design maintainers |
 
@@ -310,7 +310,7 @@ The styles library could be treated as an authority that selects direction, prov
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-07-18 |
 | **Deciders** | sk-design maintainers |
 
