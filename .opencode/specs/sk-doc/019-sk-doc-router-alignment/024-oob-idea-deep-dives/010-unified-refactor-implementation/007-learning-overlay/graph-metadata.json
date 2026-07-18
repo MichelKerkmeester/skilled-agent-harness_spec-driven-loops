@@ -1,0 +1,180 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-sk-doc-router-alignment/024-oob-idea-deep-dives/010-unified-refactor-implementation/007-learning-overlay",
+  "spec_folder": "sk-doc/019-sk-doc-router-alignment/024-oob-idea-deep-dives/010-unified-refactor-implementation/007-learning-overlay",
+  "parent_id": "sk-doc/019-sk-doc-router-alignment/024-oob-idea-deep-dives/010-unified-refactor-implementation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "learning overlay phase",
+      "correction overlay offline promotion",
+      "vocabulary to destination overlay CAS",
+      "learning overlay plan",
+      "offline correction overlay build approach",
+      "overlay pointer CAS promotion",
+      "learning overlay tasks",
+      "offline correction overlay checklist",
+      "overlay promotion CAS tasks"
+    ],
+    "key_topics": [
+      "learning",
+      "overlay",
+      "phase",
+      "correction",
+      "offline",
+      "promotion",
+      "vocabulary",
+      "destination",
+      "cas",
+      "plan",
+      "approach",
+      "pointer"
+    ],
+    "importance_tier": "critical",
+    "status": "planned",
+    "key_files": [
+      "plan.md",
+      "tasks.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Learning Overlay",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Provide",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Build",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "text",
+        "kind": "technology",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "overlay",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "byte-exact",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The refactor's route decisions are compiled from authored sources and are static per generation",
+    "created_at": "2026-07-18T13:13:20.713Z",
+    "last_save_at": "2026-07-18T13:13:20.713Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "source_fingerprint": "sha256:91c6dc17e43d0437dcce6e01bed09ec137bdd0f3b51b25996ece4b07b4973c42",
+    "source_doc_hashes": {
+      "spec.md": "72c9a2de2153ee36c9c7576102fdfde6a5d2ec4281a5305725c218a645a43c99",
+      "plan.md": "6590457c77cf1dbdbd493be0b690c5378a0b7c31670dfa68b052569aaff4a3ac",
+      "tasks.md": "487543f21b327cddf84d8fd6c42b7ed3aa4f37194996286e40f25898aa324a5f"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

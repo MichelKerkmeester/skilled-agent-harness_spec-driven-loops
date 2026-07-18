@@ -1,0 +1,32 @@
+{
+  "specFolder": "sk-doc/019-sk-doc-router-alignment/024-oob-idea-deep-dives/010-unified-refactor-implementation/000-contract-schemas",
+  "description": "The unified router refactor is not a router rewrite — it is a shadow compiler plus additive semantic gates whose entire safety model rests on",
+  "keywords": [
+    "unified",
+    "router",
+    "refactor",
+    "rewrite",
+    "shadow",
+    "compiler",
+    "plus",
+    "additive",
+    "semantic",
+    "gates",
+    "whose",
+    "entire",
+    "safety",
+    "model",
+    "rests"
+  ],
+  "lastUpdated": "2026-07-18T13:04:38.359Z",
+  "specId": "000",
+  "folderSlug": "contract-schemas",
+  "parentChain": [
+    "sk-doc",
+    "019-sk-doc-router-alignment",
+    "024-oob-idea-deep-dives",
+    "010-unified-refactor-implementation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

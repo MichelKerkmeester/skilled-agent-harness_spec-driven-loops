@@ -1,0 +1,26 @@
+{
+  "specFolder": "sk-doc/019-sk-doc-router-alignment/024-oob-idea-deep-dives/010-unified-refactor-implementation/007-learning-overlay",
+  "description": "The refactor's route decisions are compiled from authored sources and are static per generation",
+  "keywords": [
+    "refactor",
+    "route",
+    "decisions",
+    "compiled",
+    "authored",
+    "sources",
+    "static",
+    "per",
+    "generation"
+  ],
+  "lastUpdated": "2026-07-18T13:02:47.189Z",
+  "specId": "007",
+  "folderSlug": "learning-overlay",
+  "parentChain": [
+    "sk-doc",
+    "019-sk-doc-router-alignment",
+    "024-oob-idea-deep-dives",
+    "010-unified-refactor-implementation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

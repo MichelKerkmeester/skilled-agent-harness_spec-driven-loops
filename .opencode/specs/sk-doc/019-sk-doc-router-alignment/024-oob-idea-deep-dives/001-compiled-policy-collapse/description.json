@@ -1,0 +1,28 @@
+{
+  "specFolder": "sk-doc/019-sk-doc-router-alignment/024-oob-idea-deep-dives/001-compiled-policy-collapse",
+  "description": "Five-iteration SOL xhigh-fast deep-research lineage on collapsing the two hand-authored routing maps (INTENT_SIGNALS + RESOURCE_MAP + hub-router.json",
+  "keywords": [
+    "five-iteration",
+    "sol",
+    "xhigh-fast",
+    "deep-research",
+    "lineage",
+    "collapsing",
+    "two",
+    "hand-authored",
+    "routing",
+    "maps",
+    "hub-router",
+    "json"
+  ],
+  "lastUpdated": "2026-07-18T08:20:40.536Z",
+  "specId": "001",
+  "folderSlug": "compiled-policy-collapse",
+  "parentChain": [
+    "sk-doc",
+    "019-sk-doc-router-alignment",
+    "024-oob-idea-deep-dives"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

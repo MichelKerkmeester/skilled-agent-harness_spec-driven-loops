@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-sk-doc-router-alignment/024-oob-idea-deep-dives/008-trp-decomposition",
+  "spec_folder": "sk-doc/019-sk-doc-router-alignment/024-oob-idea-deep-dives/008-trp-decomposition",
+  "parent_id": "sk-doc/019-sk-doc-router-alignment/024-oob-idea-deep-dives",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "t r p decomposition deep dive",
+      "threshold recovery provenance routing",
+      "defaultMode is one corner"
+    ],
+    "key_topics": [
+      "decomposition",
+      "deep",
+      "dive",
+      "threshold",
+      "recovery",
+      "provenance",
+      "routing",
+      "defaultmode",
+      "one",
+      "corner",
+      "candidate",
+      "8th"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deliverable Per",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "siblings",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "NEITHER",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "EXECUTIVE SUMMARY",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Candidate 8th idea (from the GLM-5.2 parallel lineage): decompose routing policy into three orthogonal knobs — Threshold (how much evidence to commit), Recovery (what happens after an uncertain/wrong pick), Provenance (where the vocab-to-mode evidence comes from). defaultMode is one corner (T low, R none, P static) of this space; the field conflates T and R and cannot express low-threshold + high-recovery. A hub's policy becomes a (T,R,P) triple plus a vocabulary table. This packet is the dive-ready scaffold; the presentation is authored, the 5-iteration SOL xhigh-fast dive is NOT yet run.",
+    "created_at": "2026-07-18T10:05:19.988Z",
+    "last_save_at": "2026-07-18T10:05:19.988Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:d974b248f176c1d6829c0561ae5b7662db29fb128bd7d75552215bde19de085f",
+    "source_doc_hashes": {
+      "spec.md": "998a115d086a46c30aa2abad5c021d2dcff7b56a6970a1b974ae868eadae72b8"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

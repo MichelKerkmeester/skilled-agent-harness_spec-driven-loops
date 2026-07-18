@@ -1,0 +1,31 @@
+{
+  "specFolder": "sk-doc/019-sk-doc-router-alignment/024-oob-idea-deep-dives/010-unified-refactor-implementation/006-parent-hub-rollout",
+  "description": "Phase parent that activates the compiled unified-router contract on the parent hubs one at a time, in increasing blast-radius order: sk-code (evidence",
+  "keywords": [
+    "phase",
+    "parent",
+    "activates",
+    "compiled",
+    "unified-router",
+    "contract",
+    "hubs",
+    "one",
+    "time",
+    "increasing",
+    "blast-radius",
+    "order",
+    "sk-code",
+    "evidence"
+  ],
+  "lastUpdated": "2026-07-18T13:12:57.655Z",
+  "specId": "006",
+  "folderSlug": "parent-hub-rollout",
+  "parentChain": [
+    "sk-doc",
+    "019-sk-doc-router-alignment",
+    "024-oob-idea-deep-dives",
+    "010-unified-refactor-implementation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

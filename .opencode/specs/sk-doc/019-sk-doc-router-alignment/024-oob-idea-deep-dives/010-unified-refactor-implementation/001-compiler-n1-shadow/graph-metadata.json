@@ -1,0 +1,198 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-sk-doc-router-alignment/024-oob-idea-deep-dives/010-unified-refactor-implementation/001-compiler-n1-shadow",
+  "spec_folder": "sk-doc/019-sk-doc-router-alignment/024-oob-idea-deep-dives/010-unified-refactor-implementation/001-compiler-n1-shadow",
+  "parent_id": "sk-doc/019-sk-doc-router-alignment/024-oob-idea-deep-dives/010-unified-refactor-implementation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "shadow compiler n1 compile",
+      "mcp-code-mode degenerate compile",
+      "compiled policy shadow parity rollback",
+      "shadow compiler build approach",
+      "mcp-code-mode n1 compile plan",
+      "fenced activation byte-exact rollback plan",
+      "shadow compiler n1 tasks",
+      "mcp-code-mode compile task list",
+      "fenced activation rollback tasks",
+      "shadow compiler n1 checklist",
+      "mcp-code-mode compile verification",
+      "route-gold parity rollback checklist"
+    ],
+    "key_topics": [
+      "shadow",
+      "compiler",
+      "compile",
+      "mcp-code-mode",
+      "degenerate",
+      "compiled",
+      "policy",
+      "parity",
+      "rollback",
+      "approach",
+      "plan",
+      "fenced"
+    ],
+    "importance_tier": "critical",
+    "status": "draft",
+    "key_files": [
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Shadow Compiler",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authored Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Ship",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Build",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Migration Stage",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Confirm Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The fleet has no single, verifiable representation of routing policy",
+    "created_at": "2026-07-18T13:13:16.652Z",
+    "last_save_at": "2026-07-18T13:13:16.652Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:36eb5ed316ab7837547b2915f61de3dead3a7ad814552b8a3cdf40ff4412a603",
+    "source_doc_hashes": {
+      "spec.md": "958c6237c6aad3686d61a0b3a531b7af731b64ce2f8b7bdb5b544e9d026fa67c",
+      "plan.md": "20f783374a91d6d60b202f67b8d017835a610fe9551ac873eaf2acd2bd6da9b8",
+      "tasks.md": "3c6445ad6d089ba0f514d230480dd649ee76a1625ae1f59d37016ef08c9db7e6",
+      "checklist.md": "a39b3cb777562c5ba00e29e2a1a3baf9a2a24fcc964304a16f131b83aaec6ebc"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

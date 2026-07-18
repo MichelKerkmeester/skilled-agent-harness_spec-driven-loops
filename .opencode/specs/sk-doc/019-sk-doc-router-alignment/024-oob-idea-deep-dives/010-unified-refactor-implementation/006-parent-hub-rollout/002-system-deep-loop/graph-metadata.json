@@ -1,0 +1,201 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-sk-doc-router-alignment/024-oob-idea-deep-dives/010-unified-refactor-implementation/006-parent-hub-rollout/002-system-deep-loop",
+  "spec_folder": "sk-doc/019-sk-doc-router-alignment/024-oob-idea-deep-dives/010-unified-refactor-implementation/006-parent-hub-rollout/002-system-deep-loop",
+  "parent_id": "sk-doc/019-sk-doc-router-alignment/024-oob-idea-deep-dives/010-unified-refactor-implementation/006-parent-hub-rollout",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "system-deep-loop router activation",
+      "deep-loop packet backend projections",
+      "shared deep-improvement packet no-collapse",
+      "system-deep-loop router activation plan",
+      "deep-loop projection compile approach",
+      "per-hub canary rollback drill",
+      "system-deep-loop router activation tasks",
+      "deep-loop no-collapse compile tasks",
+      "stage-4 canary task list"
+    ],
+    "key_topics": [
+      "system-deep-loop",
+      "router",
+      "activation",
+      "deep-loop",
+      "packet",
+      "backend",
+      "projections",
+      "shared",
+      "deep-improvement",
+      "no-collapse",
+      "plan",
+      "projection"
+    ],
+    "importance_tier": "high",
+    "status": "planned",
+    "key_files": [
+      ".opencode/skills/system-deep-loop/mode-registry.json",
+      ".opencode/skills/system-deep-loop/SKILL.md",
+      ".opencode/skills/system-deep-loop/shared/references/smart_routing.md",
+      "plan.md",
+      "tasks.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-deep-loop/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-deep-loop/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "smart_routing.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-deep-loop/shared/references/smart_routing.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Unified Router Rollout",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Under",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Activate",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Compile",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Shadow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "their",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "different",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Under the pre-refactor model, a destination is addressed by `workflowMode` name or packet path",
+    "created_at": "2026-07-18T13:13:19.824Z",
+    "last_save_at": "2026-07-18T13:13:19.824Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "source_fingerprint": "sha256:0ddf5abf73997fbbd160c2db34e5cfab035aad2a5c9dffa38733400ebd1c9345",
+    "source_doc_hashes": {
+      "spec.md": "1b999532f8893fccf1ab730f6d2e51f626eef64b59e274185c2da04ffc5a60e5",
+      "plan.md": "6b7f9d340da0ffd4ad09812e554f9719bab0423101b743cba54dfb7c0bc7e8af",
+      "tasks.md": "70cd50839bf5c01eb854ccb6d7992aff47ca1354ca2c2e8881237fc2b8db0d88"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

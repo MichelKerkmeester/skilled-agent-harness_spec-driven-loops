@@ -1,0 +1,138 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-sk-doc-router-alignment/024-oob-idea-deep-dives/004-no-wrong-door-handoff",
+  "spec_folder": "sk-doc/019-sk-doc-router-alignment/024-oob-idea-deep-dives/004-no-wrong-door-handoff",
+  "parent_id": "sk-doc/019-sk-doc-router-alignment/024-oob-idea-deep-dives",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "no wrong door handoff deep dive",
+      "bounded routing handoff protocol",
+      "acceptance vs completion routing",
+      "no wrong door handoff synthesis",
+      "acceptance ownership lease"
+    ],
+    "key_topics": [
+      "wrong",
+      "door",
+      "handoff",
+      "deep",
+      "dive",
+      "bounded",
+      "routing",
+      "protocol",
+      "acceptance",
+      "completion",
+      "synthesis",
+      "ownership"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "research/research.md",
+      "research/resource-map.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Door Bounded Handoff",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deliverable Per",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "RFC",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "changed",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Out Synthesis",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Investigation Report The",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Executive Overview",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Core State Machine",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Canonical Protocol Envelopes The",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Five-iteration SOL xhigh-fast deep-research lineage on a no-wrong-door routing protocol where any mode can accept intake and offer a typed transfer through a bounded INTAKE→OFFERED→ACCEPTED→ACTIVE state machine, where acceptance transfers execution ownership but is distinct from completion, authority stays destination-local via a short-lived scoped lease, and cost is bounded by an idempotent transfer id, visited-mode set, hop budget, deadline, and at most one clarification turn — used only on the ambiguous path, never replacing confident one-shot routes.",
+    "created_at": "2026-07-18T04:39:05.270Z",
+    "last_save_at": "2026-07-18T09:04:32.361Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:09d88c488cd840af6242666c1297e4796e0c8b06609840be557928b9fb660140",
+    "source_doc_hashes": {
+      "spec.md": "0c354fa9224fc62ed442d9916f1df240e02ec86b4757c2d48531e53abe0560fc",
+      "research/research.md": "1de8af7cf1042aa6b51d08fc48f8d24b48f5256fd88717c6beb70827b9ebb8bf"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

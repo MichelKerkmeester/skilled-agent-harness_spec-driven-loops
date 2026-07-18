@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-sk-doc-router-alignment/024-oob-idea-deep-dives/003-typed-no-destination",
+  "spec_folder": "sk-doc/019-sk-doc-router-alignment/024-oob-idea-deep-dives/003-typed-no-destination",
+  "parent_id": "sk-doc/019-sk-doc-router-alignment/024-oob-idea-deep-dives",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "typed no-destination deep dive",
+      "no route control outcomes",
+      "typed defer instead of null"
+    ],
+    "key_topics": [
+      "typed",
+      "no-destination",
+      "deep",
+      "dive",
+      "route",
+      "control",
+      "outcomes",
+      "defer",
+      "instead",
+      "null",
+      "five-iteration",
+      "sol"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      ".opencode/specs/sk-doc/019-sk-doc-router-alignment/024-oob-idea-deep-dives/003-typed-no-destination/spec.md",
+      ".opencode/specs/sk-doc/019-sk-doc-router-alignment/021-default-mode-policy-research/research/lineages/sol-oob/iterations/iteration-003.md",
+      ".opencode/skills/sk-doc/create-skill/references/parent_skill/parent_hub_router_schema.md",
+      ".opencode/specs/sk-doc/019-sk-doc-router-alignment/014-benchmark-harness-typed-wiring/design/taxonomy-schema.md",
+      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs",
+      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs",
+      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/route-gold-gate.vitest.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/lib/prompt-cache.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/lib/freshness.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/tests/legacy/advisor-privacy.vitest.ts",
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/atomic-state.ts",
+      ".opencode/skills/sk-prompt/hub-router.json",
+      ".opencode/skills/sk-prompt/mode-registry.json",
+      "spec.md",
+      "research/research.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-doc/019-sk-doc-router-alignment/024-oob-idea-deep-dives/003-typed-no-destination/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-003.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-doc/019-sk-doc-router-alignment/021-default-mode-policy-research/research/lineages/sol-oob/iterations/iteration-003.md",
+        "source": "derived"
+      },
+      {
+        "name": "parent_hub_router_schema.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/create-skill/references/parent_skill/parent_hub_router_schema.md",
+        "source": "derived"
+      },
+      {
+        "name": "taxonomy-schema.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-doc/019-sk-doc-router-alignment/014-benchmark-harness-typed-wiring/design/taxonomy-schema.md",
+        "source": "derived"
+      },
+      {
+        "name": "router-replay.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "load-playbook-scenarios.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "route-gold-gate.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/route-gold-gate.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-cache.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/prompt-cache.ts",
+        "source": "derived"
+      },
+      {
+        "name": "freshness.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/freshness.ts",
+        "source": "derived"
+      },
+      {
+        "name": "advisor-privacy.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/tests/legacy/advisor-privacy.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "atomic-state.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/atomic-state.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-prompt/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-prompt/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Typed No",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Destination Outcomes",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deliverable Per",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "policy-versioned",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Synthesis",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Investigation Report The",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Executive Overview Replace",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Core Architecture",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Five-iteration SOL xhigh-fast deep-research lineage on replacing the undifferentiated null / silent-default zero-signal case with a typed router-owned control result (idle / no-match / dependency-failure / degraded-fallback / handoff-required plus defer / clarify), borrowing state distinctions from OS idle, IP no-route, DNS NXDOMAIN/NODATA, load-balancer fail-open, and no-wrong-door intake, with policy-versioned negative caching and a fail-open posture that is visible and forbidden for mutation-capable requests.",
+    "created_at": "2026-07-18T04:39:05.144Z",
+    "last_save_at": "2026-07-18T09:04:32.052Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:f63f9d5305e29c6174f04d104d6117cd5244b2f23d7ef47df80deb49834ea612",
+    "source_doc_hashes": {
+      "spec.md": "165f624b79912bb28793d0ebcae34fcc492da9038cb8b6c6833380d485ed0516",
+      "research/research.md": "206d4f1376c15a2c5a4e23ddca52490a9cf888203542f3a837e9b22b6d0265a5"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

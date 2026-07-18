@@ -1,0 +1,89 @@
+---
+title: "Tasks: Recovery Ladder — Ordered Ladder on One Shared Uncertainty Budget"
+description: "Task Format: T### [P?] Description (file path). Ordered task list to specify, encode, and fixture-verify the six-rung recovery ladder on one shared UncertaintyBudgetV1 { userTurns: 1 }. Planning/design only."
+trigger_phrases:
+  - "recovery ladder tasks"
+  - "shared uncertainty budget task list"
+  - "clarify handoff ladder checklist"
+importance_tier: "critical"
+contextType: "implementation"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
+<!-- SPECKIT_LEVEL: 2 -->
+
+---
+
+## Task Notation
+
+| Prefix | Meaning |
+|--------|---------|
+| `[ ]` | Pending |
+| `[x]` | Completed |
+| `[P]` | Parallelizable |
+| `[B]` | Blocked |
+
+**Task Format**: `T### [P?] Description (file path)`
+
+**Traceability**: each task cites the REQ/SC it advances (see `spec.md`).
+
+---
+
+## Phase 1: Ground the contract seams
+
+- [ ] T001 Confirm phase 000 `UncertaintyBudgetV1` and phase 002 `RouteDecisionV1` + compatibility projector exist and are read-only inputs; record their generation/hash (dependency gate — plan §5)
+- [ ] T002 Pin the shared-budget semantics on the ladder: one `{ userTurns: 1 }` per request; clarify and handoff draw from the SAME budget (REQ-002, synthesis §2.1)
+- [ ] T003 Pin the finiteness seam: a handed-off destination returning `NEEDS_INPUT` does NOT reopen a user turn (REQ-007, synthesis §4 Seam-B row)
+
+---
+
+## Phase 2: Specify the six rungs and their guards
+
+- [ ] T004 Specify rung 1 — eligibility + authority gate BEFORE ranking; negative outcome withholds authority (REQ-003, synthesis §4 step 1, §2.3)
+- [ ] T005 Specify rung 2 — deterministic exact route; encode the "no phase-005 certificate ⇒ no calibrated auto-route" fall-through; auto-route stays inert (REQ-004, synthesis §4 step 2, §8.1)
+- [ ] T006 Specify rung 3 — clarify admit predicate (one answer discriminates to a legal local route), ≤3 options + `none_of_these`, exactly one rescore (REQ-005, synthesis §4 step 3)
+- [ ] T007 Specify rung 4 — handoff admit predicate (distinct named viable candidate + policy permits), visited-set guard, single hop `H=1`, ownership-not-completion (REQ-006, REQ-007, synthesis §3 Idea 4, §4 step 4)
+- [ ] T008 Specify rung 5 — typed `defer` reasons (fixed enum) with NO default/fallback union (REQ-008, synthesis §2.3, §10)
+- [ ] T009 Specify rung 6 — `reject` for invalid/forbidden requests, target-free and authority-free (REQ-009, synthesis §2.3)
+- [ ] T010 Fix the rung ORDER and the "confident routes bypass the ladder entirely" rule (REQ-001, synthesis §4 line "confident routes never touch the ladder")
+
+---
+
+## Phase 3: Author typed route-gold fixtures (via the phase-002 compatibility projector only)
+
+- [ ] T011 [P] Fixture: one-turn clarification — discriminating ambiguity → one clarify, ≤3 options + `none_of_these`, one rescore (REQ-005)
+- [ ] T012 [P] Fixture: non-discriminating ambiguity → defer (NOT clarify) (REQ-005/REQ-008)
+- [ ] T013 [P] Fixture: zero-signal idle defer with NO default union (REQ-008, SC-005)
+- [ ] T014 [P] Fixture: forbidden rejection — target-free + authority-free (REQ-009, SC-003)
+- [ ] T015 [P] Fixture: exact route emits NO clarify/handoff artifacts (REQ-004, synthesis §8.2 "direct route with forbidden handoff artifacts")
+- [ ] T016 [P] Fixture: handoff visited-set revisit refused + second-hop (H>1) refused + budget-exceeded refused (REQ-006, SC-002)
+- [ ] T017 [P] Fixture: handoff ownership-transfer recorded; downstream `NEEDS_INPUT` terminates without a new user turn (REQ-007, SC-002)
+- [ ] T018 [P] Fixture: role-escalation + missing-authority-dependency → defer (rung 1/5 boundary) (REQ-003/REQ-008)
+- [ ] T019 [P] Fixture: confident route invokes ZERO ladder rungs (REQ-001, SC-004)
+
+---
+
+## Phase 4: Verify (deterministic, scorer untouched)
+
+- [ ] T020 Replay all ladder fixtures through the compatibility projector; assert byte-identical outputs and route-gold stays byte-green (SC-001, synthesis §8.2)
+- [ ] T021 Assert budget finiteness across all fixtures: ≤1 user turn (clarify+handoff), hop count ≤1, no visited-set revisit (SC-002)
+- [ ] T022 Assert authority-withheld on every `clarify | defer | reject` fixture (empty targets, no authority field) (SC-003)
+- [ ] T023 Compare `router-replay.cjs` hash before/after — MUST be hash-identical; a required scorer edit is logged as a migration failure, not applied (REQ-010, synthesis §8.2)
+- [ ] T024 Confirm the phase diff touches only `004-recovery-ladder/**` planning docs + typed fixtures; no live routing config/registry/skill modified (REQ-010, SC-005)
+- [ ] T025 Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <this-folder> --strict` and record exit code
+
+---
+
+## Phase 5: Gate & close
+
+- [ ] T026 Confirm the phase satisfies the shared **Stage 3 — Shadow evaluate** gate (deterministic typed replay + route-gold-matching projection, gold never auto-updated) before phase 005 activates (spec.md MIGRATION GATE)
+- [ ] T027 Confirm the three §9 hard gates hold: (a) no handoff revisits/exceeds budget; (b) no exact route emits recovery artifacts; (c) no negative decision carries target/authority (synthesis §9)
+- [ ] T028 Record continuation note: rung-2 calibrated auto-route stays inert until phase 005 ships the risk certificate (synthesis §11 open-q 2)
+
+---
+
+## RELATED DOCUMENTS
+
+- **Specification**: `spec.md`
+- **Build approach**: `plan.md`
+- **Source design**: `../../009-unified-refactor-research/unified-refactor-synthesis.md`
+- **Master plan**: `../spec.md`

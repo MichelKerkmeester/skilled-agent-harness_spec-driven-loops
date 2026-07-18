@@ -1,0 +1,30 @@
+{
+  "specFolder": "sk-doc/019-sk-doc-router-alignment/024-oob-idea-deep-dives/010-unified-refactor-implementation",
+  "description": "Phase parent for implementing the council-synthesized unified router refactor: one content-addressed compiled policy, one closed decision algebra, one",
+  "keywords": [
+    "phase",
+    "parent",
+    "implementing",
+    "council-synthesized",
+    "unified",
+    "router",
+    "refactor",
+    "one",
+    "content-addressed",
+    "compiled",
+    "policy",
+    "closed",
+    "decision",
+    "algebra"
+  ],
+  "lastUpdated": "2026-07-18T12:56:26.045Z",
+  "specId": "010",
+  "folderSlug": "unified-refactor-implementation",
+  "parentChain": [
+    "sk-doc",
+    "019-sk-doc-router-alignment",
+    "024-oob-idea-deep-dives"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
