@@ -39,7 +39,7 @@
       "tasks"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The `design-mcp-open-design` transport moves design work between the sk-design modes and an external Open Design daemon, but it has no way to carry the styles-library provenance that the earlier phases (007 shared seam, 008 pilots) settled",
     "created_at": "2026-07-18T14:14:53.230Z",
-    "last_save_at": "2026-07-18T14:16:07.211Z",
+    "last_save_at": "2026-07-18T19:45:09.740Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:80ef1bf85d2961bf99a13a6d8bc96649841f1c67eefab051add54a73074ef9fb",
+    "source_fingerprint": "sha256:613bc10fa522d6d9b033684e60bf7a16ae8d45a934a9a844f2fff816e757e4b9",
     "source_doc_hashes": {
-      "spec.md": "047292986bc926e1d10f35947e9f1aa03b03401480c2cbe7817968cf088b136c",
-      "plan.md": "1a975347013d15bf388ade4c75ba9609d8d12cc954395ecb03b74c773403a73d",
-      "tasks.md": "c468f79ccd146bc99df0d3b5acfc2307084a9c69eb90bcd77d074bafeddb8ce8",
-      "checklist.md": "5ea2a3109ae02d0f3b7a600df78c1b57916a3adf4d741a2846e7d50b68ab3534",
-      "implementation-summary.md": "a18901663449977319a1c7310bd67c3dcaef7767cdd03eb7cac8cfc44bd58bb8"
+      "spec.md": "afc307696570ad9b92aea8b2ecd8367d1478e50cbad7b2558ded57d405207c55",
+      "plan.md": "33b9824567d29fc2f00a909f4b1724596eb1d7f6b32af2affff15978ce5a37a5",
+      "tasks.md": "4b20a30d5e36bf47bfb48a7c42ad58d0fc537ae987fd36a9f085fb2cdc2cff8d",
+      "checklist.md": "2b7a4757576f6e25e74e8816a79ba0370b86d82b8485eef6924504ea3c1ffb92",
+      "implementation-summary.md": "7b99616d820137f88237dcc3ec7189a162f018a51066fe050c7b19ef38897b36"
     },
     "last_active_child_id": null,
     "last_active_at": null

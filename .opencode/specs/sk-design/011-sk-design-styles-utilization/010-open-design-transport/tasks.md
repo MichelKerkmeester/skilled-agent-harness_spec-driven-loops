@@ -52,9 +52,9 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Define the metadata-only receipt schema + provenance fields, reusing the phase 007 shared seam (`design-mcp-open-design/`).
-- [ ] T002 Implement offline validators asserting the no-cache invariant (no raw corpus/Open-Design payloads) (`design-mcp-open-design/`).
-- [ ] T003 [P] Add metadata-only positive / no-fit / stale fixtures and prove validators pass with no live daemon (`design-mcp-open-design/`).
+- [x] T001 Define the metadata-only receipt schema + provenance fields, reusing the phase 007 shared seam (`design-mcp-open-design/`).
+- [x] T002 Implement offline validators asserting the no-cache invariant (no raw corpus/Open-Design payloads) (`design-mcp-open-design/`).
+- [x] T003 [P] Add metadata-only positive / no-fit / stale fixtures and prove validators pass with no live daemon (`design-mcp-open-design/`).
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -62,8 +62,8 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 Build reconciliation fixtures comparing a paired mode's proposal to the transport return, reusing phase 008 pilot patterns (`design-mcp-open-design/`).
-- [ ] T005 Surface divergence explicitly (blocking vs. advisory delta) and make reconciliation mandatory on every return (`design-mcp-open-design/`).
+- [x] T004 Build reconciliation fixtures comparing a paired mode's proposal to the transport return, reusing phase 008 pilot patterns (`design-mcp-open-design/`).
+- [x] T005 Surface divergence explicitly (blocking vs. advisory delta) and make reconciliation mandatory on every return (`design-mcp-open-design/`).
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -71,10 +71,10 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T006 [B] Wire live read/run plumbing only after Phases 1–2 pass (`design-mcp-open-design/`).
-- [ ] T007 Verify no-cache behavior on the live tool surface (no raw payloads cached at any turn) (`design-mcp-open-design/`).
-- [ ] T008 Verify multi-turn completion, incl. turn-1 `awaiting_input` with zero files and mandatory return evidence + reconciliation (`design-mcp-open-design/`).
-- [ ] T009 Confirm the transport treats a receipt as grounding evidence only — never mutation approval or acceptance (`design-mcp-open-design/`).
+- [x] T006 [B] Wire live read/run plumbing only after Phases 1–2 pass (`design-mcp-open-design/`).
+- [x] T007 Verify no-cache behavior on the live tool surface (no raw payloads cached at any turn) (`design-mcp-open-design/`).
+- [x] T008 Verify multi-turn completion, incl. turn-1 `awaiting_input` with zero files and mandatory return evidence + reconciliation (`design-mcp-open-design/`).
+- [x] T009 Confirm the transport treats a receipt as grounding evidence only — never mutation approval or acceptance (`design-mcp-open-design/`).
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -82,10 +82,10 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] Offline receipt validators pass on metadata-only fixtures with no live daemon
-- [ ] Reconciliation fixtures pass; divergence surfaced; reconciliation mandatory on return
-- [ ] Live plumbing enabled only behind the offline gates; no-cache + multi-turn completion verified
-- [ ] Receipt never acts as acceptance or mutation approval
+- [x] Offline receipt validators pass on metadata-only fixtures with no live daemon
+- [x] Reconciliation fixtures pass; divergence surfaced; reconciliation mandatory on return
+- [x] Live plumbing enabled only behind the offline gates; no-cache + multi-turn completion verified
+- [x] Receipt never acts as acceptance or mutation approval
 <!-- /ANCHOR:completion -->
 
 ---

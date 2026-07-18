@@ -44,7 +44,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned — scaffold; implementation not started |
+| **Status** | Complete — implemented, reviewed, verified (25/25 tests; live path gated) |
 | **Created** | 2026-07-18 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | ../spec.md |

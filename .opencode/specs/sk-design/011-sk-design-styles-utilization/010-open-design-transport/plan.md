@@ -59,16 +59,16 @@ This terminal phase adds a grounding receipt and return reconciliation to the `d
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Phase 007 shared receipt/provenance seam is settled and consumable
-- [ ] Phase 008 paired-mode reconciliation patterns are available to reuse
-- [ ] Receipt schema fields and no-cache invariant are agreed before coding
+- [x] Phase 007 shared receipt/provenance seam is settled and consumable
+- [x] Phase 008 paired-mode reconciliation patterns are available to reuse
+- [x] Receipt schema fields and no-cache invariant are agreed before coding
 
 ### Definition of Done
-- [ ] Offline receipt validators pass on metadata-only fixtures with no live daemon
-- [ ] Reconciliation fixtures pass for paired-mode proposal vs. transport return
-- [ ] Live read/run plumbing is enabled only behind the two gates above
-- [ ] No-cache and multi-turn completion (incl. turn-1 `awaiting_input`) verified on the live surface
-- [ ] Receipt is never treated as mutation approval or acceptance
+- [x] Offline receipt validators pass on metadata-only fixtures with no live daemon
+- [x] Reconciliation fixtures pass for paired-mode proposal vs. transport return
+- [x] Live read/run plumbing is enabled only behind the two gates above
+- [x] No-cache and multi-turn completion (incl. turn-1 `awaiting_input`) verified on the live surface
+- [x] Receipt is never treated as mutation approval or acceptance
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -102,18 +102,18 @@ Gated, offline-first transport integration: a metadata-only receipt validator la
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Offline receipt validators
-- [ ] Define the metadata-only receipt schema and provenance fields
-- [ ] Implement validators asserting the no-cache (no raw corpus/payload) invariant
-- [ ] Prove them on metadata-only fixtures with no live daemon
+- [x] Define the metadata-only receipt schema and provenance fields
+- [x] Implement validators asserting the no-cache (no raw corpus/payload) invariant
+- [x] Prove them on metadata-only fixtures with no live daemon
 
 ### Phase 2: Paired-mode reconciliation fixtures
-- [ ] Build fixtures comparing a paired mode's proposal to the transport return
-- [ ] Surface divergence explicitly (blocking or advisory delta)
+- [x] Build fixtures comparing a paired mode's proposal to the transport return
+- [x] Surface divergence explicitly (blocking or advisory delta)
 
 ### Phase 3: Gated live read/run plumbing
-- [ ] Wire live read/run only after Phases 1–2 pass
-- [ ] Verify no-cache behavior on the live tool surface
-- [ ] Verify multi-turn completion, incl. turn-1 `awaiting_input` with zero files and mandatory return evidence
+- [x] Wire live read/run only after Phases 1–2 pass
+- [x] Verify no-cache behavior on the live tool surface
+- [x] Verify multi-turn completion, incl. turn-1 `awaiting_input` with zero files and mandatory return evidence
 <!-- /ANCHOR:phases -->
 
 ---

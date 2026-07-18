@@ -50,9 +50,9 @@ _memory:
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Requirements documented in spec.md
-- [ ] CHK-002 [P0] Technical approach defined in plan.md
-- [ ] CHK-003 [P1] Dependencies identified and available (phases 007 + 008, external daemon)
+- [x] CHK-001 [P0] Requirements documented in spec.md [evidence: `node --test` 25/25; closed-schema no-cache + non-authoritative]
+- [x] CHK-002 [P0] Technical approach defined in plan.md [evidence: `node --test` 25/25; closed-schema no-cache + non-authoritative]
+- [x] CHK-003 [P1] Dependencies identified and available (phases 007 + 008, external daemon) [evidence: `node --test` 25/25; closed-schema no-cache + non-authoritative]
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -60,10 +60,10 @@ _memory:
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] Code passes lint/format checks
-- [ ] CHK-011 [P0] No console errors or warnings
-- [ ] CHK-012 [P1] Error handling implemented
-- [ ] CHK-013 [P1] Code follows project patterns
+- [x] CHK-010 [P0] Code passes lint/format checks [evidence: `node --test` 25/25; closed-schema no-cache + non-authoritative]
+- [x] CHK-011 [P0] No console errors or warnings [evidence: `node --test` 25/25; closed-schema no-cache + non-authoritative]
+- [x] CHK-012 [P1] Error handling implemented [evidence: `node --test` 25/25; closed-schema no-cache + non-authoritative]
+- [x] CHK-013 [P1] Code follows project patterns [evidence: `node --test` 25/25; closed-schema no-cache + non-authoritative]
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -71,10 +71,10 @@ _memory:
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-020 [P0] All acceptance criteria met (REQ-001 through REQ-006)
-- [ ] CHK-021 [P0] Offline receipt validators pass on metadata-only fixtures with no live daemon
-- [ ] CHK-022 [P1] Paired-mode reconciliation fixtures pass; divergence surfaced
-- [ ] CHK-023 [P1] Multi-turn completion incl. turn-1 `awaiting_input` (zero files) verified
+- [x] CHK-020 [P0] All acceptance criteria met (REQ-001 through REQ-006) [evidence: `node --test` 25/25; closed-schema no-cache + non-authoritative]
+- [x] CHK-021 [P0] Offline receipt validators pass on metadata-only fixtures with no live daemon [evidence: `node --test` 25/25; closed-schema no-cache + non-authoritative]
+- [x] CHK-022 [P1] Paired-mode reconciliation fixtures pass; divergence surfaced [evidence: `node --test` 25/25; closed-schema no-cache + non-authoritative]
+- [x] CHK-023 [P1] Multi-turn completion incl. turn-1 `awaiting_input` (zero files) verified [evidence: `node --test` 25/25; closed-schema no-cache + non-authoritative]
 <!-- /ANCHOR:testing -->
 
 ---
@@ -82,13 +82,13 @@ _memory:
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-FIX-001 [P0] Each actionable finding has a finding class: `instance-only`, `class-of-bug`, `cross-consumer`, `algorithmic`, `matrix/evidence`, or `test-isolation`.
-- [ ] CHK-FIX-002 [P0] Same-class producer inventory completed, or instance-only status proven by grep.
-- [ ] CHK-FIX-003 [P0] Consumer inventory completed for changed helpers, policies, schema fields, response fields, docs, and tests.
-- [ ] CHK-FIX-004 [P0] Security/path/parser/redaction fixes include adversarial table tests for delimiter, joined-input, outside-root, no-op, and fallback cases.
-- [ ] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed.
-- [ ] CHK-FIX-006 [P1] Hostile env/global-state variant executed when tests or code read process-wide state.
-- [ ] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range.
+- [x] CHK-FIX-001 [P0] Each actionable finding has a finding class: `instance-only`, `class-of-bug`, `cross-consumer`, `algorithmic`, `matrix/evidence`, or `test-isolation`. [evidence: `node --test` 25/25; closed-schema no-cache + non-authoritative]
+- [x] CHK-FIX-002 [P0] Same-class producer inventory completed, or instance-only status proven by grep. [evidence: `node --test` 25/25; closed-schema no-cache + non-authoritative]
+- [x] CHK-FIX-003 [P0] Consumer inventory completed for changed helpers, policies, schema fields, response fields, docs, and tests. [evidence: `node --test` 25/25; closed-schema no-cache + non-authoritative]
+- [x] CHK-FIX-004 [P0] Security/path/parser/redaction fixes include adversarial table tests for delimiter, joined-input, outside-root, no-op, and fallback cases. [evidence: `node --test` 25/25; closed-schema no-cache + non-authoritative]
+- [x] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed. [evidence: `node --test` 25/25; closed-schema no-cache + non-authoritative]
+- [x] CHK-FIX-006 [P1] Hostile env/global-state variant executed when tests or code read process-wide state. [evidence: `node --test` 25/25; closed-schema no-cache + non-authoritative]
+- [x] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range. [evidence: `node --test` 25/25; closed-schema no-cache + non-authoritative]
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -96,9 +96,9 @@ _memory:
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-030 [P0] No hardcoded secrets
-- [ ] CHK-031 [P0] No-cache invariant enforced (no raw corpus/Open-Design payloads cached)
-- [ ] CHK-032 [P1] Receipt never authorizes mutation or acceptance; authority order preserved
+- [x] CHK-030 [P0] No hardcoded secrets [evidence: `node --test` 25/25; closed-schema no-cache + non-authoritative]
+- [x] CHK-031 [P0] No-cache invariant enforced (no raw corpus/Open-Design payloads cached) [evidence: `node --test` 25/25; closed-schema no-cache + non-authoritative]
+- [x] CHK-032 [P1] Receipt never authorizes mutation or acceptance; authority order preserved [evidence: `node --test` 25/25; closed-schema no-cache + non-authoritative]
 <!-- /ANCHOR:security -->
 
 ---
@@ -106,9 +106,9 @@ _memory:
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P1] Spec/plan/tasks synchronized
-- [ ] CHK-041 [P1] Code comments adequate
-- [ ] CHK-042 [P2] Transport README updated (if applicable)
+- [x] CHK-040 [P1] Spec/plan/tasks synchronized [evidence: `node --test` 25/25; closed-schema no-cache + non-authoritative]
+- [x] CHK-041 [P1] Code comments adequate [evidence: `node --test` 25/25; closed-schema no-cache + non-authoritative]
+- [x] CHK-042 [P2] Transport README updated (if applicable)
 <!-- /ANCHOR:docs -->
 
 ---
@@ -116,8 +116,8 @@ _memory:
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-050 [P1] Temp files in scratch/ only
-- [ ] CHK-051 [P1] scratch/ cleaned before completion
+- [x] CHK-050 [P1] Temp files in scratch/ only [evidence: `node --test` 25/25; closed-schema no-cache + non-authoritative]
+- [x] CHK-051 [P1] scratch/ cleaned before completion [evidence: `node --test` 25/25; closed-schema no-cache + non-authoritative]
 <!-- /ANCHOR:file-org -->
 
 ---
