@@ -1,103 +1,167 @@
 # ─────────────────────────────────────────────────────────────────
 # PROMPT IMPROVE WORKFLOW (AUTONOMOUS MODE)
 # ─────────────────────────────────────────────────────────────────
-# Display wording (prompts, dashboards, results) is owned by the
-# presentation contract, not this file. This YAML owns execution only.
-# ─────────────────────────────────────────────────────────────────
 role: Expert prompt engineer running the sk-prompt improvement pipeline autonomously
 purpose: Transform a prompt or topic into a structured, CLEAR-scored prompt without pausing
-action: Verify agent, resolve setup, run DEPTH, score, deliver, optionally save
+action: Confirm bound inputs -> load sk-prompt -> run DEPTH -> score with CLEAR -> deliver -> optionally save
+skill_owner: ".opencode/skills/sk-prompt/prompt-improve/"
 
-presentation_asset: .opencode/commands/prompt/assets/prompt_improve_presentation.txt
-
-runtime_agent_path_resolution:
-  default: .opencode/agents
-  claude: .claude/agents
-
+# ─────────────────────────────────────────────────────────────────
+# OPERATING MODE
+# ─────────────────────────────────────────────────────────────────
 operating_mode:
   workflow: sequential
-  workflow_compliance: MANDATORY
-  workflow_execution: autonomous
-  checkpoints: none
+  compliance: MANDATORY
+  execution: autonomous     # runs end to end; no checkpoints
+  approvals: none
+  tracking: phase_by_phase
+  validation: clear_score_gate
 
+# ─────────────────────────────────────────────────────────────────
+# PRESENTATION OWNERSHIP
+# ─────────────────────────────────────────────────────────────────
+presentation:
+  asset: ".opencode/commands/prompt/assets/prompt_improve_presentation.txt"
+  invariant: "Every visible prompt, dashboard, transparency report, result, and status line is owned by the presentation asset. This workflow supplies bound values only and never synthesizes display text."
+
+# ─────────────────────────────────────────────────────────────────
+# MUTATION BOUNDARIES
+# ─────────────────────────────────────────────────────────────────
+mutation_boundaries:
+  allowed_targets:
+    - "A spec folder's prompts/ dir inside the .opencode/specs/ tree (only when save_choice is A, B, or C)"
+  forbidden_targets:
+    - "Any path outside the .opencode/specs/ spec-folder tree"
+    - "The sk-prompt skill packet or any of its references"
+  invariant: "The only write is the optional enhanced-prompt file under a spec folder's prompts/ dir; save_choice D writes nothing. Never interpolate a raw topic into a shell command — sanitize to a [a-z0-9-] slug first."
+
+# ─────────────────────────────────────────────────────────────────
+# UPSTREAM ASSETS
+# ─────────────────────────────────────────────────────────────────
+upstream_assets:
+  skill: ".opencode/skills/sk-prompt/prompt-improve/SKILL.md"   # the DEPTH/CLEAR engine
+  agent: "prompt-improver"                                       # fresh-context dispatch target for dispatch_mode AGENT
+  conditional_references:
+    depth: "references/depth_framework.md + references/patterns_evaluation.md"   # for text/improve/refine/short
+    json: "assets/format_guide_json.md"                                          # additionally for json mode
+    yaml: "assets/format_guide_yaml.md"                                          # additionally for yaml mode
+
+# ─────────────────────────────────────────────────────────────────
+# INPUTS (bound by the router MANDATORY INPUT GATE)
+# ─────────────────────────────────────────────────────────────────
 inputs:
-  prompt_input: { required: true, source: "$ARGUMENTS or PRE-BOUND SETUP ANSWERS", never_inferred: true }
-  enhancement_mode: { required: true, default: auto, values: [auto, text, improve, refine, short, json, yaml, raw] }
-  save_choice: { required: true, default: D, values: [A, B, C, D] }
-  save_path: { required: false }
-  dispatch_mode: { required: true, default: INLINE, values: [INLINE, AGENT] }
+  prompt_input: "The prompt or topic to improve. Required; never inferred from context, files, or history."
+  enhancement_mode: "auto|text|improve|refine|short|json|yaml|raw — selects DEPTH depth + output format. Default auto (detect from content)."
+  save_choice: "A existing spec folder | B new spec folder | C specific path | D skip. Default D."
+  save_path: "Resolved save target when save_choice is A/B/C; unused for D."
+  dispatch_mode: "INLINE (in-context) or AGENT (fresh @prompt-improver). Default AGENT when --agent or complexity >= 7/10, else INLINE."
 
-preconditions:
-  - The router's PHASE 0 dispatch-context check passed and its MANDATORY INPUT GATE bound prompt_input, enhancement_mode, save_choice, execution_mode, and dispatch_mode before this workflow loaded.
-
-steps:
-  - id: resolve_setup
-    name: Confirm bound inputs and apply auto defaults
-    do:
-      - Confirm the router bound prompt_input (never inferred), enhancement_mode, save_choice, save_path, and dispatch_mode.
-      - Apply the presentation Auto Resolution Table defaults for any field the router left unresolved.
+# ─────────────────────────────────────────────────────────────────
+# WORKFLOW
+# ─────────────────────────────────────────────────────────────────
+workflow:
+  phase_0_preconditions:
+    purpose: Confirm the router bound every input and verified dispatch context
+    activities:
+      - "Confirm the router's PHASE 0 dispatch-context check passed."
+      - "Confirm prompt_input, enhancement_mode, save_choice, and dispatch_mode are bound; apply the presentation Auto Resolution Table defaults for any unresolved field."
     fail_fast:
-      when: prompt_input is missing
-      display: presentation.AutoFailFast
-      status: FAIL
-      error: prompt_input required and not provided
+      when: "prompt_input is missing"
+      display: "presentation.AutoFailFast"
+      status: 'STATUS=FAIL ERROR="prompt_input required and not provided"'
+    validation: inputs_bound
 
-  - id: load_skill
-    name: Load the sk-prompt prompt-improve packet
-    do:
-      - Read .opencode/skills/sk-prompt/prompt-improve/SKILL.md
-      - "For enhancement_mode in [text, improve, refine, short]: load references/depth_framework.md and references/patterns_evaluation.md."
-      - "For enhancement_mode json: additionally load assets/format_guide_json.md."
-      - "For enhancement_mode yaml: additionally load assets/format_guide_yaml.md."
-      - "For enhancement_mode raw: no additional references."
+  phase_1_load:
+    purpose: Load the sk-prompt engine and the references this mode needs
+    activities:
+      - "Read upstream_assets.skill."
+      - "Load conditional_references per enhancement_mode (depth set for text/improve/refine/short; json/yaml guides added for those formats; none for raw)."
     on_missing_skill:
-      status: FAIL
-      error: prompt-improve packet not found at .opencode/skills/sk-prompt/prompt-improve/SKILL.md
+      status: 'STATUS=FAIL ERROR="prompt-improve packet not found at .opencode/skills/sk-prompt/prompt-improve/SKILL.md"'
+    validation: skill_loaded
 
-  - id: execute_pipeline
-    name: Execute the enhancement pipeline
-    branch:
-      - when: { field: dispatch_mode, op: "==", value: AGENT }
-        do:
-          - Dispatch Task(subagent_type="prompt-improver") with raw_task=prompt_input, task_type=best-fit family, complexity_hint=inferred, constraints=output/audience/compliance notes.
-          - Capture the structured return: FRAMEWORK, CLEAR_SCORE, RATIONALE, ENHANCED_PROMPT, ESCALATION_NOTES.
-          - Use ENHANCED_PROMPT as the command result.
-      - when: { field: dispatch_mode, op: "==", value: INLINE }
-        do:
-          - "Standard/Deep (text, improve, refine, auto): Discover (analyze 3-5 perspectives, audit assumptions, select framework — RCAF default 92%), Engineer (8+ approaches, constraint reversal), Prototype (build with framework), Test (CLEAR, iterate max 3), Harmonize (final polish)."
-          - "Quick (short): Discover (1-2 perspectives), Prototype, Harmonize."
-          - "Raw (raw): pass through without DEPTH; format only."
+  phase_2_enhance:
+    purpose: Produce the enhanced prompt via the resolved dispatch path
+    activities:
+      - "dispatch_mode AGENT: dispatch Task(subagent_type=prompt-improver) with raw_task, task_type, complexity_hint, constraints; capture FRAMEWORK, CLEAR_SCORE, RATIONALE, ENHANCED_PROMPT, ESCALATION_NOTES."
+      - "dispatch_mode INLINE, standard/deep (text/improve/refine/auto): Discover (3-5 perspectives, audit assumptions, select framework — RCAF default 92%) -> Engineer (8+ approaches, constraint reversal) -> Prototype (build with framework) -> Test (CLEAR, iterate) -> Harmonize (polish)."
+      - "dispatch_mode INLINE, quick (short): Discover (1-2 perspectives) -> Prototype -> Harmonize."
+      - "dispatch_mode INLINE, raw: pass through with no DEPTH; format only."
+    outputs:
+      - framework: "selected framework name"
+      - enhanced_prompt: "formatted per enhancement_mode (markdown default, json, or yaml)"
+    validation: enhancement_produced
 
-  - id: score
-    name: Score with CLEAR
-    do:
-      - Score the enhanced prompt with CLEAR (C/10 floor 7, L/10 floor 7, E/15 floor 10, A/10 floor 7, R/5 floor 3).
-      - Pass at 40+/50 with all floors met; revise (return to Prototype, max 3 cycles) at 30-39; restart from Engineer below 30.
-    on_fail_after_iterations:
-      status: FAIL
-      error: "CLEAR score below threshold after 3 iterations"
+  phase_3_score:
+    purpose: Score the enhanced prompt and iterate to threshold
+    activities:
+      - "Score with CLEAR: C/10 (floor 7), L/10 (floor 7), E/15 (floor 10), A/10 (floor 7), R/5 (floor 3)."
+      - "Pass at 40+/50 with all floors met; revise (return to Prototype, max 3 cycles) at 30-39; restart from Engineer below 30."
+      - "raw mode skips scoring."
+    outputs:
+      - clear_score: "total/50 plus per-dimension breakdown"
+    validation: clear_threshold_met
 
-  - id: deliver
-    name: Deliver the enhanced prompt
-    do:
-      - Present the enhanced prompt and transparency report using presentation.Results.Success.
+  phase_4_deliver:
+    purpose: Present the enhanced prompt and its transparency report
+    activities:
+      - "Render presentation.Results.Success with framework, mode, dispatch, DEPTH rounds, perspectives, and the CLEAR breakdown."
+    validation: delivered
 
-  - id: save
-    name: Save prompt (when save_choice is not D)
-    do:
-      - "A (existing spec folder): confirm the folder exists, mkdir -p [folder]/prompts/, write [descriptive-hyphen-case].md with frontmatter."
-      - "B (new spec folder): sanitize the topic to a [a-z0-9-] slug (fallback untitled-prompt; never interpolate raw topic into a shell command), find the next number under .opencode/specs/, mkdir -p .opencode/specs/[NNN]-[slug]/prompts/, write the file."
-      - "C (specific path): resolve to absolute, confirm it stays inside the .opencode/specs/ tree (reject escapes and .. climbs), never overwrite silently (confirm or auto-suffix), write the file."
-      - "D (skip): write nothing."
+  phase_5_save:
+    purpose: Persist the enhanced prompt when the user chose to save
+    activities:
+      - "A: confirm the spec folder exists, mkdir -p [folder]/prompts/, write [hyphen-case].md with frontmatter."
+      - "B: sanitize the topic to a [a-z0-9-] slug (fallback untitled-prompt), find the next number under .opencode/specs/, mkdir -p .opencode/specs/[NNN]-[slug]/prompts/, write the file."
+      - "C: resolve to absolute, confirm it stays inside the .opencode/specs/ tree (reject escapes and .. climbs), never overwrite silently (confirm or auto-suffix), write the file."
+      - "D: write nothing."
     file_frontmatter:
       title: "[Descriptive title]"
       framework: "[RCAF|COSTAR|CRAFT|...]"
       mode: "[MODE used]"
       clear_score: "[N]/50"
       created: "[YYYY-MM-DD]"
+    validation: saved_or_skipped
 
-  - id: status
-    name: Return status
-    do:
-      - "No save: STATUS=OK SCORE=[N]/50 FRAMEWORK=[NAME]"
-      - "Saved: STATUS=OK SCORE=[N]/50 FRAMEWORK=[NAME] SAVED=[path]"
+# ─────────────────────────────────────────────────────────────────
+# QUALITY GATES
+# ─────────────────────────────────────────────────────────────────
+quality_gates:
+  clear_threshold:
+    location: "After phase_3_score"
+    blocking: hard
+    checks:
+      - "CLEAR total >= 40/50 with every dimension at or above its floor (skipped in raw mode)"
+    on_fail: 'After 3 iterations still below threshold: STATUS=FAIL ERROR="CLEAR score below threshold after 3 iterations: [SCORE]/50"'
+
+# ─────────────────────────────────────────────────────────────────
+# ERROR RECOVERY
+# ─────────────────────────────────────────────────────────────────
+error_recovery:
+  skill_missing: "Emit the phase_1 skill-missing STATUS=FAIL and stop."
+  prompt_missing_under_auto: "Render presentation.AutoFailFast; STATUS=FAIL."
+  clear_below_threshold: "Iterate up to 3 cycles from Prototype, then fail with the score."
+  save_path_escapes_tree: "Reject and stop; tell the user to move the file manually after an in-tree save."
+
+# ─────────────────────────────────────────────────────────────────
+# RULES
+# ─────────────────────────────────────────────────────────────────
+rules:
+  ALWAYS:
+    - load_sk_prompt_before_enhancing
+    - score_with_clear_unless_raw_mode
+    - render_all_display_from_the_presentation_asset
+    - sanitize_topic_to_slug_before_any_path_or_shell_use
+  NEVER:
+    - infer_prompt_input_from_context_or_history
+    - write_outside_the_specs_tree
+    - save_when_choice_is_D
+    - overwrite_an_existing_prompt_file_silently
+
+# ─────────────────────────────────────────────────────────────────
+# OUTPUT
+# ─────────────────────────────────────────────────────────────────
+output: |
+  STATUS=OK SCORE=[N]/50 FRAMEWORK=[NAME] when delivered without saving.
+  STATUS=OK SCORE=[N]/50 FRAMEWORK=[NAME] SAVED=[path] when the prompt was saved.
+  STATUS=FAIL ERROR="..." on skill-missing, a missing prompt under :auto, or sub-threshold CLEAR.
