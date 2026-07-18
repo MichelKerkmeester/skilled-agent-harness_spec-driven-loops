@@ -61,6 +61,20 @@ export const PROOF_OUTCOMES = Object.freeze([
   'unknown-rights',
 ]);
 
+export const TRANSFORMATION_SUMMARIES = Object.freeze([
+  'transformed-reference',
+  'planned-reference',
+  'no-source-influence',
+]);
+
+export const FALLBACK_REASONS = Object.freeze([
+  'bounded-reference-fit',
+  'target-derived-no-fit',
+  'ordinary-workflow-unavailable',
+  'requery-generation-mismatch',
+  'target-derived-unknown-rights',
+]);
+
 export const COMMON_PROOF_HANDOFF_FIELD_DEFINITIONS = Object.freeze({
   generationIdentity: 'Generation requested, observed, and comparison state.',
   sourceIdentity: 'Source, content hash, and source URL, or null when no source influenced work.',
@@ -85,6 +99,7 @@ export const COMMON_PROOF_HANDOFF_SCHEMA = Object.freeze({
   additionalProperties: false,
   invariants: Object.freeze([
     'negative-outcomes-are-valid-evidence',
+    'outcome-fields-form-a-closed-consistent-state',
     'target-checks-remain-not-assessed',
     'source-specific-material-is-never-copied',
   ]),

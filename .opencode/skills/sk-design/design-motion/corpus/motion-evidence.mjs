@@ -16,6 +16,11 @@ import {
   validateCorpusContextPlan,
   validateProofHandoffRecord,
 } from '../../shared/corpus-context/validate-context-plan.mjs';
+import {
+  blockingPlanOutcome,
+  immutableSnapshot,
+  isRetrievalUnavailableError,
+} from '../../shared/corpus-context/corpus-runtime.mjs';
 import { runHydrate, runQuery } from '../../styles/_engine/style-library.mjs';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -153,11 +158,6 @@ const UUID_PATTERN = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3
 const HASH_PATTERN = /^sha256:[a-f0-9]{64}$/;
 const MAX_QUERY_CARDS = 5;
 const HYDRATION_BYTES = 8 * 1_024;
-const RETRIEVAL_UNAVAILABLE_CODES = Object.freeze(new Set([
-  'manifest-missing',
-  'manifest-stale',
-  'ENOENT',
-]));
 const HYDRATION_UNAVAILABLE_CODES = Object.freeze(new Set([
   'manifest-missing',
   'manifest-invalid',
@@ -508,6 +508,7 @@ function sourceReference(source) {
 
 function negativeProofHandoff(contextPlan, outcome) {
   const isUnavailable = outcome === 'unavailable';
+  const isMismatch = outcome === 'generation-mismatch';
   return {
     generationIdentity: contextPlan.generationIdentity,
     sourceIdentity: null,
@@ -521,12 +522,20 @@ function negativeProofHandoff(contextPlan, outcome) {
     semanticRole: { role: 'none', dimensions: [] },
     transformation: {
       state: 'not-applicable',
-      summary: 'No corpus motion literal or choreography influenced the target.',
+      summary: 'no-source-influence',
       copiedSourceSpecificMaterial: false,
     },
     fallback: {
-      state: isUnavailable ? 'ordinary-workflow' : 'target-derived',
-      reason: 'The target keeps its instant or target-native motion path.',
+      state: isUnavailable
+        ? 'ordinary-workflow'
+        : isMismatch
+          ? 'requery-required'
+          : 'target-derived',
+      reason: isUnavailable
+        ? 'ordinary-workflow-unavailable'
+        : isMismatch
+          ? 'requery-generation-mismatch'
+          : 'target-derived-no-fit',
     },
     proofState: {
       outcome,
@@ -548,15 +557,13 @@ function positiveProofHandoff(contextPlan, source) {
     provenanceUseLabel: source.provenanceUseLabel,
     semanticRole: { role: 'reference', dimensions: ['relationship', 'rationale'] },
     transformation: {
-      state: 'transformed',
-      summary: 'Purpose and state relationships informed target-owned motion without timing literals.',
+      state: hasKnownRights ? 'transformed' : 'planned',
+      summary: hasKnownRights ? 'transformed-reference' : 'planned-reference',
       copiedSourceSpecificMaterial: false,
     },
     fallback: {
       state: hasKnownRights ? 'not-needed' : 'target-derived',
-      reason: hasKnownRights
-        ? 'A bounded temporal relationship fit the target gate.'
-        : 'Unknown rights keep source-specific choreography out of the target.',
+      reason: hasKnownRights ? 'bounded-reference-fit' : 'target-derived-unknown-rights',
     },
     proofState: {
       outcome: hasKnownRights ? 'positive' : 'unknown-rights',
@@ -719,7 +726,7 @@ function validateHydratedAttestation(candidate, card, hydration) {
 }
 
 function isKnownRetrievalUnavailable(error) {
-  return error instanceof SyntaxError || RETRIEVAL_UNAVAILABLE_CODES.has(error?.code);
+  return isRetrievalUnavailableError(error);
 }
 
 async function hydrateTemporalOwner(card, engineOptions) {
@@ -754,27 +761,35 @@ export async function buildMotionEvidencePlan(input, engineOptions = {}) {
   if (!validation.valid) {
     return { ok: false, error: 'invalid-motion-request', details: validation.errors };
   }
-  const authoritySnapshot = structuredClone(input.authorityInputs);
-  const gate = evaluateMotionRestraint(input.restraintAssessment);
+  const request = immutableSnapshot(input);
+  const authoritySnapshot = request.authorityInputs;
+  const gate = evaluateMotionRestraint(request.restraintAssessment);
+  const blockedOutcome = blockingPlanOutcome(request.contextPlan);
+  if (blockedOutcome) {
+    return negativeResult(
+      request,
+      gate,
+      'corpus-unavailable',
+      blockedOutcome,
+      false,
+    );
+  }
   if (gate.verdict === 'do-not-move') {
-    return negativeResult(input, gate, 'target-no-motion', 'no-fit', false);
+    return negativeResult(request, gate, 'target-no-motion', 'no-fit', false);
   }
 
-  const eligibility = classifyAttestedCandidates(input.eligibility);
+  const eligibility = classifyAttestedCandidates(request.eligibility);
   if (!eligibility.candidate) {
     const kind = eligibility.hardNegatives.length > 0
       ? 'hard-negative-rejection'
       : 'no-corpus-temporal-authority';
-    return negativeResult(input, gate, kind, 'no-fit', false);
-  }
-  if (input.contextPlan.availability === 'unavailable') {
-    return negativeResult(input, gate, 'corpus-unavailable', 'unavailable', false);
+    return negativeResult(request, gate, kind, 'no-fit', false);
   }
 
   let query;
   try {
     query = await runQuery({
-      ...(input.retrievalRequest ?? {}),
+      ...(request.retrievalRequest ?? {}),
       usage: 'reference',
       exactReuse: false,
       limit: MAX_QUERY_CARDS,
@@ -782,7 +797,7 @@ export async function buildMotionEvidencePlan(input, engineOptions = {}) {
   } catch (error) {
     if (!isKnownRetrievalUnavailable(error)) throw error;
     return negativeResult(
-      input,
+      request,
       gate,
       'corpus-unavailable',
       'no-fit',
@@ -790,9 +805,9 @@ export async function buildMotionEvidencePlan(input, engineOptions = {}) {
       [`retrieval-unavailable:${error.code ?? 'invalid-manifest'}`],
     );
   }
-  if (query.generationHash !== input.contextPlan.generationIdentity.observedGenerationHash) {
+  if (query.generationHash !== request.contextPlan.generationIdentity.observedGenerationHash) {
     return negativeResult(
-      input,
+      request,
       gate,
       'corpus-unavailable',
       'no-fit',
@@ -802,7 +817,7 @@ export async function buildMotionEvidencePlan(input, engineOptions = {}) {
   }
   const card = query.cards.find((candidate) => candidate.id === eligibility.candidate.sourceId);
   if (!card) {
-    return negativeResult(input, gate, 'no-corpus-temporal-authority', 'no-fit', true);
+    return negativeResult(request, gate, 'no-corpus-temporal-authority', 'no-fit', true);
   }
   const hydration = await hydrateTemporalOwner(card, engineOptions);
   if (!hydration.ok) {
@@ -810,7 +825,7 @@ export async function buildMotionEvidencePlan(input, engineOptions = {}) {
       return { ok: false, error: `temporal-owner-${hydration.error}` };
     }
     return negativeResult(
-      input,
+      request,
       gate,
       'corpus-unavailable',
       'no-fit',
@@ -825,7 +840,7 @@ export async function buildMotionEvidencePlan(input, engineOptions = {}) {
   );
   if (!attestationValidation.valid) {
     return negativeResult(
-      input,
+      request,
       gate,
       'unattested-source-rejection',
       'no-fit',
@@ -837,7 +852,7 @@ export async function buildMotionEvidencePlan(input, engineOptions = {}) {
     return { ok: false, error: 'authority-input-mutated' };
   }
   const source = sourceDescriptor(card, hydration, eligibility.candidate);
-  const proofHandoff = positiveProofHandoff(input.contextPlan, source);
+  const proofHandoff = positiveProofHandoff(request.contextPlan, source);
   const proofError = validateBuiltProof(proofHandoff);
   if (proofError) return proofError;
 
@@ -849,7 +864,7 @@ export async function buildMotionEvidencePlan(input, engineOptions = {}) {
     temporalOwner: sourceReference(source),
     rejectedCandidateCount: eligibility.rejected.length,
     hardNegativeCount: eligibility.hardNegatives.length,
-    authorityPreservation: authorityPreservation(input.authorityInputs, authoritySnapshot),
+    authorityPreservation: authorityPreservation(request.authorityInputs, authoritySnapshot),
     averagedTimingValues: false,
     copiedSourceSpecificMaterial: false,
     proofHandoff,

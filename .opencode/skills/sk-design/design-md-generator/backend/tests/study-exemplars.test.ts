@@ -29,6 +29,7 @@ import {
   SHORT_NORMALIZED_LEAK_DRAFT,
   STUDY_CANDIDATE,
   STUDY_GENERATION,
+  STUDY_HYDRATED_CONTENT_HASH,
   STUDY_HYDRATION,
   TARGET_TOKENS,
 } from './__fixtures__/study-cases';
@@ -41,6 +42,7 @@ function context(): StudyContext {
   return transformStudyExemplar(
     STUDY_CANDIDATE,
     STUDY_HYDRATION,
+    STUDY_CANDIDATE.contentHash,
     lockedFacts,
     schemaDigest(),
   );
@@ -116,23 +118,18 @@ describe('bounded STUDY exemplar controls', () => {
     const clean = checkStudySourceLeak(CLEAN_RETRY_DRAFT, studyContext, lockedFacts);
 
     expect(exact.passed).toBe(false);
-    expect(exact.exactValueHits).toContain('#c0ffee');
-    expect(exact.normalizedSpanHits).toHaveLength(0);
     expect(normalized.passed).toBe(false);
-    expect(normalized.exactValueHits).toHaveLength(0);
-    expect(normalized.normalizedSpanHits.length).toBeGreaterThan(0);
-    expect(clean).toEqual({ passed: true, exactValueHits: [], normalizedSpanHits: [] });
+    expect(clean).toEqual({ passed: true });
   });
 
   it.each([
-    ['source brand heading', BRAND_LEAK_DRAFT, 'Acme Quasar'],
-    ['relative asset reference', RELATIVE_ASSET_LEAK_DRAFT, './secret-logo.svg'],
-    ['primitive numeric token', NUMERIC_TOKEN_LEAK_DRAFT, '73'],
-  ])('blocks the %s bypass', (_label, draft, expectedHit) => {
+    ['source brand heading', BRAND_LEAK_DRAFT],
+    ['relative asset reference', RELATIVE_ASSET_LEAK_DRAFT],
+    ['primitive numeric token', NUMERIC_TOKEN_LEAK_DRAFT],
+  ])('blocks the %s bypass', (_label, draft) => {
     const leak = checkStudySourceLeak(draft, context(), buildLockedFacts(TARGET_TOKENS));
 
     expect(leak.passed).toBe(false);
-    expect(leak.exactValueHits).toContain(expectedHit);
   });
 
   it('blocks short distinctive normalized phrases without relying on an eight-word window', () => {
@@ -143,7 +140,66 @@ describe('bounded STUDY exemplar controls', () => {
     );
 
     expect(leak.passed).toBe(false);
-    expect(leak.normalizedSpanHits).toContain('quiet hierarchy');
+  });
+
+  it('keeps source literals and URLs out of both the handoff and persisted sidecar', () => {
+    const output = fs.mkdtempSync(path.join(os.tmpdir(), 'study-private-gate-'));
+    const studyContext = context();
+    fs.writeFileSync(path.join(output, 'tokens.json'), JSON.stringify(TARGET_TOKENS));
+    try {
+      runGuided({
+        url: 'https://target.example.test',
+        output,
+        fast: false,
+        report: false,
+        dryRun: false,
+        study: true,
+      }, {
+        preflight: () => [{ name: 'fixture', ok: true, detail: 'isolated' }],
+        prepareStudy: () => ({ ok: true, context: studyContext }),
+        executeCommand: (step) => (
+          step.label === 'write-prompt'
+            ? buildWritePrompt(TARGET_TOKENS, V3_SCHEMA, studyContext)
+            : ''
+        ),
+      });
+
+      const returnedHandoff = JSON.stringify(studyContext);
+      const persistedSidecar = fs.readFileSync(
+        path.join(output, 'study-context.json'),
+        'utf-8',
+      );
+      for (const serialized of [returnedHandoff, persistedSidecar]) {
+        expect(serialized).not.toContain('leakReference');
+        expect(serialized).not.toContain('Acme Quasar');
+        expect(serialized).not.toContain('secret-logo.svg');
+        expect(serialized).not.toContain('#c0ffee');
+        expect(serialized).not.toContain('https://styles.example.test');
+        expect(serialized).not.toContain('https://northstar.example.test');
+      }
+      expect(Object.isFrozen(studyContext)).toBe(true);
+      expect(Object.isFrozen(studyContext.envelope)).toBe(true);
+    } finally {
+      fs.rmSync(output, { recursive: true, force: true });
+    }
+  });
+
+  it('emits a hydrated-byte digest and rejects a forged candidate hash', () => {
+    const studyContext = context();
+    const forgedCandidate = {
+      ...STUDY_CANDIDATE,
+      contentHash: `sha256:${'f'.repeat(64)}`,
+    };
+
+    expect(studyContext.envelope.contentHash).toBe(STUDY_HYDRATED_CONTENT_HASH);
+    expect(studyContext.envelope.contentHash).not.toBe(STUDY_CANDIDATE.contentHash);
+    expect(() => transformStudyExemplar(
+      forgedCandidate,
+      STUDY_HYDRATION,
+      STUDY_CANDIDATE.contentHash,
+      buildLockedFacts(TARGET_TOKENS),
+      schemaDigest(),
+    )).toThrow('STUDY candidate content hash is not bound to the selected generation.');
   });
 
   it('selects up to three cards but hydrates one generation-bound design/token pair', () => {
@@ -157,6 +213,7 @@ describe('bounded STUDY exemplar controls', () => {
         requests.push(request);
         return STUDY_HYDRATION;
       },
+      verifyContentHash: () => STUDY_CANDIDATE.contentHash,
     };
     const result = prepareStudyContext(
       TARGET_TOKENS,
@@ -188,6 +245,7 @@ describe('bounded STUDY exemplar controls', () => {
         hydrateCalls += 1;
         return STUDY_HYDRATION;
       },
+      verifyContentHash: () => STUDY_CANDIDATE.contentHash,
     };
     const result = prepareStudyContext(
       TARGET_TOKENS,
@@ -250,7 +308,6 @@ describe('bounded STUDY exemplar controls', () => {
       };
       expect(buildPlan(options).map((step) => step.label)).toEqual([
         'extract',
-        'study-prepare',
         'write-prompt',
         'validate',
         'write-prompt-output',
@@ -258,10 +315,8 @@ describe('bounded STUDY exemplar controls', () => {
 
       runGuided(options, {
         preflight: () => [{ name: 'fixture', ok: true, detail: 'isolated' }],
+        prepareStudy: () => ({ ok: true, context: studyContext }),
         executeCommand: (step) => {
-          if (step.label === 'study-prepare') {
-            return JSON.stringify({ ok: true, context: studyContext });
-          }
           if (step.label === 'write-prompt') {
             writePromptCalls.push(step.args);
             return step.args.includes('--study-context')

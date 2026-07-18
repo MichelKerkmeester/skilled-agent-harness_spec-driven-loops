@@ -16,9 +16,11 @@ import {
   CORPUS_EVIDENCE_ALLOWED_USES,
   CORPUS_EVIDENCE_PROHIBITIONS,
   CORPUS_PROOF_HANDOFF_VERSION,
+  FALLBACK_REASONS,
   PROOF_OUTCOMES,
   SEMANTIC_DIMENSIONS,
   SEMANTIC_ROLES,
+  TRANSFORMATION_SUMMARIES,
 } from './corpus-context-plan.mjs';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -29,6 +31,15 @@ const HASH_PATTERN = /^sha256:[a-f0-9]{64}$/;
 const AVAILABILITY_STATES = Object.freeze(['ready', 'degraded', 'unavailable']);
 const GENERATION_STATES = Object.freeze(['current', 'unavailable', 'mismatch']);
 const PROVENANCE_STATES = Object.freeze(['known', 'partial', 'unknown', 'unavailable']);
+const LICENSE_STATES = Object.freeze([
+  'allowed',
+  'licensed',
+  'public-domain',
+  'restricted',
+  'known',
+  'unknown',
+  'not-applicable',
+]);
 const USE_LABELS = Object.freeze([
   'transformed-reference',
   'reference-only',
@@ -42,57 +53,6 @@ const FALLBACK_STATES = Object.freeze([
   'target-derived',
   'ordinary-workflow',
   'requery-required',
-]);
-const STYLE_PAYLOAD_PATTERN = /[{}:;]|#[a-f0-9]{3,8}\b|px|rgb/i;
-const PROHIBITED_AUTHORITY_CLAIMS = Object.freeze([
-  Object.freeze({
-    name: 'severity-or-priority',
-    keyPattern: /(?:severity|priority)(?:rating|level|decision)?/,
-    valuePatterns: Object.freeze([
-      /\b(?:severity|priority)(?:\s+(?:rating|level))?\s*[:=-]?\s*(?:p[0-4]|critical|high|medium|low)\b/i,
-      /\bp[0-4]\b/i,
-    ]),
-  }),
-  Object.freeze({
-    name: 'accessibility-or-performance-proof',
-    keyPattern: /(?:accessibility|performance)(?:proof|pass|passed|verified|verification|compliance)/,
-    valuePatterns: Object.freeze([
-      /\b(?:accessibility|performance)\b.{0,40}\b(?:proof|proven|pass|passed|verified|compliant)\b/i,
-      /\b(?:proof|proven|pass|passed|verified|compliant)\b.{0,40}\b(?:accessibility|performance)\b/i,
-    ]),
-  }),
-  Object.freeze({
-    name: 'mode-selection',
-    keyPattern: /(?:selectedmode|modeselection|modedecision|choosemode|chosenmode)/,
-    valuePatterns: Object.freeze([
-      /\bmode\b.{0,40}\b(?:selected|chosen|decided|selection|decision)\b/i,
-      /\b(?:selected|chosen)\b.{0,40}\bmode\b/i,
-    ]),
-  }),
-  Object.freeze({
-    name: 'copying-or-plagiarism-determination',
-    keyPattern: /(?:copying|plagiarism)(?:determination|decision|established|proof|status)/,
-    valuePatterns: Object.freeze([
-      /\b(?:copying|plagiarism)\b.{0,40}\b(?:established|determined|proven|confirmed)\b/i,
-      /\b(?:established|determined|proven|confirmed)\b.{0,40}\b(?:copying|plagiarism)\b/i,
-    ]),
-  }),
-  Object.freeze({
-    name: 'exact-reuse-authorization',
-    keyPattern: /exactreuse(?:authorization|authorisation|authorized|authorised|approval|permission)/,
-    valuePatterns: Object.freeze([
-      /\bexact reuse\b.{0,40}\b(?:authorized|authorised|approved|permitted|allowed)\b/i,
-      /\b(?:authorized|authorised|approved|permitted|allowed)\b.{0,40}\bexact reuse\b/i,
-    ]),
-  }),
-  Object.freeze({
-    name: 'transport-output-acceptance',
-    keyPattern: /transportoutput(?:acceptance|accepted|approval|approved|pass|passed)/,
-    valuePatterns: Object.freeze([
-      /\btransport output\b.{0,40}\b(?:accepted|approved|passed)\b/i,
-      /\b(?:accepted|approved|passed)\b.{0,40}\btransport output\b/i,
-    ]),
-  }),
 ]);
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -156,43 +116,7 @@ function validateCapabilityList(errors, value, path) {
   if (!Array.isArray(value)) return;
   for (const item of value) {
     if (typeof item !== 'string') continue;
-    if (STYLE_PAYLOAD_PATTERN.test(item)) errors.push(`${path}:style-payload-forbidden`);
     if (!CAPABILITY_TOKENS.includes(item)) errors.push(`${path}:invalid-capability`);
-  }
-}
-
-function normalizeAuthorityKey(key) {
-  return typeof key === 'string' ? key.replace(/[^a-z0-9]/gi, '').toLowerCase() : '';
-}
-
-function validateNoAuthoritativeClaims(
-  errors,
-  value,
-  path,
-  { scanValues = true, seen = new Set() } = {},
-) {
-  if (value === null || typeof value !== 'object' || seen.has(value)) return;
-  seen.add(value);
-
-  for (const key of Reflect.ownKeys(value)) {
-    const childPath = `${path}.${formatPropertyKey(key)}`;
-    const normalizedKey = normalizeAuthorityKey(key);
-    for (const claim of PROHIBITED_AUTHORITY_CLAIMS) {
-      if (normalizedKey && claim.keyPattern.test(normalizedKey)) {
-        errors.push(`${childPath}:prohibited-authority-claim:${claim.name}`);
-      }
-    }
-
-    const child = value[key];
-    if (scanValues && typeof child === 'string') {
-      for (const claim of PROHIBITED_AUTHORITY_CLAIMS) {
-        if (claim.valuePatterns.some((pattern) => pattern.test(child))) {
-          errors.push(`${childPath}:prohibited-authority-claim:${claim.name}`);
-        }
-      }
-    } else if (child !== null && typeof child === 'object') {
-      validateNoAuthoritativeClaims(errors, child, childPath, { scanValues, seen });
-    }
   }
 }
 
@@ -249,6 +173,7 @@ function validateProvenanceUseLabel(errors, value, path) {
   validateEnum(errors, value.status, `${path}.status`, PROVENANCE_STATES);
   if (value.sourceUrl !== null) validateNonEmptyString(errors, value.sourceUrl, `${path}.sourceUrl`);
   validateNonEmptyString(errors, value.licenseStatus, `${path}.licenseStatus`);
+  validateEnum(errors, value.licenseStatus, `${path}.licenseStatus`, LICENSE_STATES);
   if (typeof value.rightsKnown !== 'boolean') errors.push(`${path}.rightsKnown:required-boolean`);
   validateEnum(errors, value.useLabel, `${path}.useLabel`, USE_LABELS);
 }
@@ -269,7 +194,7 @@ function validateTransformation(errors, value, path) {
   const keys = ['state', 'summary', 'copiedSourceSpecificMaterial'];
   if (!validateExactKeys(errors, value, path, keys)) return;
   validateEnum(errors, value.state, `${path}.state`, TRANSFORMATION_STATES);
-  validateNonEmptyString(errors, value.summary, `${path}.summary`);
+  validateEnum(errors, value.summary, `${path}.summary`, TRANSFORMATION_SUMMARIES);
   if (value.copiedSourceSpecificMaterial !== false) {
     errors.push(`${path}.copiedSourceSpecificMaterial:must-be-false`);
   }
@@ -279,7 +204,7 @@ function validateFallback(errors, value, path) {
   const keys = ['state', 'reason'];
   if (!validateExactKeys(errors, value, path, keys)) return;
   validateEnum(errors, value.state, `${path}.state`, FALLBACK_STATES);
-  validateNonEmptyString(errors, value.reason, `${path}.reason`);
+  validateEnum(errors, value.reason, `${path}.reason`, FALLBACK_REASONS);
 }
 
 function validateProofState(errors, value, path) {
@@ -293,25 +218,114 @@ function validateProofState(errors, value, path) {
 function validateOutcomeSemantics(errors, record) {
   const outcome = record.proofState?.outcome;
   const sourceIdentity = record.sourceIdentity;
-  if (['no-fit', 'unavailable', 'generation-mismatch'].includes(outcome) && sourceIdentity !== null) {
-    errors.push('proofHandoff.sourceIdentity:must-be-null-for-negative-outcome');
-  }
-  if (['positive', 'unknown-rights'].includes(outcome) && !isPlainObject(sourceIdentity)) {
+  const generationState = record.generationIdentity?.state;
+  const provenance = record.provenanceUseLabel;
+  const semanticRole = record.semanticRole;
+  const transformation = record.transformation;
+  const fallback = record.fallback;
+  const sourceOutcome = outcome === 'positive' || outcome === 'unknown-rights';
+
+  if (sourceOutcome && !isPlainObject(sourceIdentity)) {
     errors.push('proofHandoff.sourceIdentity:required-for-source-outcome');
   }
-  if (outcome === 'generation-mismatch' && record.generationIdentity?.state !== 'mismatch') {
-    errors.push('proofHandoff.generationIdentity.state:mismatch-required');
+  if (!sourceOutcome && sourceIdentity !== null) {
+    errors.push('proofHandoff.sourceIdentity:must-be-null-for-negative-outcome');
   }
-  if (outcome === 'unavailable' && record.generationIdentity?.state !== 'unavailable') {
-    errors.push('proofHandoff.generationIdentity.state:unavailable-required');
+
+  const expectedGenerationState = outcome === 'generation-mismatch'
+    ? 'mismatch'
+    : outcome === 'unavailable'
+      ? 'unavailable'
+      : 'current';
+  if (generationState !== expectedGenerationState) {
+    errors.push(`proofHandoff.generationIdentity.state:${outcome}-requires-${expectedGenerationState}`);
   }
-  if (outcome === 'unknown-rights') {
-    if (record.provenanceUseLabel?.rightsKnown !== false) {
-      errors.push('proofHandoff.provenanceUseLabel.rightsKnown:must-be-false');
+
+  if (sourceOutcome) {
+    if (semanticRole?.role !== 'reference' || semanticRole?.dimensions?.length === 0) {
+      errors.push('proofHandoff.semanticRole:source-outcome-requires-reference');
     }
-    if (record.provenanceUseLabel?.useLabel !== 'rights-unknown') {
-      errors.push('proofHandoff.provenanceUseLabel.useLabel:rights-unknown-required');
+    if (sourceIdentity?.sourceUrl !== provenance?.sourceUrl) {
+      errors.push('proofHandoff.provenanceUseLabel.sourceUrl:source-identity-mismatch');
     }
+  } else if (semanticRole?.role !== 'none' || semanticRole?.dimensions?.length !== 0) {
+    errors.push('proofHandoff.semanticRole:negative-outcome-requires-none');
+  }
+
+  const semantics = {
+    positive: {
+      provenanceStatuses: ['known', 'partial'],
+      rightsKnown: true,
+      useLabels: ['transformed-reference', 'reference-only'],
+      transformationState: 'transformed',
+      transformationSummary: 'transformed-reference',
+      fallbackState: 'not-needed',
+      fallbackReason: 'bounded-reference-fit',
+    },
+    'no-fit': {
+      provenanceStatuses: ['unknown'],
+      rightsKnown: false,
+      useLabels: ['not-used'],
+      transformationState: 'not-applicable',
+      transformationSummary: 'no-source-influence',
+      fallbackState: 'target-derived',
+      fallbackReason: 'target-derived-no-fit',
+    },
+    unavailable: {
+      provenanceStatuses: ['unavailable'],
+      rightsKnown: false,
+      useLabels: ['unavailable'],
+      transformationState: 'not-applicable',
+      transformationSummary: 'no-source-influence',
+      fallbackState: 'ordinary-workflow',
+      fallbackReason: 'ordinary-workflow-unavailable',
+    },
+    'generation-mismatch': {
+      provenanceStatuses: ['unknown'],
+      rightsKnown: false,
+      useLabels: ['not-used'],
+      transformationState: 'not-applicable',
+      transformationSummary: 'no-source-influence',
+      fallbackState: 'requery-required',
+      fallbackReason: 'requery-generation-mismatch',
+    },
+    'unknown-rights': {
+      provenanceStatuses: ['known', 'partial', 'unknown'],
+      rightsKnown: false,
+      useLabels: ['rights-unknown'],
+      transformationState: 'planned',
+      transformationSummary: 'planned-reference',
+      fallbackState: 'target-derived',
+      fallbackReason: 'target-derived-unknown-rights',
+    },
+  }[outcome];
+  if (!semantics) return;
+
+  if (!semantics.provenanceStatuses.includes(provenance?.status)) {
+    errors.push(`proofHandoff.provenanceUseLabel.status:${outcome}-inconsistent`);
+  }
+  if (provenance?.rightsKnown !== semantics.rightsKnown) {
+    errors.push(`proofHandoff.provenanceUseLabel.rightsKnown:${outcome}-inconsistent`);
+  }
+  if (!semantics.useLabels.includes(provenance?.useLabel)) {
+    errors.push(`proofHandoff.provenanceUseLabel.useLabel:${outcome}-inconsistent`);
+  }
+  if (!sourceOutcome && (
+    provenance?.sourceUrl !== null || provenance?.licenseStatus !== 'not-applicable'
+  )) {
+    errors.push(`proofHandoff.provenanceUseLabel:${outcome}-requires-unused-source`);
+  }
+  if (transformation?.state !== semantics.transformationState) {
+    errors.push(`proofHandoff.transformation.state:${outcome}-inconsistent`);
+  }
+  if (transformation?.summary !== semantics.transformationSummary) {
+    errors.push(`proofHandoff.transformation.summary:${outcome}-inconsistent`);
+  }
+  if (fallback?.state !== semantics.fallbackState) {
+    errors.push(`proofHandoff.fallback.state:${outcome}-inconsistent`);
+  }
+  if (fallback?.reason !== semantics.fallbackReason) {
+    errors.push(`proofHandoff.fallback.reason:${outcome}-inconsistent`);
   }
 }
 
@@ -327,7 +341,6 @@ function validateOutcomeSemantics(errors, record) {
  */
 export function validateCorpusContextPlan(plan) {
   const errors = [];
-  validateNoAuthoritativeClaims(errors, plan, 'plan', { scanValues: false });
   if (!validateExactKeys(errors, plan, 'plan', CORPUS_CONTEXT_PLAN_SCHEMA.required)) {
     return { valid: false, errors };
   }
@@ -405,6 +418,23 @@ export function validateCorpusContextPlan(plan) {
   if (plan.generationIdentity?.state === 'mismatch' && plan.availability !== 'degraded') {
     errors.push('plan.availability:generation-mismatch-requires-degraded');
   }
+  const plannedOutcome = plan.proofPlan?.outcome;
+  const expectedGenerationState = plannedOutcome === 'generation-mismatch'
+    ? 'mismatch'
+    : plannedOutcome === 'unavailable'
+      ? 'unavailable'
+      : 'current';
+  if (plan.generationIdentity?.state !== expectedGenerationState) {
+    errors.push(`plan.generationIdentity.state:${plannedOutcome}-requires-${expectedGenerationState}`);
+  }
+  const expectedAvailability = ['generation-mismatch', 'unknown-rights'].includes(plannedOutcome)
+    ? 'degraded'
+    : plannedOutcome === 'unavailable'
+      ? 'unavailable'
+      : 'ready';
+  if (plan.availability !== expectedAvailability) {
+    errors.push(`plan.availability:${plannedOutcome}-requires-${expectedAvailability}`);
+  }
   return { valid: errors.length === 0, errors };
 }
 
@@ -416,7 +446,6 @@ export function validateCorpusContextPlan(plan) {
  */
 export function validateProofHandoffRecord(record) {
   const errors = [];
-  validateNoAuthoritativeClaims(errors, record, 'proofHandoff');
   if (!validateExactKeys(errors, record, 'proofHandoff', COMMON_PROOF_HANDOFF_FIELDS)) {
     return { valid: false, errors };
   }

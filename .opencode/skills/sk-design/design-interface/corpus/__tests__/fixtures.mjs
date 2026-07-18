@@ -16,6 +16,10 @@ import {
   CORPUS_PROOF_HANDOFF_VERSION,
 } from '../../../shared/corpus-context/corpus-context-plan.mjs';
 import {
+  INTERFACE_DECISION_EVIDENCE_VERSION,
+  INTERFACE_SOURCE_ATTESTATION_VERSION,
+} from '../relational-exemplar.mjs';
+import {
   STYLE_ALPHA,
   STYLE_BETA,
 } from '../../../styles/_engine/__tests__/fixtures.mjs';
@@ -91,9 +95,35 @@ function authorityInputs() {
   };
 }
 
-function modeDecision(sourceRoles = ['anchor']) {
+export function interfaceDecisionEvidence(sourceRole = 'anchor', overrides = {}) {
   return {
-    decisions: [{
+    schemaVersion: INTERFACE_DECISION_EVIDENCE_VERSION,
+    decisionId: '99999999-9999-4999-8999-999999999999',
+    axis: 'layout-rhythm',
+    operation: 'transform-for-target',
+    choice: 'editorial-image-led-sequence',
+    reasonCode: 'brief-job-priority',
+    sourceRole,
+    ...overrides,
+  };
+}
+
+function sourceAttestation(generationHash, sourceRole, binding = {}) {
+  const source = sourceRole === 'anchor' ? STYLE_ALPHA : STYLE_BETA;
+  return {
+    schemaVersion: INTERFACE_SOURCE_ATTESTATION_VERSION,
+    mode: 'interface',
+    sourceId: source.id,
+    generationHash,
+    contentHash: binding.contentHash ?? `sha256:${'7'.repeat(64)}`,
+    artifactPath: binding.artifactPath ?? `${source.slug}/DESIGN.md`,
+    artifactHash: binding.artifactHash ?? `sha256:${'8'.repeat(64)}`,
+    evidence: binding.evidence ?? interfaceDecisionEvidence(sourceRole),
+  };
+}
+
+function modeDecision(generationHash, sourceRoles = ['anchor'], sourceBindings = {}) {
+  const decisions = [{
       decisionId: '99999999-9999-4999-8999-999999999999',
       axis: 'layout-rhythm',
       operation: 'transform-for-target',
@@ -101,7 +131,9 @@ function modeDecision(sourceRoles = ['anchor']) {
       reasonCode: 'brief-job-priority',
       targetAuthority: 'mode-output',
       sourceRoles,
-    }],
+    }];
+  return {
+    decisions,
     counterfactual: {
       changedDecisionAxes: [{
         decisionId: '99999999-9999-4999-8999-999999999999',
@@ -110,6 +142,11 @@ function modeDecision(sourceRoles = ['anchor']) {
         finalDecision: 'editorial-image-led-sequence',
       }],
     },
+    attestations: sourceRoles.map((sourceRole) => sourceAttestation(
+      generationHash,
+      sourceRole,
+      sourceBindings[sourceRole],
+    )),
   };
 }
 
@@ -117,14 +154,14 @@ function modeDecision(sourceRoles = ['anchor']) {
 // 3. NAMED ATLAS CASES
 // ─────────────────────────────────────────────────────────────────────────────
 
-export function positiveInterfaceFixture(generationHash) {
+export function positiveInterfaceFixture(generationHash, sourceBindings = {}) {
   return {
     name: 'positive',
     input: {
       contextPlan: contextPlan(generationHash),
       retrievalRequest: { text: 'warm editorial story rhythm', useFts: false },
       selection: { anchorId: STYLE_ALPHA.id, secondary: null },
-      modeDecision: modeDecision(),
+      modeDecision: modeDecision(generationHash, ['anchor'], sourceBindings),
       authorityInputs: authorityInputs(),
     },
   };
@@ -146,7 +183,7 @@ export function noFitInterfaceFixture(generationHash) {
   };
 }
 
-export function rejectedDefaultInterfaceFixture(generationHash) {
+export function rejectedDefaultInterfaceFixture(generationHash, sourceBindings = {}) {
   return {
     name: 'rejected-default',
     input: {
@@ -156,7 +193,11 @@ export function rejectedDefaultInterfaceFixture(generationHash) {
         anchorId: STYLE_ALPHA.id,
         secondary: { id: STYLE_BETA.id, role: 'rejected-default' },
       },
-      modeDecision: modeDecision(['anchor', 'rejected-default']),
+      modeDecision: modeDecision(
+        generationHash,
+        ['anchor', 'rejected-default'],
+        sourceBindings,
+      ),
       authorityInputs: authorityInputs(),
     },
   };

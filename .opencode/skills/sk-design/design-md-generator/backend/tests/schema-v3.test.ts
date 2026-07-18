@@ -14,7 +14,9 @@ import {
 import {
   assertSchemaConsumerContracts,
   createV3Schema,
+  resolveValidationPolicy,
   resolveSchemaSections,
+  schemaDigest,
   V3_SCHEMA,
 } from '../scripts/schema-v3';
 import {
@@ -71,6 +73,15 @@ function v3Document(input: DesignTokens, schema = V3_SCHEMA): string {
       : `${section.heading}\n\nTarget-grounded content.`)
     .join('\n\n');
   return `# Example — Style Reference\n\n${sections}\n`;
+}
+
+function legacyFNV1a32(value: string): string {
+  let hash = 0x811c9dc5;
+  for (let index = 0; index < value.length; index += 1) {
+    hash ^= value.charCodeAt(index);
+    hash = Math.imul(hash, 0x01000193);
+  }
+  return `fnv1a32:${(hash >>> 0).toString(16).padStart(8, '0')}`;
 }
 
 describe('v3 schema single-authority contract', () => {
@@ -167,6 +178,48 @@ describe('v3 schema single-authority contract', () => {
     expect(issue).toMatchObject({ severity: 'hard', category: 'schema' });
     expect(result.warnings.some((warning) => warning.type === 'missing-section')).toBe(false);
     expect(isValidationPass(result)).toBe(false);
+  });
+
+  it('keeps corpus policies advisory under merged and supplied overrides', () => {
+    const issuePolicies = {
+      ...V3_SCHEMA.validation.issuePolicies,
+      'corpus-rarity': { severity: 'hard', category: 'target' },
+    };
+    const merged = createV3Schema({
+      validation: {
+        ...V3_SCHEMA.validation,
+        issuePolicies,
+      },
+    } as unknown as Parameters<typeof createV3Schema>[0]);
+    const supplied = {
+      ...V3_SCHEMA,
+      validation: { ...V3_SCHEMA.validation, issuePolicies },
+    } as unknown as typeof V3_SCHEMA;
+
+    expect(merged.validation.issuePolicies['corpus-rarity']).toEqual({
+      severity: 'advisory',
+      category: 'rarity',
+      tier: 'elevated',
+    });
+    expect(resolveValidationPolicy('corpus-rarity', supplied)).toEqual({
+      severity: 'advisory',
+      category: 'rarity',
+      tier: 'elevated',
+    });
+  });
+
+  it('separates schemas that collide under the former 32-bit digest', () => {
+    const left = createV3Schema({
+      document: { ...V3_SCHEMA.document, titleSuffix: '1cmyvqw-5vj' },
+    });
+    const right = createV3Schema({
+      document: { ...V3_SCHEMA.document, titleSuffix: '1w8mrx-dce' },
+    });
+
+    expect(JSON.stringify(left)).not.toBe(JSON.stringify(right));
+    expect(legacyFNV1a32(JSON.stringify(left))).toBe(legacyFNV1a32(JSON.stringify(right)));
+    expect(schemaDigest(left)).toMatch(/^sha256:[a-f0-9]{64}$/);
+    expect(schemaDigest(left)).not.toBe(schemaDigest(right));
   });
 
   it('keeps corpus divergence advisory while target/schema/provenance remain hard', () => {

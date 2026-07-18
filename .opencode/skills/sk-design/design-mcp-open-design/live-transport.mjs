@@ -12,9 +12,10 @@ import {
   validateReceiptForLive,
 } from './grounding-receipt.mjs';
 import {
+  deriveModeEvidence,
+  MAX_RETURN_ARTIFACTS,
   OPEN_DESIGN_RETURN_EVIDENCE_VERSION,
   reconcileTransportReturn,
-  validateModeEvidence,
   validateModeProposal,
   validateReturnEvidence,
 } from './return-reconciliation.mjs';
@@ -26,7 +27,6 @@ import {
 const RUN_REQUIRED_TOOLS = Object.freeze(['start_run', 'get_run', 'get_artifact']);
 const LIVE_STATUSES = new Set(['awaiting_input', 'completed', 'failed', 'cancelled']);
 const AGENTS = new Set(['claude', 'opencode', 'gemini']);
-const HASH_PATTERN = /^sha256:[a-f0-9]{64}$/;
 const IDENTIFIER_PATTERN = /^[a-zA-Z0-9][a-zA-Z0-9._:/-]{0,255}$/;
 const CONTINUATION_ACTION = 'use-recommended-defaults';
 
@@ -47,8 +47,8 @@ function cloneModeOwnedInputs(input) {
   try {
     return deepFreeze({
       receipt: structuredClone(input.receipt),
+      hydratedProof: structuredClone(input.hydratedProof),
       proposal: structuredClone(input.proposal),
-      modeEvidence: structuredClone(input.modeEvidence ?? []),
       transformedBrief: input.transformedBrief === undefined
         ? undefined
         : structuredClone(input.transformedBrief),
@@ -79,49 +79,48 @@ function normalizeStatus(rawStatus, operationKind) {
   return LIVE_STATUSES.has(rawStatus) ? rawStatus : 'failed';
 }
 
-function artifactCandidates(rawResult) {
-  if (Array.isArray(rawResult?.artifacts)) return rawResult.artifacts;
-  if (Array.isArray(rawResult?.files)) return rawResult.files;
-  if (isPlainObject(rawResult)
-    && (Object.hasOwn(rawResult, 'content')
-      || Object.hasOwn(rawResult, 'path')
-      || Object.hasOwn(rawResult, 'name'))) {
-    return [rawResult];
+function rejectUntrustedArtifactCollections(rawResult) {
+  for (const key of ['artifacts', 'files']) {
+    if (!Object.hasOwn(rawResult, key)) continue;
+    if (!Array.isArray(rawResult[key])) {
+      throw new TypeError(`Open Design ${key} metadata must be an array.`);
+    }
+    if (rawResult[key].length > 0) {
+      throw new TypeError(`Open Design ${key} metadata is not trusted artifact evidence.`);
+    }
   }
-  return [];
 }
 
-function normalizeArtifacts(rawResult, receipt, status) {
-  if (status === 'awaiting_input') return [];
-  const artifacts = artifactCandidates(rawResult).map((candidate, index) => {
-    if (typeof candidate === 'string') {
-      return { path: candidate, hash: digestMetadata({ path: candidate, index }) };
-    }
-    const path = candidate?.path ?? candidate?.name ?? `artifact-${index}`;
-    let hash;
-    if (Object.hasOwn(candidate ?? {}, 'content')) {
-      hash = digestMetadata(candidate.content);
-    } else if (typeof candidate?.hash === 'string' && HASH_PATTERN.test(candidate.hash)) {
-      hash = candidate.hash;
-    } else {
-      hash = digestMetadata({ path, index });
-    }
-    return { path, hash };
-  });
-  if (artifacts.length === 0 && receipt.operation.kind === 'design-bearing-read') {
-    artifacts.push({
-      path: receipt.target.resourceId ?? receipt.operation.tool,
-      hash: digestMetadata(rawResult),
-    });
+function artifactFromTrustedRead(rawResult, trustedPath) {
+  if (!Object.hasOwn(rawResult, 'content')) return null;
+  const observedPath = rawResult.path ?? rawResult.name ?? trustedPath;
+  if (typeof observedPath !== 'string'
+    || !IDENTIFIER_PATTERN.test(observedPath)
+    || observedPath !== trustedPath) {
+    return null;
   }
-  return artifacts;
+  return {
+    path: trustedPath,
+    hash: digestMetadata(rawResult.content),
+  };
 }
 
 function summarizeLivePayload(rawResult, receipt, toolSurfaceEvidence) {
   if (!isPlainObject(rawResult)) {
     throw new TypeError('Open Design live client returned a non-object response.');
   }
-  const status = normalizeStatus(rawResult.status, receipt.operation.kind);
+  rejectUntrustedArtifactCollections(rawResult);
+  let status = normalizeStatus(rawResult.status, receipt.operation.kind);
+  let artifacts = [];
+  if (receipt.operation.kind === 'design-bearing-read') {
+    const trustedPath = receipt.target.resourceId ?? receipt.operation.tool;
+    const artifact = artifactFromTrustedRead(rawResult, trustedPath);
+    if (artifact) {
+      artifacts = [artifact];
+    } else {
+      status = 'failed';
+    }
+  }
   const evidence = {
     schemaVersion: OPEN_DESIGN_RETURN_EVIDENCE_VERSION,
     status,
@@ -130,11 +129,14 @@ function summarizeLivePayload(rawResult, receipt, toolSurfaceEvidence) {
     runId: rawResult.runId ?? rawResult.run?.id ?? rawResult.id ?? null,
     entryFile: status === 'awaiting_input' ? null : (rawResult.entryFile ?? null),
     previewUrl: status === 'awaiting_input' ? null : (rawResult.previewUrl ?? null),
-    artifacts: normalizeArtifacts(rawResult, receipt, status),
+    artifacts,
     observedAt: new Date().toISOString(),
     toolSurfaceEvidence,
   };
-  const validation = validateReturnEvidence(evidence);
+  const validationCandidate = status === 'completed'
+    ? { ...evidence, status: 'failed' }
+    : evidence;
+  const validation = validateReturnEvidence(validationCandidate);
   if (!validation.valid) {
     throw new TypeError(`Open Design return metadata is invalid: ${validation.errors.join(', ')}`);
   }
@@ -154,13 +156,11 @@ function summarizeContinuationPayload(rawResult, expectedRunId) {
 
 function validateSharedSnapshot(snapshot, offlineGate, client) {
   assertOfflineContractGate(offlineGate);
-  const receiptValidation = validateReceiptForLive(snapshot.receipt);
+  const receiptValidation = validateReceiptForLive(snapshot.receipt, snapshot.hydratedProof);
   const proposalValidation = validateModeProposal(snapshot.proposal);
-  const modeEvidenceValidation = validateModeEvidence(snapshot.modeEvidence);
   const errors = [
     ...receiptValidation.errors,
     ...proposalValidation.errors,
-    ...modeEvidenceValidation.errors,
   ];
   if (errors.length) {
     throw new TypeError(`Live mode input validation failed: ${errors.join(', ')}`);
@@ -216,6 +216,9 @@ function validateRunSnapshot(snapshot, client) {
 
 function toolSurfaceEvidence(capability, requiredTools) {
   return deepFreeze({
+    available: capability.available,
+    reasonCode: capability.reasonCode,
+    missingTools: [...capability.missingTools],
     observedAt: capability.observedAt,
     toolsListHash: capability.toolsListHash,
     requiredTools: [...requiredTools],
@@ -223,34 +226,59 @@ function toolSurfaceEvidence(capability, requiredTools) {
 }
 
 function transportResult(snapshot, returnEvidence, capability) {
+  const modeEvidence = deriveModeEvidence(snapshot.proposal, returnEvidence);
   const reconciliation = reconcileTransportReturn({
     proposal: snapshot.proposal,
     returnEvidence,
-    modeEvidence: snapshot.modeEvidence,
+    modeEvidence,
   });
   return deepFreeze({
     receiptId: snapshot.receipt.receiptId,
     returnEvidence: reconciliation.returnEvidence,
     reconciliation,
     capability: {
+      available: capability.available,
+      reasonCode: capability.reasonCode,
+      missingTools: [...capability.missingTools],
       observedAt: capability.observedAt,
       toolsListHash: capability.toolsListHash,
     },
   });
 }
 
-async function fetchCompletedArtifact(client, snapshot, evidence, surfaceEvidence) {
-  const rawArtifact = await client.callTool('get_artifact', {
-    project: snapshot.receipt.target.projectId,
-    runId: evidence.runId,
-    path: evidence.entryFile,
-  });
-  if (!isPlainObject(rawArtifact)) {
-    throw new TypeError('Open Design artifact fetch returned a non-object response.');
+async function fetchCompletedArtifacts(client, snapshot, evidence) {
+  const expectedPaths = [...new Set(snapshot.proposal.influences
+    .map((influence) => influence.expectedArtifact?.path)
+    .filter((path) => typeof path === 'string'))];
+  if (expectedPaths.length === 0 || expectedPaths.length > MAX_RETURN_ARTIFACTS) {
+    throw new TypeError('Completed generation requires bounded proposal-owned artifact paths.');
+  }
+  const artifacts = [];
+  for (const trustedPath of expectedPaths) {
+    const rawArtifact = await client.callTool('get_artifact', {
+      project: snapshot.receipt.target.projectId,
+      runId: evidence.runId,
+      path: trustedPath,
+    });
+    if (!isPlainObject(rawArtifact)) {
+      throw new TypeError('Open Design artifact fetch returned a non-object response.');
+    }
+    rejectUntrustedArtifactCollections(rawArtifact);
+    const artifact = artifactFromTrustedRead(rawArtifact, trustedPath);
+    if (!artifact) {
+      return deepFreeze({
+        ...structuredClone(evidence),
+        status: 'failed',
+        entryFile: null,
+        previewUrl: null,
+        artifacts: [],
+      });
+    }
+    artifacts.push(artifact);
   }
   const completedEvidence = {
     ...structuredClone(evidence),
-    artifacts: normalizeArtifacts(rawArtifact, snapshot.receipt, 'completed'),
+    artifacts,
   };
   const validation = validateReturnEvidence(completedEvidence);
   if (!validation.valid) {
@@ -271,28 +299,69 @@ async function fetchCompletedArtifact(client, snapshot, evidence, surfaceEvidenc
  * @returns {Promise<Object>} Metadata-only capability result.
  */
 export async function checkLiveCapability(client, requiredTools) {
+  const observedAt = new Date().toISOString();
   if (!client || typeof client.listTools !== 'function') {
-    return { available: false, reason: 'client-list-tools-missing' };
+    return deepFreeze({
+      available: false,
+      reasonCode: 'client-list-tools-missing',
+      missingTools: [...requiredTools],
+      observedAt,
+      toolsListHash: null,
+    });
   }
   try {
     const toolNames = extractToolNames(await client.listTools());
     const missingTools = requiredTools.filter((tool) => !toolNames.includes(tool));
     if (missingTools.length) {
-      return {
+      return deepFreeze({
         available: false,
-        reason: `required-tools-missing:${missingTools.join(',')}`,
-      };
+        reasonCode: 'required-tools-missing',
+        missingTools,
+        observedAt,
+        toolsListHash: digestMetadata(toolNames),
+      });
     }
-    return {
+    return deepFreeze({
       available: true,
-      observedAt: new Date().toISOString(),
+      reasonCode: null,
+      missingTools: [],
+      observedAt,
       toolsListHash: digestMetadata(toolNames),
-    };
+    });
   } catch {
-    return {
+    return deepFreeze({
       available: false,
-      reason: 'daemon-unavailable',
-    };
+      reasonCode: 'daemon-unavailable',
+      missingTools: [...requiredTools],
+      observedAt,
+      toolsListHash: null,
+    });
+  }
+}
+
+function unavailableReturnEvidence(snapshot, capability, requiredTools) {
+  const evidence = {
+    schemaVersion: OPEN_DESIGN_RETURN_EVIDENCE_VERSION,
+    status: 'unavailable',
+    projectId: snapshot.receipt.target.projectId,
+    conversationId: null,
+    runId: null,
+    entryFile: null,
+    previewUrl: null,
+    artifacts: [],
+    observedAt: capability.observedAt,
+    toolSurfaceEvidence: toolSurfaceEvidence(capability, requiredTools),
+  };
+  const validation = validateReturnEvidence(evidence);
+  if (!validation.valid) {
+    throw new TypeError(`Generated unavailable metadata is invalid: ${validation.errors.join(', ')}`);
+  }
+  return deepFreeze(evidence);
+}
+
+function rejectPreCallModeEvidence(input) {
+  if (Object.hasOwn(input, 'modeEvidence')) {
+    throw new TypeError('Pre-call mode evidence is forbidden; evidence is derived from the live artifact.');
   }
 }
 
@@ -307,6 +376,7 @@ export async function checkLiveCapability(client, requiredTools) {
  * @returns {Promise<Readonly<Object>>} Metadata-only return and reconciliation.
  */
 export async function executeLiveRead(input) {
+  rejectPreCallModeEvidence(input);
   const snapshot = cloneModeOwnedInputs(input);
   validateSharedSnapshot(snapshot, input.offlineGate, input.client);
   if (snapshot.receipt.operation.kind !== 'design-bearing-read') {
@@ -315,7 +385,11 @@ export async function executeLiveRead(input) {
   const requiredTools = Object.freeze([snapshot.receipt.operation.tool]);
   const capability = await checkLiveCapability(input.client, requiredTools);
   if (!capability.available) {
-    throw new Error(`Open Design live capability unavailable: ${capability.reason}`);
+    return transportResult(
+      snapshot,
+      unavailableReturnEvidence(snapshot, capability, requiredTools),
+      capability,
+    );
   }
   const toolArguments = { project: snapshot.receipt.target.projectId };
   if (snapshot.receipt.target.resourceId !== null) {
@@ -337,6 +411,7 @@ export async function executeLiveRead(input) {
  * @returns {Promise<Readonly<Object>>} Metadata-only return and reconciliation.
  */
 export async function executeLiveRun(input) {
+  rejectPreCallModeEvidence(input);
   const snapshot = cloneModeOwnedInputs(input);
   validateSharedSnapshot(snapshot, input.offlineGate, input.client);
   if (snapshot.receipt.operation.kind !== 'generation-run') {
@@ -346,7 +421,11 @@ export async function executeLiveRun(input) {
 
   const capability = await checkLiveCapability(input.client, RUN_REQUIRED_TOOLS);
   if (!capability.available) {
-    throw new Error(`Open Design live capability unavailable: ${capability.reason}`);
+    return transportResult(
+      snapshot,
+      unavailableReturnEvidence(snapshot, capability, RUN_REQUIRED_TOOLS),
+      capability,
+    );
   }
   const surfaceEvidence = toolSurfaceEvidence(capability, RUN_REQUIRED_TOOLS);
   const rawStart = await input.client.callTool('start_run', {
@@ -373,7 +452,7 @@ export async function executeLiveRun(input) {
   }
 
   if (evidence.status === 'completed') {
-    evidence = await fetchCompletedArtifact(input.client, snapshot, evidence, surfaceEvidence);
+    evidence = await fetchCompletedArtifacts(input.client, snapshot, evidence);
   }
   return transportResult(snapshot, evidence, capability);
 }

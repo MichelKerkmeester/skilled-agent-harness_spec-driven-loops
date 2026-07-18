@@ -4,13 +4,14 @@
 
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
-import { mkdir, symlink, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, symlink, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import test from 'node:test';
 
-import { hydrateStyle } from '../hydrate.mjs';
+import { bindHydrationManifest, hydrateStyle } from '../hydrate.mjs';
 import { buildManifest } from '../manifest.mjs';
-import { STYLE_ALPHA, createFixtureCorpus } from './fixtures.mjs';
+import { runBuild, runHydrate } from '../style-library.mjs';
+import { STYLE_ALPHA, STYLE_BETA, createFixtureCorpus } from './fixtures.mjs';
 
 function artifactDigest(content) {
   return `sha256:${createHash('sha256').update(content).digest('hex')}`;
@@ -36,6 +37,17 @@ test('hydration refuses a stale generation and honors byte caps', async (context
   }, { corpusRoot: fixture.root });
   assert.equal(current.ok, true);
   assert.ok(current.totalBytes <= 128);
+
+  const bound = await bindHydrationManifest(manifest, {
+    id: STYLE_ALPHA.id,
+    generationHash: manifest.generationHash,
+    mode: 'interface',
+    includes: ['DESIGN.md'],
+  }, { corpusRoot: fixture.root });
+  assert.equal(bound.ok, true);
+  assert.equal(Object.isFrozen(bound.binding), true);
+  assert.equal(Object.isFrozen(bound.binding.request), true);
+  assert.equal(Object.isFrozen(bound.binding.liveManifest.styles[0].artifacts), true);
 });
 
 test('stale artifact hashes and unknown exact-reuse rights are refused', async (context) => {
@@ -67,6 +79,32 @@ test('stale artifact hashes and unknown exact-reuse rights are refused', async (
   assert.equal(rightsRestricted.error, 'rights-restricted');
 });
 
+test('hydration rejects a same-generation record with another style source', async (context) => {
+  const fixture = await createFixtureCorpus();
+  context.after(fixture.cleanup);
+  const manifestPath = path.join(fixture.root, '_retrieval-manifest.json');
+  await runBuild(['--write'], { corpusRoot: fixture.root, manifestPath });
+  const poisoned = JSON.parse(await readFile(manifestPath, 'utf8'));
+  const alpha = poisoned.styles.find((style) => style.id === STYLE_ALPHA.id);
+  const beta = poisoned.styles.find((style) => style.id === STYLE_BETA.id);
+  const alphaSource = { slug: alpha.slug, artifacts: structuredClone(alpha.artifacts) };
+  alpha.slug = beta.slug;
+  alpha.artifacts = structuredClone(beta.artifacts);
+  beta.slug = alphaSource.slug;
+  beta.artifacts = alphaSource.artifacts;
+  await writeFile(manifestPath, `${JSON.stringify(poisoned, null, 2)}\n`);
+
+  const result = await runHydrate({
+    id: STYLE_ALPHA.id,
+    generationHash: poisoned.generationHash,
+    mode: 'interface',
+    includes: ['DESIGN.md'],
+  }, { corpusRoot: fixture.root, manifestPath });
+  assert.deepEqual(result, { ok: false, error: 'manifest-stale' });
+  assert.deepEqual(Object.keys(result), ['ok', 'error']);
+  assert.equal(Object.isFrozen(result), true);
+});
+
 test('crafted traversal and escaping symlink paths return path-escape', async (context) => {
   const fixture = await createFixtureCorpus();
   context.after(fixture.cleanup);
@@ -80,6 +118,7 @@ test('crafted traversal and escaping symlink paths return path-escape', async (c
 
   const traversalManifest = {
     ...manifest,
+    recordCount: manifest.recordCount + 1,
     styles: [...manifest.styles, {
       ...ghostBase,
       artifacts: [{
@@ -104,6 +143,7 @@ test('crafted traversal and escaping symlink paths return path-escape', async (c
   await symlink(outsidePath, path.join(fixture.root, '_crafted', 'DESIGN.md'));
   const symlinkManifest = {
     ...manifest,
+    recordCount: manifest.recordCount + 1,
     styles: [...manifest.styles, {
       ...ghostBase,
       artifacts: [{

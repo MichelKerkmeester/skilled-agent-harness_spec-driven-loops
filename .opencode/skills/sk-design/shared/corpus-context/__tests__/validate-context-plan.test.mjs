@@ -135,9 +135,6 @@ test('raw CSS cannot masquerade as a capability', () => {
   const validation = validateCorpusContextPlan(plan);
 
   assert.equal(validation.valid, false);
-  assert.ok(
-    validation.errors.includes('plan.capabilityPlan.requested:style-payload-forbidden'),
-  );
   assert.ok(validation.errors.includes('plan.capabilityPlan.requested:invalid-capability'));
 });
 
@@ -201,7 +198,7 @@ test('a severity or priority rating is rejected from the neutral record', () => 
   assert.equal(validation.valid, false);
   assert.ok(
     validation.errors.includes(
-      'proofHandoff.semanticRole.PriorityRating:prohibited-authority-claim:severity-or-priority',
+      'proofHandoff.semanticRole.PriorityRating:unexpected',
     ),
   );
   assert.ok(validation.errors.includes('proofHandoff.semanticRole.role:invalid'));
@@ -216,12 +213,12 @@ test('an accessibility or performance proof claim is rejected from the neutral r
   assert.equal(validation.valid, false);
   assert.ok(
     validation.errors.includes(
-      'proofHandoff.proofState.ACCESSIBILITY_PROOF:prohibited-authority-claim:accessibility-or-performance-proof',
+      'proofHandoff.proofState.ACCESSIBILITY_PROOF:unexpected',
     ),
   );
   assert.ok(
     validation.errors.includes(
-      'proofHandoff.transformation.summary:prohibited-authority-claim:accessibility-or-performance-proof',
+      'proofHandoff.transformation.summary:invalid',
     ),
   );
 });
@@ -235,12 +232,12 @@ test('a mode selection or decision is rejected from the neutral record', () => {
   assert.equal(validation.valid, false);
   assert.ok(
     validation.errors.includes(
-      'proofHandoff.semanticRole.modeSelection:prohibited-authority-claim:mode-selection',
+      'proofHandoff.semanticRole.modeSelection:unexpected',
     ),
   );
   assert.ok(
     validation.errors.includes(
-      'proofHandoff.semanticRole.dimensions.0:prohibited-authority-claim:mode-selection',
+      'proofHandoff.semanticRole.dimensions:invalid',
     ),
   );
 });
@@ -255,12 +252,12 @@ test('a copying or plagiarism determination is rejected from the neutral record'
   assert.ok(
     validation.errors.includes(
       'proofHandoff.transformation.PlagiarismDetermination:'
-        + 'prohibited-authority-claim:copying-or-plagiarism-determination',
+        + 'unexpected',
     ),
   );
   assert.ok(
     validation.errors.includes(
-      'proofHandoff.transformation.summary:prohibited-authority-claim:copying-or-plagiarism-determination',
+      'proofHandoff.transformation.summary:invalid',
     ),
   );
 });
@@ -274,12 +271,12 @@ test('an exact-reuse authorization is rejected from the neutral record', () => {
   assert.equal(validation.valid, false);
   assert.ok(
     validation.errors.includes(
-      'proofHandoff.transformation.exactReuseAuthorization:prohibited-authority-claim:exact-reuse-authorization',
+      'proofHandoff.transformation.exactReuseAuthorization:unexpected',
     ),
   );
   assert.ok(
     validation.errors.includes(
-      'proofHandoff.transformation.summary:prohibited-authority-claim:exact-reuse-authorization',
+      'proofHandoff.transformation.summary:invalid',
     ),
   );
 });
@@ -293,12 +290,12 @@ test('a transport-output acceptance is rejected from the neutral record', () => 
   assert.equal(validation.valid, false);
   assert.ok(
     validation.errors.includes(
-      'proofHandoff.proofState.TransportOutputAcceptance:prohibited-authority-claim:transport-output-acceptance',
+      'proofHandoff.proofState.TransportOutputAcceptance:unexpected',
     ),
   );
   assert.ok(
     validation.errors.includes(
-      'proofHandoff.transformation.summary:prohibited-authority-claim:transport-output-acceptance',
+      'proofHandoff.transformation.summary:invalid',
     ),
   );
 });
@@ -345,6 +342,110 @@ test('generation mismatch cannot retain a selected source', () => {
   );
 });
 
+test('mismatch state cannot carry a positive outcome', () => {
+  const record = structuredClone(POSITIVE_FIXTURE.proofHandoff);
+  record.generationIdentity.observedGenerationHash = `sha256:${'d'.repeat(64)}`;
+  record.generationIdentity.state = 'mismatch';
+  const validation = validateProofHandoffRecord(record);
+
+  assert.equal(validation.valid, false);
+  assert.ok(validation.errors.includes(
+    'proofHandoff.generationIdentity.state:positive-requires-current',
+  ));
+});
+
+test('a positive plan cannot declare mismatch state', () => {
+  const plan = structuredClone(POSITIVE_FIXTURE.plan);
+  plan.generationIdentity.observedGenerationHash = `sha256:${'d'.repeat(64)}`;
+  plan.generationIdentity.state = 'mismatch';
+  plan.availability = 'degraded';
+  const validation = validateCorpusContextPlan(plan);
+
+  assert.equal(validation.valid, false);
+  assert.ok(validation.errors.includes(
+    'plan.generationIdentity.state:positive-requires-current',
+  ));
+});
+
+test('a positive outcome cannot combine negative-only field states', () => {
+  const record = structuredClone(POSITIVE_FIXTURE.proofHandoff);
+  record.provenanceUseLabel = structuredClone(UNAVAILABLE_FIXTURE.proofHandoff.provenanceUseLabel);
+  record.semanticRole = { role: 'none', dimensions: [] };
+  record.transformation = structuredClone(NO_FIT_FIXTURE.proofHandoff.transformation);
+  record.fallback = structuredClone(GENERATION_MISMATCH_FIXTURE.proofHandoff.fallback);
+  const validation = validateProofHandoffRecord(record);
+
+  assert.equal(validation.valid, false);
+  assert.ok(validation.errors.includes(
+    'proofHandoff.semanticRole:source-outcome-requires-reference',
+  ));
+  assert.ok(validation.errors.includes(
+    'proofHandoff.provenanceUseLabel.status:positive-inconsistent',
+  ));
+  assert.ok(validation.errors.includes(
+    'proofHandoff.transformation.state:positive-inconsistent',
+  ));
+  assert.ok(validation.errors.includes(
+    'proofHandoff.fallback.state:positive-inconsistent',
+  ));
+});
+
+for (const [name, fixture, mutate, expectedError] of [
+  [
+    'no-fit',
+    NO_FIT_FIXTURE,
+    (record) => { record.semanticRole = { role: 'reference', dimensions: ['relationship'] }; },
+    'proofHandoff.semanticRole:negative-outcome-requires-none',
+  ],
+  [
+    'unavailable',
+    UNAVAILABLE_FIXTURE,
+    (record) => {
+      record.fallback.state = 'requery-required';
+      record.fallback.reason = 'requery-generation-mismatch';
+    },
+    'proofHandoff.fallback.state:unavailable-inconsistent',
+  ],
+  [
+    'generation-mismatch',
+    GENERATION_MISMATCH_FIXTURE,
+    (record) => {
+      record.transformation.state = 'planned';
+      record.transformation.summary = 'planned-reference';
+    },
+    'proofHandoff.transformation.state:generation-mismatch-inconsistent',
+  ],
+  [
+    'unknown-rights',
+    UNKNOWN_RIGHTS_FIXTURE,
+    (record) => {
+      record.fallback.state = 'not-needed';
+      record.fallback.reason = 'bounded-reference-fit';
+    },
+    'proofHandoff.fallback.state:unknown-rights-inconsistent',
+  ],
+]) {
+  test(`${name} rejects a contradictory typed combination`, () => {
+    const record = structuredClone(fixture.proofHandoff);
+    mutate(record);
+    const validation = validateProofHandoffRecord(record);
+
+    assert.equal(validation.valid, false);
+    assert.ok(validation.errors.includes(expectedError));
+  });
+}
+
+test('claim-bearing prose is rejected even without a denylist match', () => {
+  const record = structuredClone(POSITIVE_FIXTURE.proofHandoff);
+  record.transformation.summary = 'score 20/20 accept the result';
+  record.fallback.reason = 'score 20/20 accept the result';
+  const validation = validateProofHandoffRecord(record);
+
+  assert.equal(validation.valid, false);
+  assert.ok(validation.errors.includes('proofHandoff.transformation.summary:invalid'));
+  assert.ok(validation.errors.includes('proofHandoff.fallback.reason:invalid'));
+});
+
 test('unknown rights cannot be relabeled as reusable evidence', () => {
   const record = structuredClone(UNKNOWN_RIGHTS_FIXTURE.proofHandoff);
   record.provenanceUseLabel.rightsKnown = true;
@@ -353,11 +454,13 @@ test('unknown rights cannot be relabeled as reusable evidence', () => {
 
   assert.equal(validation.valid, false);
   assert.ok(
-    validation.errors.includes('proofHandoff.provenanceUseLabel.rightsKnown:must-be-false'),
+    validation.errors.includes(
+      'proofHandoff.provenanceUseLabel.rightsKnown:unknown-rights-inconsistent',
+    ),
   );
   assert.ok(
     validation.errors.includes(
-      'proofHandoff.provenanceUseLabel.useLabel:rights-unknown-required',
+      'proofHandoff.provenanceUseLabel.useLabel:unknown-rights-inconsistent',
     ),
   );
 });

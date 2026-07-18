@@ -10,6 +10,7 @@ import {
   ALIGNED_RECONCILIATION_FIXTURE,
   DIVERGED_RECONCILIATION_FIXTURE,
   POSITIVE_RECEIPT_FIXTURE,
+  RECEIPT_HYDRATED_PROOFS,
   RECEIPT_FIXTURES,
   RECONCILIATION_FIXTURES,
 } from './fixtures/offline-fixtures.mjs';
@@ -38,7 +39,10 @@ const issuedGateResults = new WeakSet();
 export function runOfflineContractGate() {
   const errors = [];
   for (const fixture of RECEIPT_FIXTURES) {
-    const validation = validateGroundingReceipt(fixture);
+    const validation = validateGroundingReceipt(
+      fixture,
+      RECEIPT_HYDRATED_PROOFS[fixture.receiptId],
+    );
     if (!validation.valid) errors.push(...validation.errors.map((error) => `${fixture.receiptId}:${error}`));
   }
 
@@ -55,19 +59,25 @@ export function runOfflineContractGate() {
 
   const cacheViolation = structuredClone(POSITIVE_RECEIPT_FIXTURE);
   cacheViolation.cachedOpenDesignPayload = { html: '<html><body>forbidden</body></html>' };
-  if (validateGroundingReceipt(cacheViolation).valid) {
+  if (validateGroundingReceipt(cacheViolation, RECEIPT_HYDRATED_PROOFS['receipt-positive']).valid) {
     errors.push('no-cache-falsifier:violation-was-accepted');
   }
 
   const allowedFieldPayload = structuredClone(POSITIVE_RECEIPT_FIXTURE);
-  allowedFieldPayload.corpusContext.proof.transformationState = '<button>forbidden</button>';
-  if (validateGroundingReceipt(allowedFieldPayload).valid) {
+  allowedFieldPayload.corpusContext.proofHandoff.transformation.state = 'not-applicable';
+  if (validateGroundingReceipt(
+    allowedFieldPayload,
+    RECEIPT_HYDRATED_PROOFS['receipt-positive'],
+  ).valid) {
     errors.push('allowed-field-falsifier:raw-payload-was-accepted');
   }
 
   const missingReceiptAuthority = structuredClone(POSITIVE_RECEIPT_FIXTURE);
   delete missingReceiptAuthority.authority.decisionOwner;
-  if (validateGroundingReceipt(missingReceiptAuthority).valid) {
+  if (validateGroundingReceipt(
+    missingReceiptAuthority,
+    RECEIPT_HYDRATED_PROOFS['receipt-positive'],
+  ).valid) {
     errors.push('receipt-authority-falsifier:missing-field-was-accepted');
   }
 

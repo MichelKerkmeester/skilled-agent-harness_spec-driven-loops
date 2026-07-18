@@ -70,22 +70,14 @@ export interface StudyContext {
   readonly observations: readonly StudyObservation[];
   readonly discarded: readonly StudyDiscardedItem[];
   readonly envelope: {
-    readonly styleId: string;
     readonly generationHash: string;
     readonly contentHash: string;
     readonly artifacts: readonly {
       readonly kind: 'design' | 'tokens';
       readonly sha256: string;
     }[];
-    readonly provenance: {
-      readonly sourceUrl: string;
-      readonly originalUrl: string | null;
-      readonly capturedAt: string | null;
-    };
     readonly rights: {
-      readonly status: string;
       readonly known: boolean;
-      readonly evidenceScope: readonly string[];
       readonly useLabel: 'structural-observation-only';
     };
     readonly injection: {
@@ -96,16 +88,15 @@ export interface StudyContext {
       readonly transformerVersion: 'study-structural-v1';
     };
   };
-  readonly leakReference: {
-    readonly exactValues: readonly string[];
-    readonly normalizedSpans: readonly string[];
-  };
 }
 
 export interface StudyLeakResult {
   readonly passed: boolean;
-  readonly exactValueHits: readonly string[];
-  readonly normalizedSpanHits: readonly string[];
+}
+
+interface StudyLeakReference {
+  readonly exactValues: readonly string[];
+  readonly normalizedSpans: readonly string[];
 }
 
 // ───────────────────────────────────────────────────────────────
@@ -143,6 +134,7 @@ const COMMON_SPAN_WORDS = new Set([
 const OBSERVATION_CLASSES = new Set<StudyObservation['observationClass']>([
   'section-shape', 'relationship', 'prose-shape', 'security',
 ]);
+const LEAK_REFERENCES = new WeakMap<StudyContext, StudyLeakReference>();
 
 const OBSERVATION_TEXT: Readonly<Record<StudyObservationCode, string>> = Object.freeze({
   'compact-section-sequence': [
@@ -182,6 +174,19 @@ const OBSERVATION_TEXT: Readonly<Record<StudyObservationCode, string>> = Object.
 
 function sha256(value: string): string {
   return `sha256:${createHash('sha256').update(value).digest('hex')}`;
+}
+
+function hydratedContentHash(artifacts: readonly StudyHydratedArtifact[]): string {
+  const hash = createHash('sha256');
+  for (const artifact of [...artifacts].sort((left, right) => (
+    left.path < right.path ? -1 : left.path > right.path ? 1 : 0
+  ))) {
+    hash.update(artifact.path);
+    hash.update('\0');
+    hash.update(artifact.content);
+    hash.update('\0');
+  }
+  return `sha256:${hash.digest('hex')}`;
 }
 
 function observation(
@@ -391,16 +396,13 @@ function isCanonicalObservation(value: StudyObservation): boolean {
 function hasValidEnvelope(context: StudyContext): boolean {
   const envelope = context.envelope;
   const artifactKinds = new Set(envelope.artifacts.map((artifact) => artifact.kind));
-  return envelope.styleId.length > 0
-    && HASH_PATTERN.test(envelope.generationHash)
+  return HASH_PATTERN.test(envelope.generationHash)
     && HASH_PATTERN.test(envelope.contentHash)
     && envelope.artifacts.length === 2
     && artifactKinds.size === 2
     && artifactKinds.has('design')
     && artifactKinds.has('tokens')
     && envelope.artifacts.every((artifact) => HASH_PATTERN.test(artifact.sha256))
-    && /^https?:\/\//.test(envelope.provenance.sourceUrl)
-    && envelope.rights.status !== 'restricted'
     && envelope.rights.useLabel === 'structural-observation-only'
     && envelope.injection.untrustedInput === true
     && envelope.injection.rawArtifactsExcludedFromPrompt === true
@@ -417,10 +419,11 @@ export function buildTargetFactsDigest(lockedFacts: string, schemaDigest: string
   return sha256(`${schemaDigest}\0${lockedFacts}`);
 }
 
-/** Convert an untrusted hydrated pair into closed, structural observations and private leak signals. */
+/** Convert an untrusted hydrated pair into a closed handoff with process-private leak signals. */
 export function transformStudyExemplar(
   candidate: StudyCandidate,
   hydration: StudyHydration,
+  verifiedCandidateContentHash: string,
   lockedFacts: string,
   schemaDigest: string,
 ): StudyContext {
@@ -437,6 +440,18 @@ export function transformStudyExemplar(
   if (!designArtifact || !tokenArtifact || designArtifact.truncated || tokenArtifact.truncated) {
     throw new Error('STUDY requires a complete matched design and token artifact pair.');
   }
+  for (const artifact of [designArtifact, tokenArtifact]) {
+    if (artifact.sha256 !== sha256(artifact.content)) {
+      throw new Error('STUDY artifact digest does not match hydrated bytes.');
+    }
+  }
+  if (
+    !HASH_PATTERN.test(verifiedCandidateContentHash)
+    || candidate.contentHash !== verifiedCandidateContentHash
+  ) {
+    throw new Error('STUDY candidate content hash is not bound to the selected generation.');
+  }
+  const verifiedContentHash = hydratedContentHash([designArtifact, tokenArtifact]);
 
   let tokenDocument: unknown;
   try {
@@ -501,43 +516,36 @@ export function transformStudyExemplar(
     { sourcePointer: 'tokens:source-literals', reason: 'source-literal' },
   );
 
-  return {
+  const context: StudyContext = Object.freeze({
     schemaVersion: STUDY_CONTEXT_SCHEMA,
     targetFactsDigest: buildTargetFactsDigest(lockedFacts, schemaDigest),
-    observations,
-    discarded,
-    envelope: {
-      styleId: candidate.id,
+    observations: Object.freeze(observations.map((item) => Object.freeze({ ...item }))),
+    discarded: Object.freeze(discarded.map((item) => Object.freeze({ ...item }))),
+    envelope: Object.freeze({
       generationHash: candidate.generationHash,
-      contentHash: candidate.contentHash,
-      artifacts: [
-        { kind: 'design', sha256: designArtifact.sha256 },
-        { kind: 'tokens', sha256: tokenArtifact.sha256 },
-      ],
-      provenance: {
-        sourceUrl: candidate.provenance.sourceUrl,
-        originalUrl: candidate.provenance.originalUrl,
-        capturedAt: candidate.provenance.capturedAt ?? null,
-      },
-      rights: {
-        status: candidate.provenance.licenseStatus,
+      contentHash: verifiedContentHash,
+      artifacts: Object.freeze([
+        Object.freeze({ kind: 'design' as const, sha256: designArtifact.sha256 }),
+        Object.freeze({ kind: 'tokens' as const, sha256: tokenArtifact.sha256 }),
+      ]),
+      rights: Object.freeze({
         known: candidate.provenance.rightsKnown,
-        evidenceScope: candidate.provenance.evidenceScope ?? [],
         useLabel: 'structural-observation-only',
-      },
-      injection: {
+      }),
+      injection: Object.freeze({
         untrustedInput: true,
         rawArtifactsExcludedFromPrompt: true,
         instructionNeutralizationApplied: true,
         removedDirectiveLikeContent: directiveLines.length > 0,
         transformerVersion: STUDY_TRANSFORMER_VERSION,
-      },
-    },
-    leakReference: {
-      exactValues: extractExactValues(designArtifact.content, tokenDocument),
-      normalizedSpans: extractNormalizedSpans(designArtifact.content),
-    },
-  };
+      }),
+    }),
+  });
+  LEAK_REFERENCES.set(context, Object.freeze({
+    exactValues: Object.freeze([...extractExactValues(designArtifact.content, tokenDocument)]),
+    normalizedSpans: Object.freeze([...extractNormalizedSpans(designArtifact.content)]),
+  }));
+  return context;
 }
 
 /** Render only canonical observation codes; raw exemplar and provenance values never enter the prompt. */
@@ -587,19 +595,21 @@ export function checkStudySourceLeak(
   context: StudyContext,
   lockedFacts: string,
 ): StudyLeakResult {
+  const leakReference = LEAK_REFERENCES.get(context);
+  if (!leakReference) {
+    throw new Error('STUDY leak gate requires its in-process hydrated evidence.');
+  }
   const draftLower = authoredDraft.toLowerCase();
   const factsLower = lockedFacts.toLowerCase();
-  const exactValueHits = context.leakReference.exactValues.filter((value) => {
+  const exactValueHits = leakReference.exactValues.filter((value) => {
     return !containsExactValue(factsLower, value) && containsExactValue(draftLower, value);
   });
   const normalizedDraft = normalizeWords(authoredDraft).join(' ');
   const normalizedFacts = normalizeWords(lockedFacts).join(' ');
-  const normalizedSpanHits = context.leakReference.normalizedSpans.filter((span) => (
+  const normalizedSpanHits = leakReference.normalizedSpans.filter((span) => (
     !normalizedFacts.includes(span) && normalizedDraft.includes(span)
   ));
   return {
     passed: exactValueHits.length === 0 && normalizedSpanHits.length === 0,
-    exactValueHits,
-    normalizedSpanHits,
   };
 }

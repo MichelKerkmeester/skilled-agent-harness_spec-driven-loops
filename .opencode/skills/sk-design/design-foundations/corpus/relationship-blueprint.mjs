@@ -16,6 +16,15 @@ import {
   validateCorpusContextPlan,
   validateProofHandoffRecord,
 } from '../../shared/corpus-context/validate-context-plan.mjs';
+import {
+  blockingPlanOutcome,
+  immutableSnapshot,
+  isRetrievalUnavailableError,
+} from '../../shared/corpus-context/corpus-runtime.mjs';
+import {
+  validateHydratedSourceAttestation,
+  validateSourceAttestation,
+} from '../../shared/corpus-context/source-attestation.mjs';
 import { runHydrate, runQuery } from '../../styles/_engine/style-library.mjs';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -28,6 +37,10 @@ export const FOUNDATIONS_AXIS_COMPATIBILITY_VERSION =
   'FOUNDATIONS_AXIS_COMPATIBILITY v1';
 export const FOUNDATIONS_TRANSFORMATION_LEDGER_VERSION =
   'FOUNDATIONS_TRANSFORMATION_LEDGER v1';
+export const FOUNDATIONS_RELATIONSHIP_EVIDENCE_VERSION =
+  'FOUNDATIONS_RELATIONSHIP_EVIDENCE v1';
+export const FOUNDATIONS_SOURCE_ATTESTATION_VERSION =
+  'FOUNDATIONS_SOURCE_ATTESTATION v1';
 
 const REQUEST_KEYS = Object.freeze([
   'contextPlan',
@@ -35,6 +48,7 @@ const REQUEST_KEYS = Object.freeze([
   'selection',
   'blueprint',
   'compatibilityGraph',
+  'sourceAttestations',
   'transformationLedger',
   'downstreamChecks',
   'authorityInputs',
@@ -58,6 +72,17 @@ const BLUEPRINT_KEYS = Object.freeze([
 const GRAPH_KEYS = Object.freeze(['schemaVersion', 'nodes', 'edges']);
 const NODE_KEYS = Object.freeze(['nodeId', 'axis', 'ownerRole', 'sourceId']);
 const EDGE_KEYS = Object.freeze(['edgeId', 'fromNodeId', 'toNodeId', 'relation', 'basis']);
+const RELATIONSHIP_EVIDENCE_KEYS = Object.freeze([
+  'schemaVersion',
+  'edgeId',
+  'fromSourceId',
+  'toSourceId',
+  'fromAxis',
+  'toAxis',
+  'relation',
+  'basis',
+]);
+const RELATIONSHIP_EVIDENCE_FENCE = 'foundations-relationship-evidence';
 const LEDGER_KEYS = Object.freeze(['schemaVersion', 'records']);
 const LEDGER_RECORD_KEYS = Object.freeze([
   'sourceId',
@@ -191,11 +216,6 @@ const HASH_PATTERN = /^sha256:[a-f0-9]{64}$/;
 const MAX_AXIS_OWNERS = 3;
 const MAX_QUERY_CARDS = 5;
 const HYDRATION_BYTES = 8 * 1_024;
-const RETRIEVAL_UNAVAILABLE_CODES = Object.freeze(new Set([
-  'manifest-missing',
-  'manifest-stale',
-  'ENOENT',
-]));
 const HYDRATION_UNAVAILABLE_CODES = Object.freeze(new Set([
   'manifest-missing',
   'manifest-invalid',
@@ -415,6 +435,75 @@ function validateCompatibilityGraph(errors, graph, selection) {
   }
 }
 
+function validateRelationshipEvidence(errors, evidence, path) {
+  if (!validateExactKeys(errors, evidence, path, RELATIONSHIP_EVIDENCE_KEYS)) return;
+  if (evidence.schemaVersion !== FOUNDATIONS_RELATIONSHIP_EVIDENCE_VERSION) {
+    errors.push(`${path}.schemaVersion:invalid`);
+  }
+  for (const key of ['edgeId', 'fromSourceId', 'toSourceId']) {
+    validateUuid(errors, evidence[key], `${path}.${key}`);
+  }
+  validateEnum(errors, evidence.fromAxis, `${path}.fromAxis`, AXES);
+  validateEnum(errors, evidence.toAxis, `${path}.toAxis`, AXES);
+  validateEnum(errors, evidence.relation, `${path}.relation`, COMPATIBILITY_RELATIONS);
+  const bases = RELATION_BASIS_UNIONS[evidence.relation] ?? [];
+  if (!bases.includes(evidence.basis)) errors.push(`${path}.basis:invalid-union`);
+}
+
+function validateSourceAttestations(errors, attestations, graph, generationHash) {
+  if (!Array.isArray(attestations)) {
+    errors.push('sourceAttestations:required-array');
+    return;
+  }
+  const nodesById = new Map(graph?.nodes?.map((node) => [node.nodeId, node]));
+  const edgesById = new Map(graph?.edges?.map((edge) => [edge.edgeId, edge]));
+  const expectedBindings = new Set();
+  for (const edge of graph?.edges ?? []) {
+    const fromSourceId = nodesById.get(edge.fromNodeId)?.sourceId;
+    const toSourceId = nodesById.get(edge.toNodeId)?.sourceId;
+    if (fromSourceId) expectedBindings.add(`${edge.edgeId}:${fromSourceId}`);
+    if (toSourceId) expectedBindings.add(`${edge.edgeId}:${toSourceId}`);
+  }
+  const actualBindings = new Set();
+  for (const [index, attestation] of attestations.entries()) {
+    const path = `sourceAttestations.${index}`;
+    validateSourceAttestation(errors, attestation, path, {
+      schemaVersion: FOUNDATIONS_SOURCE_ATTESTATION_VERSION,
+      mode: 'foundations',
+      sourceId: attestation?.sourceId,
+      generationHash,
+      validateEvidence: validateRelationshipEvidence,
+    });
+    const evidence = attestation?.evidence;
+    const edge = edgesById.get(evidence?.edgeId);
+    const fromNode = edge ? nodesById.get(edge.fromNodeId) : null;
+    const toNode = edge ? nodesById.get(edge.toNodeId) : null;
+    const expectedEvidence = edge && fromNode && toNode ? {
+      schemaVersion: FOUNDATIONS_RELATIONSHIP_EVIDENCE_VERSION,
+      edgeId: edge.edgeId,
+      fromSourceId: fromNode.sourceId,
+      toSourceId: toNode.sourceId,
+      fromAxis: fromNode.axis,
+      toAxis: toNode.axis,
+      relation: edge.relation,
+      basis: edge.basis,
+    } : null;
+    if (!expectedEvidence || !isDeepStrictEqual(evidence, expectedEvidence)) {
+      errors.push(`${path}.evidence:edge-mismatch`);
+      continue;
+    }
+    if (![fromNode.sourceId, toNode.sourceId].includes(attestation.sourceId)) {
+      errors.push(`${path}.sourceId:not-edge-endpoint`);
+    }
+    const binding = `${edge.edgeId}:${attestation.sourceId}`;
+    if (actualBindings.has(binding)) errors.push(`${path}:duplicate-binding`);
+    actualBindings.add(binding);
+  }
+  for (const binding of expectedBindings) {
+    if (!actualBindings.has(binding)) errors.push(`sourceAttestations:missing-binding:${binding}`);
+  }
+}
+
 function validateTransformationLedger(errors, ledger, graph, selection, authorityInputs) {
   if (!validateExactKeys(errors, ledger, 'transformationLedger', LEDGER_KEYS)) return;
   if (ledger.schemaVersion !== FOUNDATIONS_TRANSFORMATION_LEDGER_VERSION) {
@@ -523,6 +612,12 @@ export function validateFoundationsRelationshipRequest(input) {
   validateSelection(errors, input.selection);
   validateBlueprint(errors, input.blueprint);
   validateCompatibilityGraph(errors, input.compatibilityGraph, input.selection);
+  validateSourceAttestations(
+    errors,
+    input.sourceAttestations,
+    input.compatibilityGraph,
+    input.contextPlan?.generationIdentity?.observedGenerationHash,
+  );
   validateTransformationLedger(
     errors,
     input.transformationLedger,
@@ -540,7 +635,7 @@ export function validateFoundationsRelationshipRequest(input) {
 // ─────────────────────────────────────────────────────────────────────────────
 
 function isKnownRetrievalUnavailable(error) {
-  return error instanceof SyntaxError || RETRIEVAL_UNAVAILABLE_CODES.has(error?.code);
+  return isRetrievalUnavailableError(error);
 }
 
 function provenanceFromCard(card) {
@@ -585,6 +680,7 @@ function sourceReference(source) {
 
 function negativeProofHandoff(contextPlan, outcome) {
   const isUnavailable = outcome === 'unavailable';
+  const isMismatch = outcome === 'generation-mismatch';
   return {
     generationIdentity: contextPlan.generationIdentity,
     sourceIdentity: null,
@@ -598,12 +694,20 @@ function negativeProofHandoff(contextPlan, outcome) {
     semanticRole: { role: 'none', dimensions: [] },
     transformation: {
       state: 'not-applicable',
-      summary: 'No corpus source influenced the target-owned foundations blueprint.',
+      summary: 'no-source-influence',
       copiedSourceSpecificMaterial: false,
     },
     fallback: {
-      state: isUnavailable ? 'ordinary-workflow' : 'target-derived',
-      reason: 'The ordinary target-derived foundations workflow remains active.',
+      state: isUnavailable
+        ? 'ordinary-workflow'
+        : isMismatch
+          ? 'requery-required'
+          : 'target-derived',
+      reason: isUnavailable
+        ? 'ordinary-workflow-unavailable'
+        : isMismatch
+          ? 'requery-generation-mismatch'
+          : 'target-derived-no-fit',
     },
     proofState: {
       outcome,
@@ -613,7 +717,7 @@ function negativeProofHandoff(contextPlan, outcome) {
   };
 }
 
-function positiveProofHandoff(contextPlan, anchor, relationCount) {
+function positiveProofHandoff(contextPlan, anchor) {
   const hasKnownRights = anchor.provenanceUseLabel.rightsKnown;
   return {
     generationIdentity: contextPlan.generationIdentity,
@@ -625,15 +729,13 @@ function positiveProofHandoff(contextPlan, anchor, relationCount) {
     provenanceUseLabel: anchor.provenanceUseLabel,
     semanticRole: { role: 'reference', dimensions: ['relationship', 'rationale'] },
     transformation: {
-      state: 'transformed',
-      summary: `${relationCount} typed relationships were translated without source literals.`,
+      state: hasKnownRights ? 'transformed' : 'planned',
+      summary: hasKnownRights ? 'transformed-reference' : 'planned-reference',
       copiedSourceSpecificMaterial: false,
     },
     fallback: {
       state: hasKnownRights ? 'not-needed' : 'target-derived',
-      reason: hasKnownRights
-        ? 'Bounded relationship evidence informed target-owned decisions.'
-        : 'Unknown rights keep all source-specific material out of target output.',
+      reason: hasKnownRights ? 'bounded-reference-fit' : 'target-derived-unknown-rights',
     },
     proofState: {
       outcome: hasKnownRights ? 'positive' : 'unknown-rights',
@@ -725,16 +827,18 @@ export async function buildFoundationsRelationshipPlan(input, engineOptions = {}
   if (!validation.valid) {
     return { ok: false, error: 'invalid-foundations-request', details: validation.errors };
   }
-  const authoritySnapshot = structuredClone(input.authorityInputs);
-  if (input.contextPlan.availability === 'unavailable') {
-    return fallbackResult(input, 'unavailable');
+  const request = immutableSnapshot(input);
+  const authoritySnapshot = request.authorityInputs;
+  const blockedOutcome = blockingPlanOutcome(request.contextPlan);
+  if (blockedOutcome) {
+    return fallbackResult(request, blockedOutcome);
   }
-  if (input.selection.mode === 'none') return fallbackResult(input, 'no-fit');
+  if (request.selection.mode === 'none') return fallbackResult(request, 'no-fit');
 
   let query;
   try {
     query = await runQuery({
-      ...(input.retrievalRequest ?? {}),
+      ...(request.retrievalRequest ?? {}),
       usage: 'reference',
       exactReuse: false,
       limit: MAX_QUERY_CARDS,
@@ -742,39 +846,60 @@ export async function buildFoundationsRelationshipPlan(input, engineOptions = {}
   } catch (error) {
     if (!isKnownRetrievalUnavailable(error)) throw error;
     return fallbackResult(
-      input,
+      request,
       'no-fit',
       [`retrieval-unavailable:${error.code ?? 'invalid-manifest'}`],
     );
   }
-  if (query.generationHash !== input.contextPlan.generationIdentity.observedGenerationHash) {
-    return fallbackResult(input, 'no-fit', ['retrieval-unavailable:generation-mismatch']);
+  if (query.generationHash !== request.contextPlan.generationIdentity.observedGenerationHash) {
+    return fallbackResult(request, 'no-fit', ['retrieval-unavailable:generation-mismatch']);
   }
 
-  const selectedIds = [input.selection.coherentAnchorId, ...input.selection.axisOwnerIds];
+  const selectedIds = [request.selection.coherentAnchorId, ...request.selection.axisOwnerIds];
   const selectedCards = selectedIds.map((sourceId) => (
     query.cards.find((card) => card.id === sourceId)
   ));
-  if (selectedCards.some((card) => !card)) return fallbackResult(input, 'no-fit');
+  if (selectedCards.some((card) => !card)) return fallbackResult(request, 'no-fit');
 
   const sources = [];
+  const hydratedSources = new Map();
   for (const [index, card] of selectedCards.entries()) {
     const hydration = await hydrateSource(card, engineOptions);
     if (!hydration.ok) {
       if (!HYDRATION_UNAVAILABLE_CODES.has(hydration.error)) {
         return { ok: false, error: `source-${hydration.error}` };
       }
-      return fallbackResult(input, 'no-fit', [`source-unavailable:${hydration.error}`]);
+      return fallbackResult(request, 'no-fit', [`source-unavailable:${hydration.error}`]);
     }
+    hydratedSources.set(card.id, { card, hydration });
     sources.push(sourceDescriptor(card, hydration, index === 0 ? 'coherent-anchor' : 'axis-owner'));
+  }
+  const attestationErrors = [];
+  for (const attestation of request.sourceAttestations) {
+    const hydrated = hydratedSources.get(attestation.sourceId);
+    if (!hydrated) {
+      attestationErrors.push(`${attestation.sourceId}:source-not-hydrated`);
+      continue;
+    }
+    const result = validateHydratedSourceAttestation(
+      attestation,
+      hydrated.card,
+      hydrated.hydration,
+      { fence: RELATIONSHIP_EVIDENCE_FENCE, validateEvidence: validateRelationshipEvidence },
+    );
+    attestationErrors.push(...result.errors.map((error) => (
+      `${attestation.evidence.edgeId}:${attestation.sourceId}:${error}`
+    )));
+  }
+  if (attestationErrors.length > 0) {
+    return { ok: false, error: 'relationship-attestation-rejected', details: attestationErrors };
   }
   if (!isDeepStrictEqual(input.authorityInputs, authoritySnapshot)) {
     return { ok: false, error: 'authority-input-mutated' };
   }
   const proofHandoff = positiveProofHandoff(
-    input.contextPlan,
+    request.contextPlan,
     sources[0],
-    input.compatibilityGraph.edges.length,
   );
   const proofError = validateBuiltProof(proofHandoff);
   if (proofError) return proofError;
@@ -782,12 +907,12 @@ export async function buildFoundationsRelationshipPlan(input, engineOptions = {}
   return {
     ok: true,
     outcome: 'relationship-context',
-    relationshipBlueprint: structuredClone(input.blueprint),
-    compatibilityGraph: structuredClone(input.compatibilityGraph),
-    transformationLedger: structuredClone(input.transformationLedger),
-    downstreamChecks: structuredClone(input.downstreamChecks),
+    relationshipBlueprint: structuredClone(request.blueprint),
+    compatibilityGraph: structuredClone(request.compatibilityGraph),
+    transformationLedger: structuredClone(request.transformationLedger),
+    downstreamChecks: structuredClone(request.downstreamChecks),
     sources: sources.map(sourceReference),
-    authorityPreservation: authorityPreservation(input.authorityInputs, authoritySnapshot),
+    authorityPreservation: authorityPreservation(request.authorityInputs, authoritySnapshot),
     averagedTokenValues: false,
     copiedSourceSpecificMaterial: false,
     proofHandoff,

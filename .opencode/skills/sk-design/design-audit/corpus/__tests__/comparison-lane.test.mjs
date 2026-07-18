@@ -18,6 +18,7 @@ import { runBuild } from '../../../styles/_engine/style-library.mjs';
 import {
   STYLE_ALPHA,
   STYLE_BETA,
+  appendDesignText,
   createFixtureCorpus,
 } from '../../../styles/_engine/__tests__/fixtures.mjs';
 import {
@@ -27,6 +28,8 @@ import {
 } from '../comparison-lane.mjs';
 import {
   MAINTAINER_FIXTURE_ATLAS,
+  auditComparisonAttestation,
+  auditComparisonEvidence,
   comparisonUnavailableFixture,
   intendedAnchorDriftFixture,
 } from './fixtures.mjs';
@@ -38,6 +41,23 @@ import {
 async function preparedCorpus(context) {
   const fixture = await createFixtureCorpus();
   context.after(fixture.cleanup);
+  const evidenceById = {
+    [STYLE_ALPHA.id]: auditComparisonEvidence(),
+    [STYLE_BETA.id]: auditComparisonEvidence({
+      comparisonId: STYLE_BETA.id,
+      purpose: 'contextual-relationship',
+      relation: 'intentional-delta',
+      axisObservations: [{
+        axis: 'content-hierarchy',
+        state: 'intentional-delta',
+      }],
+    }),
+  };
+  await Promise.all([STYLE_ALPHA, STYLE_BETA].map((style) => appendDesignText(
+    fixture.root,
+    style.slug,
+    `\`\`\`audit-comparison-evidence\n${JSON.stringify(evidenceById[style.id])}\n\`\`\``,
+  )));
   const manifestPath = path.join(fixture.root, '_retrieval-manifest.json');
   await runBuild(['--write'], { corpusRoot: fixture.root, manifestPath });
   const manifest = await loadManifest(manifestPath);
@@ -46,6 +66,17 @@ async function preparedCorpus(context) {
     contentHashes: Object.fromEntries(
       manifest.styles.map((style) => [style.id, style.contentHash]),
     ),
+    sourceBindings: Object.fromEntries(manifest.styles.map((style) => {
+      const artifact = style.artifacts.find((candidate) => (
+        candidate.path === `${style.slug}/DESIGN.md`
+      ));
+      return [style.id, {
+        contentHash: style.contentHash,
+        artifactPath: artifact.path,
+        artifactHash: artifact.sha256,
+        evidence: evidenceById[style.id],
+      }];
+    })),
     engineOptions: { corpusRoot: fixture.root, manifestPath },
   };
 }
@@ -54,6 +85,7 @@ function driftFixture(prepared) {
   return intendedAnchorDriftFixture(
     prepared.generationHash,
     prepared.contentHashes[STYLE_ALPHA.id],
+    prepared.sourceBindings[STYLE_ALPHA.id],
   );
 }
 
@@ -69,6 +101,23 @@ function outputHasVerdictField(value) {
     if (outputHasVerdictField(value[key])) return true;
   }
   return false;
+}
+
+async function runDuringCorpusMutation(corpusRoot, operation) {
+  let active = true;
+  const crawlManifestPath = path.join(corpusRoot, '_manifest.json');
+  const mutationLoop = (async () => {
+    while (active) {
+      await appendFile(crawlManifestPath, ' ');
+      await new Promise((resolve) => setImmediate(resolve));
+    }
+  })();
+  try {
+    return await operation();
+  } finally {
+    active = false;
+    await mutationLoop;
+  }
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -133,6 +182,11 @@ test('two selected references remain bounded non-authoritative context', async (
   secondComparison.purpose = 'contextual-relationship';
   secondComparison.intendedAnchor = null;
   secondComparison.axisObservations[0].state = 'intentional-delta';
+  secondComparison.attestation = auditComparisonAttestation(
+    prepared.generationHash,
+    STYLE_BETA.id,
+    prepared.sourceBindings[STYLE_BETA.id],
+  );
   fixture.input.comparisons.push(secondComparison);
   const result = await buildAuditComparisonLane(fixture.input, prepared.engineOptions);
 
@@ -149,6 +203,63 @@ test('two selected references remain bounded non-authoritative context', async (
       && ['known', 'unknown'].includes(comparison.reference.rightsState)
     ),
   ));
+});
+
+test('a forged comparison absent from hydrated evidence is rejected', async (context) => {
+  const prepared = await preparedCorpus(context);
+  const fixture = driftFixture(prepared);
+  const comparison = fixture.input.comparisons[0];
+  comparison.purpose = 'contextual-relationship';
+  comparison.relation = 'intentional-delta';
+  comparison.axisObservations[0].state = 'intentional-delta';
+  comparison.attestation.evidence.purpose = 'contextual-relationship';
+  comparison.attestation.evidence.relation = 'intentional-delta';
+  comparison.attestation.evidence.axisObservations[0].state = 'intentional-delta';
+  const result = await buildAuditComparisonLane(fixture.input, prepared.engineOptions);
+
+  assert.equal(result.ok, false);
+  assert.equal(result.error, 'comparison-attestation-rejected');
+  assert.ok(result.details.includes('sourceEvidence:not-attested-by-artifact'));
+});
+
+test('a mismatch plan never hydrates the observed generation', async (context) => {
+  const prepared = await preparedCorpus(context);
+  const fixture = driftFixture(prepared);
+  const observedHash = `sha256:${'f'.repeat(64)}`;
+  fixture.input.contextPlan.generationIdentity.observedGenerationHash = observedHash;
+  fixture.input.contextPlan.generationIdentity.state = 'mismatch';
+  fixture.input.contextPlan.availability = 'degraded';
+  fixture.input.contextPlan.proofPlan.outcome = 'generation-mismatch';
+  fixture.input.comparisons[0].attestation.generationHash = observedHash;
+  const result = await buildAuditComparisonLane(fixture.input, {
+    ...prepared.engineOptions,
+    manifestPath: path.join(prepared.engineOptions.corpusRoot, 'missing.json'),
+  });
+
+  assert.equal(result.ok, true);
+  assert.equal(result.outcome, 'comparison-unavailable');
+  assert.equal(result.proofHandoffs[0].proofState.outcome, 'generation-mismatch');
+  assert.deepEqual(validateProofHandoffRecord(result.proofHandoffs[0]), {
+    valid: true,
+    errors: [],
+  });
+});
+
+test('a concurrently changing corpus becomes validated unavailable context', async (context) => {
+  const prepared = await preparedCorpus(context);
+  const fixture = driftFixture(prepared);
+  const result = await runDuringCorpusMutation(
+    prepared.engineOptions.corpusRoot,
+    () => buildAuditComparisonLane(fixture.input, prepared.engineOptions),
+  );
+
+  assert.equal(result.ok, true);
+  assert.equal(result.outcome, 'comparison-unavailable');
+  assert.ok(result.warnings.includes('retrieval-unavailable:corpus-changing'));
+  assert.deepEqual(validateProofHandoffRecord(result.proofHandoffs[0]), {
+    valid: true,
+    errors: [],
+  });
 });
 
 test('a verdict and severity claim in an allowed value slot is rejected', async (context) => {

@@ -8,8 +8,13 @@ import path from 'node:path';
 import test from 'node:test';
 
 import {
+  CorpusChangingError,
+  ManifestBuildError,
   buildManifest,
   diffManifests,
+  isManifestBuildError,
+  loadManifest,
+  manifestErrorResult,
   writeManifestAtomic,
 } from '../manifest.mjs';
 import {
@@ -71,7 +76,65 @@ test('a pre/post fingerprint change aborts publication', async (context) => {
         'Mutation between fingerprints.',
       ),
     }),
-    (error) => error.code === 'corpus-changing',
+    (error) => {
+      assert.equal(error instanceof CorpusChangingError, true);
+      assert.equal(error instanceof ManifestBuildError, true);
+      assert.equal(isManifestBuildError(error), true);
+      assert.deepEqual(manifestErrorResult(error), {
+        ok: false,
+        error: 'corpus-changing',
+      });
+      return true;
+    },
+  );
+});
+
+test('mid-build disappearance surfaces a closed typed unavailable result', async (context) => {
+  const fixture = await createFixtureCorpus();
+  context.after(fixture.cleanup);
+  await assert.rejects(
+    buildManifest(fixture.root, {
+      beforeVerification: () => rm(
+        path.join(fixture.root, '_manifest.json'),
+      ),
+    }),
+    (error) => {
+      assert.equal(error instanceof ManifestBuildError, true);
+      const result = manifestErrorResult(error);
+      assert.deepEqual(result, { ok: false, error: 'unavailable' });
+      assert.deepEqual(Object.keys(result), ['ok', 'error']);
+      assert.equal(Object.isFrozen(result), true);
+      return true;
+    },
+  );
+});
+
+test('top-level manifest symlinks cannot escape the corpus root', async (context) => {
+  const crawlFixture = await createFixtureCorpus();
+  const retrievalFixture = await createFixtureCorpus();
+  context.after(crawlFixture.cleanup);
+  context.after(retrievalFixture.cleanup);
+
+  const crawlPath = path.join(crawlFixture.root, '_manifest.json');
+  const outsideCrawlPath = path.join(crawlFixture.base, 'outside-manifest.json');
+  await writeFile(outsideCrawlPath, await readFile(crawlPath));
+  await rm(crawlPath);
+  await symlink(outsideCrawlPath, crawlPath);
+  await assert.rejects(
+    buildManifest(crawlFixture.root),
+    (error) => error instanceof ManifestBuildError && error.code === 'path-escape',
+  );
+
+  const retrievalPath = path.join(retrievalFixture.root, '_retrieval-manifest.json');
+  const outsideRetrievalPath = path.join(
+    retrievalFixture.base,
+    'outside-retrieval-manifest.json',
+  );
+  await writeFile(outsideRetrievalPath, '{}\n');
+  await symlink(outsideRetrievalPath, retrievalPath);
+  await assert.rejects(
+    loadManifest(retrievalPath, { corpusRoot: retrievalFixture.root }),
+    (error) => error instanceof ManifestBuildError && error.code === 'path-escape',
   );
 });
 

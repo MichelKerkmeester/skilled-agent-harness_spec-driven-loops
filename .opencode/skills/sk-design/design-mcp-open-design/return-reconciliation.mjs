@@ -12,9 +12,11 @@ import { PAIRED_MODES } from './grounding-receipt.mjs';
 // 2. CONTRACT CONSTANTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-export const PAIRED_MODE_PROPOSAL_VERSION = 'PAIRED_MODE_PROPOSAL v1';
-export const OPEN_DESIGN_RETURN_EVIDENCE_VERSION = 'OPEN_DESIGN_RETURN_EVIDENCE v2';
-export const OPEN_DESIGN_RETURN_RECONCILIATION_VERSION = 'OPEN_DESIGN_RETURN_RECONCILIATION v2';
+export const PAIRED_MODE_PROPOSAL_VERSION = 'PAIRED_MODE_PROPOSAL v2';
+export const OPEN_DESIGN_RETURN_EVIDENCE_VERSION = 'OPEN_DESIGN_RETURN_EVIDENCE v3';
+export const OPEN_DESIGN_RETURN_RECONCILIATION_VERSION = 'OPEN_DESIGN_RETURN_RECONCILIATION v3';
+export const MAX_RETURN_ARTIFACTS = 16;
+export const MAX_ARTIFACT_METADATA_BYTES = 4096;
 
 export const RECONCILIATION_AUTHORITY = Object.freeze({
   decisionOwner: 'paired-mode',
@@ -58,19 +60,28 @@ const RETURN_STATUSES = Object.freeze([
   'completed',
   'failed',
   'cancelled',
+  'unavailable',
 ]);
 const RECONCILIATION_OUTCOMES = Object.freeze([
   'aligned',
   'diverged',
   'awaiting-input',
   'terminal-incomplete',
+  'unavailable',
 ]);
 const DIVERGENCE_KINDS = Object.freeze([
   'classification-mismatch',
+  'artifact-mismatch',
   'missing-return-evidence',
   'unexpected-return-evidence',
   'return-incomplete-awaiting-input',
   'return-incomplete-terminal',
+  'transport-unavailable',
+]);
+export const TOOL_SURFACE_REASON_CODES = Object.freeze([
+  'client-list-tools-missing',
+  'required-tools-missing',
+  'daemon-unavailable',
 ]);
 const EXPECTED_CLASSIFICATION = Object.freeze({
   apply: 'applied',
@@ -150,20 +161,51 @@ function validatePreviewUrl(errors, value, path, { nullable = false } = {}) {
 }
 
 function validateInfluenceProposal(errors, value, path) {
-  if (!validateExactKeys(errors, value, path, ['influenceId', 'proposedDisposition'])) return;
+  if (!validateExactKeys(
+    errors,
+    value,
+    path,
+    ['influenceId', 'proposedDisposition', 'expectedArtifact'],
+  )) return;
   validateIdentifier(errors, value.influenceId, `${path}.influenceId`);
   if (!PROPOSAL_DISPOSITIONS.includes(value.proposedDisposition)) {
     errors.push(`${path}.proposedDisposition:invalid`);
   }
+  if (value.expectedArtifact !== null) {
+    validateArtifactMetadata(errors, value.expectedArtifact, `${path}.expectedArtifact`);
+  }
+  if (value.proposedDisposition === 'reject' && value.expectedArtifact !== null) {
+    errors.push(`${path}.expectedArtifact:must-be-null-when-rejected`);
+  }
+  if (['apply', 'modify'].includes(value.proposedDisposition)
+    && !isPlainObject(value.expectedArtifact)) {
+    errors.push(`${path}.expectedArtifact:required-for-material-disposition`);
+  }
 }
 
 function validateModeEvidenceItem(errors, value, path) {
-  if (!validateExactKeys(errors, value, path, ['influenceId', 'classification', 'artifactHash'])) return;
+  if (!validateExactKeys(
+    errors,
+    value,
+    path,
+    ['influenceId', 'classification', 'artifactPath', 'artifactHash'],
+  )) return;
   validateIdentifier(errors, value.influenceId, `${path}.influenceId`);
   if (!RETURN_CLASSIFICATIONS.includes(value.classification)) {
     errors.push(`${path}.classification:invalid`);
   }
+  validateIdentifier(errors, value.artifactPath, `${path}.artifactPath`, { nullable: true });
   validateHash(errors, value.artifactHash, `${path}.artifactHash`, { nullable: true });
+  const hasArtifact = value.artifactPath !== null && value.artifactHash !== null;
+  if ((value.artifactPath === null) !== (value.artifactHash === null)) {
+    errors.push(`${path}:artifact-path-and-hash-must-pair`);
+  }
+  if (value.classification === 'rejected' && hasArtifact) {
+    errors.push(`${path}:rejected-evidence-must-not-bind-artifact`);
+  }
+  if (['applied', 'target-modified'].includes(value.classification) && !hasArtifact) {
+    errors.push(`${path}:material-evidence-requires-artifact`);
+  }
 }
 
 function validateArtifactMetadata(errors, value, path) {
@@ -189,7 +231,7 @@ function validateDivergence(errors, value, path) {
   }
 }
 
-function validateModeEvidenceSet(errors, modeEvidence, returnEvidence, path) {
+function validateModeEvidenceSet(errors, modeEvidence, returnEvidence, proposal, path) {
   if (!Array.isArray(modeEvidence)) {
     errors.push(`${path}:required-array`);
     return;
@@ -202,19 +244,30 @@ function validateModeEvidenceSet(errors, modeEvidence, returnEvidence, path) {
     errors.push(`${path}:duplicate-influence`);
   }
 
-  const artifactHashes = new Set(
+  const artifactBindings = new Set(
     Array.isArray(returnEvidence?.artifacts)
-      ? returnEvidence.artifacts.map((artifact) => artifact?.hash)
+      ? returnEvidence.artifacts.map((artifact) => `${artifact?.path}\0${artifact?.hash}`)
       : [],
   );
   if (returnEvidence?.status === 'awaiting_input' && modeEvidence.length > 0) {
     errors.push(`${path}:must-be-empty-while-awaiting-input`);
   }
   for (const item of modeEvidence) {
-    if (returnEvidence?.status !== 'awaiting_input' && item?.artifactHash === null) {
-      errors.push(`${path}.${item?.influenceId ?? 'unknown'}.artifactHash:required-for-terminal-or-read`);
-    } else if (item?.artifactHash !== null && !artifactHashes.has(item?.artifactHash)) {
-      errors.push(`${path}.${item?.influenceId ?? 'unknown'}.artifactHash:not-bound-to-return-artifact`);
+    const binding = `${item?.artifactPath}\0${item?.artifactHash}`;
+    if (item?.artifactHash !== null && !artifactBindings.has(binding)) {
+      errors.push(`${path}.${item?.influenceId ?? 'unknown'}:not-bound-to-return-artifact`);
+    }
+  }
+  const proposalIds = new Set(
+    Array.isArray(proposal?.influences)
+      ? proposal.influences.map((item) => item?.influenceId)
+      : [],
+  );
+  for (const item of modeEvidence) {
+    if (!proposalIds.has(item?.influenceId)) continue;
+    const influence = proposal.influences.find((entry) => entry.influenceId === item.influenceId);
+    if (influence?.expectedArtifact === null && item.classification !== 'rejected') {
+      errors.push(`${path}.${item.influenceId}:classification-conflicts-with-proposal-binding`);
     }
   }
 }
@@ -253,6 +306,9 @@ export function validateModeProposal(proposal) {
   if (!Array.isArray(proposal.influences)) {
     errors.push('proposal.influences:required-array');
   } else {
+    if (proposal.influences.length > MAX_RETURN_ARTIFACTS) {
+      errors.push('proposal.influences:count-limit-exceeded');
+    }
     proposal.influences.forEach((item, index) => {
       validateInfluenceProposal(errors, item, `proposal.influences.${index}`);
     });
@@ -320,9 +376,19 @@ export function validateReturnEvidence(evidence) {
   if (!Array.isArray(evidence.artifacts)) {
     errors.push('returnEvidence.artifacts:required-array');
   } else {
+    if (evidence.artifacts.length > MAX_RETURN_ARTIFACTS) {
+      errors.push('returnEvidence.artifacts:count-limit-exceeded');
+    }
     evidence.artifacts.forEach((item, index) => {
       validateArtifactMetadata(errors, item, `returnEvidence.artifacts.${index}`);
     });
+    const aggregateSize = evidence.artifacts.reduce(
+      (size, item) => size + String(item?.path ?? '').length + String(item?.hash ?? '').length,
+      0,
+    );
+    if (aggregateSize > MAX_ARTIFACT_METADATA_BYTES) {
+      errors.push('returnEvidence.artifacts:aggregate-metadata-limit-exceeded');
+    }
     const paths = evidence.artifacts.map((item) => item?.path);
     if (new Set(paths).size !== paths.length) errors.push('returnEvidence.artifacts:duplicate-path');
   }
@@ -331,10 +397,29 @@ export function validateReturnEvidence(evidence) {
     errors,
     evidence.toolSurfaceEvidence,
     'returnEvidence.toolSurfaceEvidence',
-    ['observedAt', 'toolsListHash', 'requiredTools'],
+    ['available', 'reasonCode', 'missingTools', 'observedAt', 'toolsListHash', 'requiredTools'],
   )) {
+    if (typeof evidence.toolSurfaceEvidence.available !== 'boolean') {
+      errors.push('returnEvidence.toolSurfaceEvidence.available:required-boolean');
+    }
+    if (evidence.toolSurfaceEvidence.reasonCode !== null
+      && !TOOL_SURFACE_REASON_CODES.includes(evidence.toolSurfaceEvidence.reasonCode)) {
+      errors.push('returnEvidence.toolSurfaceEvidence.reasonCode:invalid');
+    }
+    if (!Array.isArray(evidence.toolSurfaceEvidence.missingTools)) {
+      errors.push('returnEvidence.toolSurfaceEvidence.missingTools:invalid');
+    } else {
+      evidence.toolSurfaceEvidence.missingTools.forEach((tool, index) => {
+        validateIdentifier(errors, tool, `returnEvidence.toolSurfaceEvidence.missingTools.${index}`);
+      });
+    }
     validateTimestamp(errors, evidence.toolSurfaceEvidence.observedAt, 'returnEvidence.toolSurfaceEvidence.observedAt');
-    validateHash(errors, evidence.toolSurfaceEvidence.toolsListHash, 'returnEvidence.toolSurfaceEvidence.toolsListHash');
+    validateHash(
+      errors,
+      evidence.toolSurfaceEvidence.toolsListHash,
+      'returnEvidence.toolSurfaceEvidence.toolsListHash',
+      { nullable: true },
+    );
     if (!Array.isArray(evidence.toolSurfaceEvidence.requiredTools)) {
       errors.push('returnEvidence.toolSurfaceEvidence.requiredTools:invalid');
     } else {
@@ -345,6 +430,19 @@ export function validateReturnEvidence(evidence) {
         !== evidence.toolSurfaceEvidence.requiredTools.length) {
         errors.push('returnEvidence.toolSurfaceEvidence.requiredTools:duplicate-item');
       }
+    }
+    if (evidence.toolSurfaceEvidence.available) {
+      if (evidence.toolSurfaceEvidence.reasonCode !== null) {
+        errors.push('returnEvidence.toolSurfaceEvidence.reasonCode:must-be-null-when-available');
+      }
+      if (evidence.toolSurfaceEvidence.missingTools?.length !== 0) {
+        errors.push('returnEvidence.toolSurfaceEvidence.missingTools:must-be-empty-when-available');
+      }
+      if (evidence.toolSurfaceEvidence.toolsListHash === null) {
+        errors.push('returnEvidence.toolSurfaceEvidence.toolsListHash:required-when-available');
+      }
+    } else if (evidence.toolSurfaceEvidence.reasonCode === null) {
+      errors.push('returnEvidence.toolSurfaceEvidence.reasonCode:required-when-unavailable');
     }
   }
 
@@ -363,6 +461,22 @@ export function validateReturnEvidence(evidence) {
   if (evidence.status === 'read_complete' && !evidence.artifacts?.length) {
     errors.push('returnEvidence.artifacts:required-when-read-complete');
   }
+  if (evidence.status === 'unavailable') {
+    if (evidence.conversationId !== null || evidence.runId !== null) {
+      errors.push('returnEvidence:unavailable-identifiers-must-be-null');
+    }
+    if (evidence.entryFile !== null || evidence.previewUrl !== null) {
+      errors.push('returnEvidence:unavailable-output-must-be-null');
+    }
+    if (evidence.artifacts?.length !== 0) {
+      errors.push('returnEvidence.artifacts:must-be-empty-when-unavailable');
+    }
+    if (evidence.toolSurfaceEvidence?.available !== false) {
+      errors.push('returnEvidence.toolSurfaceEvidence.available:must-be-false-when-unavailable');
+    }
+  } else if (evidence.toolSurfaceEvidence?.available !== true) {
+    errors.push('returnEvidence.toolSurfaceEvidence.available:must-be-true-for-live-return');
+  }
   return { valid: errors.length === 0, errors };
 }
 
@@ -376,10 +490,31 @@ export function computeReconciliationSemantics({ proposal, returnEvidence, modeE
   const divergences = [];
   const evidenceByInfluence = new Map(modeEvidence.map((item) => [item.influenceId, item]));
   const proposalIdentifiers = new Set(proposal.influences.map((item) => item.influenceId));
+  const returnedArtifactBindings = new Set(
+    returnEvidence.artifacts.map((artifact) => `${artifact.path}\0${artifact.hash}`),
+  );
 
   for (const influence of proposal.influences) {
     const returned = evidenceByInfluence.get(influence.influenceId);
-    if (!returned) {
+    const expectedArtifact = influence.expectedArtifact;
+    const expectedBinding = expectedArtifact === null
+      ? null
+      : `${expectedArtifact.path}\0${expectedArtifact.hash}`;
+    const entryFileMatches = returnEvidence.status !== 'completed'
+      || expectedArtifact === null
+      || returnEvidence.entryFile === expectedArtifact.path;
+    const artifactMatches = expectedBinding === null
+      ? returnEvidence.artifacts.length === 0
+      : returnedArtifactBindings.has(expectedBinding) && entryFileMatches;
+
+    if (['completed', 'read_complete'].includes(returnEvidence.status) && !artifactMatches) {
+      divergences.push({
+        kind: 'artifact-mismatch',
+        influenceId: influence.influenceId,
+        proposed: influence.proposedDisposition,
+        returned: returned?.classification ?? null,
+      });
+    } else if (!returned) {
       divergences.push({
         kind: 'missing-return-evidence',
         influenceId: influence.influenceId,
@@ -415,6 +550,14 @@ export function computeReconciliationSemantics({ proposal, returnEvidence, modeE
       returned: null,
     });
     outcome = 'awaiting-input';
+  } else if (returnEvidence.status === 'unavailable') {
+    divergences.unshift({
+      kind: 'transport-unavailable',
+      influenceId: null,
+      proposed: null,
+      returned: null,
+    });
+    outcome = 'unavailable';
   } else if (!['completed', 'read_complete'].includes(returnEvidence.status)) {
     divergences.unshift({
       kind: 'return-incomplete-terminal',
@@ -445,7 +588,13 @@ export function validateReconciliationRecord(record) {
   const returnValidation = validateReturnEvidence(record.returnEvidence);
   errors.push(...proposalValidation.errors, ...returnValidation.errors);
   const evidenceErrors = [];
-  validateModeEvidenceSet(evidenceErrors, record.modeEvidence, record.returnEvidence, 'reconciliation.modeEvidence');
+  validateModeEvidenceSet(
+    evidenceErrors,
+    record.modeEvidence,
+    record.returnEvidence,
+    record.proposal,
+    'reconciliation.modeEvidence',
+  );
   errors.push(...evidenceErrors);
   if (!RECONCILIATION_OUTCOMES.includes(record.outcome)) {
     errors.push('reconciliation.outcome:invalid');
@@ -499,7 +648,7 @@ export function reconcileTransportReturn({ proposal, returnEvidence, modeEvidenc
   const proposalValidation = validateModeProposal(proposal);
   const returnValidation = validateReturnEvidence(returnEvidence);
   const evidenceErrors = [];
-  validateModeEvidenceSet(evidenceErrors, modeEvidence, returnEvidence, 'modeEvidence');
+  validateModeEvidenceSet(evidenceErrors, modeEvidence, returnEvidence, proposal, 'modeEvidence');
   const errors = [...proposalValidation.errors, ...returnValidation.errors, ...evidenceErrors];
   if (errors.length) {
     throw new TypeError(`Cannot reconcile invalid transport metadata: ${errors.join(', ')}`);
@@ -520,4 +669,51 @@ export function reconcileTransportReturn({ proposal, returnEvidence, modeEvidenc
     throw new TypeError(`Generated reconciliation is invalid: ${validation.errors.join(', ')}`);
   }
   return deepFreeze(record);
+}
+
+/**
+ * Derive paired-mode evidence only from exact proposal-to-artifact bindings.
+ *
+ * @param {Object} proposal - Frozen proposal carrying expected artifact bindings.
+ * @param {Object} returnEvidence - Validated live return evidence.
+ * @returns {ReadonlyArray<Object>} Frozen post-return classifications.
+ */
+export function deriveModeEvidence(proposal, returnEvidence) {
+  const proposalValidation = validateModeProposal(proposal);
+  const returnValidation = validateReturnEvidence(returnEvidence);
+  const errors = [...proposalValidation.errors, ...returnValidation.errors];
+  if (errors.length) {
+    throw new TypeError(`Cannot derive evidence from invalid metadata: ${errors.join(', ')}`);
+  }
+  if (!['completed', 'read_complete'].includes(returnEvidence.status)) return Object.freeze([]);
+
+  const returnedBindings = new Map(
+    returnEvidence.artifacts.map((artifact) => [`${artifact.path}\0${artifact.hash}`, artifact]),
+  );
+  const evidence = [];
+  for (const influence of proposal.influences) {
+    if (influence.expectedArtifact === null) {
+      if (returnEvidence.artifacts.length === 0) {
+        evidence.push({
+          influenceId: influence.influenceId,
+          classification: 'rejected',
+          artifactPath: null,
+          artifactHash: null,
+        });
+      }
+      continue;
+    }
+    const binding = `${influence.expectedArtifact.path}\0${influence.expectedArtifact.hash}`;
+    const artifact = returnedBindings.get(binding);
+    const entryFileMatches = returnEvidence.status !== 'completed'
+      || returnEvidence.entryFile === influence.expectedArtifact.path;
+    if (!artifact || !entryFileMatches) continue;
+    evidence.push({
+      influenceId: influence.influenceId,
+      classification: EXPECTED_CLASSIFICATION[influence.proposedDisposition],
+      artifactPath: artifact.path,
+      artifactHash: artifact.hash,
+    });
+  }
+  return deepFreeze(evidence);
 }

@@ -2,6 +2,8 @@
 // MODULE: v3 Style-Reference Schema Contract
 // ────────────────────────────────────────────────────────────────
 
+import { createHash } from 'node:crypto';
+
 import type { DesignTokens } from './types';
 
 export const HARD_FAILURE_CATEGORIES = ['target', 'schema', 'provenance'] as const;
@@ -71,11 +73,19 @@ export interface QuickStartTarget {
   readonly wrapperClose: string;
 }
 
-export interface ValidationPolicy {
-  readonly severity: 'hard' | 'advisory';
-  readonly category: HardFailureCategory | AdvisoryStratum;
-  readonly tier?: AdvisoryTier;
+export interface HardValidationPolicy {
+  readonly severity: 'hard';
+  readonly category: HardFailureCategory;
+  readonly tier?: never;
 }
+
+export interface AdvisoryValidationPolicy {
+  readonly severity: 'advisory';
+  readonly category: AdvisoryStratum;
+  readonly tier: AdvisoryTier;
+}
+
+export type ValidationPolicy = HardValidationPolicy | AdvisoryValidationPolicy;
 
 export interface StyleReferenceSchema {
   readonly id: 'design-md-generator';
@@ -322,7 +332,7 @@ export function createV3Schema(overrides: Partial<StyleReferenceSchema> = {}): S
       type,
       immutableValidationPolicy(type, policy),
     ]),
-  );
+  ) as Readonly<Record<string, ValidationPolicy>>;
   const schema: StyleReferenceSchema = {
     ...BASE_SCHEMA,
     ...overrides,
@@ -401,13 +411,45 @@ export function assertSchemaIntegrity(schema: StyleReferenceSchema): void {
   }
 }
 
-function immutableValidationPolicy(type: string, policy: ValidationPolicy): ValidationPolicy {
+function immutableValidationPolicy(type: string, candidate: unknown): ValidationPolicy {
   const canonical = ISSUE_POLICIES[type];
   if (canonical?.severity === 'hard') return canonical;
-  if ((HARD_FAILURE_CATEGORIES as readonly string[]).includes(policy.category)) {
+  if (canonical?.severity === 'advisory') {
+    if (!candidate || typeof candidate !== 'object') return canonical;
+    const policy = candidate as Record<string, unknown>;
+    if (
+      policy.severity !== 'advisory'
+      || !(ADVISORY_STRATA as readonly unknown[]).includes(policy.category)
+      || !(policy.tier === 'notice' || policy.tier === 'elevated')
+    ) return canonical;
+    return {
+      severity: 'advisory',
+      category: policy.category as AdvisoryStratum,
+      tier: policy.tier,
+    };
+  }
+  if (!candidate || typeof candidate !== 'object') {
+    throw new Error(`Schema validation policy ${type} is malformed.`);
+  }
+  const policy = candidate as Record<string, unknown>;
+  if (
+    policy.severity === 'hard'
+    && (HARD_FAILURE_CATEGORIES as readonly unknown[]).includes(policy.category)
+  ) {
     return { severity: 'hard', category: policy.category as HardFailureCategory };
   }
-  return policy;
+  if (
+    policy.severity === 'advisory'
+    && (ADVISORY_STRATA as readonly unknown[]).includes(policy.category)
+    && (policy.tier === 'notice' || policy.tier === 'elevated')
+  ) {
+    return {
+      severity: 'advisory',
+      category: policy.category as AdvisoryStratum,
+      tier: policy.tier,
+    };
+  }
+  throw new Error(`Schema validation policy ${type} is outside its closed schema.`);
 }
 
 /** Resolve policy while preserving hard-category classification for any supplied schema. */
@@ -525,15 +567,22 @@ function schemaSerializableValue(schema: StyleReferenceSchema): unknown {
   };
 }
 
+function canonicalJsonValue(value: unknown): unknown {
+  if (Array.isArray(value)) return value.map(canonicalJsonValue);
+  if (!value || typeof value !== 'object') return value;
+  const record = value as Readonly<Record<string, unknown>>;
+  return Object.fromEntries(
+    Object.keys(record)
+      .filter((key) => record[key] !== undefined)
+      .sort()
+      .map((key) => [key, canonicalJsonValue(record[key])]),
+  );
+}
+
 /** Compute a stable digest over every consumer-visible schema field. */
 export function schemaDigest(schema: StyleReferenceSchema = V3_SCHEMA): string {
-  const value = JSON.stringify(schemaSerializableValue(schema));
-  let hash = 0x811c9dc5;
-  for (let index = 0; index < value.length; index += 1) {
-    hash ^= value.charCodeAt(index);
-    hash = Math.imul(hash, 0x01000193);
-  }
-  return `fnv1a32:${(hash >>> 0).toString(16).padStart(8, '0')}`;
+  const canonicalSchema = JSON.stringify(canonicalJsonValue(schemaSerializableValue(schema)));
+  return `sha256:${createHash('sha256').update(canonicalSchema).digest('hex')}`;
 }
 
 /** Project the shared schema fields a consumer must follow. */

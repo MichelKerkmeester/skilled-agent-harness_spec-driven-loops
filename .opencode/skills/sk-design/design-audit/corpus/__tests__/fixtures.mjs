@@ -16,6 +16,10 @@ import {
   CORPUS_PROOF_HANDOFF_VERSION,
 } from '../../../shared/corpus-context/corpus-context-plan.mjs';
 import { STYLE_ALPHA } from '../../../styles/_engine/__tests__/fixtures.mjs';
+import {
+  AUDIT_COMPARISON_EVIDENCE_VERSION,
+  AUDIT_SOURCE_ATTESTATION_VERSION,
+} from '../comparison-lane.mjs';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. FIXTURE BUILDERS
@@ -63,11 +67,38 @@ function authorityInputs(ownedAnchor = null) {
   };
 }
 
+export function auditComparisonEvidence(overrides = {}) {
+  return {
+    schemaVersion: AUDIT_COMPARISON_EVIDENCE_VERSION,
+    comparisonId: STYLE_ALPHA.id,
+    purpose: 'owned-anchor-conformance',
+    relation: 'unexplained-drift',
+    axisObservations: [{
+      axis: 'content-hierarchy',
+      state: 'unexplained-drift',
+    }],
+    ...overrides,
+  };
+}
+
+export function auditComparisonAttestation(generationHash, sourceId, binding = {}) {
+  return {
+    schemaVersion: AUDIT_SOURCE_ATTESTATION_VERSION,
+    mode: 'audit',
+    sourceId,
+    generationHash,
+    contentHash: binding.contentHash ?? `sha256:${'7'.repeat(64)}`,
+    artifactPath: binding.artifactPath ?? 'alpha/DESIGN.md',
+    artifactHash: binding.artifactHash ?? `sha256:${'8'.repeat(64)}`,
+    evidence: binding.evidence ?? auditComparisonEvidence({ comparisonId: sourceId }),
+  };
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. NAMED ATLAS CASES
 // ─────────────────────────────────────────────────────────────────────────────
 
-export function intendedAnchorDriftFixture(generationHash, contentHash) {
+export function intendedAnchorDriftFixture(generationHash, contentHash, binding = {}) {
   const intendedAnchor = { sourceId: STYLE_ALPHA.id, contentHash };
   return {
     name: 'intended-anchor-drift',
@@ -88,6 +119,11 @@ export function intendedAnchorDriftFixture(generationHash, contentHash) {
           kind: 'render-capture',
           evidenceId: `sha256:${'e'.repeat(64)}`,
         }],
+        attestation: auditComparisonAttestation(
+          generationHash,
+          STYLE_ALPHA.id,
+          binding,
+        ),
       }],
       authorityInputs: authorityInputs(intendedAnchor),
     },

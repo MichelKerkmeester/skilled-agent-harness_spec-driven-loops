@@ -31,7 +31,47 @@ export const MANIFEST_FILE_NAME = '_retrieval-manifest.json';
 
 const CRAWL_MANIFEST_FILE_NAME = '_manifest.json';
 const HASH_PREFIX = 'sha256:';
+const HASH_PATTERN = /^sha256:[0-9a-f]{64}$/;
 const MAX_CONCURRENCY = 256;
+const MANIFEST_KEYS = Object.freeze([
+  'schemaVersion',
+  'generationHash',
+  'crawlManifestHash',
+  'recordCount',
+  'styles',
+]);
+const STYLE_KEYS = Object.freeze([
+  'id',
+  'slug',
+  'status',
+  'title',
+  'thesis',
+  'theme',
+  'tokenAxes',
+  'capabilities',
+  'facets',
+  'availableSections',
+  'sectionPointers',
+  'provenance',
+  'artifacts',
+  'estimatedHydrationBytes',
+  'contentHash',
+]);
+const TOKEN_AXIS_KEYS = Object.freeze(['axis', 'count']);
+const SECTION_POINTER_KEYS = Object.freeze(['name', 'line']);
+const PROVENANCE_KEYS = Object.freeze([
+  'status',
+  'sourceUrl',
+  'originalUrl',
+  'screenshotUrl',
+  'uuid',
+  'capturedAt',
+  'licenseStatus',
+  'rightsKnown',
+  'evidenceScope',
+]);
+const ARTIFACT_KEYS = Object.freeze(['path', 'bytes', 'sha256']);
+const UNAVAILABLE_FILE_CODES = Object.freeze(['ENOENT', 'ENOTDIR', 'ESTALE']);
 const WARM_SURFACE_PATTERN = /\b(warm|cream|beige|bone|ivory|linen|sand|tan)\b/i;
 const MOTION_PATTERN = /\b(motion|animation|animated|transition|kinetic|scroll)\b/i;
 const SERIF_PATTERN = /(^|[^a-z])serif([^a-z]|$)/i;
@@ -42,12 +82,60 @@ const RESTRICTED_LICENSE_PATTERN = /\b(unlicensed trial|license[- ]restricted)\b
 // 3. ERRORS AND HASHING
 // ─────────────────────────────────────────────────────────────────────────────
 
-export class CorpusChangingError extends Error {
-  constructor() {
-    super('Corpus changed while the retrieval manifest was being built.');
-    this.name = 'CorpusChangingError';
-    this.code = 'corpus-changing';
+export const MANIFEST_ERROR_CODES = Object.freeze({
+  CORPUS_CHANGING: 'corpus-changing',
+  INVALID_ARTIFACT: 'invalid-artifact',
+  INVALID_MANIFEST: 'invalid-manifest',
+  PATH_ESCAPE: 'path-escape',
+  UNAVAILABLE: 'unavailable',
+});
+
+const MANIFEST_ERROR_CODE_VALUES = Object.freeze(Object.values(MANIFEST_ERROR_CODES));
+
+/**
+ * Represent a retrieval-manifest failure with a closed, machine-readable code.
+ */
+export class ManifestBuildError extends Error {
+  constructor(code, message, options = {}) {
+    if (!MANIFEST_ERROR_CODE_VALUES.includes(code)) {
+      throw new TypeError(`Unknown manifest error code: ${code}`);
+    }
+    super(message, options.cause ? { cause: options.cause } : undefined);
+    this.name = 'ManifestBuildError';
+    this.code = code;
   }
+}
+
+export class CorpusChangingError extends ManifestBuildError {
+  constructor() {
+    super(
+      MANIFEST_ERROR_CODES.CORPUS_CHANGING,
+      'Corpus changed while the retrieval manifest was being built.',
+    );
+    this.name = 'CorpusChangingError';
+  }
+}
+
+/**
+ * Identify errors carrying the retrieval engine's closed error vocabulary.
+ *
+ * @param {unknown} error - Candidate error.
+ * @returns {boolean} Whether the error is a typed manifest build failure.
+ */
+export function isManifestBuildError(error) {
+  return error instanceof ManifestBuildError
+    && MANIFEST_ERROR_CODE_VALUES.includes(error.code);
+}
+
+/**
+ * Convert a typed build failure into a closed negative result.
+ *
+ * @param {unknown} error - Candidate error.
+ * @returns {{ok:false,error:string}|null} Immutable normalized result when recognized.
+ */
+export function manifestErrorResult(error) {
+  if (!isManifestBuildError(error)) return null;
+  return Object.freeze({ ok: false, error: error.code });
 }
 
 function sha256(parts) {
@@ -86,6 +174,145 @@ function hashInputFingerprint(crawlManifestHash, styles) {
     parts.push(`${style.slug}\0${style.contentHash}\n`);
   }
   return sha256(parts);
+}
+
+function isPlainObject(value) {
+  if (value === null || typeof value !== 'object' || Array.isArray(value)) return false;
+  const prototype = Object.getPrototypeOf(value);
+  return prototype === Object.prototype || prototype === null;
+}
+
+function hasExactDataKeys(value, expectedKeys) {
+  if (!isPlainObject(value)) return false;
+  const keys = Reflect.ownKeys(value);
+  if (keys.length !== expectedKeys.length || keys.some((key) => typeof key !== 'string')) {
+    return false;
+  }
+  if (keys.some((key) => !expectedKeys.includes(key))) return false;
+  return expectedKeys.every((key) => {
+    const descriptor = Object.getOwnPropertyDescriptor(value, key);
+    return descriptor?.enumerable === true
+      && Object.hasOwn(descriptor, 'value')
+      && !Object.hasOwn(descriptor, 'get')
+      && !Object.hasOwn(descriptor, 'set');
+  });
+}
+
+function isStringArray(value) {
+  return Array.isArray(value) && value.every((item) => typeof item === 'string');
+}
+
+function isNullableString(value) {
+  return value === null || typeof value === 'string';
+}
+
+function isTokenAxis(value) {
+  return hasExactDataKeys(value, TOKEN_AXIS_KEYS)
+    && typeof value.axis === 'string'
+    && Number.isInteger(value.count)
+    && value.count >= 0;
+}
+
+function isSectionPointer(value) {
+  return hasExactDataKeys(value, SECTION_POINTER_KEYS)
+    && typeof value.name === 'string'
+    && Number.isInteger(value.line)
+    && value.line > 0;
+}
+
+function isProvenance(value) {
+  return hasExactDataKeys(value, PROVENANCE_KEYS)
+    && typeof value.status === 'string'
+    && isNullableString(value.sourceUrl)
+    && isNullableString(value.originalUrl)
+    && isNullableString(value.screenshotUrl)
+    && isNullableString(value.uuid)
+    && isNullableString(value.capturedAt)
+    && typeof value.licenseStatus === 'string'
+    && typeof value.rightsKnown === 'boolean'
+    && isStringArray(value.evidenceScope);
+}
+
+function isArtifactRecord(value) {
+  return hasExactDataKeys(value, ARTIFACT_KEYS)
+    && typeof value.path === 'string'
+    && Number.isInteger(value.bytes)
+    && value.bytes >= 0
+    && typeof value.sha256 === 'string'
+    && HASH_PATTERN.test(value.sha256);
+}
+
+function isStyleRecord(value) {
+  return hasExactDataKeys(value, STYLE_KEYS)
+    && typeof value.id === 'string'
+    && typeof value.slug === 'string'
+    && typeof value.status === 'string'
+    && typeof value.title === 'string'
+    && typeof value.thesis === 'string'
+    && isNullableString(value.theme)
+    && Array.isArray(value.tokenAxes)
+    && value.tokenAxes.every(isTokenAxis)
+    && isStringArray(value.capabilities)
+    && isStringArray(value.facets)
+    && isStringArray(value.availableSections)
+    && Array.isArray(value.sectionPointers)
+    && value.sectionPointers.every(isSectionPointer)
+    && isProvenance(value.provenance)
+    && Array.isArray(value.artifacts)
+    && value.artifacts.every(isArtifactRecord)
+    && Number.isInteger(value.estimatedHydrationBytes)
+    && value.estimatedHydrationBytes >= 0
+    && typeof value.contentHash === 'string'
+    && HASH_PATTERN.test(value.contentHash);
+}
+
+function deepFreeze(value, seen = new Set()) {
+  if (value === null || typeof value !== 'object' || seen.has(value)) return value;
+  seen.add(value);
+  for (const child of Object.values(value)) deepFreeze(child, seen);
+  return Object.freeze(value);
+}
+
+function normalizeBuildError(error) {
+  if (isManifestBuildError(error)) return error;
+  if (UNAVAILABLE_FILE_CODES.includes(error?.code)) {
+    return new ManifestBuildError(
+      MANIFEST_ERROR_CODES.UNAVAILABLE,
+      'A corpus input became unavailable while the retrieval manifest was being built.',
+      { cause: error },
+    );
+  }
+  return error;
+}
+
+/**
+ * Validate and freeze a detached retrieval-manifest snapshot.
+ *
+ * @param {unknown} manifest - Candidate retrieval manifest.
+ * @returns {Object} Immutable manifest snapshot.
+ * @throws {ManifestBuildError} When the manifest does not match the closed schema.
+ */
+export function snapshotManifest(manifest) {
+  const hasValidShape = hasExactDataKeys(manifest, MANIFEST_KEYS)
+    && manifest.schemaVersion === MANIFEST_SCHEMA_VERSION
+    && typeof manifest.generationHash === 'string'
+    && HASH_PATTERN.test(manifest.generationHash)
+    && typeof manifest.crawlManifestHash === 'string'
+    && HASH_PATTERN.test(manifest.crawlManifestHash)
+    && Number.isInteger(manifest.recordCount)
+    && manifest.recordCount >= 0
+    && Array.isArray(manifest.styles)
+    && manifest.styles.length === manifest.recordCount
+    && manifest.styles.every(isStyleRecord)
+    && new Set(manifest.styles.map((style) => style.id)).size === manifest.styles.length
+    && new Set(manifest.styles.map((style) => style.slug)).size === manifest.styles.length;
+  if (!hasValidShape) {
+    throw new ManifestBuildError(
+      MANIFEST_ERROR_CODES.INVALID_MANIFEST,
+      'Retrieval manifest does not match the closed schema.',
+    );
+  }
+  return deepFreeze(structuredClone(manifest));
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -196,10 +423,11 @@ function parseJsonArtifact(artifact, fallback = {}) {
   try {
     return JSON.parse(artifact.buffer.toString('utf8'));
   } catch (error) {
-    const wrapped = new Error(`Invalid JSON artifact: ${artifact.path}`);
-    wrapped.code = 'invalid-artifact';
-    wrapped.cause = error;
-    throw wrapped;
+    throw new ManifestBuildError(
+      MANIFEST_ERROR_CODES.INVALID_ARTIFACT,
+      `Invalid JSON artifact: ${artifact.path}`,
+      { cause: error },
+    );
   }
 }
 
@@ -294,6 +522,18 @@ function isContained(rootPath, candidatePath) {
   return relative === '' || (!relative.startsWith('..') && !path.isAbsolute(relative));
 }
 
+async function readContainedTopLevelFile(corpusRoot, corpusRealPath, fileName) {
+  const candidatePath = path.resolve(corpusRoot, fileName);
+  const candidateRealPath = await realpath(candidatePath);
+  if (!isContained(corpusRealPath, candidateRealPath)) {
+    throw new ManifestBuildError(
+      MANIFEST_ERROR_CODES.PATH_ESCAPE,
+      `Top-level corpus file escapes the corpus root: ${fileName}`,
+    );
+  }
+  return readFile(candidateRealPath);
+}
+
 async function mapConcurrent(items, mapper) {
   const results = new Array(items.length);
   let nextIndex = 0;
@@ -319,9 +559,10 @@ async function readStyleArtifacts(corpusRoot, corpusRealPath, slug) {
     if (!linkInfo.isFile() && !linkInfo.isSymbolicLink()) continue;
     const artifactRealPath = await realpath(artifactPath);
     if (!isContained(corpusRealPath, artifactRealPath)) {
-      const error = new Error(`Artifact escapes the corpus root: ${slug}/${name}`);
-      error.code = 'path-escape';
-      throw error;
+      throw new ManifestBuildError(
+        MANIFEST_ERROR_CODES.PATH_ESCAPE,
+        `Artifact escapes the corpus root: ${slug}/${name}`,
+      );
     }
     const targetInfo = await stat(artifactRealPath, { bigint: true });
     const buffer = await readFile(artifactRealPath);
@@ -342,7 +583,11 @@ async function readStyleArtifacts(corpusRoot, corpusRealPath, slug) {
 
 async function scanCorpus(corpusRoot, previousManifest = null, deriveRecords = true) {
   const corpusRealPath = await realpath(corpusRoot);
-  const crawlBuffer = await readFile(path.join(corpusRoot, CRAWL_MANIFEST_FILE_NAME));
+  const crawlBuffer = await readContainedTopLevelFile(
+    corpusRoot,
+    corpusRealPath,
+    CRAWL_MANIFEST_FILE_NAME,
+  );
   const crawlManifestHash = sha256([crawlBuffer]);
   const crawlRecords = JSON.parse(crawlBuffer.toString('utf8'));
   const crawlBySlug = new Map(crawlRecords.map((record) => [record.slug, record]));
@@ -394,7 +639,11 @@ async function scanCorpus(corpusRoot, previousManifest = null, deriveRecords = t
 
 async function scanMetadataFingerprint(corpusRoot) {
   const corpusRealPath = await realpath(corpusRoot);
-  const crawlBuffer = await readFile(path.join(corpusRoot, CRAWL_MANIFEST_FILE_NAME));
+  const crawlBuffer = await readContainedTopLevelFile(
+    corpusRoot,
+    corpusRealPath,
+    CRAWL_MANIFEST_FILE_NAME,
+  );
   const parts = [`crawl:${sha256([crawlBuffer])}\n`];
   const entries = await readdir(corpusRoot, { withFileTypes: true });
   const slugs = entries
@@ -411,9 +660,10 @@ async function scanMetadataFingerprint(corpusRoot) {
       if (!linkInfo.isFile() && !linkInfo.isSymbolicLink()) continue;
       const artifactRealPath = await realpath(artifactPath);
       if (!isContained(corpusRealPath, artifactRealPath)) {
-        const error = new Error(`Artifact escapes the corpus root: ${slug}/${name}`);
-        error.code = 'path-escape';
-        throw error;
+        throw new ManifestBuildError(
+          MANIFEST_ERROR_CODES.PATH_ESCAPE,
+          `Artifact escapes the corpus root: ${slug}/${name}`,
+        );
       }
       const targetInfo = await stat(artifactRealPath, { bigint: true });
       const buffer = await readFile(artifactRealPath);
@@ -442,20 +692,27 @@ async function scanMetadataFingerprint(corpusRoot) {
  * @returns {Promise<Object>} Byte-stable manifest data.
  */
 export async function buildManifest(corpusRoot, options = {}) {
-  const firstScan = await scanCorpus(corpusRoot, options.previousManifest);
-  if (options.beforeVerification) await options.beforeVerification();
-  const verificationFingerprint = await scanMetadataFingerprint(corpusRoot);
-  if (firstScan.metadataFingerprint !== verificationFingerprint) {
-    throw new CorpusChangingError();
+  try {
+    const previousManifest = options.previousManifest
+      ? snapshotManifest(options.previousManifest)
+      : null;
+    const firstScan = await scanCorpus(corpusRoot, previousManifest);
+    if (options.beforeVerification) await options.beforeVerification();
+    const verificationFingerprint = await scanMetadataFingerprint(corpusRoot);
+    if (firstScan.metadataFingerprint !== verificationFingerprint) {
+      throw new CorpusChangingError();
+    }
+    const generationHash = hashGeneration(firstScan.crawlManifestHash, firstScan.styles);
+    return snapshotManifest({
+      schemaVersion: MANIFEST_SCHEMA_VERSION,
+      generationHash,
+      crawlManifestHash: firstScan.crawlManifestHash,
+      recordCount: firstScan.styles.length,
+      styles: firstScan.styles,
+    });
+  } catch (error) {
+    throw normalizeBuildError(error);
   }
-  const generationHash = hashGeneration(firstScan.crawlManifestHash, firstScan.styles);
-  return {
-    schemaVersion: MANIFEST_SCHEMA_VERSION,
-    generationHash,
-    crawlManifestHash: firstScan.crawlManifestHash,
-    recordCount: firstScan.styles.length,
-    styles: firstScan.styles,
-  };
 }
 
 /**
@@ -465,7 +722,7 @@ export async function buildManifest(corpusRoot, options = {}) {
  * @returns {string} Stable JSON bytes represented as text.
  */
 export function serializeManifest(manifest) {
-  return `${JSON.stringify(manifest, null, 2)}\n`;
+  return `${JSON.stringify(snapshotManifest(manifest), null, 2)}\n`;
 }
 
 /**
@@ -490,11 +747,35 @@ export async function writeManifestAtomic(manifestPath, manifest) {
  * Load a manifest when present without treating absence as an error.
  *
  * @param {string} manifestPath - Manifest path.
- * @returns {Promise<Object|null>} Parsed manifest or null.
+ * @param {Object} [options] - Read controls.
+ * @param {string} [options.corpusRoot] - Root that must contain the resolved file.
+ * @returns {Promise<Object|null>} Immutable parsed manifest or null.
  */
-export async function loadManifest(manifestPath) {
+export async function loadManifest(manifestPath, options = {}) {
   try {
-    return JSON.parse(await readFile(manifestPath, 'utf8'));
+    const corpusRoot = options.corpusRoot ?? path.dirname(manifestPath);
+    const corpusRealPath = await realpath(corpusRoot);
+    const manifestRealPath = await realpath(manifestPath);
+    if (!isContained(corpusRealPath, manifestRealPath)) {
+      throw new ManifestBuildError(
+        MANIFEST_ERROR_CODES.PATH_ESCAPE,
+        `Top-level corpus file escapes the corpus root: ${path.basename(manifestPath)}`,
+      );
+    }
+    let parsed;
+    try {
+      parsed = JSON.parse(await readFile(manifestRealPath, 'utf8'));
+    } catch (error) {
+      if (error instanceof SyntaxError) {
+        throw new ManifestBuildError(
+          MANIFEST_ERROR_CODES.INVALID_MANIFEST,
+          'Retrieval manifest is not valid JSON.',
+          { cause: error },
+        );
+      }
+      throw error;
+    }
+    return snapshotManifest(parsed);
   } catch (error) {
     if (error.code === 'ENOENT') return null;
     throw error;

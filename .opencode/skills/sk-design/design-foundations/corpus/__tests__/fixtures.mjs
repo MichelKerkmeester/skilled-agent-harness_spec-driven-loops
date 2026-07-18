@@ -18,7 +18,9 @@ import {
 import { STYLE_ALPHA, STYLE_BETA } from '../../../styles/_engine/__tests__/fixtures.mjs';
 import {
   FOUNDATIONS_AXIS_COMPATIBILITY_VERSION,
+  FOUNDATIONS_RELATIONSHIP_EVIDENCE_VERSION,
   FOUNDATIONS_RELATIONSHIP_BLUEPRINT_VERSION,
+  FOUNDATIONS_SOURCE_ATTESTATION_VERSION,
   FOUNDATIONS_TRANSFORMATION_LEDGER_VERSION,
 } from '../relationship-blueprint.mjs';
 
@@ -132,6 +134,34 @@ function compatibilityGraph(relation = 'not-assessed') {
   };
 }
 
+export function foundationsRelationshipEvidence(relation = 'not-assessed') {
+  return {
+    schemaVersion: FOUNDATIONS_RELATIONSHIP_EVIDENCE_VERSION,
+    edgeId: 'cccccccc-3333-4333-8333-cccccccccccc',
+    fromSourceId: STYLE_ALPHA.id,
+    toSourceId: STYLE_BETA.id,
+    fromAxis: 'color-role',
+    toAxis: 'typography-role',
+    relation,
+    basis: relation === 'not-assessed'
+      ? 'unresolved-target-check'
+      : 'cross-axis-dependency',
+  };
+}
+
+function sourceAttestation(generationHash, style, binding = {}, relation = 'not-assessed') {
+  return {
+    schemaVersion: FOUNDATIONS_SOURCE_ATTESTATION_VERSION,
+    mode: 'foundations',
+    sourceId: style.id,
+    generationHash,
+    contentHash: binding.contentHash ?? `sha256:${'7'.repeat(64)}`,
+    artifactPath: binding.artifactPath ?? `${style.slug}/DESIGN.md`,
+    artifactHash: binding.artifactHash ?? `sha256:${'8'.repeat(64)}`,
+    evidence: binding.evidence ?? foundationsRelationshipEvidence(relation),
+  };
+}
+
 function transformationLedger() {
   return {
     schemaVersion: FOUNDATIONS_TRANSFORMATION_LEDGER_VERSION,
@@ -160,7 +190,11 @@ function downstreamChecks() {
 // 3. NAMED FIXTURES
 // ─────────────────────────────────────────────────────────────────────────────
 
-export function foundationsRelationshipFixture(generationHash, relation = 'not-assessed') {
+export function foundationsRelationshipFixture(
+  generationHash,
+  relation = 'not-assessed',
+  sourceBindings = {},
+) {
   return {
     name: 'typed-relationship',
     input: {
@@ -173,6 +207,12 @@ export function foundationsRelationshipFixture(generationHash, relation = 'not-a
       },
       blueprint: blueprint(),
       compatibilityGraph: compatibilityGraph(relation),
+      sourceAttestations: [STYLE_ALPHA, STYLE_BETA].map((style) => sourceAttestation(
+        generationHash,
+        style,
+        sourceBindings[style.id],
+        relation,
+      )),
       transformationLedger: transformationLedger(),
       downstreamChecks: downstreamChecks(),
       authorityInputs: authorityInputs(),
@@ -203,6 +243,7 @@ export function foundationsExplicitNoneFixture(generationHash) {
   };
   fixture.input.compatibilityGraph.nodes = [];
   fixture.input.compatibilityGraph.edges = [];
+  fixture.input.sourceAttestations = [];
   fixture.input.transformationLedger.records = [];
   return fixture;
 }

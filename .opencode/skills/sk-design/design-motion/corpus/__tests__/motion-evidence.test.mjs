@@ -7,6 +7,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import assert from 'node:assert/strict';
+import { appendFile } from 'node:fs/promises';
 import path from 'node:path';
 import test from 'node:test';
 
@@ -60,6 +61,23 @@ async function preparedCorpus(context, sourceEvidence = motionSourceEvidence()) 
       evidence: sourceEvidence,
     },
   };
+}
+
+async function runDuringCorpusMutation(corpusRoot, operation) {
+  let active = true;
+  const crawlManifestPath = path.join(corpusRoot, '_manifest.json');
+  const mutationLoop = (async () => {
+    while (active) {
+      await appendFile(crawlManifestPath, ' ');
+      await new Promise((resolve) => setImmediate(resolve));
+    }
+  })();
+  try {
+    return await operation();
+  } finally {
+    active = false;
+    await mutationLoop;
+  }
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -175,6 +193,49 @@ test('a candidate with an unbound content hash is rejected after hydration', asy
   assert.ok(result.warnings.includes(
     'source-attestation-rejected:contentHash:card-mismatch',
   ));
+});
+
+test('a mismatch plan never hydrates the observed generation', async (context) => {
+  const prepared = await preparedCorpus(context);
+  const fixture = eligibleMotionFixture(prepared.generationHash, prepared.sourceBinding);
+  const observedHash = `sha256:${'f'.repeat(64)}`;
+  fixture.input.contextPlan.generationIdentity.observedGenerationHash = observedHash;
+  fixture.input.contextPlan.generationIdentity.state = 'mismatch';
+  fixture.input.contextPlan.availability = 'degraded';
+  fixture.input.contextPlan.proofPlan.outcome = 'generation-mismatch';
+  fixture.input.eligibility.candidates[0].attestation.generationHash = observedHash;
+  const result = await buildMotionEvidencePlan(fixture.input, {
+    ...prepared.engineOptions,
+    manifestPath: path.join(prepared.engineOptions.corpusRoot, 'missing.json'),
+  });
+
+  assert.equal(result.ok, true);
+  assert.equal(result.outcome, 'no-temporal-authority');
+  assert.equal(result.negativeBaseline.kind, 'corpus-unavailable');
+  assert.equal(result.negativeBaseline.queryIssued, false);
+  assert.equal(result.proofHandoff.proofState.outcome, 'generation-mismatch');
+  assert.deepEqual(validateProofHandoffRecord(result.proofHandoff), {
+    valid: true,
+    errors: [],
+  });
+});
+
+test('a concurrently changing corpus becomes validated negative evidence', async (context) => {
+  const prepared = await preparedCorpus(context);
+  const fixture = eligibleMotionFixture(prepared.generationHash, prepared.sourceBinding);
+  const result = await runDuringCorpusMutation(
+    prepared.engineOptions.corpusRoot,
+    () => buildMotionEvidencePlan(fixture.input, prepared.engineOptions),
+  );
+
+  assert.equal(result.ok, true);
+  assert.equal(result.outcome, 'no-temporal-authority');
+  assert.equal(result.negativeBaseline.kind, 'corpus-unavailable');
+  assert.ok(result.warnings.includes('retrieval-unavailable:corpus-changing'));
+  assert.deepEqual(validateProofHandoffRecord(result.proofHandoff), {
+    valid: true,
+    errors: [],
+  });
 });
 
 test('missing corpus data yields a validated negative outcome instead of throwing', async (context) => {

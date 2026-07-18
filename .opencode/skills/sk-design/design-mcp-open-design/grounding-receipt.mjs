@@ -8,11 +8,20 @@
 
 import { createHash } from 'node:crypto';
 
+import {
+  CORPUS_CONTEXT_PLAN_VERSION,
+  PROOF_OUTCOMES,
+} from '../shared/corpus-context/corpus-context-plan.mjs';
+import {
+  validateCorpusContextFixture,
+  validateProofHandoffRecord,
+} from '../shared/corpus-context/validate-context-plan.mjs';
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONTRACT CONSTANTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-export const OPEN_DESIGN_GROUNDING_RECEIPT_VERSION = 'OPEN_DESIGN_GROUNDING_RECEIPT v2';
+export const OPEN_DESIGN_GROUNDING_RECEIPT_VERSION = 'OPEN_DESIGN_GROUNDING_RECEIPT v3';
 
 export const PAIRED_MODES = Object.freeze([
   'design-interface',
@@ -68,38 +77,17 @@ const RECEIPT_KEYS = Object.freeze([
   'createdAt',
 ]);
 
-const CORPUS_CONTEXT_KEYS = Object.freeze([
-  'name',
-  'generation',
-  'availability',
-  'proof',
-]);
-
-const CORPUS_PROOF_KEYS = Object.freeze([
-  'outcome',
-  'evidenceStatus',
-  'sourceId',
-  'contentHash',
-  'provenanceStatus',
-  'licenseStatus',
-  'rightsKnown',
-  'useLabel',
-  'semanticRole',
-  'dimensions',
-  'transformationState',
-  'copiedSourceSpecificMaterial',
-  'fallbackState',
-  'targetChecks',
-]);
-
 export const OPEN_DESIGN_GROUNDING_RECEIPT_SCHEMA = Object.freeze({
   schemaVersion: OPEN_DESIGN_GROUNDING_RECEIPT_VERSION,
   required: RECEIPT_KEYS,
   additionalProperties: false,
-  stringValues: 'closed-enum-identifier-digest-or-timestamp',
+  corpusContextSchemaVersion: CORPUS_CONTEXT_PLAN_VERSION,
+  outcomes: PROOF_OUTCOMES,
+  stringValues: 'closed-enum-identifier-digest-timestamp-or-bounded-canonical-metadata',
   invariants: Object.freeze([
     'metadata-only',
     'closed-recursive-schema',
+    'canonical-corpus-proof-bound',
     'proposal-digest-bound',
     'grounding-evidence-never-authority',
     'generation-current-before-live-call',
@@ -122,24 +110,13 @@ const HASH_PATTERN = /^sha256:[a-f0-9]{64}$/;
 const IDENTIFIER_PATTERN = /^[a-zA-Z0-9][a-zA-Z0-9._:/-]{0,255}$/;
 const PURPOSE_PATTERN = /^[a-z0-9][a-z0-9-]{0,79}$/;
 const ISO_TIMESTAMP_PATTERN = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z$/;
-const CORPUS_NAMES = Object.freeze(['positive', 'no-fit', 'generation-mismatch']);
-const GENERATION_STATES = Object.freeze(['current', 'mismatch', 'unavailable']);
-const AVAILABILITY_STATES = Object.freeze(['ready', 'degraded', 'unavailable']);
-const PROOF_OUTCOMES = Object.freeze(['positive', 'no-fit', 'generation-mismatch', 'unavailable']);
-const EVIDENCE_STATUSES = Object.freeze(['accepted-evidence']);
-const PROVENANCE_STATUSES = Object.freeze(['known', 'partial', 'unknown', 'unavailable']);
-const LICENSE_STATUSES = Object.freeze(['known', 'unknown', 'not-applicable']);
-const USE_LABELS = Object.freeze(['transformed-reference', 'rights-unknown', 'not-used', 'unavailable']);
-const SEMANTIC_ROLES = Object.freeze(['reference', 'none']);
-const SEMANTIC_DIMENSIONS = Object.freeze(['relationship', 'rationale']);
-const TRANSFORMATION_STATES = Object.freeze(['transformed', 'planned', 'not-applicable']);
-const FALLBACK_STATES = Object.freeze([
-  'not-needed',
-  'target-derived',
-  'ordinary-workflow',
-  'requery-required',
-]);
-const TARGET_CHECKS = Object.freeze(['not-assessed']);
+const AVAILABILITY_BY_OUTCOME = Object.freeze({
+  positive: 'ready',
+  'no-fit': 'ready',
+  unavailable: 'unavailable',
+  'generation-mismatch': 'degraded',
+  'unknown-rights': 'degraded',
+});
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. VALIDATION HELPERS
@@ -183,8 +160,7 @@ function validateIdentifier(errors, value, path, { nullable = false } = {}) {
   }
 }
 
-function validateHash(errors, value, path, { nullable = false } = {}) {
-  if (nullable && value === null) return;
+function validateHash(errors, value, path) {
   if (typeof value !== 'string' || !HASH_PATTERN.test(value)) errors.push(`${path}:invalid-hash`);
 }
 
@@ -234,72 +210,113 @@ function canonicalizeMetadata(value, seen = new Set()) {
   return output;
 }
 
-function validateCorpusContext(errors, context) {
-  if (!validateExactKeys(errors, context, 'receipt.corpusContext', CORPUS_CONTEXT_KEYS)) return;
-  validateEnum(errors, context.name, 'receipt.corpusContext.name', CORPUS_NAMES);
-  validateEnum(errors, context.availability, 'receipt.corpusContext.availability', AVAILABILITY_STATES);
+function appendCanonicalErrors(errors, validation, prefix) {
+  for (const error of validation.errors) errors.push(`${prefix}:${error}`);
+}
 
-  if (validateExactKeys(
-    errors,
-    context.generation,
-    'receipt.corpusContext.generation',
-    ['requestedHash', 'observedHash', 'state'],
-  )) {
-    validateHash(errors, context.generation.requestedHash, 'receipt.corpusContext.generation.requestedHash');
-    validateHash(
-      errors,
-      context.generation.observedHash,
-      'receipt.corpusContext.generation.observedHash',
-      { nullable: true },
-    );
-    validateEnum(errors, context.generation.state, 'receipt.corpusContext.generation.state', GENERATION_STATES);
-    if (context.generation.state === 'current'
-      && context.generation.requestedHash !== context.generation.observedHash) {
-      errors.push('receipt.corpusContext.generation:current-hashes-must-match');
-    }
-    if (context.generation.state === 'mismatch'
-      && context.generation.requestedHash === context.generation.observedHash) {
-      errors.push('receipt.corpusContext.generation:mismatch-hashes-must-differ');
-    }
-  }
+function requireField(errors, condition, path, suffix = 'outcome-inconsistent') {
+  if (!condition) errors.push(`${path}:${suffix}`);
+}
 
-  if (!validateExactKeys(errors, context.proof, 'receipt.corpusContext.proof', CORPUS_PROOF_KEYS)) return;
-  validateEnum(errors, context.proof.outcome, 'receipt.corpusContext.proof.outcome', PROOF_OUTCOMES);
-  validateEnum(errors, context.proof.evidenceStatus, 'receipt.corpusContext.proof.evidenceStatus', EVIDENCE_STATUSES);
-  validateIdentifier(errors, context.proof.sourceId, 'receipt.corpusContext.proof.sourceId', { nullable: true });
-  validateHash(errors, context.proof.contentHash, 'receipt.corpusContext.proof.contentHash', { nullable: true });
-  validateEnum(errors, context.proof.provenanceStatus, 'receipt.corpusContext.proof.provenanceStatus', PROVENANCE_STATUSES);
-  validateEnum(errors, context.proof.licenseStatus, 'receipt.corpusContext.proof.licenseStatus', LICENSE_STATUSES);
-  if (typeof context.proof.rightsKnown !== 'boolean') {
-    errors.push('receipt.corpusContext.proof.rightsKnown:required-boolean');
-  }
-  validateEnum(errors, context.proof.useLabel, 'receipt.corpusContext.proof.useLabel', USE_LABELS);
-  validateEnum(errors, context.proof.semanticRole, 'receipt.corpusContext.proof.semanticRole', SEMANTIC_ROLES);
-  validateClosedStringList(
+function validateOutcomeConsistency(errors, context) {
+  const proof = context?.proofHandoff;
+  const plan = context?.plan;
+  if (!isPlainObject(proof) || !isPlainObject(plan)) return;
+  const outcome = proof.proofState?.outcome;
+  const generation = proof.generationIdentity;
+  const provenance = proof.provenanceUseLabel;
+  const semanticRole = proof.semanticRole;
+  const transformation = proof.transformation;
+  const fallback = proof.fallback;
+  const source = proof.sourceIdentity;
+
+  requireField(
     errors,
-    context.proof.dimensions,
-    'receipt.corpusContext.proof.dimensions',
-    SEMANTIC_DIMENSIONS,
+    plan.availability === AVAILABILITY_BY_OUTCOME[outcome],
+    'receipt.corpusContext.plan.availability',
   );
-  validateEnum(
-    errors,
-    context.proof.transformationState,
-    'receipt.corpusContext.proof.transformationState',
-    TRANSFORMATION_STATES,
-  );
-  if (context.proof.copiedSourceSpecificMaterial !== false) {
-    errors.push('receipt.corpusContext.proof.copiedSourceSpecificMaterial:fixed-false-required');
-  }
-  validateEnum(errors, context.proof.fallbackState, 'receipt.corpusContext.proof.fallbackState', FALLBACK_STATES);
-  validateEnum(errors, context.proof.targetChecks, 'receipt.corpusContext.proof.targetChecks', TARGET_CHECKS);
 
-  if (context.proof.outcome !== context.name) {
-    errors.push('receipt.corpusContext.proof.outcome:must-match-context-name');
+  if (outcome === 'positive') {
+    requireField(errors, generation?.state === 'current', 'receipt.corpusContext.proofHandoff.generationIdentity.state');
+    requireField(errors, isPlainObject(source), 'receipt.corpusContext.proofHandoff.sourceIdentity');
+    requireField(errors, ['known', 'partial'].includes(provenance?.status), 'receipt.corpusContext.proofHandoff.provenanceUseLabel.status');
+    requireField(errors, provenance?.rightsKnown === true, 'receipt.corpusContext.proofHandoff.provenanceUseLabel.rightsKnown');
+    requireField(errors, provenance?.licenseStatus === 'known', 'receipt.corpusContext.proofHandoff.provenanceUseLabel.licenseStatus');
+    requireField(errors, ['transformed-reference', 'reference-only'].includes(provenance?.useLabel), 'receipt.corpusContext.proofHandoff.provenanceUseLabel.useLabel');
+    requireField(errors, semanticRole?.role === 'reference', 'receipt.corpusContext.proofHandoff.semanticRole.role');
+    requireField(errors, semanticRole?.dimensions?.length > 0, 'receipt.corpusContext.proofHandoff.semanticRole.dimensions');
+    requireField(errors, transformation?.state === 'transformed', 'receipt.corpusContext.proofHandoff.transformation.state');
+    requireField(errors, fallback?.state === 'not-needed', 'receipt.corpusContext.proofHandoff.fallback.state');
+    requireField(errors, source?.sourceUrl === provenance?.sourceUrl, 'receipt.corpusContext.proofHandoff.provenanceUseLabel.sourceUrl');
   }
-  const sourceRequired = context.proof.outcome === 'positive';
-  if (sourceRequired !== (context.proof.sourceId !== null && context.proof.contentHash !== null)) {
-    errors.push('receipt.corpusContext.proof:source-identity-consistency');
+
+  if (outcome === 'no-fit') {
+    requireField(errors, generation?.state === 'current', 'receipt.corpusContext.proofHandoff.generationIdentity.state');
+    requireField(errors, source === null, 'receipt.corpusContext.proofHandoff.sourceIdentity');
+    requireField(errors, provenance?.status === 'unknown', 'receipt.corpusContext.proofHandoff.provenanceUseLabel.status');
+    requireField(errors, provenance?.rightsKnown === false, 'receipt.corpusContext.proofHandoff.provenanceUseLabel.rightsKnown');
+    requireField(errors, provenance?.useLabel === 'not-used', 'receipt.corpusContext.proofHandoff.provenanceUseLabel.useLabel');
+    requireField(errors, semanticRole?.role === 'none' && semanticRole?.dimensions?.length === 0, 'receipt.corpusContext.proofHandoff.semanticRole');
+    requireField(errors, transformation?.state === 'not-applicable', 'receipt.corpusContext.proofHandoff.transformation.state');
+    requireField(errors, fallback?.state === 'target-derived', 'receipt.corpusContext.proofHandoff.fallback.state');
   }
+
+  if (outcome === 'unavailable') {
+    requireField(errors, generation?.state === 'unavailable', 'receipt.corpusContext.proofHandoff.generationIdentity.state');
+    requireField(errors, source === null, 'receipt.corpusContext.proofHandoff.sourceIdentity');
+    requireField(errors, provenance?.status === 'unavailable', 'receipt.corpusContext.proofHandoff.provenanceUseLabel.status');
+    requireField(errors, provenance?.rightsKnown === false, 'receipt.corpusContext.proofHandoff.provenanceUseLabel.rightsKnown');
+    requireField(errors, provenance?.useLabel === 'unavailable', 'receipt.corpusContext.proofHandoff.provenanceUseLabel.useLabel');
+    requireField(errors, semanticRole?.role === 'none' && semanticRole?.dimensions?.length === 0, 'receipt.corpusContext.proofHandoff.semanticRole');
+    requireField(errors, transformation?.state === 'not-applicable', 'receipt.corpusContext.proofHandoff.transformation.state');
+    requireField(errors, fallback?.state === 'ordinary-workflow', 'receipt.corpusContext.proofHandoff.fallback.state');
+  }
+
+  if (outcome === 'generation-mismatch') {
+    requireField(errors, generation?.state === 'mismatch', 'receipt.corpusContext.proofHandoff.generationIdentity.state');
+    requireField(errors, source === null, 'receipt.corpusContext.proofHandoff.sourceIdentity');
+    requireField(errors, provenance?.rightsKnown === false && provenance?.useLabel === 'not-used', 'receipt.corpusContext.proofHandoff.provenanceUseLabel');
+    requireField(errors, semanticRole?.role === 'none' && semanticRole?.dimensions?.length === 0, 'receipt.corpusContext.proofHandoff.semanticRole');
+    requireField(errors, transformation?.state === 'not-applicable', 'receipt.corpusContext.proofHandoff.transformation.state');
+    requireField(errors, fallback?.state === 'requery-required', 'receipt.corpusContext.proofHandoff.fallback.state');
+  }
+
+  if (outcome === 'unknown-rights') {
+    requireField(errors, generation?.state === 'current', 'receipt.corpusContext.proofHandoff.generationIdentity.state');
+    requireField(errors, isPlainObject(source), 'receipt.corpusContext.proofHandoff.sourceIdentity');
+    requireField(errors, ['known', 'partial', 'unknown'].includes(provenance?.status), 'receipt.corpusContext.proofHandoff.provenanceUseLabel.status');
+    requireField(errors, provenance?.rightsKnown === false, 'receipt.corpusContext.proofHandoff.provenanceUseLabel.rightsKnown');
+    requireField(errors, provenance?.licenseStatus === 'unknown', 'receipt.corpusContext.proofHandoff.provenanceUseLabel.licenseStatus');
+    requireField(errors, provenance?.useLabel === 'rights-unknown', 'receipt.corpusContext.proofHandoff.provenanceUseLabel.useLabel');
+    requireField(errors, semanticRole?.role === 'reference' && semanticRole?.dimensions?.length > 0, 'receipt.corpusContext.proofHandoff.semanticRole');
+    requireField(errors, transformation?.state === 'planned', 'receipt.corpusContext.proofHandoff.transformation.state');
+    requireField(errors, fallback?.state === 'target-derived', 'receipt.corpusContext.proofHandoff.fallback.state');
+    requireField(errors, source?.sourceUrl === provenance?.sourceUrl, 'receipt.corpusContext.proofHandoff.provenanceUseLabel.sourceUrl');
+  }
+}
+
+function validateCorpusBinding(errors, context, hydratedProof) {
+  const fixtureValidation = validateCorpusContextFixture(context);
+  appendCanonicalErrors(errors, fixtureValidation, 'receipt.corpusContext');
+  validateOutcomeConsistency(errors, context);
+
+  const boundValidation = validateProofHandoffRecord(hydratedProof);
+  appendCanonicalErrors(errors, boundValidation, 'hydratedProof');
+  if (!fixtureValidation.valid || !boundValidation.valid) return;
+
+  let receiptProofDigest;
+  let hydratedProofDigest;
+  try {
+    receiptProofDigest = digestMetadata(context.proofHandoff);
+    hydratedProofDigest = digestMetadata(hydratedProof);
+  } catch (error) {
+    errors.push(`receipt.corpusContext.proofHandoff:invalid-digest-input:${error.message}`);
+    return;
+  }
+  if (receiptProofDigest !== hydratedProofDigest) {
+    errors.push('receipt.corpusContext.proofHandoff:not-bound-to-hydrated-proof');
+  }
+  return hydratedProofDigest;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -318,12 +335,13 @@ export function digestMetadata(value) {
 }
 
 /**
- * Validate the closed, metadata-only pre-call grounding receipt.
+ * Validate a receipt against the separately hydrated canonical proof record.
  *
  * @param {unknown} receipt - Candidate grounding receipt.
+ * @param {unknown} hydratedProof - Mode-hydrated canonical proof record.
  * @returns {{valid:boolean,errors:string[]}} Stable validation result.
  */
-export function validateGroundingReceipt(receipt) {
+export function validateGroundingReceipt(receipt, hydratedProof) {
   const errors = [];
   if (!validateExactKeys(errors, receipt, 'receipt', RECEIPT_KEYS)) {
     return { valid: false, errors };
@@ -335,9 +353,11 @@ export function validateGroundingReceipt(receipt) {
   validateIdentifier(errors, receipt.receiptId, 'receipt.receiptId');
   validateEnum(errors, receipt.pairedMode, 'receipt.pairedMode', PAIRED_MODES);
 
+  let declaredProofDigest;
   if (validateExactKeys(errors, receipt.skDesignGate, 'receipt.skDesignGate', ['status', 'proofDigest'])) {
     if (receipt.skDesignGate.status !== 'verified') errors.push('receipt.skDesignGate.status:must-be-verified');
     validateHash(errors, receipt.skDesignGate.proofDigest, 'receipt.skDesignGate.proofDigest');
+    declaredProofDigest = receipt.skDesignGate.proofDigest;
   }
 
   if (validateExactKeys(errors, receipt.operation, 'receipt.operation', ['kind', 'tool'])) {
@@ -354,7 +374,10 @@ export function validateGroundingReceipt(receipt) {
     validateIdentifier(errors, receipt.target.resourceId, 'receipt.target.resourceId', { nullable: true });
   }
 
-  validateCorpusContext(errors, receipt.corpusContext);
+  const hydratedProofDigest = validateCorpusBinding(errors, receipt.corpusContext, hydratedProof);
+  if (hydratedProofDigest && declaredProofDigest !== hydratedProofDigest) {
+    errors.push('receipt.skDesignGate.proofDigest:not-bound-to-hydrated-proof');
+  }
 
   if (validateExactKeys(
     errors,
@@ -391,16 +414,17 @@ export function validateGroundingReceipt(receipt) {
  * Apply freshness rules required before a live call.
  *
  * @param {unknown} receipt - Candidate grounding receipt.
+ * @param {unknown} hydratedProof - Mode-hydrated canonical proof record.
  * @returns {{valid:boolean,errors:string[]}} Stable validation result.
  */
-export function validateReceiptForLive(receipt) {
-  const validation = validateGroundingReceipt(receipt);
+export function validateReceiptForLive(receipt, hydratedProof) {
+  const validation = validateGroundingReceipt(receipt, hydratedProof);
   const errors = [...validation.errors];
-  if (receipt?.corpusContext?.generation?.state !== 'current') {
-    errors.push('receipt.corpusContext.generation.state:current-required-for-live');
+  if (hydratedProof?.generationIdentity?.state !== 'current') {
+    errors.push('hydratedProof.generationIdentity.state:current-required-for-live');
   }
-  if (['unavailable', 'generation-mismatch'].includes(receipt?.corpusContext?.proof?.outcome)) {
-    errors.push('receipt.corpusContext.proof.outcome:not-live-eligible');
+  if (['unavailable', 'generation-mismatch'].includes(hydratedProof?.proofState?.outcome)) {
+    errors.push('hydratedProof.proofState.outcome:not-live-eligible');
   }
   return { valid: errors.length === 0, errors };
 }

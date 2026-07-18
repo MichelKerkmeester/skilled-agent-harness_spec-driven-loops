@@ -29,9 +29,18 @@ interface StudyQueryResult {
   readonly cards?: readonly StudyCandidate[];
 }
 
+interface StudyRetrievalManifest {
+  readonly generationHash: string;
+  readonly styles: readonly {
+    readonly id: string;
+    readonly contentHash: string;
+  }[];
+}
+
 export interface StudyRetrievalSurface {
   query(request: Record<string, unknown>): StudyQueryResult;
   hydrate(request: Record<string, unknown>): StudyHydration;
+  verifyContentHash(candidate: StudyCandidate, generationHash: string): string;
 }
 
 export type StudyPreparationResult =
@@ -50,6 +59,11 @@ const STYLE_LIBRARY_CLI = path.resolve(
   'styles',
   '_engine',
   'style-library.mjs',
+);
+const STYLE_LIBRARY_MANIFEST = path.resolve(
+  path.dirname(STYLE_LIBRARY_CLI),
+  '..',
+  '_retrieval-manifest.json',
 );
 const RETRIEVAL_TIMEOUT_MS = 120_000;
 const RETRIEVAL_BUFFER_BYTES = 16 * 1024 * 1024;
@@ -71,6 +85,21 @@ function invokeRetrieval<T>(command: 'query' | 'hydrate', request: Record<string
   return JSON.parse(result.stdout) as T;
 }
 
+function verifyContentHash(candidate: StudyCandidate, generationHash: string): string {
+  const manifest = JSON.parse(
+    fs.readFileSync(STYLE_LIBRARY_MANIFEST, 'utf-8'),
+  ) as StudyRetrievalManifest;
+  const record = manifest.styles.find((style) => style.id === candidate.id);
+  if (
+    manifest.generationHash !== generationHash
+    || !record
+    || record.contentHash !== candidate.contentHash
+  ) {
+    throw new Error('STUDY candidate content hash is not bound to the selected generation.');
+  }
+  return record.contentHash;
+}
+
 export const defaultStudyRetrievalSurface: StudyRetrievalSurface = Object.freeze({
   query: (request: Record<string, unknown>) => (
     invokeRetrieval<StudyQueryResult>('query', request)
@@ -78,6 +107,7 @@ export const defaultStudyRetrievalSurface: StudyRetrievalSurface = Object.freeze
   hydrate: (request: Record<string, unknown>) => (
     invokeRetrieval<StudyHydration>('hydrate', request)
   ),
+  verifyContentHash,
 });
 
 // ───────────────────────────────────────────────────────────────
@@ -112,6 +142,10 @@ export function prepareStudyContext(
     if (candidate.generationHash !== query.generationHash) {
       return { ok: false, error: 'generation-mismatch' };
     }
+    const verifiedCandidateContentHash = retrieval.verifyContentHash(
+      candidate,
+      query.generationHash,
+    );
     const hydration = retrieval.hydrate({
       id: candidate.id,
       generationHash: candidate.generationHash,
@@ -126,6 +160,7 @@ export function prepareStudyContext(
       context: transformStudyExemplar(
         candidate,
         hydration,
+        verifiedCandidateContentHash,
         lockedFacts,
         schemaDigest(schema),
       ),

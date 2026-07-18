@@ -21,7 +21,7 @@ import {
 import { applyEligibility } from './eligibility.mjs';
 import { rankEligibleStyles } from './rank-fts.mjs';
 import { assembleCandidateCards } from './cards.mjs';
-import { hydrateStyle } from './hydrate.mjs';
+import { bindHydrationManifest, hydrateBoundStyle } from './hydrate.mjs';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -85,7 +85,7 @@ export async function runBuild(argumentsList, options = {}) {
     throw error;
   }
 
-  const committed = await loadManifest(manifestPath);
+  const committed = await loadManifest(manifestPath, { corpusRoot });
   const generated = await buildManifest(corpusRoot, {
     previousManifest: isWrite ? committed : null,
   });
@@ -120,7 +120,7 @@ export async function runQuery(request, options = {}) {
   const corpusRoot = options.corpusRoot ?? CORPUS_ROOT;
   const manifestPath = options.manifestPath
     ?? path.join(corpusRoot, '_retrieval-manifest.json');
-  const manifest = await loadManifest(manifestPath);
+  const manifest = await loadManifest(manifestPath, { corpusRoot });
   if (!manifest) {
     const error = new Error('Retrieval manifest is missing. Run build --write first.');
     error.code = 'manifest-missing';
@@ -166,9 +166,11 @@ export async function runHydrate(request, options = {}) {
   const corpusRoot = options.corpusRoot ?? CORPUS_ROOT;
   const manifestPath = options.manifestPath
     ?? path.join(corpusRoot, '_retrieval-manifest.json');
-  const manifest = await loadManifest(manifestPath);
+  const manifest = await loadManifest(manifestPath, { corpusRoot });
   if (!manifest) return { ok: false, error: 'manifest-missing' };
-  return hydrateStyle(manifest, request, { corpusRoot });
+  const bound = await bindHydrationManifest(manifest, request, { corpusRoot });
+  if (!bound.ok) return bound;
+  return hydrateBoundStyle(bound.binding, { corpusRoot });
 }
 
 // ─────────────────────────────────────────────────────────────────────────────

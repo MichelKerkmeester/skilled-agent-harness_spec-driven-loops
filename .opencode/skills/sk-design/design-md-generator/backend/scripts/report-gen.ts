@@ -286,7 +286,7 @@ function generateReportHtml(
   const googleFontsTag = googleFontsLinks.length > 0
     ? googleFontsLinks.map((l) => `<link rel="stylesheet" href="${esc(l)}">`).join('\n')
     : uniqueFamilies.length > 0
-      ? `<!-- Note: ${uniqueFamilies.join(', ')} may be proprietary -->`
+      ? `<!-- Note: ${esc(uniqueFamilies.join(', '))} may be proprietary -->`
       : '';
 
   return `<!DOCTYPE html>
@@ -469,8 +469,8 @@ ${googleFontsTag}
       <div class="stat"><strong>${tokens.colorTokens.length}</strong><span>Colors</span></div>
       <div class="stat"><strong>${tokens.typographyLevels.length}</strong><span>Type Levels</span></div>
       <div class="stat"><strong>${tokens.shadowTokens.length}</strong><span>Shadows</span></div>
-      <div class="stat"><strong>${tokens.meta?.totalPages ?? '?'}</strong><span>Pages</span></div>
-      <div class="stat"><strong>${tokens.meta?.totalElements ?? '?'}</strong><span>Elements</span></div>
+      <div class="stat"><strong>${esc(String(tokens.meta?.totalPages ?? '?'))}</strong><span>Pages</span></div>
+      <div class="stat"><strong>${esc(String(tokens.meta?.totalElements ?? '?'))}</strong><span>Elements</span></div>
       ${proofData ? `<div class="stat" style="border-color:${proofColor(proofData.coverage)}40;"><strong style="color:${proofColor(proofData.coverage)}">${(proofData.coverage * 100).toFixed(1)}%</strong><span>Fidelity</span></div>` : ''}
       ${score !== null ? `<div class="stat" style="border-color:${qualityColor}40;"><strong style="color:${qualityColor}">${score}</strong><span>Quality</span></div>` : ''}
       ${validation ? `<div class="stat"><strong>${hardFailureCount}</strong><span>Hard failures</span></div><div class="stat"><strong>${advisoryCount}</strong><span>Advisories</span></div>` : ''}
@@ -515,12 +515,12 @@ ${score !== null ? `
   ${brandColors.length > 0 ? `
   <div class="color-section-label">Brand Colors (${brandColors.length})</div>
   <div class="color-grid">
-${brandColors.map((c) => `    <div class="swatch"><div class="swatch__color" style="background:${safeColor(c.hex)};color:${contrastOn(c.hex)}">${esc(c.hex)}</div><div class="swatch__meta">${colorRole(c)}<br>×${c.frequency}</div></div>`).join('\n')}
+${brandColors.map((c) => `    <div class="swatch"><div class="swatch__color" style="background:${safeColor(c.hex)};color:${contrastOn(c.hex)}">${esc(c.hex)}</div><div class="swatch__meta">${colorRole(c)}<br>×${esc(String(c.frequency))}</div></div>`).join('\n')}
   </div>` : ''}
   ${structuralColors.length > 0 ? `
   <div class="color-section-label">Structural Colors (${structuralColors.length})</div>
   <div class="color-grid">
-${structuralColors.map((c) => `    <div class="swatch"><div class="swatch__color" style="background:${safeColor(c.hex)};color:${contrastOn(c.hex)}">${esc(c.hex)}</div><div class="swatch__meta">${colorRole(c)}<br>×${c.frequency}</div></div>`).join('\n')}
+${structuralColors.map((c) => `    <div class="swatch"><div class="swatch__color" style="background:${safeColor(c.hex)};color:${contrastOn(c.hex)}">${esc(c.hex)}</div><div class="swatch__meta">${colorRole(c)}<br>×${esc(String(c.frequency))}</div></div>`).join('\n')}
   </div>` : ''}
 </div>
 
@@ -543,8 +543,11 @@ ${tokens.components && tokens.components.length > 0 ? `
     <thead><tr><th>Type</th><th>Variants</th><th>Count</th></tr></thead>
     <tbody>
 ${tokens.components.map((cg: { type: string; variants: { name: string; count: number }[] }) => {
-  const total = cg.variants.reduce((s: number, v: { count: number }) => s + v.count, 0);
-  return `      <tr><td>${esc(cg.type)}</td><td>${cg.variants.map((v: { name: string }) => v.name).join(', ')}</td><td>${total}</td></tr>`;
+  const total = cg.variants.reduce((sum: number, variant: { count: number }) => (
+    sum + (Number.isFinite(variant.count) ? variant.count : 0)
+  ), 0);
+  const variantNames = cg.variants.map((variant: { name: string }) => esc(variant.name));
+  return `      <tr><td>${esc(cg.type)}</td><td>${variantNames.join(', ')}</td><td>${total}</td></tr>`;
 }).join('\n')}
     </tbody>
   </table>
@@ -613,18 +616,18 @@ ${proofData ? (() => {
       <span class="score-label">${proofLabel(pct)}</span>
     </div>
     <div style="font-size:0.8rem;color:var(--text-muted);line-height:1.8;">
-      <strong>${proofData.totalSampled.toLocaleString()}</strong> CSS pixels sampled · <strong>${proofData.matched.toLocaleString()}</strong> matched (ΔE&lt;12)<br>
-      ${proofData.excludedRegions} image/media regions excluded from sampling
+      <strong>${esc(String(proofData.totalSampled.toLocaleString()))}</strong> CSS pixels sampled · <strong>${esc(String(proofData.matched.toLocaleString()))}</strong> matched (ΔE&lt;12)<br>
+      ${esc(String(proofData.excludedRegions))} image/media regions excluded from sampling
     </div>
   </div>
   <div class="proof-comparison">
     <div class="proof-panel">
       <div class="proof-panel__label">🌐 Original Site</div>
-      <img src="data:image/png;base64,${proofData.originalScreenshot}" alt="Original">
+      <img src="data:image/png;base64,${esc(proofData.originalScreenshot)}" alt="Original">
     </div>
     <div class="proof-panel">
       <div class="proof-panel__label">🎨 Extracted Preview</div>
-      <img src="data:image/png;base64,${proofData.previewScreenshot}" alt="Preview">
+      <img src="data:image/png;base64,${esc(proofData.previewScreenshot)}" alt="Preview">
     </div>
   </div>
   <div class="methodology">

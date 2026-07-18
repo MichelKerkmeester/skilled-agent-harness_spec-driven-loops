@@ -16,6 +16,15 @@ import {
   validateCorpusContextPlan,
   validateProofHandoffRecord,
 } from '../../shared/corpus-context/validate-context-plan.mjs';
+import {
+  blockingPlanOutcome,
+  immutableSnapshot,
+  isRetrievalUnavailableError,
+} from '../../shared/corpus-context/corpus-runtime.mjs';
+import {
+  validateHydratedSourceAttestation,
+  validateSourceAttestation,
+} from '../../shared/corpus-context/source-attestation.mjs';
 import { runHydrate, runQuery } from '../../styles/_engine/style-library.mjs';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -24,6 +33,8 @@ import { runHydrate, runQuery } from '../../styles/_engine/style-library.mjs';
 
 export const INTERFACE_RELATIONAL_EXEMPLAR_VERSION = 'INTERFACE_RELATIONAL_EXEMPLAR v2';
 export const INTERFACE_DECISION_HANDOFF_VERSION = 'INTERFACE_DECISION_HANDOFF v2';
+export const INTERFACE_DECISION_EVIDENCE_VERSION = 'INTERFACE_DECISION_EVIDENCE v1';
+export const INTERFACE_SOURCE_ATTESTATION_VERSION = 'INTERFACE_SOURCE_ATTESTATION v1';
 
 const AUTHORITY_INPUT_KEYS = Object.freeze([
   'brief',
@@ -61,6 +72,17 @@ const DECISION_KEYS = Object.freeze([
   'targetAuthority',
   'sourceRoles',
 ]);
+const MODE_DECISION_KEYS = Object.freeze(['decisions', 'counterfactual', 'attestations']);
+const DECISION_EVIDENCE_KEYS = Object.freeze([
+  'schemaVersion',
+  'decisionId',
+  'axis',
+  'operation',
+  'choice',
+  'reasonCode',
+  'sourceRole',
+]);
+const DECISION_EVIDENCE_FENCE = 'interface-decision-evidence';
 const COUNTERFACTUAL_KEYS = Object.freeze(['changedDecisionAxes']);
 const COUNTERFACTUAL_CHANGE_KEYS = Object.freeze([
   'decisionId',
@@ -104,11 +126,6 @@ const HASH_PATTERN = /^sha256:[a-f0-9]{64}$/;
 const MAX_QUERY_CARDS = 5;
 const ANCHOR_HYDRATION_BYTES = 8 * 1_024;
 const SECONDARY_HYDRATION_BYTES = 2 * 1_024;
-const RETRIEVAL_UNAVAILABLE_CODES = Object.freeze(new Set([
-  'manifest-missing',
-  'manifest-stale',
-  'ENOENT',
-]));
 const HYDRATION_UNAVAILABLE_CODES = Object.freeze(new Set([
   'manifest-missing',
   'manifest-invalid',
@@ -197,13 +214,26 @@ function validateSelection(selection) {
   return errors;
 }
 
-function validateModeDecision(modeDecision, authorityInputs) {
+function validateDecisionEvidence(errors, evidence, path) {
+  if (!validateExactKeys(errors, evidence, path, DECISION_EVIDENCE_KEYS)) return;
+  if (evidence.schemaVersion !== INTERFACE_DECISION_EVIDENCE_VERSION) {
+    errors.push(`${path}.schemaVersion:invalid`);
+  }
+  validateUuid(errors, evidence.decisionId, `${path}.decisionId`);
+  validateEnum(errors, evidence.axis, `${path}.axis`, DECISION_AXES);
+  validateEnum(errors, evidence.operation, `${path}.operation`, DECISION_OPERATIONS);
+  validateEnum(errors, evidence.choice, `${path}.choice`, DECISION_CHOICES);
+  validateEnum(errors, evidence.reasonCode, `${path}.reasonCode`, DECISION_REASON_CODES);
+  validateEnum(errors, evidence.sourceRole, `${path}.sourceRole`, SOURCE_ROLES);
+}
+
+function validateModeDecision(modeDecision, authorityInputs, selection, generationHash) {
   const errors = [];
   if (!validateExactKeys(
     errors,
     modeDecision,
     'modeDecision',
-    ['decisions', 'counterfactual'],
+    MODE_DECISION_KEYS,
   )) {
     return errors;
   }
@@ -293,6 +323,52 @@ function validateModeDecision(modeDecision, authorityInputs) {
     }
     changedDecisionIds.add(change.decisionId);
   }
+
+  if (!Array.isArray(modeDecision.attestations)) {
+    errors.push('modeDecision.attestations:required-array');
+    return errors;
+  }
+  const expectedClaims = new Map();
+  for (const decision of decisionsById.values()) {
+    for (const sourceRole of decision.sourceRoles) {
+      expectedClaims.set(`${decision.decisionId}:${sourceRole}`, { decision, sourceRole });
+    }
+  }
+  const attestedClaims = new Set();
+  for (const [index, attestation] of modeDecision.attestations.entries()) {
+    const path = `modeDecision.attestations.${index}`;
+    const evidence = attestation?.evidence;
+    const claim = expectedClaims.get(`${evidence?.decisionId}:${evidence?.sourceRole}`);
+    const expectedSourceId = evidence?.sourceRole === 'anchor'
+      ? selection?.anchorId
+      : selection?.secondary?.role === evidence?.sourceRole
+        ? selection.secondary.id
+        : null;
+    validateSourceAttestation(errors, attestation, path, {
+      schemaVersion: INTERFACE_SOURCE_ATTESTATION_VERSION,
+      mode: 'interface',
+      sourceId: expectedSourceId,
+      generationHash,
+      validateEvidence: validateDecisionEvidence,
+    });
+    if (!claim) {
+      errors.push(`${path}.evidence:claim-not-emitted`);
+      continue;
+    }
+    for (const key of ['decisionId', 'axis', 'operation', 'choice', 'reasonCode']) {
+      if (evidence[key] !== claim.decision[key]) {
+        errors.push(`${path}.evidence.${key}:decision-mismatch`);
+      }
+    }
+    const claimKey = `${claim.decision.decisionId}:${claim.sourceRole}`;
+    if (attestedClaims.has(claimKey)) errors.push(`${path}:duplicate-claim`);
+    attestedClaims.add(claimKey);
+  }
+  for (const claimKey of expectedClaims.keys()) {
+    if (!attestedClaims.has(claimKey)) {
+      errors.push(`modeDecision.attestations:missing-claim:${claimKey}`);
+    }
+  }
   return errors;
 }
 
@@ -306,13 +382,18 @@ function validateInterfaceRequest(input) {
     errors.push('retrievalRequest:exact-reuse-forbidden');
   }
   if (input?.modeDecision !== undefined) {
-    errors.push(...validateModeDecision(input.modeDecision, input.authorityInputs));
+    errors.push(...validateModeDecision(
+      input.modeDecision,
+      input.authorityInputs,
+      input.selection,
+      input.contextPlan?.generationIdentity?.observedGenerationHash,
+    ));
   }
   return errors;
 }
 
 function isKnownRetrievalUnavailable(error) {
-  return error instanceof SyntaxError || RETRIEVAL_UNAVAILABLE_CODES.has(error?.code);
+  return isRetrievalUnavailableError(error);
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -359,7 +440,7 @@ function handoffSourceReference(source) {
   };
 }
 
-function positiveProofHandoff(generationIdentity, source, decisionCount) {
+function positiveProofHandoff(generationIdentity, source) {
   const isRightsKnown = source.provenanceUseLabel.rightsKnown;
   return {
     generationIdentity,
@@ -371,15 +452,13 @@ function positiveProofHandoff(generationIdentity, source, decisionCount) {
     provenanceUseLabel: source.provenanceUseLabel,
     semanticRole: { role: 'reference', dimensions: ['relationship', 'rationale'] },
     transformation: {
-      state: 'transformed',
-      summary: `${decisionCount} target-owned relational decisions recorded without source literals.`,
+      state: isRightsKnown ? 'transformed' : 'planned',
+      summary: isRightsKnown ? 'transformed-reference' : 'planned-reference',
       copiedSourceSpecificMaterial: false,
     },
     fallback: {
       state: isRightsKnown ? 'not-needed' : 'target-derived',
-      reason: isRightsKnown
-        ? 'A bounded transformed reference informed target-owned decisions.'
-        : 'Unknown rights keep all source-specific material out of the target.',
+      reason: isRightsKnown ? 'bounded-reference-fit' : 'target-derived-unknown-rights',
     },
     proofState: {
       outcome: isRightsKnown ? 'positive' : 'unknown-rights',
@@ -391,6 +470,7 @@ function positiveProofHandoff(generationIdentity, source, decisionCount) {
 
 function negativeProofHandoff(contextPlan, outcome) {
   const isUnavailable = outcome === 'unavailable';
+  const isMismatch = outcome === 'generation-mismatch';
   return {
     generationIdentity: contextPlan.generationIdentity,
     sourceIdentity: null,
@@ -404,14 +484,20 @@ function negativeProofHandoff(contextPlan, outcome) {
     semanticRole: { role: 'none', dimensions: [] },
     transformation: {
       state: 'not-applicable',
-      summary: 'No corpus source influenced target decisions.',
+      summary: 'no-source-influence',
       copiedSourceSpecificMaterial: false,
     },
     fallback: {
-      state: isUnavailable ? 'ordinary-workflow' : 'target-derived',
+      state: isUnavailable
+        ? 'ordinary-workflow'
+        : isMismatch
+          ? 'requery-required'
+          : 'target-derived',
       reason: isUnavailable
-        ? 'Corpus evidence is unavailable; the ordinary interface workflow remains active.'
-        : 'No coherent reference fit; direction remains target-derived.',
+        ? 'ordinary-workflow-unavailable'
+        : isMismatch
+          ? 'requery-generation-mismatch'
+          : 'target-derived-no-fit',
     },
     proofState: {
       outcome,
@@ -509,15 +595,17 @@ export async function buildRelationalExemplar(input, engineOptions = {}) {
   if (requestErrors.length > 0) {
     return { ok: false, error: 'invalid-interface-request', details: requestErrors };
   }
-  const authoritySnapshot = structuredClone(input.authorityInputs);
-  if (input.contextPlan.availability === 'unavailable') {
-    return fallbackResult(input.contextPlan, 'unavailable', input.authorityInputs);
+  const request = immutableSnapshot(input);
+  const authoritySnapshot = request.authorityInputs;
+  const blockedOutcome = blockingPlanOutcome(request.contextPlan);
+  if (blockedOutcome) {
+    return fallbackResult(request.contextPlan, blockedOutcome, request.authorityInputs);
   }
 
   let query;
   try {
     query = await runQuery({
-      ...(input.retrievalRequest ?? {}),
+      ...(request.retrievalRequest ?? {}),
       usage: 'reference',
       exactReuse: false,
       limit: MAX_QUERY_CARDS,
@@ -525,25 +613,25 @@ export async function buildRelationalExemplar(input, engineOptions = {}) {
   } catch (error) {
     if (!isKnownRetrievalUnavailable(error)) throw error;
     return fallbackResult(
-      input.contextPlan,
+      request.contextPlan,
       'no-fit',
-      input.authorityInputs,
+      request.authorityInputs,
       [`retrieval-unavailable:${error.code ?? 'invalid-manifest'}`],
     );
   }
-  if (query.generationHash !== input.contextPlan.generationIdentity.observedGenerationHash) {
+  if (query.generationHash !== request.contextPlan.generationIdentity.observedGenerationHash) {
     return fallbackResult(
-      input.contextPlan,
+      request.contextPlan,
       'no-fit',
-      input.authorityInputs,
+      request.authorityInputs,
       ['retrieval-unavailable:generation-mismatch'],
     );
   }
-  const anchorCard = query.cards.find((card) => card.id === input.selection.anchorId);
+  const anchorCard = query.cards.find((card) => card.id === request.selection.anchorId);
   if (!anchorCard) {
-    return fallbackResult(input.contextPlan, 'no-fit', input.authorityInputs);
+    return fallbackResult(request.contextPlan, 'no-fit', request.authorityInputs);
   }
-  if (!input.modeDecision) {
+  if (!request.modeDecision) {
     return {
       ok: false,
       error: 'invalid-mode-decision',
@@ -562,19 +650,20 @@ export async function buildRelationalExemplar(input, engineOptions = {}) {
       return { ok: false, error: `anchor-${anchorHydration.error}` };
     }
     return fallbackResult(
-      input.contextPlan,
+      request.contextPlan,
       'no-fit',
-      input.authorityInputs,
+      request.authorityInputs,
       [`anchor-unavailable:${anchorHydration.error}`],
     );
   }
   const anchor = sourceDescriptor(anchorCard, anchorHydration, 'anchor');
 
   let secondary = null;
+  let secondaryBinding = null;
   const warnings = [];
-  if (input.selection.secondary) {
+  if (request.selection.secondary) {
     const secondaryCard = query.cards.find(
-      (card) => card.id === input.selection.secondary.id,
+      (card) => card.id === request.selection.secondary.id,
     );
     if (!secondaryCard) {
       warnings.push('secondary-unavailable');
@@ -586,10 +675,11 @@ export async function buildRelationalExemplar(input, engineOptions = {}) {
         engineOptions,
       );
       if (secondaryHydration.ok) {
+        secondaryBinding = { card: secondaryCard, hydration: secondaryHydration };
         secondary = sourceDescriptor(
           secondaryCard,
           secondaryHydration,
-          input.selection.secondary.role,
+          request.selection.secondary.role,
         );
       } else if (HYDRATION_UNAVAILABLE_CODES.has(secondaryHydration.error)) {
         warnings.push(`secondary-${secondaryHydration.error}`);
@@ -600,27 +690,50 @@ export async function buildRelationalExemplar(input, engineOptions = {}) {
   }
 
   const availableRoles = new Set(['anchor', ...(secondary ? [secondary.role] : [])]);
-  const unavailableRole = input.modeDecision.decisions
+  const unavailableRole = request.modeDecision.decisions
     .flatMap((decision) => decision.sourceRoles)
     .find((role) => !availableRoles.has(role));
   if (unavailableRole) {
     return { ok: false, error: 'decision-source-unavailable', details: [unavailableRole] };
+  }
+  const hydratedSourcesByRole = new Map([
+    ['anchor', { card: anchorCard, hydration: anchorHydration }],
+    ...(secondary ? [[secondary.role, secondaryBinding]] : []),
+  ]);
+  const attestationErrors = [];
+  for (const attestation of request.modeDecision.attestations) {
+    const hydratedSource = hydratedSourcesByRole.get(attestation.evidence.sourceRole);
+    if (!hydratedSource?.hydration?.ok) {
+      attestationErrors.push(`${attestation.evidence.sourceRole}:source-not-hydrated`);
+      continue;
+    }
+    const result = validateHydratedSourceAttestation(
+      attestation,
+      hydratedSource.card,
+      hydratedSource.hydration,
+      { fence: DECISION_EVIDENCE_FENCE, validateEvidence: validateDecisionEvidence },
+    );
+    attestationErrors.push(...result.errors.map((error) => (
+      `${attestation.evidence.decisionId}:${attestation.evidence.sourceRole}:${error}`
+    )));
+  }
+  if (attestationErrors.length > 0) {
+    return { ok: false, error: 'decision-attestation-rejected', details: attestationErrors };
   }
   if (!isDeepStrictEqual(authoritySnapshot, input.authorityInputs)) {
     return { ok: false, error: 'authority-input-mutated' };
   }
 
   const proofHandoff = positiveProofHandoff(
-    input.contextPlan.generationIdentity,
+    request.contextPlan.generationIdentity,
     anchor,
-    input.modeDecision.decisions.length,
   );
   const proofError = validateBuiltProof(proofHandoff);
   if (proofError) return proofError;
   const sources = [anchor, ...(secondary ? [secondary] : [])];
-  const decisions = structuredClone(input.modeDecision.decisions);
+  const decisions = structuredClone(request.modeDecision.decisions);
   const preservation = authorityPreservation(
-    input.authorityInputs,
+    request.authorityInputs,
     decisions,
     authoritySnapshot,
   );
@@ -641,7 +754,7 @@ export async function buildRelationalExemplar(input, engineOptions = {}) {
       schemaVersion: INTERFACE_DECISION_HANDOFF_VERSION,
       decisions,
       sources: sources.map(handoffSourceReference),
-      counterfactual: structuredClone(input.modeDecision.counterfactual),
+      counterfactual: structuredClone(request.modeDecision.counterfactual),
       authorityPreservation: preservation,
       averagedTokenValues: false,
       copiedSourceSpecificMaterial: false,

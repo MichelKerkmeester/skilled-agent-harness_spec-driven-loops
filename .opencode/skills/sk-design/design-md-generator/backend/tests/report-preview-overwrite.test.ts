@@ -79,6 +79,23 @@ describe('report-gen / preview-gen overwrite guard (P1-004 regression)', () => {
     expect(html).not.toContain('style="background:red; } * { display:none } /*');
   });
 
+  it('escapes captured component variant names before rendering HTML', () => {
+    const payload = '</td><img src=x onerror=alert(1)>';
+    fs.writeFileSync(tokensPath, JSON.stringify(tokens({
+      components: [{
+        type: 'button',
+        variants: [{ name: payload, count: 1 }],
+      }],
+    })));
+
+    generateReport(tokensPath, sandboxDir);
+    const html = fs.readFileSync(path.join(sandboxDir, 'report.html'), 'utf-8');
+
+    expect(html).not.toContain(payload);
+    expect(html).not.toContain('<img src=x onerror=alert(1)>');
+    expect(html).toContain('&lt;/td&gt;&lt;img src=x onerror=alert(1)&gt;');
+  });
+
   it('surfaces hard validation separately from stratified corpus advisories', () => {
     const designPath = path.join(sandboxDir, 'DESIGN.md');
     const reportTokens = tokens({

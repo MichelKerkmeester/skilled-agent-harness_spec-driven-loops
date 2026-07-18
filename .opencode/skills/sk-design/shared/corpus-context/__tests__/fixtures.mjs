@@ -78,7 +78,7 @@ function negativeRecord(generation, outcome, fallbackState, reason) {
     semanticRole: { role: 'none', dimensions: [] },
     transformation: {
       state: 'not-applicable',
-      summary: 'No corpus source influenced target decisions.',
+      summary: 'no-source-influence',
       copiedSourceSpecificMaterial: false,
     },
     fallback: { state: fallbackState, reason },
@@ -112,10 +112,10 @@ export const POSITIVE_FIXTURE = Object.freeze({
     semanticRole: { role: 'reference', dimensions: ['relationship', 'rationale'] },
     transformation: {
       state: 'transformed',
-      summary: 'Translated source relationships into target-owned decisions.',
+      summary: 'transformed-reference',
       copiedSourceSpecificMaterial: false,
     },
-    fallback: { state: 'not-needed', reason: 'A bounded reference fit was recorded.' },
+    fallback: { state: 'not-needed', reason: 'bounded-reference-fit' },
     proofState: { outcome: 'positive', status: 'accepted-evidence', targetChecks: 'not-assessed' },
   },
 });
@@ -127,7 +127,7 @@ export const NO_FIT_FIXTURE = Object.freeze({
     CURRENT_GENERATION,
     'no-fit',
     'target-derived',
-    'No eligible source fit the target context.',
+    'target-derived-no-fit',
   ),
 });
 
@@ -140,7 +140,7 @@ export const UNAVAILABLE_FIXTURE = Object.freeze({
     UNAVAILABLE_GENERATION,
     'unavailable',
     'ordinary-workflow',
-    'Corpus evidence was unavailable, so the ordinary target workflow remains active.',
+    'ordinary-workflow-unavailable',
   ),
 });
 
@@ -153,7 +153,7 @@ export const GENERATION_MISMATCH_FIXTURE = Object.freeze({
     MISMATCHED_GENERATION,
     'generation-mismatch',
     'requery-required',
-    'Observed evidence belongs to another generation and cannot influence the target.',
+    'requery-generation-mismatch',
   ),
 });
 
@@ -177,12 +177,12 @@ export const UNKNOWN_RIGHTS_FIXTURE = Object.freeze({
     semanticRole: { role: 'reference', dimensions: ['relationship'] },
     transformation: {
       state: 'planned',
-      summary: 'Reference relationships may inform critique; exact reuse remains blocked.',
+      summary: 'planned-reference',
       copiedSourceSpecificMaterial: false,
     },
     fallback: {
       state: 'target-derived',
-      reason: 'Unknown rights keep source-specific values and material out of the target.',
+      reason: 'target-derived-unknown-rights',
     },
     proofState: {
       outcome: 'unknown-rights',

@@ -2,11 +2,29 @@
 // MODULE: STUDY Adversarial Fixtures
 // ───────────────────────────────────────────────────────────────
 
+import { createHash } from 'node:crypto';
+
 import type { StudyCandidate, StudyHydration } from '../../scripts/study-exemplars';
 import type { DesignTokens } from '../../scripts/types';
 
 export const STUDY_GENERATION = `sha256:${'a'.repeat(64)}`;
-export const STUDY_CONTENT_HASH = `sha256:${'b'.repeat(64)}`;
+
+function sha256(value: string): string {
+  return `sha256:${createHash('sha256').update(value).digest('hex')}`;
+}
+
+function contentHash(artifacts: readonly { path: string; content: string }[]): string {
+  const hash = createHash('sha256');
+  for (const artifact of [...artifacts].sort((left, right) => (
+    left.path < right.path ? -1 : left.path > right.path ? 1 : 0
+  ))) {
+    hash.update(artifact.path);
+    hash.update('\0');
+    hash.update(artifact.content);
+    hash.update('\0');
+  }
+  return `sha256:${hash.digest('hex')}`;
+}
 
 export const ADVERSARIAL_DESIGN = [
   '# Northstar Labs — Style Reference',
@@ -51,6 +69,14 @@ export const ADVERSARIAL_TOKENS = JSON.stringify({
   },
 });
 
+const STUDY_DESIGN_PATH = 'northstar/DESIGN.md';
+const STUDY_TOKENS_PATH = 'northstar/design-tokens.json';
+export const STUDY_CONTENT_HASH = `sha256:${'b'.repeat(64)}`;
+export const STUDY_HYDRATED_CONTENT_HASH = contentHash([
+  { path: STUDY_DESIGN_PATH, content: ADVERSARIAL_DESIGN },
+  { path: STUDY_TOKENS_PATH, content: ADVERSARIAL_TOKENS },
+]);
+
 export const STUDY_CANDIDATE: StudyCandidate = Object.freeze({
   id: '11111111-1111-4111-8111-111111111111',
   generationHash: STUDY_GENERATION,
@@ -72,14 +98,14 @@ export const STUDY_HYDRATION: StudyHydration = Object.freeze({
   generationHash: STUDY_GENERATION,
   artifacts: [
     {
-      path: 'northstar/DESIGN.md',
-      sha256: `sha256:${'c'.repeat(64)}`,
+      path: STUDY_DESIGN_PATH,
+      sha256: sha256(ADVERSARIAL_DESIGN),
       truncated: false,
       content: ADVERSARIAL_DESIGN,
     },
     {
-      path: 'northstar/design-tokens.json',
-      sha256: `sha256:${'d'.repeat(64)}`,
+      path: STUDY_TOKENS_PATH,
+      sha256: sha256(ADVERSARIAL_TOKENS),
       truncated: false,
       content: ADVERSARIAL_TOKENS,
     },

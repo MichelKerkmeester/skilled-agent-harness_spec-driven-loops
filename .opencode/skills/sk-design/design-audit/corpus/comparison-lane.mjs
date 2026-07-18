@@ -16,6 +16,15 @@ import {
   validateCorpusContextPlan,
   validateProofHandoffRecord,
 } from '../../shared/corpus-context/validate-context-plan.mjs';
+import {
+  blockingPlanOutcome,
+  immutableSnapshot,
+  isRetrievalUnavailableError,
+} from '../../shared/corpus-context/corpus-runtime.mjs';
+import {
+  validateHydratedSourceAttestation,
+  validateSourceAttestation,
+} from '../../shared/corpus-context/source-attestation.mjs';
 import { runHydrate, runQuery } from '../../styles/_engine/style-library.mjs';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -23,6 +32,8 @@ import { runHydrate, runQuery } from '../../styles/_engine/style-library.mjs';
 // ─────────────────────────────────────────────────────────────────────────────
 
 export const AUDIT_CORPUS_COMPARISON_VERSION = 'AUDIT_CORPUS_COMPARISON v2';
+export const AUDIT_COMPARISON_EVIDENCE_VERSION = 'AUDIT_COMPARISON_EVIDENCE v1';
+export const AUDIT_SOURCE_ATTESTATION_VERSION = 'AUDIT_SOURCE_ATTESTATION v1';
 
 const AUTHORITY_INPUT_KEYS = Object.freeze([
   'brief',
@@ -38,10 +49,19 @@ const COMPARISON_KEYS = Object.freeze([
   'intendedAnchor',
   'axisObservations',
   'targetEvidence',
+  'attestation',
 ]);
 const INTENDED_ANCHOR_KEYS = Object.freeze(['sourceId', 'contentHash']);
 const AXIS_OBSERVATION_KEYS = Object.freeze(['axis', 'state']);
 const TARGET_EVIDENCE_KEYS = Object.freeze(['label', 'kind', 'evidenceId']);
+const COMPARISON_EVIDENCE_KEYS = Object.freeze([
+  'schemaVersion',
+  'comparisonId',
+  'purpose',
+  'relation',
+  'axisObservations',
+]);
+const COMPARISON_EVIDENCE_FENCE = 'audit-comparison-evidence';
 const COMPARISON_PURPOSES = Object.freeze([
   'owned-anchor-conformance',
   'contextual-relationship',
@@ -81,11 +101,6 @@ const HASH_PATTERN = /^sha256:[a-f0-9]{64}$/;
 const MAX_COMPARISON_REFERENCES = 2;
 const MAX_QUERY_CARDS = 5;
 const COMPARISON_HYDRATION_BYTES = 4 * 1_024;
-const RETRIEVAL_UNAVAILABLE_CODES = Object.freeze(new Set([
-  'manifest-missing',
-  'manifest-stale',
-  'ENOENT',
-]));
 const HYDRATION_UNAVAILABLE_CODES = Object.freeze(new Set([
   'manifest-missing',
   'manifest-invalid',
@@ -149,7 +164,27 @@ function validateIntendedAnchor(errors, intendedAnchor, path) {
   validateHash(errors, intendedAnchor.contentHash, `${path}.contentHash`);
 }
 
-function validateComparison(errors, comparison, index, authorityInputs) {
+function validateComparisonEvidence(errors, evidence, path) {
+  if (!validateExactKeys(errors, evidence, path, COMPARISON_EVIDENCE_KEYS)) return;
+  if (evidence.schemaVersion !== AUDIT_COMPARISON_EVIDENCE_VERSION) {
+    errors.push(`${path}.schemaVersion:invalid`);
+  }
+  validateUuid(errors, evidence.comparisonId, `${path}.comparisonId`);
+  validateEnum(errors, evidence.purpose, `${path}.purpose`, COMPARISON_PURPOSES);
+  validateEnum(errors, evidence.relation, `${path}.relation`, RELATIONS);
+  if (!Array.isArray(evidence.axisObservations)) {
+    errors.push(`${path}.axisObservations:required-array`);
+    return;
+  }
+  for (const [index, observation] of evidence.axisObservations.entries()) {
+    const observationPath = `${path}.axisObservations.${index}`;
+    if (!validateExactKeys(errors, observation, observationPath, AXIS_OBSERVATION_KEYS)) continue;
+    validateEnum(errors, observation.axis, `${observationPath}.axis`, COMPARISON_AXES);
+    validateEnum(errors, observation.state, `${observationPath}.state`, OBSERVATION_STATES);
+  }
+}
+
+function validateComparison(errors, comparison, index, authorityInputs, generationHash) {
   const path = `comparisons.${index}`;
   if (!validateExactKeys(errors, comparison, path, COMPARISON_KEYS)) return;
   validateUuid(errors, comparison.id, `${path}.id`);
@@ -180,6 +215,25 @@ function validateComparison(errors, comparison, index, authorityInputs) {
     }
   }
 
+  validateSourceAttestation(errors, comparison.attestation, `${path}.attestation`, {
+    schemaVersion: AUDIT_SOURCE_ATTESTATION_VERSION,
+    mode: 'audit',
+    sourceId: comparison.id,
+    generationHash,
+    validateEvidence: validateComparisonEvidence,
+  });
+  const attested = comparison.attestation?.evidence;
+  if (attested) {
+    if (attested.comparisonId !== comparison.id) {
+      errors.push(`${path}.attestation.evidence.comparisonId:comparison-mismatch`);
+    }
+    for (const key of ['purpose', 'relation', 'axisObservations']) {
+      if (!isDeepStrictEqual(attested[key], comparison[key])) {
+        errors.push(`${path}.attestation.evidence.${key}:comparison-mismatch`);
+      }
+    }
+  }
+
   if (comparison.relation !== 'unexplained-drift') return;
   if (!isPlainObject(comparison.intendedAnchor)) {
     errors.push(`${path}:drift-requires-verified-intended-anchor`);
@@ -201,7 +255,7 @@ function validateComparison(errors, comparison, index, authorityInputs) {
 }
 
 function isKnownRetrievalUnavailable(error) {
-  return error instanceof SyntaxError || RETRIEVAL_UNAVAILABLE_CODES.has(error?.code);
+  return isRetrievalUnavailableError(error);
 }
 
 /**
@@ -231,6 +285,7 @@ export function validateAuditComparisonRequest(input) {
         comparison,
         index,
         hasAuthorityInputs ? input.authorityInputs : null,
+        input.contextPlan?.generationIdentity?.observedGenerationHash,
       );
     });
   }
@@ -300,15 +355,13 @@ function comparisonProofHandoff(generationIdentity, reference) {
     provenanceUseLabel: reference.provenanceUseLabel,
     semanticRole: { role: 'reference', dimensions: ['relationship', 'rationale'] },
     transformation: {
-      state: 'planned',
-      summary: 'Comparison context remains descriptive; target evidence owns every verdict.',
+      state: isRightsKnown ? 'transformed' : 'planned',
+      summary: isRightsKnown ? 'transformed-reference' : 'planned-reference',
       copiedSourceSpecificMaterial: false,
     },
     fallback: {
       state: isRightsKnown ? 'not-needed' : 'target-derived',
-      reason: isRightsKnown
-        ? 'The reference is bounded to non-authoritative comparison context.'
-        : 'Unknown rights block source-specific reuse and keep decisions target-derived.',
+      reason: isRightsKnown ? 'bounded-reference-fit' : 'target-derived-unknown-rights',
     },
     proofState: {
       outcome: isRightsKnown ? 'positive' : 'unknown-rights',
@@ -318,8 +371,9 @@ function comparisonProofHandoff(generationIdentity, reference) {
   };
 }
 
-function unavailableProofHandoff(contextPlan) {
-  const isUnavailable = contextPlan.availability === 'unavailable';
+function unavailableProofHandoff(contextPlan, outcome) {
+  const isUnavailable = outcome === 'unavailable';
+  const isMismatch = outcome === 'generation-mismatch';
   return {
     generationIdentity: contextPlan.generationIdentity,
     sourceIdentity: null,
@@ -333,15 +387,23 @@ function unavailableProofHandoff(contextPlan) {
     semanticRole: { role: 'none', dimensions: [] },
     transformation: {
       state: 'not-applicable',
-      summary: 'No comparison source influenced the audit.',
+      summary: 'no-source-influence',
       copiedSourceSpecificMaterial: false,
     },
     fallback: {
-      state: isUnavailable ? 'ordinary-workflow' : 'target-derived',
-      reason: 'The audit proceeds on target evidence without corpus comparison.',
+      state: isUnavailable
+        ? 'ordinary-workflow'
+        : isMismatch
+          ? 'requery-required'
+          : 'target-derived',
+      reason: isUnavailable
+        ? 'ordinary-workflow-unavailable'
+        : isMismatch
+          ? 'requery-generation-mismatch'
+          : 'target-derived-no-fit',
     },
     proofState: {
-      outcome: isUnavailable ? 'unavailable' : 'no-fit',
+      outcome,
       status: 'accepted-evidence',
       targetChecks: 'not-assessed',
     },
@@ -356,8 +418,8 @@ function validateBuiltProof(proofHandoff) {
   return null;
 }
 
-function unavailableResult(contextPlan, warnings = []) {
-  const proofHandoff = unavailableProofHandoff(contextPlan);
+function unavailableResult(contextPlan, outcome = 'no-fit', warnings = []) {
+  const proofHandoff = unavailableProofHandoff(contextPlan, outcome);
   const proofError = validateBuiltProof(proofHandoff);
   if (proofError) return proofError;
   return {
@@ -415,31 +477,41 @@ export async function buildAuditComparisonLane(input, engineOptions = {}) {
   if (!validation.valid) {
     return { ok: false, error: 'invalid-audit-comparison-request', details: validation.errors };
   }
-  const authoritySnapshot = structuredClone(input.authorityInputs);
-  if (input.contextPlan.availability === 'unavailable') {
-    return unavailableResult(input.contextPlan);
+  const request = immutableSnapshot(input);
+  const authoritySnapshot = request.authorityInputs;
+  const blockedOutcome = blockingPlanOutcome(request.contextPlan);
+  if (blockedOutcome) {
+    return unavailableResult(request.contextPlan, blockedOutcome);
   }
 
   let query;
   try {
     query = await runQuery({
-      ...(input.retrievalRequest ?? {}),
+      ...(request.retrievalRequest ?? {}),
       usage: 'reference',
       exactReuse: false,
       limit: MAX_QUERY_CARDS,
     }, engineOptions);
   } catch (error) {
     if (!isKnownRetrievalUnavailable(error)) throw error;
-    return unavailableResult(input.contextPlan, [`retrieval-unavailable:${error.code ?? 'invalid-manifest'}`]);
+    return unavailableResult(
+      request.contextPlan,
+      'no-fit',
+      [`retrieval-unavailable:${error.code ?? 'invalid-manifest'}`],
+    );
   }
-  if (query.generationHash !== input.contextPlan.generationIdentity.observedGenerationHash) {
-    return unavailableResult(input.contextPlan, ['retrieval-unavailable:generation-mismatch']);
+  if (query.generationHash !== request.contextPlan.generationIdentity.observedGenerationHash) {
+    return unavailableResult(
+      request.contextPlan,
+      'no-fit',
+      ['retrieval-unavailable:generation-mismatch'],
+    );
   }
 
   const rows = [];
   const proofHandoffs = [];
   const warnings = [];
-  for (const comparison of input.comparisons) {
+  for (const comparison of request.comparisons) {
     const card = query.cards.find((candidate) => candidate.id === comparison.id);
     if (!card) {
       warnings.push(`comparison-unavailable:${comparison.id}`);
@@ -466,9 +538,22 @@ export async function buildAuditComparisonLane(input, engineOptions = {}) {
       warnings.push(`comparison-unavailable:${comparison.id}:${hydration.error}`);
       continue;
     }
+    const attestationValidation = validateHydratedSourceAttestation(
+      comparison.attestation,
+      card,
+      hydration,
+      { fence: COMPARISON_EVIDENCE_FENCE, validateEvidence: validateComparisonEvidence },
+    );
+    if (!attestationValidation.valid) {
+      return {
+        ok: false,
+        error: 'comparison-attestation-rejected',
+        details: attestationValidation.errors,
+      };
+    }
     const reference = referenceDescriptor(card, hydration);
     const proofHandoff = comparisonProofHandoff(
-      input.contextPlan.generationIdentity,
+      request.contextPlan.generationIdentity,
       reference,
     );
     const proofError = validateBuiltProof(proofHandoff);
@@ -487,7 +572,7 @@ export async function buildAuditComparisonLane(input, engineOptions = {}) {
     });
   }
 
-  if (rows.length === 0) return unavailableResult(input.contextPlan, warnings);
+  if (rows.length === 0) return unavailableResult(request.contextPlan, 'no-fit', warnings);
   if (!isDeepStrictEqual(authoritySnapshot, input.authorityInputs)) {
     return { ok: false, error: 'authority-input-mutated' };
   }

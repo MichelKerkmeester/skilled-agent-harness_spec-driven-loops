@@ -13,6 +13,7 @@ import { spawnSync } from 'child_process';
 import { buildLockedFacts } from './build-write-prompt';
 import { resolveOutputPath } from './output-policy';
 import { checkStudySourceLeak } from './study-exemplars';
+import { prepareStudyContext } from './study-prepare';
 
 import type { StudyContext } from './study-exemplars';
 import type { StudyPreparationResult } from './study-prepare';
@@ -46,6 +47,7 @@ export interface PlannedCommand {
 export interface GuidedRunDependencies {
   readonly preflight?: (options: GuidedRunOptions) => PreflightCheck[];
   readonly executeCommand?: (step: PlannedCommand) => string;
+  readonly prepareStudy?: typeof prepareStudyContext;
 }
 
 const BACKEND_ROOT = path.resolve(__dirname, '..');
@@ -189,13 +191,6 @@ export function buildPlan(options: GuidedRunOptions): PlannedCommand[] {
   const plan: PlannedCommand[] = [
     { label: 'extract', command: 'npx', args: extractArgs },
   ];
-  if (options.study) {
-    plan.push({
-      label: 'study-prepare',
-      command: 'npx',
-      args: ['ts-node', 'scripts/study-prepare.ts', tokensPath],
-    });
-  }
   plan.push({
     label: 'write-prompt',
     command: 'npx',
@@ -262,6 +257,7 @@ export function runGuided(
 ): void {
   const preflight = dependencies.preflight ?? runPreflight;
   const executeCommand = dependencies.executeCommand ?? runCommand;
+  const prepareStudy = dependencies.prepareStudy ?? prepareStudyContext;
   const checks = preflight(options);
   for (const check of checks) {
     console.log(`${check.ok ? 'PASS' : 'FAIL'} ${check.name}: ${check.detail}`);
@@ -287,15 +283,20 @@ export function runGuided(
 
   fs.mkdirSync(resolvedOutput, { recursive: true });
   const extract = plan.find((step) => step.label === 'extract');
-  const studyPrepare = plan.find((step) => step.label === 'study-prepare');
   const writePrompt = plan.find((step) => step.label === 'write-prompt');
   if (!extract || !writePrompt) throw new Error('Missing required plan steps');
 
   executeCommand(extract);
   let studyContext: StudyContext | undefined;
-  if (studyPrepare) {
+  if (resolvedOptions.study) {
     try {
-      const preparation = JSON.parse(executeCommand(studyPrepare)) as StudyPreparationResult;
+      const tokens = JSON.parse(
+        fs.readFileSync(path.join(resolvedOutput, 'tokens.json'), 'utf-8'),
+      ) as DesignTokens;
+      const preparation: StudyPreparationResult = prepareStudy(
+        tokens,
+        buildLockedFacts(tokens),
+      );
       if (preparation.ok) {
         studyContext = preparation.context;
         fs.writeFileSync(
