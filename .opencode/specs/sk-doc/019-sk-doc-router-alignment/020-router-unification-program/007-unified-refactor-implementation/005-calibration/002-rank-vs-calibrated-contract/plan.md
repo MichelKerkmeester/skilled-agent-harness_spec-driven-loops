@@ -7,11 +7,18 @@ trigger_phrases:
   - "estimatedError projection invisibility plan"
 importance_tier: "critical"
 contextType: "implementation"
+status: "shadow-partial"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 2 -->
 
 # Implementation Plan: Rank-vs-Calibrated Route Contract (Idea 5, step 2)
+
+**Execution evidence**: The contract is implemented as packet-local schemas,
+libraries, typed fixtures, and a zero-dependency harness. These artifacts remain
+shadow-only and do not fit thresholds, mint operational certificates, or modify
+runtime routing. `implementation-summary.md` records the real scorer result and
+the intentionally deferred activation properties.
 
 ## 1. APPROACH
 

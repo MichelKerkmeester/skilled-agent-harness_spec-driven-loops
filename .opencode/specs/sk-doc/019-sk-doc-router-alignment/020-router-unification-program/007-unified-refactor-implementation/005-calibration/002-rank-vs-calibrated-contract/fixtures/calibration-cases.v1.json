@@ -1,0 +1,213 @@
+{
+  "schemaVersion": "CalibrationContractCasesV1",
+  "request": {
+    "requestId": "calibration-contract-shadow-001",
+    "hubId": "sk-code",
+    "pinnedActivationGeneration": {
+      "generation": 1,
+      "effectivePolicyHash": "0c4a91f6eec2959c3de0995e15ca88b8c4137054a7ee550074e64166c6e1fc9d"
+    },
+    "riskSlice": "actor:mutating:single",
+    "calibrationProfile": {
+      "candidateCount": 2,
+      "noCalibrationSlice": false
+    },
+    "rankedTargetIds": [
+      {
+        "skillId": "sk-code",
+        "workflowMode": "quality",
+        "packetId": "code-quality",
+        "packetKind": "workflow",
+        "backendKind": "surface-router"
+      }
+    ],
+    "clarification": {
+      "oneAnswerDiscriminatesToLegalLocalRoute": true,
+      "question": "Is this an author-side quality gate or a findings-first review?",
+      "budgetRef": "uncertainty-budget-shadow-001",
+      "alternatives": ["Author-side quality gate", "Findings-first review"]
+    },
+    "leafPairs": [
+      {
+        "workflowMode": "quality",
+        "leafResourceId": "stack-detection"
+      },
+      {
+        "workflowMode": "quality",
+        "leafResourceId": "phase-detection"
+      },
+      {
+        "workflowMode": "quality",
+        "leafResourceId": "smart-routing"
+      },
+      {
+        "workflowMode": "quality",
+        "leafResourceId": "quality-standards"
+      },
+      {
+        "workflowMode": "quality",
+        "leafResourceId": "style-guide"
+      }
+    ],
+    "manifestResources": [
+      {
+        "workflowMode": "quality",
+        "leafResourceId": "stack-detection",
+        "resource": "references/stack_detection.md"
+      },
+      {
+        "workflowMode": "quality",
+        "leafResourceId": "phase-detection",
+        "resource": "references/phase_detection.md"
+      },
+      {
+        "workflowMode": "quality",
+        "leafResourceId": "smart-routing",
+        "resource": "references/smart_routing.md"
+      },
+      {
+        "workflowMode": "quality",
+        "leafResourceId": "quality-standards",
+        "resource": "references/universal/code_quality_standards.md"
+      },
+      {
+        "workflowMode": "quality",
+        "leafResourceId": "style-guide",
+        "resource": "references/universal/code_style_guide.md"
+      }
+    ]
+  },
+  "rankOnlyRoute": {
+    "schemaVersion": "V1",
+    "action": "route",
+    "route": {
+      "selectionKind": "single",
+      "targets": [
+        {
+          "destinationId": {
+            "skillId": "sk-code",
+            "workflowMode": "quality",
+            "packetId": "code-quality",
+            "packetKind": "workflow",
+            "backendKind": "surface-router"
+          },
+          "role": "actor",
+          "authorityRef": "sk-code:quality:verify",
+          "mutatesWorkspace": true
+        }
+      ],
+      "basis": { "kind": "signal" },
+      "evidence": {
+        "rankScore": { "value": "0.870000", "nonAuthority": true },
+        "scoreMargin": { "value": "0.190000", "nonAuthority": true },
+        "calibration": { "status": "unvalidated" }
+      },
+      "authority": "WithheldUntilVerify"
+    }
+  },
+  "certificateBodies": {
+    "temperature": {
+      "schemaVersion": "V1",
+      "corpusId": "be0fca5545dfe895c8bb22e45fdd07cbde8517873e76c9251af7a4ae7d8bccca",
+      "corpusHash": "be0fca5545dfe895c8bb22e45fdd07cbde8517873e76c9251af7a4ae7d8bccca",
+      "method": "temperature-scaling",
+      "methodParams": { "temperature": "1.250000" },
+      "policyHash": "0c4a91f6eec2959c3de0995e15ca88b8c4137054a7ee550074e64166c6e1fc9d",
+      "riskSlice": "actor:mutating:single",
+      "evaluationWindow": { "corpusVersion": "V1", "sampleCount": 2 },
+      "metrics": {
+        "expectedCalibrationError": "0.020000",
+        "selectiveRisk": "0.100000",
+        "coverage": "0.800000",
+        "sampleCount": 2
+      },
+      "status": "candidate",
+      "generation": 1
+    },
+    "selective": {
+      "schemaVersion": "V1",
+      "corpusId": "be0fca5545dfe895c8bb22e45fdd07cbde8517873e76c9251af7a4ae7d8bccca",
+      "corpusHash": "be0fca5545dfe895c8bb22e45fdd07cbde8517873e76c9251af7a4ae7d8bccca",
+      "method": "selective-classification-threshold",
+      "methodParams": {
+        "abstentionThreshold": "0.720000",
+        "coverageTarget": "0.750000"
+      },
+      "policyHash": "0c4a91f6eec2959c3de0995e15ca88b8c4137054a7ee550074e64166c6e1fc9d",
+      "riskSlice": "actor:mutating:single",
+      "evaluationWindow": { "corpusVersion": "V1", "sampleCount": 2 },
+      "metrics": {
+        "expectedCalibrationError": "0.030000",
+        "selectiveRisk": "0.080000",
+        "coverage": "0.750000",
+        "sampleCount": 2
+      },
+      "status": "candidate",
+      "generation": 1
+    }
+  },
+  "expectedCertificateIdentities": {
+    "temperature": {
+      "certificateId": "0a1db54787dbbce20c09e9eaeae41177fb87a27a0c682b0f14847f9e60919b9b",
+      "certHash": "3ae93112d15c2825207a9631c1744cb26a7808a0a50dce42430fb6f081f93566"
+    },
+    "selective": {
+      "certificateId": "218e3f09fa65b4eef94e4d1d30a0eba8f7d3278302e03955fd787e757c028d33",
+      "certHash": "d0b3fffb9bdf1a165d1d105d88daefec3c12950b4146a1adf98baed8634fa208"
+    }
+  },
+  "trustedValidationAttestations": {
+    "temperature": {
+      "result": "validated",
+      "corpusId": "be0fca5545dfe895c8bb22e45fdd07cbde8517873e76c9251af7a4ae7d8bccca",
+      "policyHash": "0c4a91f6eec2959c3de0995e15ca88b8c4137054a7ee550074e64166c6e1fc9d",
+      "riskSlice": "actor:mutating:single",
+      "generation": 1,
+      "method": "temperature-scaling",
+      "acceptanceMetric": "expectedCalibrationError",
+      "observedMetric": "0.020000",
+      "issuedAt": "2026-07-18T10:00:00.000Z",
+      "issuedBy": "independent-calibration-validator"
+    },
+    "selective": {
+      "result": "validated",
+      "corpusId": "be0fca5545dfe895c8bb22e45fdd07cbde8517873e76c9251af7a4ae7d8bccca",
+      "policyHash": "0c4a91f6eec2959c3de0995e15ca88b8c4137054a7ee550074e64166c6e1fc9d",
+      "riskSlice": "actor:mutating:single",
+      "generation": 1,
+      "method": "selective-classification-threshold",
+      "acceptanceMetric": "selectiveRisk",
+      "observedMetric": "0.080000",
+      "issuedAt": "2026-07-18T10:30:00.000Z",
+      "issuedBy": "independent-calibration-validator"
+    }
+  },
+  "singletonProfile": {
+    "candidateCount": 1,
+    "noCalibrationSlice": true,
+    "rankCallsExpected": 0
+  },
+  "expectedReasons": {
+    "candidateAttachment": "CERTIFICATE_STATUS_NOT_VALIDATED",
+    "expiredAttachment": "CERTIFICATE_STATUS_NOT_VALIDATED",
+    "revokedAttachment": "CERTIFICATE_STATUS_NOT_VALIDATED",
+    "unvalidatedEstimatedError": "CALIBRATION_UNVALIDATED_FIELDS",
+    "deferEstimatedError": "PROBABILITY_LANGUAGE_FORBIDDEN",
+    "clarifyConfidence": "PROBABILITY_LANGUAGE_FORBIDDEN",
+    "negativeExtraField": "NEGATIVE_DECISION_FIELDS_INVALID",
+    "projectionLegalityRequired": "PROJECTION_LEGALITY_RESULT_REQUIRED",
+    "policyMismatch": "CERTIFICATE_POLICY_MISMATCH",
+    "riskSliceMismatch": "CERTIFICATE_RISK_SLICE_MISMATCH",
+    "generationMismatch": "CERTIFICATE_GENERATION_MISMATCH",
+    "corpusHashMismatch": "CERTIFICATE_CORPUS_HASH_MISMATCH",
+    "expired": "CERTIFICATE_STATUS_NOT_VALIDATED",
+    "revoked": "CERTIFICATE_STATUS_NOT_VALIDATED",
+    "missingCorpus": "CERTIFICATE_CORPUS_UNRESOLVED",
+    "widenedCandidates": "CANDIDATE_SET_WIDENED",
+    "authorityFlip": "ROUTE_AUTHORITY_INVALID",
+    "probabilityLanguage": "PROBABILITY_LANGUAGE_FORBIDDEN",
+    "staleFence": "CAS_FENCE_MISMATCH",
+    "stalePreimage": "CAS_PREIMAGE_MISMATCH",
+    "staleRestorePreimage": "CAS_PREIMAGE_MISMATCH"
+  }
+}

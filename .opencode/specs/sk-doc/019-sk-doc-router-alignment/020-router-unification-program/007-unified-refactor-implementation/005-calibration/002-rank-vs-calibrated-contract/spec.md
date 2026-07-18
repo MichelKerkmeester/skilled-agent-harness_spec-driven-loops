@@ -7,11 +7,17 @@ trigger_phrases:
   - "calibrated auto-route certificate schema"
 importance_tier: "critical"
 contextType: "implementation"
+status: "shadow-partial"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify | v2.2 -->
 <!-- SPECKIT_LEVEL: 2 -->
 
 # Rank-vs-Calibrated Route Contract (Idea 5, step 2)
+
+**Implementation status**: Executable packet-local schemas, lifecycle logic,
+typed fixtures, compatibility projection, and validation harness are delivered.
+Stage-3 shadow evidence is recorded in `implementation-summary.md`; live fitting,
+issuance, and activation remain downstream.
 
 ## EXECUTIVE SUMMARY
 

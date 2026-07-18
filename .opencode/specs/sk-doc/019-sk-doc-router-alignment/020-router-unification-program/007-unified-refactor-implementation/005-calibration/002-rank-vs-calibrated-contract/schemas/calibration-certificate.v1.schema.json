@@ -1,0 +1,140 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://speckit.local/router/calibration-certificate.v1.schema.json",
+  "title": "CalibrationCertificateV1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "certificateId",
+    "corpusId",
+    "corpusHash",
+    "method",
+    "methodParams",
+    "policyHash",
+    "riskSlice",
+    "evaluationWindow",
+    "metrics",
+    "status",
+    "generation",
+    "certHash"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "V1" },
+    "certificateId": { "$ref": "#/$defs/digest" },
+    "corpusId": { "$ref": "#/$defs/digest" },
+    "corpusHash": { "$ref": "#/$defs/digest" },
+    "method": {
+      "enum": [
+        "temperature-scaling",
+        "selective-classification-threshold"
+      ]
+    },
+    "methodParams": { "type": "object" },
+    "policyHash": { "$ref": "#/$defs/digest" },
+    "riskSlice": { "$ref": "#/$defs/nonEmpty" },
+    "evaluationWindow": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["corpusVersion", "sampleCount"],
+          "properties": {
+            "corpusVersion": { "$ref": "#/$defs/nonEmpty" },
+            "sampleCount": { "type": "integer", "minimum": 1 }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["from", "to"],
+          "properties": {
+            "from": { "type": "string", "format": "date-time" },
+            "to": { "type": "string", "format": "date-time" }
+          }
+        }
+      ]
+    },
+    "metrics": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "expectedCalibrationError",
+        "selectiveRisk",
+        "coverage",
+        "sampleCount"
+      ],
+      "properties": {
+        "expectedCalibrationError": { "$ref": "#/$defs/unitDecimal" },
+        "selectiveRisk": { "$ref": "#/$defs/unitDecimal" },
+        "coverage": { "$ref": "#/$defs/unitDecimal" },
+        "sampleCount": { "type": "integer", "minimum": 1 }
+      }
+    },
+    "status": { "enum": ["candidate", "validated", "expired", "revoked"] },
+    "generation": { "type": "integer", "minimum": 0 },
+    "validatedAt": { "type": "string", "format": "date-time" },
+    "validatedBy": { "$ref": "#/$defs/nonEmpty" },
+    "certHash": { "$ref": "#/$defs/digest" }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": { "method": { "const": "temperature-scaling" } },
+        "required": ["method"]
+      },
+      "then": {
+        "properties": {
+          "methodParams": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["temperature"],
+            "properties": {
+              "temperature": { "$ref": "#/$defs/positiveDecimal" }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "method": { "const": "selective-classification-threshold" }
+        },
+        "required": ["method"]
+      },
+      "then": {
+        "properties": {
+          "methodParams": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["abstentionThreshold", "coverageTarget"],
+            "properties": {
+              "abstentionThreshold": { "$ref": "#/$defs/unitDecimal" },
+              "coverageTarget": { "$ref": "#/$defs/unitDecimal" }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": { "status": { "const": "validated" } },
+        "required": ["status"]
+      },
+      "then": { "required": ["validatedAt", "validatedBy"] }
+    }
+  ],
+  "$defs": {
+    "digest": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "nonEmpty": { "type": "string", "minLength": 1, "pattern": "\\S" },
+    "unitDecimal": {
+      "type": "string",
+      "pattern": "^(?:0(?:\\.[0-9]+)?|1(?:\\.0+)?)$"
+    },
+    "positiveDecimal": {
+      "type": "string",
+      "pattern": "^(?:0\\.(?:0*[1-9][0-9]*)|[1-9][0-9]*(?:\\.[0-9]+)?)$"
+    }
+  }
+}
