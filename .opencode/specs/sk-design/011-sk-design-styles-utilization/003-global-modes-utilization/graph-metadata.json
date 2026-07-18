@@ -39,11 +39,12 @@
       "plan"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
+      "research/lineages/sol/research.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -78,12 +79,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -103,6 +98,12 @@
       },
       {
         "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -168,8 +169,8 @@
         "source": "derived"
       },
       {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
+        "name": "per-strategy",
+        "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
@@ -186,7 +187,7 @@
         "source": "derived"
       },
       {
-        "name": "What Was Built The",
+        "name": "What Was Built An",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
@@ -194,7 +195,7 @@
     ],
     "causal_summary": "The 001 research settled a shared retrieval substrate and md-generator gets its own deep dive in 002, but the other sk-design modes — `design-interface`, `design-foundations`, `design-motion`, `design-audit`, plus the `design-mcp-open-design` transport — have no defined way to exploit the 1,290-style library",
     "created_at": "2026-07-18T12:23:41.736Z",
-    "last_save_at": "2026-07-18T12:25:55.281Z",
+    "last_save_at": "2026-07-18T13:31:36.962Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +204,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:11e713ae860a118f96ada77c5742f9677e72d0b1ca9701f404fca71c47788bbf",
+    "source_fingerprint": "sha256:d10a34f5e484ec40683d04b43b04be567ce623eb6b69c5a303b6fd055ceb179f",
     "source_doc_hashes": {
-      "spec.md": "99397e0089814be242c38b5d5c64cabfc295f3cf67f24c9d995f4e23212d5f0e",
-      "plan.md": "06ca7b42de7a3c4475456b5ae4373cd9e2d0e2b7ca2dae2c3abd7ecd6883c012",
-      "tasks.md": "1fa3ac6c7c3c41fffde3e8d31e39bd3cf756e9e17031e311a1cbe93a54346781",
-      "implementation-summary.md": "23b43b24e011031a978403687784220fa49010d117724c960e98050740209bf5"
+      "spec.md": "009ef8343e16ea575c7485021ca04f31e34a08971e2c496002ff5eb6c7c2b223",
+      "plan.md": "5dd15b6ea514349c213dd94eacab808f0bcea33acdc792fb12b6d53aa7e32520",
+      "tasks.md": "ca06567e4c1b6b3ad2a853a849793246008319c44fef0cca14a94d1e24bd76b6",
+      "implementation-summary.md": "728f756497be4ed89bdeabbecdd6f8f8f5c97a9b419cd1f05db101f537616c12"
     },
     "last_active_child_id": null,
     "last_active_at": null

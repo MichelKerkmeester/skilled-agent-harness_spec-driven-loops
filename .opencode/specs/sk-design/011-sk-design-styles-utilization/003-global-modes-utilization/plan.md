@@ -61,9 +61,9 @@ A single SOL-xhigh cli-opencode lineage runs the deep-research loop for up to 10
 - [x] The executor and loop parameters are fixed
 
 ### Definition of Done
-- [ ] The loop converges (or hits the ceiling) and writes research.md
-- [ ] Per-mode strategies are ranked with evidence and rough cost
-- [ ] The non-md-generator modes + hub are all covered
+- [x] The loop converges (or hits the ceiling) and writes research.md
+- [x] Per-mode strategies are ranked with evidence and rough cost
+- [x] The non-md-generator modes + hub are all covered
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -96,13 +96,13 @@ Externalized-state research loop: a fresh SOL agent per iteration reads prior st
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Dispatch
-- [ ] Launch the SOL-xhigh research lineage with the global-modes utilization topic
+- [x] Launch the SOL-xhigh research lineage with the global-modes utilization topic
 
 ### Phase 2: Loop
-- [ ] Iterate to convergence or the 10-iteration ceiling
+- [x] Iterate to convergence or the 10-iteration ceiling
 
 ### Phase 3: Synthesize
-- [ ] Confirm research.md ranks per-mode strategies with evidence + cost
+- [x] Confirm research.md ranks per-mode strategies with evidence + cost
 <!-- /ANCHOR:phases -->
 
 ---

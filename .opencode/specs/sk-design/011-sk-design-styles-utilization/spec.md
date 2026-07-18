@@ -43,7 +43,7 @@ _memory:
 | **Level** | 2 |
 | **Structure** | Phase Parent lean trio |
 | **Priority** | P1 |
-| **Status** | Research in progress — 001 complete; 002 (md-generator) + 003 (global modes) loops dispatched; implementation phases (004+) gated on their convergence |
+| **Status** | Research complete — 001 (substrate) + 002 (md-generator) + 003 (global modes) all converged; implementation phases (004+) ready to seed |
 | **Created** | 2026-07-18 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | None; root packet under the design track |
@@ -101,8 +101,8 @@ Determine, with evidence, the smart ways to put the styles library to work acros
 |-------|--------|-------|--------|
 | 1 | `001-research-utilization/` | Deep-research: how to index, retrieve, and consume the styles library across sk-design + modes | Complete — 8 iters, ranked synthesis |
 | 2 | `002-md-generator-upgrade/` | Deep-research: how the library upgrades the design-md-generator mode (exemplars, schema calibration, token grounding, validation) | Complete — 5 iters, ranked nine-lever synthesis |
-| 3 | `003-global-modes-utilization/` | Deep-research: how the library integrates globally across the hub + interface/foundations/motion/audit/open-design modes | In Progress — loop dispatched |
-| 4+ | `004-*` (planned) | Build the top-ranked strategies from 001/002/003 | Planned — pending research convergence |
+| 3 | `003-global-modes-utilization/` | Deep-research: how the library integrates globally across the hub + interface/foundations/motion/audit/open-design modes | Complete — 6 iters, ranked six-consumer synthesis |
+| 4+ | `004-*` (planned) | Build the top-ranked strategies from 001/002/003 | Planned — ready to seed (001 Phase A retrieval → 002 v3 schema contract → 003 shared context seam) |
 
 ### Phase Transition Rules
 

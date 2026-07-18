@@ -1,0 +1,1272 @@
+{
+  "sessionId": "fanout-sol-1784377737893-mlzyni",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "converged",
+    "totalIterations": 6,
+    "answeredCount": 5,
+    "totalQuestions": 5,
+    "timestamp": "2026-07-18T13:26:24.174Z"
+  },
+  "keyQuestions": [
+    {
+      "id": "question-1-what-hub-level-contract-can-expose-corpus-capabilities-task-derived-queries-auth",
+      "inboxId": null,
+      "text": "What hub-level contract can expose corpus capabilities, task-derived queries, authority order, and proof requirements while keeping the hub routing-only?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    },
+    {
+      "id": "question-2-how-should-design-interface-use-coherent-style-exemplars-for-grounding-anti-defa",
+      "inboxId": null,
+      "text": "How should `design-interface` use coherent style exemplars for grounding, anti-default critique, variation diversity, and handoff without becoming a style chooser or copy path?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "resolved": true
+    },
+    {
+      "id": "question-3-how-should-design-foundations-turn-captured-token-axes-and-relationships-into-sa",
+      "inboxId": null,
+      "text": "How should `design-foundations` turn captured token axes and relationships into safe starting systems, compatibility maps, and implementation-ready evidence without averaging values or claiming accessibility proof?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5,
+      "resolved": true
+    },
+    {
+      "id": "question-4-how-should-design-motion-discover-and-use-sparse-temporal-evidence-infer-no-moti",
+      "inboxId": null,
+      "text": "How should `design-motion` discover and use sparse temporal evidence, infer no motion from static styles safely, and build motion-specific exemplars or negative baselines under its restraint gate?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 6,
+      "resolved": true
+    },
+    {
+      "id": "question-5-how-should-design-audit-and-design-mcp-open-design-use-the-corpus-for-drift-simi",
+      "inboxId": null,
+      "text": "How should `design-audit` and `design-mcp-open-design` use the corpus for drift, similarity, provenance, comparison, and transport grounding; which cross-mode ideas should ship first at what rough cost?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4,
+      "resolved": true
+    }
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-what-hub-level-contract-can-expose-corpus-capabilities-task-derived-queries-auth",
+      "inboxId": null,
+      "text": "What hub-level contract can expose corpus capabilities, task-derived queries, authority order, and proof requirements while keeping the hub routing-only?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    },
+    {
+      "id": "question-2-how-should-design-interface-use-coherent-style-exemplars-for-grounding-anti-defa",
+      "inboxId": null,
+      "text": "How should `design-interface` use coherent style exemplars for grounding, anti-default critique, variation diversity, and handoff without becoming a style chooser or copy path?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3
+    },
+    {
+      "id": "question-3-how-should-design-foundations-turn-captured-token-axes-and-relationships-into-sa",
+      "inboxId": null,
+      "text": "How should `design-foundations` turn captured token axes and relationships into safe starting systems, compatibility maps, and implementation-ready evidence without averaging values or claiming accessibility proof?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5
+    },
+    {
+      "id": "question-4-how-should-design-motion-discover-and-use-sparse-temporal-evidence-infer-no-moti",
+      "inboxId": null,
+      "text": "How should `design-motion` discover and use sparse temporal evidence, infer no motion from static styles safely, and build motion-specific exemplars or negative baselines under its restraint gate?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 6
+    },
+    {
+      "id": "question-5-how-should-design-audit-and-design-mcp-open-design-use-the-corpus-for-drift-simi",
+      "inboxId": null,
+      "text": "How should `design-audit` and `design-mcp-open-design` use the corpus for drift, similarity, provenance, comparison, and transport grounding; which cross-mode ideas should ship first at what rough cost?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4
+    }
+  ],
+  "carriedForwardOpenQuestions": [
+    {
+      "text": "How should `design-interface` use coherent exemplars for grounding, anti-default critique, variation diversity, and handoff without becoming a chooser or copy path?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "How should `design-foundations` turn token axes and relationships into safe starting systems and compatibility maps without averaging or false proof?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "How should `design-motion` use sparse temporal evidence and safe no-motion inference under its restraint gate?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "How should `design-audit` and Open Design operationalize drift, similarity, provenance, and transport grounding, and what should ship first after contract validation?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "How should `design-interface` use coherent style exemplars for grounding, anti-default critique, variation diversity, and handoff without becoming a chooser or copy path?",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "How should `design-motion` discover and use sparse temporal evidence, infer no motion from static styles safely, and build motion-specific exemplars or negative baselines under its restraint gate?",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "How should `design-foundations` turn captured token axes and relationships into safe starting systems, compatibility maps, and implementation-ready evidence without averaging values or claiming accessibility proof?",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Reducer reconciliation remains for the audit/Open Design question already substantively answered in iteration 2; this leaf did not edit reducer-owned state.",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    }
+  ],
+  "uncoveredQuestions": [],
+  "keyFindings": [
+    {
+      "id": "finding-1-3-corpus-context-plan-v1-is-the-smallest-hub-level-contract-that-answers-the-first",
+      "text": "**`CORPUS_CONTEXT_PLAN v1` is the smallest hub-level contract that answers the first key question without making the hub a taste authority.** Before routing, the hub may expose neutral capabilities (`generation`, available artifact/axis capabilities, card/hydration limits, degraded-state flag). After routing, the selected mode translates intake into the generic candidate request, owns facets/exclusions/selection, and returns selected IDs plus rationale. The hub only renders the plan: authority order `user brief and owned system > mode judgment > corpus reference evidence > transport output`, expected proof, fallback, and handoff. This reuses the hub's intake/visible-plan/proof cadence and phase 001's rule that modes submit generic needs and own selection. [SOURCE: .opencode/skills/sk-design/SKILL.md:44-71] [SOURCE: .opencode/skills/sk-design/SKILL.md:155-184] [SOURCE: .opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:98-128] [INFERENCE: the envelope separates routing display from mode-owned judgment]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:37-145`",
+        "`.opencode/skills/sk-design/SKILL.md:35-184`",
+        "`.opencode/skills/sk-design/mode-registry.json:1-166`",
+        "`.opencode/skills/sk-design/design-interface/SKILL.md:1-220`",
+        "`.opencode/skills/sk-design/design-foundations/SKILL.md:1-170`",
+        "`.opencode/skills/sk-design/design-motion/SKILL.md:1-315`",
+        "`.opencode/skills/sk-design/design-audit/SKILL.md:1-210`",
+        "`.opencode/skills/sk-design/design-mcp-open-design/SKILL.md:1-155`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/deep-research-strategy.md:17-31`"
+      ]
+    },
+    {
+      "id": "finding-1-6-md-generator-remains-outside-this-lineage-its-extraction-fidelity-contract-is-ph",
+      "text": "**`md-generator` remains outside this lineage.** Its extraction/fidelity contract is phase-002-owned; this iteration neither inspected nor proposed changes to that consumer. [SOURCE: .opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/deep-research-strategy.md:27-31]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:37-145`",
+        "`.opencode/skills/sk-design/SKILL.md:35-184`",
+        "`.opencode/skills/sk-design/mode-registry.json:1-166`",
+        "`.opencode/skills/sk-design/design-interface/SKILL.md:1-220`",
+        "`.opencode/skills/sk-design/design-foundations/SKILL.md:1-170`",
+        "`.opencode/skills/sk-design/design-motion/SKILL.md:1-315`",
+        "`.opencode/skills/sk-design/design-audit/SKILL.md:1-210`",
+        "`.opencode/skills/sk-design/design-mcp-open-design/SKILL.md:1-155`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/deep-research-strategy.md:17-31`"
+      ]
+    },
+    {
+      "id": "finding-1-4-five-shared-plane-ideas-extend-beyond-query-cards-hydration-while-preserving-mod",
+      "text": "**Five shared-plane ideas extend beyond query/cards/hydration while preserving mode authority.** [INFERENCE: each idea attaches to an existing context, proof, comparison, or transport hook cited below]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:37-145`",
+        "`.opencode/skills/sk-design/SKILL.md:35-184`",
+        "`.opencode/skills/sk-design/mode-registry.json:1-166`",
+        "`.opencode/skills/sk-design/design-interface/SKILL.md:1-220`",
+        "`.opencode/skills/sk-design/design-foundations/SKILL.md:1-170`",
+        "`.opencode/skills/sk-design/design-motion/SKILL.md:1-315`",
+        "`.opencode/skills/sk-design/design-audit/SKILL.md:1-210`",
+        "`.opencode/skills/sk-design/design-mcp-open-design/SKILL.md:1-155`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/deep-research-strategy.md:17-31`"
+      ]
+    },
+    {
+      "id": "finding-1-5-recommended-order-is-envelope-first-mode-local-consumers-second-transport-last-t",
+      "text": "**Recommended order is envelope first, mode-local consumers second, transport last.** The shared context/proof envelope has the lowest cost and creates a stable insertion point. Interface relational exemplars and audit drift evidence can then validate two distinct consumption shapes; foundations compatibility and sparse motion evidence need stronger schemas; Open Design should consume the settled receipt rather than define it. This sequence follows the registry's workflow-versus-transport boundary and the hub's prohibition on flattened mode behavior. [SOURCE: .opencode/skills/sk-design/mode-registry.json:39-164] [SOURCE: .opencode/skills/sk-design/SKILL.md:166-184] [INFERENCE: sequencing minimizes authority and schema rework]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:37-145`",
+        "`.opencode/skills/sk-design/SKILL.md:35-184`",
+        "`.opencode/skills/sk-design/mode-registry.json:1-166`",
+        "`.opencode/skills/sk-design/design-interface/SKILL.md:1-220`",
+        "`.opencode/skills/sk-design/design-foundations/SKILL.md:1-170`",
+        "`.opencode/skills/sk-design/design-motion/SKILL.md:1-315`",
+        "`.opencode/skills/sk-design/design-audit/SKILL.md:1-210`",
+        "`.opencode/skills/sk-design/design-mcp-open-design/SKILL.md:1-155`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/deep-research-strategy.md:17-31`"
+      ]
+    },
+    {
+      "id": "finding-1-2-responsibility-and-gap-matrix-the-missing-points-are-mode-local-consumers-plus-o",
+      "text": "**Responsibility and gap matrix.** The missing points are mode-local consumers plus one routing-only shared envelope; no consumer needs a second selection authority. [INFERENCE: based on the cited phase-001 consumer contract and current mode contracts]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:37-145`",
+        "`.opencode/skills/sk-design/SKILL.md:35-184`",
+        "`.opencode/skills/sk-design/mode-registry.json:1-166`",
+        "`.opencode/skills/sk-design/design-interface/SKILL.md:1-220`",
+        "`.opencode/skills/sk-design/design-foundations/SKILL.md:1-170`",
+        "`.opencode/skills/sk-design/design-motion/SKILL.md:1-315`",
+        "`.opencode/skills/sk-design/design-audit/SKILL.md:1-210`",
+        "`.opencode/skills/sk-design/design-mcp-open-design/SKILL.md:1-155`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/deep-research-strategy.md:17-31`"
+      ]
+    },
+    {
+      "id": "finding-1-1-the-phase-001-substrate-is-complete-enough-to-reuse-but-it-deliberately-stops-be",
+      "text": "**The phase-001 substrate is complete enough to reuse, but it deliberately stops before mode-specific workflow insertion.** It already defines canonical artifacts, a generation-checked manifest, deterministic eligibility, optional lexical ranking, bounded cards, mode-owned selection, bounded hydration, and `CORPUS_USE_PROOF v1`; its consumer table also says the hub receives cards but hydrates nothing. The present gap is therefore not another retriever but the contract by which each existing mode workflow requests, interprets, and proves corpus use. [SOURCE: .opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:66-94] [SOURCE: .opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:96-145]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:37-145`",
+        "`.opencode/skills/sk-design/SKILL.md:35-184`",
+        "`.opencode/skills/sk-design/mode-registry.json:1-166`",
+        "`.opencode/skills/sk-design/design-interface/SKILL.md:1-220`",
+        "`.opencode/skills/sk-design/design-foundations/SKILL.md:1-170`",
+        "`.opencode/skills/sk-design/design-motion/SKILL.md:1-315`",
+        "`.opencode/skills/sk-design/design-audit/SKILL.md:1-210`",
+        "`.opencode/skills/sk-design/design-mcp-open-design/SKILL.md:1-155`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/deep-research-strategy.md:17-31`"
+      ]
+    },
+    {
+      "id": "finding-2-1-audit-corpus-comparison-v1-should-be-a-separate-worksheet-report-lane-not-anothe",
+      "text": "**`AUDIT_CORPUS_COMPARISON v1` should be a separate worksheet/report lane, not another target-evidence type.** Its input is `{target, intendedAnchor?, comparisonPurpose, corpusGeneration, references[]}`. Every reference carries only style id, artifact/content hash, provenance, rights/use label, selected axes, and selection rationale. Each comparison row records `{axis, targetObservation, referenceObservation, relation: aligned|intentional-delta|unexplained-drift|comparison-unavailable, evidenceLabel, limitation}`. An intended anchor may support a drift finding only when the target's owned system or brief names it; otherwise corpus distribution or nearest references are contextual observations, not defects. This preserves the current requirement to resolve one stable target and keep source/render/design-artifact evidence legible while adding the phase-001 intended-anchor-plus-one-contrast comparison cap. [SOURCE: .opencode/skills/sk-design/design-audit/references/evidence_capture.md:40-66] [SOURCE: .opencode/skills/sk-design/design-audit/assets/audit_evidence_worksheet.md:29-80] [SOURCE: .opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:134-145] [INFERENCE: schema fields operationalize the cited authority and hydration constraints]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:96-191`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:350-364`",
+        "`.opencode/skills/sk-design/design-audit/SKILL.md:85-173`",
+        "`.opencode/skills/sk-design/design-audit/references/evidence_capture.md:40-135`",
+        "`.opencode/skills/sk-design/design-audit/references/audit_contract.md:36-138`",
+        "`.opencode/skills/sk-design/design-audit/references/anti_patterns_production.md:38-127`",
+        "`.opencode/skills/sk-design/design-audit/assets/audit_evidence_worksheet.md:29-80`",
+        "`.opencode/skills/sk-design/design-audit/assets/audit_report_template.md:116-181`",
+        "`.opencode/skills/sk-design/shared/sk_code_handoff.md:71-99`",
+        "`.opencode/skills/sk-design/design-mcp-open-design/SKILL.md:125-154`",
+        "`.opencode/skills/sk-design/design-mcp-open-design/references/tool_surface.md:38-170`",
+        "`.opencode/skills/sk-design/design-mcp-open-design/references/design_parity_transport.md:22-45`"
+      ]
+    },
+    {
+      "id": "finding-2-3-open-design-grounding-receipt-v1-should-be-the-mandatory-design-bearing-handshak",
+      "text": "**`OPEN_DESIGN_GROUNDING_RECEIPT v1` should be the mandatory design-bearing handshake.** Before a guarded read or run, the paired judgment mode emits `{pairedMode, skDesignGateProof, purpose, targetProjectOrSystem, corpusGeneration, selectedReferences[], allowedInfluenceAxes, prohibitedReuse, briefDigest, noCache:true}`. `selectedReferences` contains IDs, hashes, provenance/use labels, and mode-owned rationale—not `DESIGN.md`, token, component, screenshot, or Open Design payload bytes. The transport then (a) confirms the daemon, (b) verifies live `tools/list`, (c) revalidates the corpus generation before any hydration, (d) reads any Open Design system live, and (e) passes only mode-owned, transformed constraints into the brief and discovery answers. A generation mismatch blocks the design-bearing call until the mode re-queries/reselects and supersedes the receipt; it never silently uses stale evidence. [SOURCE: .opencode/skills/sk-design/design-mcp-open-design/SKILL.md:125-154] [SOURCE: .opencode/skills/sk-design/design-mcp-open-design/references/tool_surface.md:60-98] [SOURCE: .opencode/skills/sk-design/design-mcp-open-design/references/tool_surface.md:143-170] [SOURCE: .opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:130-132] [INFERENCE: the receipt binds the existing pairing/no-cache gates to phase-001 generation refusal]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:96-191`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:350-364`",
+        "`.opencode/skills/sk-design/design-audit/SKILL.md:85-173`",
+        "`.opencode/skills/sk-design/design-audit/references/evidence_capture.md:40-135`",
+        "`.opencode/skills/sk-design/design-audit/references/audit_contract.md:36-138`",
+        "`.opencode/skills/sk-design/design-audit/references/anti_patterns_production.md:38-127`",
+        "`.opencode/skills/sk-design/design-audit/assets/audit_evidence_worksheet.md:29-80`",
+        "`.opencode/skills/sk-design/design-audit/assets/audit_report_template.md:116-181`",
+        "`.opencode/skills/sk-design/shared/sk_code_handoff.md:71-99`",
+        "`.opencode/skills/sk-design/design-mcp-open-design/SKILL.md:125-154`",
+        "`.opencode/skills/sk-design/design-mcp-open-design/references/tool_surface.md:38-170`",
+        "`.opencode/skills/sk-design/design-mcp-open-design/references/design_parity_transport.md:22-45`"
+      ]
+    },
+    {
+      "id": "finding-2-2-corpus-comparison-can-inform-a-finding-but-it-cannot-supply-severity-accessibili",
+      "text": "**Corpus comparison can inform a finding, but it cannot supply severity, accessibility/performance proof, or remediation authority.** Severity continues to derive from target-observed user impact; a corpus comparison may explain systemic token drift, anti-default prevalence, or an unexplained departure from an intended anchor, but similarity alone cannot raise P0-P3 or any `/20` score. Accessibility retains its seven-layer coverage matrix, and performance above 2 still needs a named numeric metric or explicit `not-assessed`; corpus values prove neither. A resulting accepted finding keeps its confirmed/inferred caveat and routes to `interface`, `foundations`, `motion`, and ultimately `sk-code` through the existing backlog card—the audit still never fixes. [SOURCE: .opencode/skills/sk-design/design-audit/references/audit_contract.md:36-97] [SOURCE: .opencode/skills/sk-design/design-audit/assets/audit_report_template.md:116-146] [SOURCE: .opencode/skills/sk-design/design-audit/references/anti_patterns_production.md:49-67] [SOURCE: .opencode/skills/sk-design/shared/sk_code_handoff.md:71-99]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:96-191`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:350-364`",
+        "`.opencode/skills/sk-design/design-audit/SKILL.md:85-173`",
+        "`.opencode/skills/sk-design/design-audit/references/evidence_capture.md:40-135`",
+        "`.opencode/skills/sk-design/design-audit/references/audit_contract.md:36-138`",
+        "`.opencode/skills/sk-design/design-audit/references/anti_patterns_production.md:38-127`",
+        "`.opencode/skills/sk-design/design-audit/assets/audit_evidence_worksheet.md:29-80`",
+        "`.opencode/skills/sk-design/design-audit/assets/audit_report_template.md:116-181`",
+        "`.opencode/skills/sk-design/shared/sk_code_handoff.md:71-99`",
+        "`.opencode/skills/sk-design/design-mcp-open-design/SKILL.md:125-154`",
+        "`.opencode/skills/sk-design/design-mcp-open-design/references/tool_surface.md:38-170`",
+        "`.opencode/skills/sk-design/design-mcp-open-design/references/design_parity_transport.md:22-45`"
+      ]
+    },
+    {
+      "id": "finding-2-5-ship-order-should-validate-the-audit-lane-before-live-transport-integration-rank",
+      "text": "**Ship order should validate the audit lane before live transport integration.** Ranked by leverage, cost, and dependency: (1) audit worksheet/report schema plus fixtures for intended-anchor, no-anchor, generation-mismatch, and unavailable-comparison cases—high leverage, small cost (2-4 engineer-days); (2) deterministic per-axis drift fingerprint and provenance validator—high leverage, medium cost (4-7 days), but only after schema fixtures prevent scalar-score authority; (3) Open Design receipt schema plus offline generation/no-cache/pairing validators—high leverage, small-medium cost (3-5 days); (4) live read/run receipt plumbing and return reconciliation—medium-high leverage, medium cost (5-8 days) and last because it depends on the settled receipt and a running external daemon. This refines iteration 1's envelope-first/audit-before-transport sequence with executable contract slices. [SOURCE: .opencode/skills/sk-design/design-audit/assets/audit_evidence_worksheet.md:38-80] [SOURCE: .opencode/skills/sk-design/design-mcp-open-design/references/tool_surface.md:143-170] [SOURCE: .opencode/skills/sk-design/design-mcp-open-design/references/design_parity_transport.md:34-45] [INFERENCE: ordering minimizes schema rework and defers the external-daemon dependency]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:96-191`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:350-364`",
+        "`.opencode/skills/sk-design/design-audit/SKILL.md:85-173`",
+        "`.opencode/skills/sk-design/design-audit/references/evidence_capture.md:40-135`",
+        "`.opencode/skills/sk-design/design-audit/references/audit_contract.md:36-138`",
+        "`.opencode/skills/sk-design/design-audit/references/anti_patterns_production.md:38-127`",
+        "`.opencode/skills/sk-design/design-audit/assets/audit_evidence_worksheet.md:29-80`",
+        "`.opencode/skills/sk-design/design-audit/assets/audit_report_template.md:116-181`",
+        "`.opencode/skills/sk-design/shared/sk_code_handoff.md:71-99`",
+        "`.opencode/skills/sk-design/design-mcp-open-design/SKILL.md:125-154`",
+        "`.opencode/skills/sk-design/design-mcp-open-design/references/tool_surface.md:38-170`",
+        "`.opencode/skills/sk-design/design-mcp-open-design/references/design_parity_transport.md:22-45`"
+      ]
+    },
+    {
+      "id": "finding-2-4-the-return-path-must-reconcile-transport-output-back-to-judgment-and-proof-rathe",
+      "text": "**The return path must reconcile transport output back to judgment and proof rather than treating a completed run as acceptance.** The receipt is extended after the multi-turn build with `{projectId, conversationId, runIds, entryFile, previewUrl, returnedArtifactHashes, liveReadAt, toolSurfaceEvidence}`. The paired mode inspects the live preview/artifacts, classifies each allowed influence as `applied|modified-for-target|rejected`, records target evidence and residual gaps, then attaches that reconciliation to `CORPUS_USE_PROOF v1` and the normal mode handoff. `awaiting_input`, zero files, missing preview/artifact proof, a changed corpus generation, or an unreconciled design delta remains incomplete. Open Design owns transport facts only; the paired mode owns parity and acceptance, while audit may later evaluate the built target. [SOURCE: .opencode/skills/sk-design/design-mcp-open-design/references/design_parity_transport.md:30-45] [SOURCE: .opencode/skills/sk-design/design-mcp-open-design/references/tool_surface.md:154-170] [SOURCE: .opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:172-191] [INFERENCE: reconciliation joins transport provenance to the existing application-proof gate without granting transport judgment]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:96-191`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:350-364`",
+        "`.opencode/skills/sk-design/design-audit/SKILL.md:85-173`",
+        "`.opencode/skills/sk-design/design-audit/references/evidence_capture.md:40-135`",
+        "`.opencode/skills/sk-design/design-audit/references/audit_contract.md:36-138`",
+        "`.opencode/skills/sk-design/design-audit/references/anti_patterns_production.md:38-127`",
+        "`.opencode/skills/sk-design/design-audit/assets/audit_evidence_worksheet.md:29-80`",
+        "`.opencode/skills/sk-design/design-audit/assets/audit_report_template.md:116-181`",
+        "`.opencode/skills/sk-design/shared/sk_code_handoff.md:71-99`",
+        "`.opencode/skills/sk-design/design-mcp-open-design/SKILL.md:125-154`",
+        "`.opencode/skills/sk-design/design-mcp-open-design/references/tool_surface.md:38-170`",
+        "`.opencode/skills/sk-design/design-mcp-open-design/references/design_parity_transport.md:22-45`"
+      ]
+    },
+    {
+      "id": "finding-2-6-unsafe-similarity-copying-and-transport-authority-paths-are-contract-failures-no",
+      "text": "**Unsafe similarity, copying, and transport-authority paths are contract failures, not optional cautions.** Reject a nearest-neighbor or scalar “genericness” score as proof of poor quality or copying; reject exact token/motif transfer based only on proximity or attribution; reject raw corpus/Open Design payload caching; reject stale-generation fallback; reject one-shot `start_run` completion; reject transport-selected style, transport-issued acceptance, and automatic remediation. Similarity may be a reproducible descriptive observation with named axes and limitations, but copying requires independent evidence and quality remains target- and mode-judged. [SOURCE: .opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:172-191] [SOURCE: .opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:350-364] [SOURCE: .opencode/skills/sk-design/design-mcp-open-design/references/tool_surface.md:48-58] [SOURCE: .opencode/skills/sk-design/design-mcp-open-design/references/design_parity_transport.md:34-45]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:96-191`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:350-364`",
+        "`.opencode/skills/sk-design/design-audit/SKILL.md:85-173`",
+        "`.opencode/skills/sk-design/design-audit/references/evidence_capture.md:40-135`",
+        "`.opencode/skills/sk-design/design-audit/references/audit_contract.md:36-138`",
+        "`.opencode/skills/sk-design/design-audit/references/anti_patterns_production.md:38-127`",
+        "`.opencode/skills/sk-design/design-audit/assets/audit_evidence_worksheet.md:29-80`",
+        "`.opencode/skills/sk-design/design-audit/assets/audit_report_template.md:116-181`",
+        "`.opencode/skills/sk-design/shared/sk_code_handoff.md:71-99`",
+        "`.opencode/skills/sk-design/design-mcp-open-design/SKILL.md:125-154`",
+        "`.opencode/skills/sk-design/design-mcp-open-design/references/tool_surface.md:38-170`",
+        "`.opencode/skills/sk-design/design-mcp-open-design/references/design_parity_transport.md:22-45`"
+      ]
+    },
+    {
+      "id": "finding-3-1-interface-relational-exemplar-v1-should-be-the-mode-local-contract-with-unequal-",
+      "text": "**`INTERFACE_RELATIONAL_EXEMPLAR v1` should be the mode-local contract, with unequal roles rather than three selectable styles.** Resolve higher authority first, then emit `{surface, briefDigest, ownedSystemDigest?, register, dials, corpusGeneration, request, anchor, contrast?, rejectedDefault?, influenceAxes[], identityLocks[], targetDrivenDeltas[], prohibitedReuse[], fallback}`. `anchor` is the one mode-selected coherent source and the only full `DESIGN.md` hydration; `contrast` is a card or heading-bounded critique reference that sharpens a named decision; `rejectedDefault` records the plausible generic direction the interface deliberately refused. Each role carries `{styleId, contentHash, source, capturedAt, rightsStatus, rationale}`, but none is user-facing as a preset. The interface remains taste authority because it supplies the requirements, selects or rejects candidates, names influence axes, and may choose `anchor:null` when no source fits. [SOURCE: .opencode/skills/sk-design/design-interface/SKILL.md:14-32] [SOURCE: .opencode/skills/sk-design/design-interface/SKILL.md:71-92] [SOURCE: .opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:98-145] [INFERENCE: unequal role semantics prevent candidate cards from becoming a chooser]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/deep-research-config.json:1-74`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/deep-research-state.jsonl:1-4`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/deep-research-strategy.md:17-178`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/findings-registry.json:8-160`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/iterations/iteration-001.md:14-91`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/iterations/iteration-002.md:14-76`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:37-191`",
+        "`.opencode/skills/sk-design/design-interface/SKILL.md:14-209`",
+        "`.opencode/skills/sk-design/shared/context_loading_contract.md:20-80`",
+        "`.opencode/skills/sk-design/shared/context_loading_contract.md:270-328`",
+        "`.opencode/skills/sk-design/shared/sk_code_handoff.md:23-107`",
+        "`.opencode/skills/sk-design/design-interface/assets/interface_preflight_card.md:34-165`",
+        "`.opencode/skills/sk-design/design-interface/manual_testing_playbook/real_ui_loop/native_image_visual_direction_branch.md:27-45`",
+        "`.opencode/skills/sk-design/design-interface/manual_testing_playbook/real_ui_loop/render_fidelity_check.md:32-45`",
+        "`.opencode/skills/sk-design/design-interface/manual_testing_playbook/real_ui_loop/reuse_before_generate_with_design_system.md:31-44`",
+        "`.opencode/skills/sk-design/styles/kobu/DESIGN.md:1-140`",
+        "`.opencode/skills/sk-design/styles/kobu/source.md:1-12`",
+        "`.opencode/skills/sk-design/styles/19-86/DESIGN.md:1-140`",
+        "`.opencode/skills/sk-design/styles/19-86/source.md:1-12`"
+      ]
+    },
+    {
+      "id": "finding-3-5-a-source-aware-handoff-lock-closes-the-copy-path-interface-corpus-handoff-v1-sho",
+      "text": "**A source-aware handoff lock closes the copy path.** `INTERFACE_CORPUS_HANDOFF v1` should carry `{briefDigest, ownedSystemDigest?, corpusGeneration, anchorId, anchorContentHash, provenance, rightsStatus, appliedInfluences[], rejectedInfluences[], targetDrivenDeltas[], identityLocksPreserved[], prohibitedReuse[], targetEvidence[], validationPlan}`. Every `appliedInfluence` names a relationship or constraint and target reason; exact source-specific values, text, assets, screenshots, and signature motifs are refused when rights are unknown. `sk-code` receives accepted target decisions and implementation constraints, never authority to revisit the corpus or silently redesign. [SOURCE: .opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:172-191] [SOURCE: .opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:350-364] [SOURCE: .opencode/skills/sk-design/shared/sk_code_handoff.md:23-35] [SOURCE: .opencode/skills/sk-design/shared/sk_code_handoff.md:93-107] [INFERENCE: decision-only carry preserves provenance while denying raw source transfer]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/deep-research-config.json:1-74`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/deep-research-state.jsonl:1-4`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/deep-research-strategy.md:17-178`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/findings-registry.json:8-160`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/iterations/iteration-001.md:14-91`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/iterations/iteration-002.md:14-76`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:37-191`",
+        "`.opencode/skills/sk-design/design-interface/SKILL.md:14-209`",
+        "`.opencode/skills/sk-design/shared/context_loading_contract.md:20-80`",
+        "`.opencode/skills/sk-design/shared/context_loading_contract.md:270-328`",
+        "`.opencode/skills/sk-design/shared/sk_code_handoff.md:23-107`",
+        "`.opencode/skills/sk-design/design-interface/assets/interface_preflight_card.md:34-165`",
+        "`.opencode/skills/sk-design/design-interface/manual_testing_playbook/real_ui_loop/native_image_visual_direction_branch.md:27-45`",
+        "`.opencode/skills/sk-design/design-interface/manual_testing_playbook/real_ui_loop/render_fidelity_check.md:32-45`",
+        "`.opencode/skills/sk-design/design-interface/manual_testing_playbook/real_ui_loop/reuse_before_generate_with_design_system.md:31-44`",
+        "`.opencode/skills/sk-design/styles/kobu/DESIGN.md:1-140`",
+        "`.opencode/skills/sk-design/styles/kobu/source.md:1-12`",
+        "`.opencode/skills/sk-design/styles/19-86/DESIGN.md:1-140`",
+        "`.opencode/skills/sk-design/styles/19-86/source.md:1-12`"
+      ]
+    },
+    {
+      "id": "finding-3-6-failure-behavior-is-fail-closed-for-source-use-but-fail-open-for-the-ordinary-in",
+      "text": "**Failure behavior is fail-closed for source use but fail-open for the ordinary interface workflow; the complete slice is medium cost.** A generation mismatch refuses hydration and requires re-query/reselection. Missing provenance or unknown rights blocks exact reuse. Conflict with the brief or owned system rejects the corpus candidate. No fitting candidate records `anchor:null` and continues with target-derived interface judgment; unavailable retrieval likewise continues with `corpusGrounding:unavailable`, never with stale evidence. Suggested sequence: schema plus positive/negative fixtures (2-3 engineer-days); context/proof/handoff fields and validators (3-5 days); counterfactual/distance/controlled-variation fixtures (3-4 days). Total: roughly 8-12 engineer-days after the phase-001 retrieval API exists, with no Open Design or md-generator dependency. [SOURCE: .opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:130-145] [SOURCE: .opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:243-255] [SOURCE: .opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:350-364] [INFERENCE: effort is decomposed by independently testable contract slices]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/deep-research-config.json:1-74`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/deep-research-state.jsonl:1-4`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/deep-research-strategy.md:17-178`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/findings-registry.json:8-160`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/iterations/iteration-001.md:14-91`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/iterations/iteration-002.md:14-76`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:37-191`",
+        "`.opencode/skills/sk-design/design-interface/SKILL.md:14-209`",
+        "`.opencode/skills/sk-design/shared/context_loading_contract.md:20-80`",
+        "`.opencode/skills/sk-design/shared/context_loading_contract.md:270-328`",
+        "`.opencode/skills/sk-design/shared/sk_code_handoff.md:23-107`",
+        "`.opencode/skills/sk-design/design-interface/assets/interface_preflight_card.md:34-165`",
+        "`.opencode/skills/sk-design/design-interface/manual_testing_playbook/real_ui_loop/native_image_visual_direction_branch.md:27-45`",
+        "`.opencode/skills/sk-design/design-interface/manual_testing_playbook/real_ui_loop/render_fidelity_check.md:32-45`",
+        "`.opencode/skills/sk-design/design-interface/manual_testing_playbook/real_ui_loop/reuse_before_generate_with_design_system.md:31-44`",
+        "`.opencode/skills/sk-design/styles/kobu/DESIGN.md:1-140`",
+        "`.opencode/skills/sk-design/styles/kobu/source.md:1-12`",
+        "`.opencode/skills/sk-design/styles/19-86/DESIGN.md:1-140`",
+        "`.opencode/skills/sk-design/styles/19-86/source.md:1-12`"
+      ]
+    },
+    {
+      "id": "finding-3-3-kobu-and-19-86-validate-a-relational-compare-do-not-combine-fixture-kobu-s-ident",
+      "text": "**Kobu and 19-86 validate a relational “compare, do not combine” fixture.** Kobu's identity locks include warm parchment, photography as the only color, a humanist-plus-monospace editorial hierarchy, image-led property cards, and 60-80px section rhythm. 19-86 locks black-on-white, one hairline typeface, a flat ledger of ruled rows, 24px rhythm, no imagery, and a 490px numeral watermark. For an image-led travel brief, interface may select Kobu as anchor and use 19-86 only to ask whether structure can become more index-like; it must reject 19-86's no-imagery and watermark signatures unless the target independently requires them. For a spare project index, the roles reverse. Combining the photography-led composition, giant watermark, both type systems, or their spacing values would create a third unowned identity and must fail. [SOURCE: .opencode/skills/sk-design/styles/kobu/DESIGN.md:1-36] [SOURCE: .opencode/skills/sk-design/styles/kobu/DESIGN.md:90-137] [SOURCE: .opencode/skills/sk-design/styles/19-86/DESIGN.md:1-31] [SOURCE: .opencode/skills/sk-design/styles/19-86/DESIGN.md:58-88] [SOURCE: .opencode/skills/sk-design/styles/19-86/DESIGN.md:105-137] [SOURCE: .opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:149-170] [INFERENCE: incompatible locks make cross-source motif transfer mechanically reviewable]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/deep-research-config.json:1-74`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/deep-research-state.jsonl:1-4`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/deep-research-strategy.md:17-178`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/findings-registry.json:8-160`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/iterations/iteration-001.md:14-91`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/iterations/iteration-002.md:14-76`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:37-191`",
+        "`.opencode/skills/sk-design/design-interface/SKILL.md:14-209`",
+        "`.opencode/skills/sk-design/shared/context_loading_contract.md:20-80`",
+        "`.opencode/skills/sk-design/shared/context_loading_contract.md:270-328`",
+        "`.opencode/skills/sk-design/shared/sk_code_handoff.md:23-107`",
+        "`.opencode/skills/sk-design/design-interface/assets/interface_preflight_card.md:34-165`",
+        "`.opencode/skills/sk-design/design-interface/manual_testing_playbook/real_ui_loop/native_image_visual_direction_branch.md:27-45`",
+        "`.opencode/skills/sk-design/design-interface/manual_testing_playbook/real_ui_loop/render_fidelity_check.md:32-45`",
+        "`.opencode/skills/sk-design/design-interface/manual_testing_playbook/real_ui_loop/reuse_before_generate_with_design_system.md:31-44`",
+        "`.opencode/skills/sk-design/styles/kobu/DESIGN.md:1-140`",
+        "`.opencode/skills/sk-design/styles/kobu/source.md:1-12`",
+        "`.opencode/skills/sk-design/styles/19-86/DESIGN.md:1-140`",
+        "`.opencode/skills/sk-design/styles/19-86/source.md:1-12`"
+      ]
+    },
+    {
+      "id": "finding-3-2-the-exact-insertion-flow-is-register-dials-context-manifest-relational-exemplar-",
+      "text": "**The exact insertion flow is register/dials -> context manifest -> relational exemplar decision -> direction/transform work -> real-render critique -> preflight -> source-aware handoff.** Register, dials, the user brief, and any owned system are locked before the corpus request. The context manifest gains `CORPUS GENERATION`, `ANCHOR`, `CONTRAST`, `REJECTED DEFAULT`, `INFLUENCE AXES`, and `PROHIBITED REUSE`. Direction and redesign lanes may then transform relationships, but must log target reasons. A ready claim still requires the existing render and mechanical gates; corpus evidence cannot substitute for a rendered target. The handoff adds only applied decisions, transformation reasons, source IDs/hashes, remaining risks, and verification demands—not source prose, assets, screenshots, or copyable token dumps. [SOURCE: .opencode/skills/sk-design/shared/context_loading_contract.md:44-80] [SOURCE: .opencode/skills/sk-design/shared/context_loading_contract.md:270-281] [SOURCE: .opencode/skills/sk-design/design-interface/manual_testing_playbook/real_ui_loop/render_fidelity_check.md:32-45] [SOURCE: .opencode/skills/sk-design/design-interface/assets/interface_preflight_card.md:159-165] [SOURCE: .opencode/skills/sk-design/shared/sk_code_handoff.md:23-35] [SOURCE: .opencode/skills/sk-design/shared/sk_code_handoff.md:93-107] [INFERENCE: these insertion points preserve existing proof and implementation ownership]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/deep-research-config.json:1-74`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/deep-research-state.jsonl:1-4`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/deep-research-strategy.md:17-178`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/findings-registry.json:8-160`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/iterations/iteration-001.md:14-91`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/iterations/iteration-002.md:14-76`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:37-191`",
+        "`.opencode/skills/sk-design/design-interface/SKILL.md:14-209`",
+        "`.opencode/skills/sk-design/shared/context_loading_contract.md:20-80`",
+        "`.opencode/skills/sk-design/shared/context_loading_contract.md:270-328`",
+        "`.opencode/skills/sk-design/shared/sk_code_handoff.md:23-107`",
+        "`.opencode/skills/sk-design/design-interface/assets/interface_preflight_card.md:34-165`",
+        "`.opencode/skills/sk-design/design-interface/manual_testing_playbook/real_ui_loop/native_image_visual_direction_branch.md:27-45`",
+        "`.opencode/skills/sk-design/design-interface/manual_testing_playbook/real_ui_loop/render_fidelity_check.md:32-45`",
+        "`.opencode/skills/sk-design/design-interface/manual_testing_playbook/real_ui_loop/reuse_before_generate_with_design_system.md:31-44`",
+        "`.opencode/skills/sk-design/styles/kobu/DESIGN.md:1-140`",
+        "`.opencode/skills/sk-design/styles/kobu/source.md:1-12`",
+        "`.opencode/skills/sk-design/styles/19-86/DESIGN.md:1-140`",
+        "`.opencode/skills/sk-design/styles/19-86/source.md:1-12`"
+      ]
+    },
+    {
+      "id": "finding-3-4-three-smart-ideas-survive-when-expressed-as-relational-evidence-rather-than-nove",
+      "text": "**Three smart ideas survive when expressed as relational evidence rather than novelty scoring.** (a) A `COUNTERFACTUAL CRITIQUE` records the likely no-corpus default and names which brief-specific decisions improved after grounding. (b) A `RELATIONAL DISTANCE BUDGET` uses per-axis states `preserve|transform-for-target|reject` plus a target reason; it is not a scalar distance or quality score. (c) `CONTROLLED_VARIATION_SEEDS` create at most three directions from the same anchor, each varying one brief-owned free axis while keeping identity locks constant; switching anchors is a new decision, not a seed. These ideas directly strengthen anti-default critique and variation diversity without offering reusable vibes. [SOURCE: .opencode/skills/sk-design/design-interface/SKILL.md:169-209] [SOURCE: .opencode/skills/sk-design/design-interface/manual_testing_playbook/real_ui_loop/native_image_visual_direction_branch.md:27-45] [SOURCE: .opencode/skills/sk-design/design-interface/manual_testing_playbook/real_ui_loop/reuse_before_generate_with_design_system.md:31-44] [SOURCE: .opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:172-189] [INFERENCE: fixed-anchor, one-axis variation generates diversity without multi-style synthesis]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/deep-research-config.json:1-74`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/deep-research-state.jsonl:1-4`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/deep-research-strategy.md:17-178`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/findings-registry.json:8-160`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/iterations/iteration-001.md:14-91`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/iterations/iteration-002.md:14-76`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:37-191`",
+        "`.opencode/skills/sk-design/design-interface/SKILL.md:14-209`",
+        "`.opencode/skills/sk-design/shared/context_loading_contract.md:20-80`",
+        "`.opencode/skills/sk-design/shared/context_loading_contract.md:270-328`",
+        "`.opencode/skills/sk-design/shared/sk_code_handoff.md:23-107`",
+        "`.opencode/skills/sk-design/design-interface/assets/interface_preflight_card.md:34-165`",
+        "`.opencode/skills/sk-design/design-interface/manual_testing_playbook/real_ui_loop/native_image_visual_direction_branch.md:27-45`",
+        "`.opencode/skills/sk-design/design-interface/manual_testing_playbook/real_ui_loop/render_fidelity_check.md:32-45`",
+        "`.opencode/skills/sk-design/design-interface/manual_testing_playbook/real_ui_loop/reuse_before_generate_with_design_system.md:31-44`",
+        "`.opencode/skills/sk-design/styles/kobu/DESIGN.md:1-140`",
+        "`.opencode/skills/sk-design/styles/kobu/source.md:1-12`",
+        "`.opencode/skills/sk-design/styles/19-86/DESIGN.md:1-140`",
+        "`.opencode/skills/sk-design/styles/19-86/source.md:1-12`"
+      ]
+    },
+    {
+      "id": "finding-4-2-audit-corpus-comparison-v1-remains-valid-only-as-an-additive-comparison-lane-wit",
+      "text": "**`AUDIT_CORPUS_COMPARISON v1` remains valid only as an additive comparison lane with a strict non-authority boundary.** The existing worksheet inventories target source, render, design artifact, and deterministic-scan evidence, and its finding labels carry into severity, score, and owner handoff; corpus comparison is not one of those target-proof classes. The additive lane may record an intended anchor plus at most one contrast, per-axis observations, hashes/provenance, relation, evidence label, and limitation, but it cannot produce severity, a `/20` score, accessibility/performance proof, copying proof, or remediation authority. Required negative fixtures are: no intended anchor (context only, never drift), generation mismatch or unavailable source (`comparison-unavailable`, never stale fallback), similarity-only severity/quality/copying claims (reject), and exact source-specific reuse under unknown rights (reject). [SOURCE: .opencode/skills/sk-design/design-audit/assets/audit_evidence_worksheet.md:29-80] [SOURCE: .opencode/skills/sk-design/design-audit/references/audit_contract.md:36-138] [SOURCE: .opencode/skills/sk-design/design-audit/assets/audit_report_template.md:116-181] [SOURCE: .opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:134-145] [SOURCE: .opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:172-191] [SOURCE: .opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:350-364] [INFERENCE: a separate lane is necessary because comparison evidence has strictly less proof authority than the checked-in target-evidence classes]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/deep-research-config.json:1-74`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/deep-research-state.jsonl:1-6`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/deep-research-strategy.md:17-206`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/findings-registry.json:8-164`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/deep-research-dashboard.md:17-121`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/iterations/iteration-002.md:1-76`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/deltas/iter-002.jsonl:1`",
+        "`.opencode/skills/sk-design/design-audit/references/audit_contract.md:36-138`",
+        "`.opencode/skills/sk-design/design-audit/assets/audit_evidence_worksheet.md:29-80`",
+        "`.opencode/skills/sk-design/design-audit/assets/audit_report_template.md:116-181`",
+        "`.opencode/skills/sk-design/design-mcp-open-design/SKILL.md:123-154`",
+        "`.opencode/skills/sk-design/design-mcp-open-design/references/tool_surface.md:38-170`",
+        "`.opencode/skills/sk-design/design-mcp-open-design/references/design_parity_transport.md:22-45`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:96-191`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:350-364`"
+      ]
+    },
+    {
+      "id": "finding-4-3-open-design-grounding-receipt-v1-remains-valid-only-as-a-corpus-lineage-handshak",
+      "text": "**`OPEN_DESIGN_GROUNDING_RECEIPT v1` remains valid only as a corpus-lineage handshake subordinate to every existing transport gate.** Its pre-call fields may bind paired mode, design-gate proof, purpose, target, corpus generation, selected reference IDs/hashes/provenance, allowed influence axes, prohibited reuse, brief digest, and `noCache:true`; its return fields may bind project/conversation/run IDs, entry file, preview URL, artifact hashes, live-read time, and tool-surface evidence. It does not replace live `tools/list` verification, `sk-design` judgment, explicit mutation approval with target and rollback, live reads, or paired-mode acceptance. Required negative fixtures are: pure inventory succeeds without a design receipt; a design-feeding read without the design precondition fails; a mutating call with a receipt but without confirmation/target/rollback fails; a changed corpus generation requires reselection; turn 1 at `awaiting_input` with zero files is incomplete; and a completed build without artifact/preview inspection and paired-mode reconciliation is not accepted. [SOURCE: .opencode/skills/sk-design/design-mcp-open-design/SKILL.md:123-154] [SOURCE: .opencode/skills/sk-design/design-mcp-open-design/references/tool_surface.md:60-98] [SOURCE: .opencode/skills/sk-design/design-mcp-open-design/references/tool_surface.md:114-170] [SOURCE: .opencode/skills/sk-design/design-mcp-open-design/references/design_parity_transport.md:22-45] [SOURCE: .opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:130-132] [INFERENCE: the receipt supplies corpus provenance across a temporal call boundary but cannot absorb independent design or mutation authority]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/deep-research-config.json:1-74`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/deep-research-state.jsonl:1-6`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/deep-research-strategy.md:17-206`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/findings-registry.json:8-164`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/deep-research-dashboard.md:17-121`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/iterations/iteration-002.md:1-76`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/deltas/iter-002.jsonl:1`",
+        "`.opencode/skills/sk-design/design-audit/references/audit_contract.md:36-138`",
+        "`.opencode/skills/sk-design/design-audit/assets/audit_evidence_worksheet.md:29-80`",
+        "`.opencode/skills/sk-design/design-audit/assets/audit_report_template.md:116-181`",
+        "`.opencode/skills/sk-design/design-mcp-open-design/SKILL.md:123-154`",
+        "`.opencode/skills/sk-design/design-mcp-open-design/references/tool_surface.md:38-170`",
+        "`.opencode/skills/sk-design/design-mcp-open-design/references/design_parity_transport.md:22-45`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:96-191`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:350-364`"
+      ]
+    },
+    {
+      "id": "finding-4-5-the-canonical-audit-open-design-question-is-evidence-backed-for-closure-audit-us",
+      "text": "**The canonical audit/Open Design question is evidence-backed for closure.** Audit uses a generation-bound, intended-anchor-aware comparison lane that remains contextual unless target authority supports a drift claim; Open Design uses a no-cache, generation-bound grounding receipt before design-bearing work and paired-mode reconciliation afterward. The first ship tranche is audit schema/fixtures, followed by drift/provenance validation, offline receipt validation, and live transport plumbing at the rough costs above. [SOURCE: .opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/iterations/iteration-002.md:16-30] [SOURCE: .opencode/skills/sk-design/design-audit/references/audit_contract.md:36-138] [SOURCE: .opencode/skills/sk-design/design-mcp-open-design/references/tool_surface.md:60-170] [INFERENCE: the revalidated authority, failure, dependency, proof, and cost boundaries satisfy every clause of the canonical combined question]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/deep-research-config.json:1-74`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/deep-research-state.jsonl:1-6`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/deep-research-strategy.md:17-206`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/findings-registry.json:8-164`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/deep-research-dashboard.md:17-121`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/iterations/iteration-002.md:1-76`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/deltas/iter-002.jsonl:1`",
+        "`.opencode/skills/sk-design/design-audit/references/audit_contract.md:36-138`",
+        "`.opencode/skills/sk-design/design-audit/assets/audit_evidence_worksheet.md:29-80`",
+        "`.opencode/skills/sk-design/design-audit/assets/audit_report_template.md:116-181`",
+        "`.opencode/skills/sk-design/design-mcp-open-design/SKILL.md:123-154`",
+        "`.opencode/skills/sk-design/design-mcp-open-design/references/tool_surface.md:38-170`",
+        "`.opencode/skills/sk-design/design-mcp-open-design/references/design_parity_transport.md:22-45`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:96-191`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:350-364`"
+      ]
+    },
+    {
+      "id": "finding-4-1-the-reconciliation-cause-is-exact-question-identity-drift-not-an-evidence-gap-it",
+      "text": "**The reconciliation cause is exact question-identity drift, not an evidence gap.** Iteration 2 emitted the answered question without Markdown backticks around `design-audit` and `design-mcp-open-design`, while the registry's canonical question includes those backticks and therefore retains a different exact string and question identity. The iteration narrative answered the substance, but the reducer could not reconcile that non-canonical `answeredQuestions` value to registry question 5. This iteration emits the registry text byte-for-byte, including backticks and punctuation. [SOURCE: .opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/deep-research-state.jsonl:4] [SOURCE: .opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/deltas/iter-002.jsonl:1] [SOURCE: .opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/findings-registry.json:58-67] [INFERENCE: the only identity-level difference is the missing inline-code delimiters, while iteration 2 contains a substantive answer]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/deep-research-config.json:1-74`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/deep-research-state.jsonl:1-6`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/deep-research-strategy.md:17-206`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/findings-registry.json:8-164`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/deep-research-dashboard.md:17-121`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/iterations/iteration-002.md:1-76`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/deltas/iter-002.jsonl:1`",
+        "`.opencode/skills/sk-design/design-audit/references/audit_contract.md:36-138`",
+        "`.opencode/skills/sk-design/design-audit/assets/audit_evidence_worksheet.md:29-80`",
+        "`.opencode/skills/sk-design/design-audit/assets/audit_report_template.md:116-181`",
+        "`.opencode/skills/sk-design/design-mcp-open-design/SKILL.md:123-154`",
+        "`.opencode/skills/sk-design/design-mcp-open-design/references/tool_surface.md:38-170`",
+        "`.opencode/skills/sk-design/design-mcp-open-design/references/design_parity_transport.md:22-45`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:96-191`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:350-364`"
+      ]
+    },
+    {
+      "id": "finding-4-4-the-validated-ship-order-totals-roughly-14-24-engineer-days-split-into-a-6-11-da",
+      "text": "**The validated ship order totals roughly 14-24 engineer-days, split into a 6-11 day audit slice and an 8-13 day Open Design slice.** Ship (1) audit worksheet/report schema plus positive and negative fixtures, 2-4 days; (2) deterministic per-axis drift fingerprint plus provenance validator, 4-7 days; (3) grounding-receipt schema plus offline generation/no-cache/pairing validators, 3-5 days; then (4) live read/run receipt plumbing plus return reconciliation, 5-8 days. Schema fixtures precede validators so scalar authority and stale fallback fail mechanically; live transport remains last because it depends on the settled receipt and an external daemon. [SOURCE: .opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/iterations/iteration-002.md:20-26] [SOURCE: .opencode/skills/sk-design/design-audit/assets/audit_evidence_worksheet.md:38-80] [SOURCE: .opencode/skills/sk-design/design-mcp-open-design/references/tool_surface.md:143-170] [SOURCE: .opencode/skills/sk-design/design-mcp-open-design/references/design_parity_transport.md:34-45] [INFERENCE: 2-4 + 4-7 = 6-11 audit days; 3-5 + 5-8 = 8-13 transport days; total = 14-24 days]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/deep-research-config.json:1-74`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/deep-research-state.jsonl:1-6`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/deep-research-strategy.md:17-206`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/findings-registry.json:8-164`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/deep-research-dashboard.md:17-121`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/iterations/iteration-002.md:1-76`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/deltas/iter-002.jsonl:1`",
+        "`.opencode/skills/sk-design/design-audit/references/audit_contract.md:36-138`",
+        "`.opencode/skills/sk-design/design-audit/assets/audit_evidence_worksheet.md:29-80`",
+        "`.opencode/skills/sk-design/design-audit/assets/audit_report_template.md:116-181`",
+        "`.opencode/skills/sk-design/design-mcp-open-design/SKILL.md:123-154`",
+        "`.opencode/skills/sk-design/design-mcp-open-design/references/tool_surface.md:38-170`",
+        "`.opencode/skills/sk-design/design-mcp-open-design/references/design_parity_transport.md:22-45`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:96-191`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:350-364`"
+      ]
+    },
+    {
+      "id": "finding-5-1-foundations-axis-source-v1-should-join-request-and-selection-without-treating-se",
+      "text": "**`FOUNDATIONS_AXIS_SOURCE v1` should join request and selection without treating selected tokens as target-ready.** The request is `{surface, systemRole, register, briefDigest, ownedSystemDigest?, targetPlatforms[], accessibilityBar, densityBar, requestedAxes[], pinnedRoles[], pinnedValues[], requiredRelationships[], exclusions[], corpusGeneration}`. Higher authority is resolved before querying: owned-system and user-pinned roles/values are immutable inputs, not facets a reference may replace. Selection returns `{selectionMode: coherent-anchor|bounded-synthesis|none, references[], axisOwners[], fallback}`; each reference carries `{styleId, contentHash, sourceUrl, originalUrl, styleUuid, capturedAt, rightsStatus, rightsEvidenceScope, selectedAxes, rationale}`. `coherent-anchor` is the default; `bounded-synthesis` is allowed only for an explicit uncovered axis, at most three styles globally, and exactly one owner per accepted independent axis. Foundations still owns system role, register, axis needs, selection, and refusal. [SOURCE: .opencode/skills/sk-design/design-foundations/SKILL.md:113-146] [SOURCE: .opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:98-145] [SOURCE: .opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:149-168] [INFERENCE: the schema binds existing foundations inputs to phase-001 generation and ownership rules]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/prompts/iteration-5.md:1-47`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/deep-research-config.json:1-74`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/deep-research-state.jsonl:1-7`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/deep-research-strategy.md:17-227`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/findings-registry.json:8-164`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/iterations/iteration-001.md:1-91`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/iterations/iteration-002.md:1-76`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/iterations/iteration-003.md:1-83`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/iterations/iteration-004.md:1-86`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:37-191`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:243-255`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:350-364`",
+        "`.opencode/skills/sk-design/design-foundations/SKILL.md:14-203`",
+        "`.opencode/skills/sk-design/design-foundations/assets/token_starter.md:14-147`",
+        "`.opencode/skills/sk-design/design-foundations/assets/contrast_pair_inventory.md:13-55`",
+        "`.opencode/skills/sk-design/design-foundations/references/design_system_artifact_contract.md:13-88`",
+        "`.opencode/skills/sk-design/design-foundations/references/layout/adaptation_matrix.md:14-130`",
+        "`.opencode/skills/sk-design/shared/context_loading_contract.md:20-104`",
+        "`.opencode/skills/sk-design/shared/context_loading_contract.md:270-328`",
+        "`.opencode/skills/sk-design/shared/sk_code_handoff.md:23-106`",
+        "`.opencode/skills/sk-design/styles/kobu/DESIGN.md:1-155`",
+        "`.opencode/skills/sk-design/styles/kobu/design-tokens.json:1-320`",
+        "`.opencode/skills/sk-design/styles/kobu/source.md:1-12`",
+        "`.opencode/skills/sk-design/styles/19-86/DESIGN.md:1-155`",
+        "`.opencode/skills/sk-design/styles/19-86/design-tokens.json:1-90`",
+        "`.opencode/skills/sk-design/styles/19-86/source.md:1-12`"
+      ]
+    },
+    {
+      "id": "finding-5-3-kobu-and-19-86-prove-that-schema-regularity-supports-discovery-but-not-compatibi",
+      "text": "**Kobu and 19-86 prove that schema regularity supports discovery but not compatibility or independent ownership.** Both token files expose `color`, `font`, `typography`, and `spacing`, yet their optional shapes and role cardinalities differ: Kobu has seven named colors, three font records, many typography steps, and a 5-119px extracted spacing list; 19-86 has two colors, one hairline family, two typography steps, a 6px declared unit, and one flat surface. Their rationales make those values relational: Kobu couples warm parchment, photography-only color, dual type roles, and 60-80px section rhythm, while 19-86 couples black/white, one hairline family, 24px ledger rhythm, no imagery, and a 490px watermark. Neither spacing set is a safe direct fill for foundations' target scaffold, whose 4px baseline, role-first naming, register, dark-mode, and downstream checks are target requirements. Thus top-level axis co-presence is only an availability signal. The pair is a required negative stress fixture: a proposed cross-source composition must refuse incompatible identity edges or mark affected relationships `target-derived`; it cannot call color, type, or spacing independent merely because the JSON keys differ. [SOURCE: .opencode/skills/sk-design/styles/kobu/design-tokens.json:1-55] [SOURCE: .opencode/skills/sk-design/styles/kobu/design-tokens.json:56-318] [SOURCE: .opencode/skills/sk-design/styles/kobu/DESIGN.md:1-95] [SOURCE: .opencode/skills/sk-design/styles/19-86/design-tokens.json:1-89] [SOURCE: .opencode/skills/sk-design/styles/19-86/DESIGN.md:1-62] [SOURCE: .opencode/skills/sk-design/styles/19-86/DESIGN.md:105-141] [SOURCE: .opencode/skills/sk-design/design-foundations/assets/token_starter.md:30-145] [INFERENCE: common structural keys are necessary for bounded hydration but insufficient for semantic compatibility]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/prompts/iteration-5.md:1-47`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/deep-research-config.json:1-74`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/deep-research-state.jsonl:1-7`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/deep-research-strategy.md:17-227`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/findings-registry.json:8-164`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/iterations/iteration-001.md:1-91`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/iterations/iteration-002.md:1-76`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/iterations/iteration-003.md:1-83`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/iterations/iteration-004.md:1-86`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:37-191`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:243-255`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:350-364`",
+        "`.opencode/skills/sk-design/design-foundations/SKILL.md:14-203`",
+        "`.opencode/skills/sk-design/design-foundations/assets/token_starter.md:14-147`",
+        "`.opencode/skills/sk-design/design-foundations/assets/contrast_pair_inventory.md:13-55`",
+        "`.opencode/skills/sk-design/design-foundations/references/design_system_artifact_contract.md:13-88`",
+        "`.opencode/skills/sk-design/design-foundations/references/layout/adaptation_matrix.md:14-130`",
+        "`.opencode/skills/sk-design/shared/context_loading_contract.md:20-104`",
+        "`.opencode/skills/sk-design/shared/context_loading_contract.md:270-328`",
+        "`.opencode/skills/sk-design/shared/sk_code_handoff.md:23-106`",
+        "`.opencode/skills/sk-design/styles/kobu/DESIGN.md:1-155`",
+        "`.opencode/skills/sk-design/styles/kobu/design-tokens.json:1-320`",
+        "`.opencode/skills/sk-design/styles/kobu/source.md:1-12`",
+        "`.opencode/skills/sk-design/styles/19-86/DESIGN.md:1-155`",
+        "`.opencode/skills/sk-design/styles/19-86/design-tokens.json:1-90`",
+        "`.opencode/skills/sk-design/styles/19-86/source.md:1-12`"
+      ]
+    },
+    {
+      "id": "finding-5-5-refusal-is-fail-closed-for-source-influence-while-fallback-preserves-the-ordinar",
+      "text": "**Refusal is fail-closed for source influence while fallback preserves the ordinary foundations workflow.** Refuse the affected reference or synthesis when generation/hash changes, provenance is absent, a required axis has overlapping owners, a cross-axis edge is incompatible or unexplained, exact reuse lacks rights evidence, a source contradicts pinned/owned-system roles, or target values cannot be traced to one owner and reason. Unknown system role, brand source, contrast bar, or target platform blocks the affected design decision rather than inviting corpus inference. If retrieval is unavailable or no source fits, record `selectionMode:none` plus `corpusGrounding: unavailable|no-fit` and continue from target evidence through the baseline foundations workflow; never use stale hydration or manufacture replacement values. If one coherent source covers the request, do not synthesize. [SOURCE: .opencode/skills/sk-design/design-foundations/SKILL.md:136-146] [SOURCE: .opencode/skills/sk-design/design-foundations/SKILL.md:184-189] [SOURCE: .opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:130-132] [SOURCE: .opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:153-168] [SOURCE: .opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:350-364] [INFERENCE: source use can fail without making the mode itself unavailable]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/prompts/iteration-5.md:1-47`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/deep-research-config.json:1-74`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/deep-research-state.jsonl:1-7`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/deep-research-strategy.md:17-227`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/findings-registry.json:8-164`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/iterations/iteration-001.md:1-91`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/iterations/iteration-002.md:1-76`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/iterations/iteration-003.md:1-83`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/iterations/iteration-004.md:1-86`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:37-191`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:243-255`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:350-364`",
+        "`.opencode/skills/sk-design/design-foundations/SKILL.md:14-203`",
+        "`.opencode/skills/sk-design/design-foundations/assets/token_starter.md:14-147`",
+        "`.opencode/skills/sk-design/design-foundations/assets/contrast_pair_inventory.md:13-55`",
+        "`.opencode/skills/sk-design/design-foundations/references/design_system_artifact_contract.md:13-88`",
+        "`.opencode/skills/sk-design/design-foundations/references/layout/adaptation_matrix.md:14-130`",
+        "`.opencode/skills/sk-design/shared/context_loading_contract.md:20-104`",
+        "`.opencode/skills/sk-design/shared/context_loading_contract.md:270-328`",
+        "`.opencode/skills/sk-design/shared/sk_code_handoff.md:23-106`",
+        "`.opencode/skills/sk-design/styles/kobu/DESIGN.md:1-155`",
+        "`.opencode/skills/sk-design/styles/kobu/design-tokens.json:1-320`",
+        "`.opencode/skills/sk-design/styles/kobu/source.md:1-12`",
+        "`.opencode/skills/sk-design/styles/19-86/DESIGN.md:1-155`",
+        "`.opencode/skills/sk-design/styles/19-86/design-tokens.json:1-90`",
+        "`.opencode/skills/sk-design/styles/19-86/source.md:1-12`"
+      ]
+    },
+    {
+      "id": "finding-5-6-ship-the-contract-as-three-fixture-gated-slices-roughly-10-17-engineer-days-afte",
+      "text": "**Ship the contract as three fixture-gated slices, roughly 10-17 engineer-days after the phase-001 API.** (1) Request/selection/refusal schemas plus coherent-anchor, no-fit, generation-mismatch, unknown-rights, and owned-system-conflict fixtures: 2-4 days. (2) Typed compatibility graph, relationship-blueprint validator, and Kobu/19-86 counterexample/stress fixtures: 4-7 days. (3) Transformation/provenance/proof/handoff adapters plus `not-assessed` downstream-check fixtures: 4-6 days. The relationship blueprint, compatibility graph, counterexample library, and target-context adaptation ledger are all beyond baseline cards/hydration, but each remains mode-local and independently removable. This slice depends on phase 001's manifest/cards/hydration contract and existing foundations forms; it has no `md-generator`, live Open Design, or corpus-mutation dependency. [SOURCE: .opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:96-145] [SOURCE: .opencode/skills/sk-design/design-foundations/references/design_system_artifact_contract.md:21-50] [SOURCE: .opencode/skills/sk-design/shared/context_loading_contract.md:270-281] [INFERENCE: estimates are decomposed by independently testable schema, graph, and handoff work]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/prompts/iteration-5.md:1-47`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/deep-research-config.json:1-74`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/deep-research-state.jsonl:1-7`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/deep-research-strategy.md:17-227`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/findings-registry.json:8-164`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/iterations/iteration-001.md:1-91`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/iterations/iteration-002.md:1-76`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/iterations/iteration-003.md:1-83`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/iterations/iteration-004.md:1-86`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:37-191`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:243-255`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:350-364`",
+        "`.opencode/skills/sk-design/design-foundations/SKILL.md:14-203`",
+        "`.opencode/skills/sk-design/design-foundations/assets/token_starter.md:14-147`",
+        "`.opencode/skills/sk-design/design-foundations/assets/contrast_pair_inventory.md:13-55`",
+        "`.opencode/skills/sk-design/design-foundations/references/design_system_artifact_contract.md:13-88`",
+        "`.opencode/skills/sk-design/design-foundations/references/layout/adaptation_matrix.md:14-130`",
+        "`.opencode/skills/sk-design/shared/context_loading_contract.md:20-104`",
+        "`.opencode/skills/sk-design/shared/context_loading_contract.md:270-328`",
+        "`.opencode/skills/sk-design/shared/sk_code_handoff.md:23-106`",
+        "`.opencode/skills/sk-design/styles/kobu/DESIGN.md:1-155`",
+        "`.opencode/skills/sk-design/styles/kobu/design-tokens.json:1-320`",
+        "`.opencode/skills/sk-design/styles/kobu/source.md:1-12`",
+        "`.opencode/skills/sk-design/styles/19-86/DESIGN.md:1-155`",
+        "`.opencode/skills/sk-design/styles/19-86/design-tokens.json:1-90`",
+        "`.opencode/skills/sk-design/styles/19-86/source.md:1-12`"
+      ]
+    },
+    {
+      "id": "finding-5-2-the-safe-compatibility-model-is-a-typed-graph-plus-a-relationship-preserving-blu",
+      "text": "**The safe compatibility model is a typed graph plus a relationship-preserving blueprint, not an axis checklist.** `FOUNDATIONS_AXIS_COMPATIBILITY v1` contains `axisNodes[{axis, owner, targetRoles[], sourceRelationships[], pinnedBy}]`, `edges[{from, to, relation: preserve|recalculate-for-target|target-derived|incompatible, reason, evidence}]`, `conflicts[]`, and `verdict: coherent-anchor|bounded-compatible|refuse-synthesis`. Every node has zero or one source owner, every cross-axis edge is reconciled, and any overlapping owner or unexplained edge fails. For each accepted node, `RELATIONSHIP_BLUEPRINT v1` records role topology, ordering/grouping constraints, identity locks, do-not constraints, target adaptation reason, and the transformation policy; it deliberately omits a copyable source-value array. This preserves useful relationships while letting foundations recalculate actual color, type, spacing, and breakpoint values for the target register, platform, density, and existing system. [SOURCE: .opencode/skills/sk-design/design-foundations/SKILL.md:115-170] [SOURCE: .opencode/skills/sk-design/design-foundations/references/layout/adaptation_matrix.md:22-60] [SOURCE: .opencode/skills/sk-design/design-foundations/references/layout/adaptation_matrix.md:97-130] [SOURCE: .opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:153-168] [INFERENCE: typed edges expose dependencies that coarse axis presence cannot]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/prompts/iteration-5.md:1-47`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/deep-research-config.json:1-74`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/deep-research-state.jsonl:1-7`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/deep-research-strategy.md:17-227`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/findings-registry.json:8-164`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/iterations/iteration-001.md:1-91`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/iterations/iteration-002.md:1-76`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/iterations/iteration-003.md:1-83`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/iterations/iteration-004.md:1-86`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:37-191`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:243-255`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:350-364`",
+        "`.opencode/skills/sk-design/design-foundations/SKILL.md:14-203`",
+        "`.opencode/skills/sk-design/design-foundations/assets/token_starter.md:14-147`",
+        "`.opencode/skills/sk-design/design-foundations/assets/contrast_pair_inventory.md:13-55`",
+        "`.opencode/skills/sk-design/design-foundations/references/design_system_artifact_contract.md:13-88`",
+        "`.opencode/skills/sk-design/design-foundations/references/layout/adaptation_matrix.md:14-130`",
+        "`.opencode/skills/sk-design/shared/context_loading_contract.md:20-104`",
+        "`.opencode/skills/sk-design/shared/context_loading_contract.md:270-328`",
+        "`.opencode/skills/sk-design/shared/sk_code_handoff.md:23-106`",
+        "`.opencode/skills/sk-design/styles/kobu/DESIGN.md:1-155`",
+        "`.opencode/skills/sk-design/styles/kobu/design-tokens.json:1-320`",
+        "`.opencode/skills/sk-design/styles/kobu/source.md:1-12`",
+        "`.opencode/skills/sk-design/styles/19-86/DESIGN.md:1-155`",
+        "`.opencode/skills/sk-design/styles/19-86/design-tokens.json:1-90`",
+        "`.opencode/skills/sk-design/styles/19-86/source.md:1-12`"
+      ]
+    },
+    {
+      "id": "finding-5-4-transformation-provenance-unverified-proof-and-handoff-need-separate-but-linked-",
+      "text": "**Transformation, provenance, unverified proof, and handoff need separate but linked records.** Each `TRANSFORMATION_LEDGER` row is `{axis, sourceRef, sourcePathOrToken, sourceRole, targetRole, targetTokenName, operation: preserve-relationship|rename-role|recalculate-for-target|derive-from-target|reject, targetReason, exactReuseAllowed, proofStatus}`; averaging, interpolation, synthetic means, silent overlap, and detached signature motifs are invalid operations. Provenance proves lineage only: both fixture `source.md` files identify Refero/original URLs, UUIDs, capture time, and included artifacts, but do not establish reuse rights or target fitness. `FOUNDATIONS_CORPUS_PROOF v1` therefore records request/selection digests, compatibility verdict, transformations, refusals, source hashes, rights status, and explicit downstream states for contrast, gamut, baseline rhythm, naming, measure, responsive behavior, and touch targets. Until target values exist and the owning downstream step runs deterministic checks, each applicable state is `not-assessed` or `blocked-with-reason`, never `pass`. `FOUNDATIONS_CORPUS_HANDOFF v1` then extends the shared envelope with target-decided locked values, axis-owner ledger, source lineage, transformation reasons, validation owners, and unresolved risks; `sk-code` implements those accepted target tokens and must neither rehydrate the corpus nor invent roles. [SOURCE: .opencode/skills/sk-design/styles/kobu/source.md:1-12] [SOURCE: .opencode/skills/sk-design/styles/19-86/source.md:1-12] [SOURCE: .opencode/skills/sk-design/design-foundations/assets/contrast_pair_inventory.md:15-55] [SOURCE: .opencode/skills/sk-design/design-foundations/SKILL.md:138-146] [SOURCE: .opencode/skills/sk-design/shared/sk_code_handoff.md:32-69] [SOURCE: .opencode/skills/sk-design/shared/sk_code_handoff.md:93-106] [SOURCE: .opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:172-187] [INFERENCE: separate records prevent provenance from being mistaken for permission or downstream proof]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/prompts/iteration-5.md:1-47`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/deep-research-config.json:1-74`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/deep-research-state.jsonl:1-7`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/deep-research-strategy.md:17-227`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/findings-registry.json:8-164`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/iterations/iteration-001.md:1-91`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/iterations/iteration-002.md:1-76`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/iterations/iteration-003.md:1-83`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/iterations/iteration-004.md:1-86`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:37-191`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:243-255`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:350-364`",
+        "`.opencode/skills/sk-design/design-foundations/SKILL.md:14-203`",
+        "`.opencode/skills/sk-design/design-foundations/assets/token_starter.md:14-147`",
+        "`.opencode/skills/sk-design/design-foundations/assets/contrast_pair_inventory.md:13-55`",
+        "`.opencode/skills/sk-design/design-foundations/references/design_system_artifact_contract.md:13-88`",
+        "`.opencode/skills/sk-design/design-foundations/references/layout/adaptation_matrix.md:14-130`",
+        "`.opencode/skills/sk-design/shared/context_loading_contract.md:20-104`",
+        "`.opencode/skills/sk-design/shared/context_loading_contract.md:270-328`",
+        "`.opencode/skills/sk-design/shared/sk_code_handoff.md:23-106`",
+        "`.opencode/skills/sk-design/styles/kobu/DESIGN.md:1-155`",
+        "`.opencode/skills/sk-design/styles/kobu/design-tokens.json:1-320`",
+        "`.opencode/skills/sk-design/styles/kobu/source.md:1-12`",
+        "`.opencode/skills/sk-design/styles/19-86/DESIGN.md:1-155`",
+        "`.opencode/skills/sk-design/styles/19-86/design-tokens.json:1-90`",
+        "`.opencode/skills/sk-design/styles/19-86/source.md:1-12`"
+      ]
+    },
+    {
+      "id": "finding-6-1-motion-corpus-context-v1-belongs-after-the-restraint-gate-and-before-choreograph",
+      "text": "**`MOTION_CORPUS_CONTEXT v1` belongs after the restraint gate and before choreography; zero corpus use is a first-class successful outcome.** The request is `{surface, register, motionBudget, targetInteraction, frequencyTier, inputModes[], purpose, stateOrScenePath, existingAnimationSystem?, reducedMotionBar, performanceConstraints[], corpusGeneration}`. Gate order remains frequency -> keyboard input -> one named purpose -> register ceiling. `gateDecision:no-motion` terminates with `queryIssued:false`, `hydratedReferences:[]`, and an instant equivalent; `gateDecision:eligible` merely allows temporal discovery. A static interface anchor may constrain visual tone, but it supplies no temporal authority. This preserves phase 001's zero-or-one motion hydration and the current workflow's rule that a gate failure is correct, not degraded. [SOURCE: .opencode/skills/sk-design/design-motion/SKILL.md:262-275] [SOURCE: .opencode/skills/sk-design/design-motion/references/animation_decision_framework.md:92-101] [SOURCE: .opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:134-145] [INFERENCE: placing the corpus adapter between gate and choreography prevents retrieval from manufacturing a reason to animate]",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/prompts/iteration-6.md:1-47`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/deep-research-config.json:1-74`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/deep-research-state.jsonl:1-8`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/deep-research-strategy.md:17-261`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/findings-registry.json:8-168`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/iterations/iteration-001.md:1-91`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/iterations/iteration-002.md:1-76`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/iterations/iteration-003.md:1-83`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/iterations/iteration-004.md:1-86`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/iterations/iteration-005.md:1-99`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:96-191`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/iterations/iteration-004.md:14-69`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/iterations/iteration-008.md:14-69`",
+        "`.opencode/skills/sk-design/design-motion/SKILL.md:13-47`",
+        "`.opencode/skills/sk-design/design-motion/SKILL.md:260-300`",
+        "`.opencode/skills/sk-design/design-motion/references/animation_decision_framework.md:35-109`",
+        "`.opencode/skills/sk-design/design-motion/references/motion_strategy.md:35-105`",
+        "`.opencode/skills/sk-design/design-motion/references/micro_interactions.md:35-160`",
+        "`.opencode/skills/sk-design/design-motion/references/performance_reduced_motion.md:35-100`",
+        "`.opencode/skills/sk-design/design-motion/assets/motion_pattern_cards.md:20-218`",
+        "`.opencode/skills/sk-design/shared/sk_code_handoff.md:32-108`",
+        "`.opencode/skills/sk-design/styles/active-theory/DESIGN.md:195-201`",
+        "`.opencode/skills/sk-design/styles/monopo-saigon/DESIGN.md:226-228`",
+        "`.opencode/skills/sk-design/styles/amplemarket/DESIGN.md:249-252`",
+        "`.opencode/skills/sk-design/styles/099-supply/DESIGN.md:206-208`",
+        "`.opencode/skills/sk-design/styles/relate/DESIGN.md:286-288`",
+        "`.opencode/skills/sk-design/styles/19-86/DESIGN.md:139-141`"
+      ]
+    },
+    {
+      "id": "finding-6-5-a-restraint-gated-exemplar-should-transfer-a-purpose-first-grammar-never-source-",
+      "text": "**A restraint-gated exemplar should transfer a purpose-first grammar, never source choreography by default.** `MOTION_PURPOSE_EXEMPLAR v1` contains one temporal owner and `{purpose, patternClass, stateOrScenePath, cadenceBand, choreographyShape, materialClass, prohibitions, sourceEvidence, targetAdaptations[], prohibitedReuse[]}`. Retrieval facets are interaction-state archetypes such as `feedback/default->active`, `orientation/view-A->view-B`, `continuity/absent->present`, or `earned-delight/first-success`, not aesthetic adjectives. The target's pattern card supplies exact states, timing/easing from the local strategy, properties, and reduced-motion equivalent. Source-specific timings, easing signatures, continuous loops, or signature scene choreography require both a target reason and rights evidence; otherwise only abstract relationships such as “slow scene / fast chrome,” “opacity-led reveal,” or “one rotating atmospheric cue” may inform the target. A hard-negative counterexample can sharpen a refusal but is never a second temporal owner. Post-design drift checks compare accepted purpose, states, cadence band, material, reduced path, and mechanism against the target; they cannot run before or bypass the restraint gate. [SOURCE: .opencode/skills/sk-design/design-motion/references/motion_strategy.md:35-103] [SOURCE: .opencode/skills/sk-design/design-motion/assets/motion_pattern_cards.md:30-40] [SOURCE: .opencode/skills/sk-design/design-motion/assets/motion_pattern_cards.md:111-159] [SOURCE: .opencode/skills/sk-design/design-motion/references/micro_interactions.md:149-160] [INFERENCE: purpose/state grammar preserves useful temporal relationships while avoiding source-specific copying]",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/prompts/iteration-6.md:1-47`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/deep-research-config.json:1-74`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/deep-research-state.jsonl:1-8`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/deep-research-strategy.md:17-261`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/findings-registry.json:8-168`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/iterations/iteration-001.md:1-91`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/iterations/iteration-002.md:1-76`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/iterations/iteration-003.md:1-83`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/iterations/iteration-004.md:1-86`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/iterations/iteration-005.md:1-99`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:96-191`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/iterations/iteration-004.md:14-69`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/iterations/iteration-008.md:14-69`",
+        "`.opencode/skills/sk-design/design-motion/SKILL.md:13-47`",
+        "`.opencode/skills/sk-design/design-motion/SKILL.md:260-300`",
+        "`.opencode/skills/sk-design/design-motion/references/animation_decision_framework.md:35-109`",
+        "`.opencode/skills/sk-design/design-motion/references/motion_strategy.md:35-105`",
+        "`.opencode/skills/sk-design/design-motion/references/micro_interactions.md:35-160`",
+        "`.opencode/skills/sk-design/design-motion/references/performance_reduced_motion.md:35-100`",
+        "`.opencode/skills/sk-design/design-motion/assets/motion_pattern_cards.md:20-218`",
+        "`.opencode/skills/sk-design/shared/sk_code_handoff.md:32-108`",
+        "`.opencode/skills/sk-design/styles/active-theory/DESIGN.md:195-201`",
+        "`.opencode/skills/sk-design/styles/monopo-saigon/DESIGN.md:226-228`",
+        "`.opencode/skills/sk-design/styles/amplemarket/DESIGN.md:249-252`",
+        "`.opencode/skills/sk-design/styles/099-supply/DESIGN.md:206-208`",
+        "`.opencode/skills/sk-design/styles/relate/DESIGN.md:286-288`",
+        "`.opencode/skills/sk-design/styles/19-86/DESIGN.md:139-141`"
+      ]
+    },
+    {
+      "id": "finding-6-2-eligibility-must-be-polarity-aware-and-evidence-typed-before-ranking-motion-evid",
+      "text": "**Eligibility must be polarity-aware and evidence-typed before ranking.** `MOTION_EVIDENCE_ELIGIBILITY v1` first requires matching generation/hash, provenance, and a positively asserted temporal slice; it hard-excludes static-only similarity, incidental temporal vocabulary, explicit prohibition of the requested behavior, and source text that names no usable state/scene or pattern. Eligible records then receive a reviewable 10-point rank: `+3` explicit non-negated motion section/philosophy, `+2` target pattern or purpose match, `+2` named state/trigger/scene, `+1` material or property, `+1` measured/declared cadence, and `+1` a reduced-motion statement. The first `+3` and at least one of the two `+2` fields are mandatory; a reduced-motion mention alone never makes a record eligible. Every card labels evidence `measured` (captured occurrence/property evidence), `declared` (source rationale), or `inferred`, with source slice, prohibitions, and limitations. The score orders already-eligible evidence; it never overrides the gate or selects motion automatically. [SOURCE: .opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/iterations/iteration-008.md:20-37] [SOURCE: .opencode/skills/sk-design/design-motion/SKILL.md:53-66] [INFERENCE: mandatory positive polarity plus purpose/state composition directly addresses the holdout's BM25 negation failures]",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/prompts/iteration-6.md:1-47`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/deep-research-config.json:1-74`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/deep-research-state.jsonl:1-8`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/deep-research-strategy.md:17-261`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/findings-registry.json:8-168`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/iterations/iteration-001.md:1-91`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/iterations/iteration-002.md:1-76`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/iterations/iteration-003.md:1-83`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/iterations/iteration-004.md:1-86`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/iterations/iteration-005.md:1-99`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:96-191`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/iterations/iteration-004.md:14-69`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/iterations/iteration-008.md:14-69`",
+        "`.opencode/skills/sk-design/design-motion/SKILL.md:13-47`",
+        "`.opencode/skills/sk-design/design-motion/SKILL.md:260-300`",
+        "`.opencode/skills/sk-design/design-motion/references/animation_decision_framework.md:35-109`",
+        "`.opencode/skills/sk-design/design-motion/references/motion_strategy.md:35-105`",
+        "`.opencode/skills/sk-design/design-motion/references/micro_interactions.md:35-160`",
+        "`.opencode/skills/sk-design/design-motion/references/performance_reduced_motion.md:35-100`",
+        "`.opencode/skills/sk-design/design-motion/assets/motion_pattern_cards.md:20-218`",
+        "`.opencode/skills/sk-design/shared/sk_code_handoff.md:32-108`",
+        "`.opencode/skills/sk-design/styles/active-theory/DESIGN.md:195-201`",
+        "`.opencode/skills/sk-design/styles/monopo-saigon/DESIGN.md:226-228`",
+        "`.opencode/skills/sk-design/styles/amplemarket/DESIGN.md:249-252`",
+        "`.opencode/skills/sk-design/styles/099-supply/DESIGN.md:206-208`",
+        "`.opencode/skills/sk-design/styles/relate/DESIGN.md:286-288`",
+        "`.opencode/skills/sk-design/styles/19-86/DESIGN.md:139-141`"
+      ]
+    },
+    {
+      "id": "finding-6-6-proof-and-handoff-must-keep-corpus-lineage-target-decisions-reduced-motion-limit",
+      "text": "**Proof and handoff must keep corpus lineage, target decisions, reduced-motion limitations, performance limits, refusal, and cost distinct.** `MOTION_CORPUS_PROOF v1` records gate inputs/result, query/card generation, selected temporal owner or negative baseline, evidence strength, applied/modified/rejected influences, target reasons, rights status, and `reducedMotionProof:not-assessed|target-verified|blocked` plus `performanceProof:not-assessed|measured|blocked`; corpus prose can never set either field to verified/measured. `MOTION_CORPUS_HANDOFF v1` extends the shared envelope with target purpose/states, exact target-decided duration/easing/delay/properties, reduced-motion fallback, motion budget, chosen mechanism/stack boundary, source IDs/hashes/provenance, prohibited reuse, performance risks, and target verification plan. Refuse source influence on generation mismatch, missing provenance, incidental or negated evidence, no purpose/state fit, owned-system conflict, unknown-rights exact reuse, or any accessibility/performance proof claim; continue through target-native motion or the no-motion baseline without stale hydration. Build as three fixture-gated slices after phase 001: schema plus positive/negative/no-query fixtures `2-4` days; polarity/archetype eligibility and counterexample validation `4-7` days; proof/handoff/drift adapters `3-5` days, totaling roughly `9-16 engineer-days`. [SOURCE: .opencode/skills/sk-design/shared/sk_code_handoff.md:81-99] [SOURCE: .opencode/skills/sk-design/design-motion/references/performance_reduced_motion.md:94-100] [SOURCE: .opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:130-145] [SOURCE: .opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:350-364] [INFERENCE: effort is split into independently testable contract, eligibility, and carry-through slices]",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/prompts/iteration-6.md:1-47`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/deep-research-config.json:1-74`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/deep-research-state.jsonl:1-8`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/deep-research-strategy.md:17-261`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/findings-registry.json:8-168`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/iterations/iteration-001.md:1-91`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/iterations/iteration-002.md:1-76`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/iterations/iteration-003.md:1-83`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/iterations/iteration-004.md:1-86`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/iterations/iteration-005.md:1-99`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:96-191`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/iterations/iteration-004.md:14-69`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/iterations/iteration-008.md:14-69`",
+        "`.opencode/skills/sk-design/design-motion/SKILL.md:13-47`",
+        "`.opencode/skills/sk-design/design-motion/SKILL.md:260-300`",
+        "`.opencode/skills/sk-design/design-motion/references/animation_decision_framework.md:35-109`",
+        "`.opencode/skills/sk-design/design-motion/references/motion_strategy.md:35-105`",
+        "`.opencode/skills/sk-design/design-motion/references/micro_interactions.md:35-160`",
+        "`.opencode/skills/sk-design/design-motion/references/performance_reduced_motion.md:35-100`",
+        "`.opencode/skills/sk-design/design-motion/assets/motion_pattern_cards.md:20-218`",
+        "`.opencode/skills/sk-design/shared/sk_code_handoff.md:32-108`",
+        "`.opencode/skills/sk-design/styles/active-theory/DESIGN.md:195-201`",
+        "`.opencode/skills/sk-design/styles/monopo-saigon/DESIGN.md:226-228`",
+        "`.opencode/skills/sk-design/styles/amplemarket/DESIGN.md:249-252`",
+        "`.opencode/skills/sk-design/styles/099-supply/DESIGN.md:206-208`",
+        "`.opencode/skills/sk-design/styles/relate/DESIGN.md:286-288`",
+        "`.opencode/skills/sk-design/styles/19-86/DESIGN.md:139-141`"
+      ]
+    },
+    {
+      "id": "finding-6-4-the-bounded-corpus-fixtures-validate-positive-scope-hard-negatives-and-zero-auth",
+      "text": "**The bounded corpus fixtures validate positive scope, hard negatives, and zero authority from incidental words.** `active-theory` declares UI feedback at `0.2-0.4s`, cinematic scene transitions at `0.8-9s`, opacity-led material, and a gravitational atmosphere; it is scene-level declared evidence, not a generic control timing source. `monopo-saigon` declares patient transform/color/opacity motion, a continuous rotating badge, and slow camera-like choreography; its `0.8-1.25s` cadence conflicts with high-frequency product feedback unless independently justified. `amplemarket` supplies a narrower pattern: `0.25s` micro-interactions plus transform/opacity entrances. Conversely, `099-supply` and `relate` explicitly reject spring/parallax/entrance spectacle while retaining minimal state feedback, so they are counterexamples rather than matches for an expressive-choreography query. `19-86` uses “section transitions” to describe scrolling between static sections; that vocabulary is not motion evidence. These cases support purpose/state archetype filtering and prove that lexical frequency or static aesthetic similarity cannot be authority. [SOURCE: .opencode/skills/sk-design/styles/active-theory/DESIGN.md:195-201] [SOURCE: .opencode/skills/sk-design/styles/monopo-saigon/DESIGN.md:226-228] [SOURCE: .opencode/skills/sk-design/styles/amplemarket/DESIGN.md:249-252] [SOURCE: .opencode/skills/sk-design/styles/099-supply/DESIGN.md:206-208] [SOURCE: .opencode/skills/sk-design/styles/relate/DESIGN.md:286-288] [SOURCE: .opencode/skills/sk-design/styles/19-86/DESIGN.md:139-141]",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/prompts/iteration-6.md:1-47`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/deep-research-config.json:1-74`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/deep-research-state.jsonl:1-8`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/deep-research-strategy.md:17-261`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/findings-registry.json:8-168`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/iterations/iteration-001.md:1-91`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/iterations/iteration-002.md:1-76`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/iterations/iteration-003.md:1-83`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/iterations/iteration-004.md:1-86`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/iterations/iteration-005.md:1-99`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:96-191`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/iterations/iteration-004.md:14-69`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/iterations/iteration-008.md:14-69`",
+        "`.opencode/skills/sk-design/design-motion/SKILL.md:13-47`",
+        "`.opencode/skills/sk-design/design-motion/SKILL.md:260-300`",
+        "`.opencode/skills/sk-design/design-motion/references/animation_decision_framework.md:35-109`",
+        "`.opencode/skills/sk-design/design-motion/references/motion_strategy.md:35-105`",
+        "`.opencode/skills/sk-design/design-motion/references/micro_interactions.md:35-160`",
+        "`.opencode/skills/sk-design/design-motion/references/performance_reduced_motion.md:35-100`",
+        "`.opencode/skills/sk-design/design-motion/assets/motion_pattern_cards.md:20-218`",
+        "`.opencode/skills/sk-design/shared/sk_code_handoff.md:32-108`",
+        "`.opencode/skills/sk-design/styles/active-theory/DESIGN.md:195-201`",
+        "`.opencode/skills/sk-design/styles/monopo-saigon/DESIGN.md:226-228`",
+        "`.opencode/skills/sk-design/styles/amplemarket/DESIGN.md:249-252`",
+        "`.opencode/skills/sk-design/styles/099-supply/DESIGN.md:206-208`",
+        "`.opencode/skills/sk-design/styles/relate/DESIGN.md:286-288`",
+        "`.opencode/skills/sk-design/styles/19-86/DESIGN.md:139-141`"
+      ]
+    },
+    {
+      "id": "finding-6-3-the-safe-negative-baseline-distinguishes-no-motion-from-no-corpus-motion-evidenc",
+      "text": "**The safe negative baseline distinguishes “no motion” from “no corpus motion evidence.”** `MOTION_NEGATIVE_BASELINE v1` records `{decision:no-motion|target-native-motion, reason:frequency|keyboard|purpose-fail|register|no-eligible-evidence|source-prohibition, affectedStates, instantEquivalent, preservedFeedback, queryIssued, rejectedEvidence[], reducedMotionPath}`. Frequency, keyboard, purpose, or register failure proves the target interaction stays instant. By contrast, a static bundle or an empty eligible set proves only `no corpus temporal authority`; if the gate passed, motion may still be derived from the mode's own strategy and target evidence with `temporalOwner:target-native`. Explicit source prohibition can be retained as a counterexample but cannot prohibit target motion unless the target independently shares that interaction and reason. Reduced motion preserves state through instant swaps, opacity/color/focus changes, or static progress cues rather than deleting feedback. [SOURCE: .opencode/skills/sk-design/design-motion/references/animation_decision_framework.md:35-62] [SOURCE: .opencode/skills/sk-design/design-motion/references/performance_reduced_motion.md:78-100] [SOURCE: .opencode/skills/sk-design/design-motion/assets/motion_pattern_cards.md:43-159] [INFERENCE: absence is an evidence limitation, while restraint-gate failure is a target decision]",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/prompts/iteration-6.md:1-47`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/deep-research-config.json:1-74`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/deep-research-state.jsonl:1-8`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/deep-research-strategy.md:17-261`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/findings-registry.json:8-168`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/iterations/iteration-001.md:1-91`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/iterations/iteration-002.md:1-76`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/iterations/iteration-003.md:1-83`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/iterations/iteration-004.md:1-86`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/iterations/iteration-005.md:1-99`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:96-191`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/iterations/iteration-004.md:14-69`",
+        "`.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/iterations/iteration-008.md:14-69`",
+        "`.opencode/skills/sk-design/design-motion/SKILL.md:13-47`",
+        "`.opencode/skills/sk-design/design-motion/SKILL.md:260-300`",
+        "`.opencode/skills/sk-design/design-motion/references/animation_decision_framework.md:35-109`",
+        "`.opencode/skills/sk-design/design-motion/references/motion_strategy.md:35-105`",
+        "`.opencode/skills/sk-design/design-motion/references/micro_interactions.md:35-160`",
+        "`.opencode/skills/sk-design/design-motion/references/performance_reduced_motion.md:35-100`",
+        "`.opencode/skills/sk-design/design-motion/assets/motion_pattern_cards.md:20-218`",
+        "`.opencode/skills/sk-design/shared/sk_code_handoff.md:32-108`",
+        "`.opencode/skills/sk-design/styles/active-theory/DESIGN.md:195-201`",
+        "`.opencode/skills/sk-design/styles/monopo-saigon/DESIGN.md:226-228`",
+        "`.opencode/skills/sk-design/styles/amplemarket/DESIGN.md:249-252`",
+        "`.opencode/skills/sk-design/styles/099-supply/DESIGN.md:206-208`",
+        "`.opencode/skills/sk-design/styles/relate/DESIGN.md:286-288`",
+        "`.opencode/skills/sk-design/styles/19-86/DESIGN.md:139-141`"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-8ae72a61872c",
+      "text": "**Caching corpus/Open Design payloads into the repository:** rejected because Open Design content must be read live and not vendored. [SOURCE: .opencode/skills/sk-design/design-mcp-open-design/SKILL.md:145-152]",
+      "contentHash": "8ae72a61872c",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-badb2ea12214",
+      "text": "**Corpus-driven routing:** rejected because routing follows user intent and the registry; the corpus is consulted only after a mode is selected. [SOURCE: .opencode/skills/sk-design/SKILL.md:42-71] [SOURCE: .opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:98-128]",
+      "contentHash": "badb2ea12214",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-fdafd7636238",
+      "text": "**Hub-local taste policy:** rejected because the hub is registry/routing-only and the selected mode owns judgment. [SOURCE: .opencode/skills/sk-design/SKILL.md:40-71] [SOURCE: .opencode/skills/sk-design/SKILL.md:172-184]",
+      "contentHash": "fdafd7636238",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-01ad0fca475e",
+      "text": "**Mode flattening into one corpus consumer:** rejected because current contracts preserve distinct interface, foundations, motion, and audit authorities and proof obligations. [SOURCE: .opencode/skills/sk-design/SKILL.md:166-184]",
+      "contentHash": "01ad0fca475e",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-bddc22ef56b4",
+      "text": "**Cached or stale payload fallback:** design content stays live, while corpus hydration refuses generation mismatch. [SOURCE: .opencode/skills/sk-design/design-mcp-open-design/references/tool_surface.md:143-150] [SOURCE: .opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:130-132]",
+      "contentHash": "bddc22ef56b4",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-630aa1625ffd",
+      "text": "**Raw exact-value or signature-motif transfer:** provenance does not authorize copying, and phase 001 forbids unreviewed source-specific reuse under unknown rights. [SOURCE: .opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:172-191] [SOURCE: .opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:350-356]",
+      "contentHash": "630aa1625ffd",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-0f9ae6b16652",
+      "text": "**Similarity as severity, quality, or copying proof:** nearest-neighbor distance and corpus prevalence lack target impact and independent copying evidence. [SOURCE: .opencode/skills/sk-design/design-audit/references/audit_contract.md:36-45] [SOURCE: .opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:172-191]",
+      "contentHash": "0f9ae6b16652",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-9a7e8b04aa36",
+      "text": "**Transport authority or one-shot completion:** Open Design is transport-only, and turn 1 yields a discovery form with zero files. [SOURCE: .opencode/skills/sk-design/design-mcp-open-design/references/tool_surface.md:48-54] [SOURCE: .opencode/skills/sk-design/design-mcp-open-design/references/tool_surface.md:154-170]",
+      "contentHash": "9a7e8b04aa36",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-44f69ce55e3a",
+      "text": "**Contrast as a second identity source:** rejected because Kobu and 19-86 have incompatible imagery, typography, rhythm, and signature locks; combining them yields an unowned third identity. [SOURCE: .opencode/skills/sk-design/styles/kobu/DESIGN.md:1-36] [SOURCE: .opencode/skills/sk-design/styles/19-86/DESIGN.md:1-31]",
+      "contentHash": "44f69ce55e3a",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-c2655bbaaf59",
+      "text": "**Raw corpus payload in the implementation handoff:** rejected because handoff ownership is accepted design decisions and constraints, while unknown rights prohibit exact source-specific reuse. [SOURCE: .opencode/skills/sk-design/shared/sk_code_handoff.md:23-35] [SOURCE: .opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:350-364]",
+      "contentHash": "c2655bbaaf59",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-fa4234e38f02",
+      "text": "**Scalar distance or genericness score:** rejected because it cannot encode authority, target reason, or whether a difference should be preserved, transformed, or refused. [SOURCE: .opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:174-189] [INFERENCE: per-axis relational states are reviewable where a scalar is not]",
+      "contentHash": "fa4234e38f02",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-590218a813d1",
+      "text": "**Three equal exemplar choices:** rejected because equal presentation becomes a style chooser and erases mode-owned role semantics. [SOURCE: .opencode/skills/sk-design/design-interface/manual_testing_playbook/real_ui_loop/reuse_before_generate_with_design_system.md:31-44] [INFERENCE: anchor/contrast/rejection roles must remain unequal]",
+      "contentHash": "590218a813d1",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-ed4a73ab34af",
+      "text": "Reopening live Open Design evidence was ruled out because the dispatch requires checked-in-contract validation and explicitly forbids Open Design live tools. [SOURCE: .opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/prompts/iteration-4.md:31-38]",
+      "contentHash": "ed4a73ab34af",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-afc923b94674",
+      "text": "Treating comparison evidence as target evidence, severity, quality, accessibility/performance proof, or copying proof remains invalid. [SOURCE: .opencode/skills/sk-design/design-audit/references/audit_contract.md:36-138] [SOURCE: .opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:134-145]",
+      "contentHash": "afc923b94674",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-8fec0cbacf6c",
+      "text": "Treating the grounding receipt as mutation approval, transport acceptance, a cache license, or one-shot completion remains invalid. [SOURCE: .opencode/skills/sk-design/design-mcp-open-design/SKILL.md:127-154] [SOURCE: .opencode/skills/sk-design/design-mcp-open-design/references/tool_surface.md:143-170]",
+      "contentHash": "8fec0cbacf6c",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-fed4aa2d26e5",
+      "text": "**Coarse independent-axis ownership without cross-axis edge reconciliation:** Kobu and 19-86 couple type, spacing, composition, imagery, and color, so a key-name boundary is not a semantic ownership boundary. [SOURCE: .opencode/skills/sk-design/styles/kobu/DESIGN.md:1-36] [SOURCE: .opencode/skills/sk-design/styles/19-86/DESIGN.md:1-24] [INFERENCE: compatibility requires typed dependency edges]",
+      "contentHash": "fed4aa2d26e5",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-3d0a20e412a2",
+      "text": "**Corpus provenance or extracted values as accessibility, contrast, reuse-rights, or extraction-truth proof:** target pairs and downstream deterministic runs remain required. [SOURCE: .opencode/skills/sk-design/design-foundations/assets/contrast_pair_inventory.md:15-55] [SOURCE: .opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:350-364]",
+      "contentHash": "3d0a20e412a2",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-649015d192c7",
+      "text": "**Directly filling the target token starter from captured raw values:** source spacing, typography, naming, and surface shapes do not satisfy the target scaffold's register, role, baseline, dark-mode, or verification contract. [SOURCE: .opencode/skills/sk-design/design-foundations/assets/token_starter.md:30-145] [SOURCE: .opencode/skills/sk-design/styles/kobu/DESIGN.md:44-95] [SOURCE: .opencode/skills/sk-design/styles/19-86/DESIGN.md:26-62]",
+      "contentHash": "649015d192c7",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-8dc71e4836d3",
+      "text": "**Top-level axis co-presence as compatibility proof:** both fixtures expose color/type/spacing while their role relationships and identity constraints conflict. [SOURCE: .opencode/skills/sk-design/styles/kobu/design-tokens.json:1-318] [SOURCE: .opencode/skills/sk-design/styles/19-86/design-tokens.json:1-89]",
+      "contentHash": "8dc71e4836d3",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-ec8a9293df88",
+      "text": "Promote “axis-key presence equals compatibility” as an exhausted direction: the two real bundles falsify it without requiring a corpus crawl. Future work should test typed relationship edges, not add more sources to that coarse heuristic. [SOURCE: .opencode/skills/sk-design/styles/kobu/design-tokens.json:1-318] [SOURCE: .opencode/skills/sk-design/styles/19-86/design-tokens.json:1-89] [INFERENCE: additional samples cannot repair a semantically under-specified compatibility test]",
+      "contentHash": "ec8a9293df88",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-1d51fd779bde",
+      "text": "**Copying source timings, easing signatures, continuous loops, or signature choreography without target reason and rights evidence:** source provenance and descriptive rationale do not establish reuse authority. [SOURCE: .opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:350-364]",
+      "contentHash": "1d51fd779bde",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-7a87662d68d5",
+      "text": "**Corpus drift checks before or instead of the restraint gate:** comparison begins only after a target motion decision and cannot manufacture purpose. [SOURCE: .opencode/skills/sk-design/design-motion/SKILL.md:262-275]",
+      "contentHash": "7a87662d68d5",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-f123bce2d02c",
+      "text": "**Corpus evidence as reduced-motion accessibility or performance proof:** only target behavior and measurement can verify these claims. [SOURCE: .opencode/skills/sk-design/design-motion/references/performance_reduced_motion.md:94-100]",
+      "contentHash": "f123bce2d02c",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-19ea3a224354",
+      "text": "**Static similarity or absent motion prose as proof that the target should not animate:** absence proves only no corpus temporal authority; target no-motion requires the restraint gate or independent target evidence. [SOURCE: .opencode/skills/sk-design/design-motion/references/animation_decision_framework.md:92-101] [INFERENCE: evidence absence and target decision have different authority]",
+      "contentHash": "19ea3a224354",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-a11ae221d0dc",
+      "text": "**Temporal-word frequency or BM25-only eligibility:** `099-supply` and `relate` rank for requested words while explicitly negating requested choreography. [SOURCE: .opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/iterations/iteration-008.md:31-37]",
+      "contentHash": "a11ae221d0dc",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-3f2a6c098dac",
+      "text": "Promote “static corpus absence determines no-motion” as exhausted: no-motion is a restraint-gate result, while an empty temporal result is a safe zero-hydration fallback. [SOURCE: .opencode/skills/sk-design/design-motion/references/animation_decision_framework.md:92-101] [SOURCE: .opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:136-145]",
+      "contentHash": "3f2a6c098dac",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-f793af440605",
+      "text": "Promote “temporal vocabulary implies motion eligibility” as exhausted: positive polarity and purpose/state composition are mandatory because explicit negations otherwise score as matches. [SOURCE: .opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/iterations/iteration-008.md:31-37]",
+      "contentHash": "f793af440605",
+      "addedAtIteration": 6
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 6,
+    "openQuestions": 0,
+    "resolvedQuestions": 5,
+    "carriedForwardOpenQuestions": 8,
+    "keyFindings": 35,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.93,
+    "coverageBySources": {
+      "code": 172
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/.reducer-spec/research/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "COMPLETE",
+  "advisoryEvents": []
+}

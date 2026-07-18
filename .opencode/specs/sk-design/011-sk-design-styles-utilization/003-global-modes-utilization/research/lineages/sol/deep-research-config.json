@@ -1,0 +1,74 @@
+{
+  "topic": "How should the 1,290-style design-token library at .opencode/skills/sk-design/styles/ be utilized globally across the sk-design hub and its non-md-generator modes (design-interface, design-foundations, design-motion, design-audit) plus the design-mcp-open-design transport -- as shared reference material, retrieval-backed exemplars, foundation token sources, and audit/drift baselines? Inspect each mode's real contract and give a per-mode integration shape. Build on ../001-research-utilization/research/lineages/sol/research.md but scope away from md-generator (owned by phase 002). Emphasize smart integrations and out-of-the-box ideas beyond the 001 baseline retrieval pipeline, each with rough build cost.",
+  "maxIterations": 10,
+  "minIterations": 3,
+  "convergenceThreshold": 0.05,
+  "antiConvergence": {
+    "minIterations": 3,
+    "convergenceMode": "default",
+    "stopPolicy": "convergence",
+    "divergent": {}
+  },
+  "stuckThreshold": 3,
+  "minIdeaObservations": 2,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": true,
+  "specFolder": ".opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/.reducer-spec",
+  "targetSpecFolder": ".opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization",
+  "fanoutLineageArtifactDir": ".opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol",
+  "resource_map_present": false,
+  "resource_map": {
+    "emit": true
+  },
+  "createdAt": "2026-07-18T12:35:15Z",
+  "status": "complete",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-opencode",
+    "model": "openai/gpt-5.6-sol-fast",
+    "reasoningEffort": null,
+    "serviceTier": null,
+    "sandboxMode": "workspace-write",
+    "timeoutSeconds": 900
+  },
+  "lineage": {
+    "sessionId": "fanout-sol-1784377737893-mlzyni",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "allowedModes": ["new", "resume", "restart"],
+    "deferredModes": ["fork", "completed-continue"],
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "findings-registry.json",
+    "dashboardFile": "deep-research-dashboard.md",
+    "strategyFile": "deep-research-strategy.md",
+    "proxySpecFolder": ".reducer-spec",
+    "machineOwnedSections": [
+      "key-questions",
+      "answered-questions",
+      "what-worked",
+      "what-failed",
+      "exhausted-approaches",
+      "ruled-out-directions",
+      "divergence-frontier",
+      "next-focus"
+    ]
+  },
+  "pauseSentinelPath": ".deep-research-pause",
+  "archiveRoot": "_archive",
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "mutable",
+    "deep-research-dashboard.md": "auto-generated",
+    "findings-registry.json": "auto-generated",
+    "iteration-*.md": "write-once",
+    "research.md": "mutable"
+  }
+}

@@ -1,0 +1,83 @@
+# Iteration 3: Interface Relational Exemplar Contract
+
+## Focus
+
+Define and fixture-test how `design-interface` can use corpus evidence as relational critique-ground: one coherent anchor by default, an optional deliberate contrast, and an optional rejected default. The selected interpretation is a mode-owned workflow and proof contract, not a style chooser, token blender, implementation, or change to the phase-001 retrieval substrate.
+
+## Actions Taken
+
+1. Read the lineage config, state, strategy, registry, prior two iterations, and phase-001 synthesis before selecting the reducer-prescribed interface focus. [SOURCE: .opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/deep-research-strategy.md:131-165] [SOURCE: .opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:96-191]
+2. Inspected interface authority, register/dials, context manifest, anti-default and real-render gates, preflight, redesign/transform lanes, variation diversity, and `sk-code` handoff boundaries. [SOURCE: .opencode/skills/sk-design/design-interface/SKILL.md:14-32] [SOURCE: .opencode/skills/sk-design/design-interface/SKILL.md:71-92] [SOURCE: .opencode/skills/sk-design/design-interface/SKILL.md:169-209] [SOURCE: .opencode/skills/sk-design/shared/context_loading_contract.md:20-80] [SOURCE: .opencode/skills/sk-design/shared/sk_code_handoff.md:23-35]
+3. Tested the relational roles against Kobu and 19-86: two coherent but incompatible identities with opposite imagery, typography, composition, rhythm, and signature-device constraints. [SOURCE: .opencode/skills/sk-design/styles/kobu/DESIGN.md:1-36] [SOURCE: .opencode/skills/sk-design/styles/kobu/DESIGN.md:90-137] [SOURCE: .opencode/skills/sk-design/styles/19-86/DESIGN.md:1-31] [SOURCE: .opencode/skills/sk-design/styles/19-86/DESIGN.md:58-88] [SOURCE: .opencode/skills/sk-design/styles/19-86/DESIGN.md:105-137]
+4. Falsified five beyond-hydration ideas against authority, anti-copy, coherence, variation, proof, fallback, and handoff requirements, then estimated build slices and dependencies. [SOURCE: .opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:149-191] [SOURCE: .opencode/skills/sk-design/design-interface/assets/interface_preflight_card.md:34-40] [SOURCE: .opencode/skills/sk-design/design-interface/assets/interface_preflight_card.md:159-165] [SOURCE: .opencode/skills/sk-design/shared/sk_code_handoff.md:93-107]
+
+## Findings
+
+1. **`INTERFACE_RELATIONAL_EXEMPLAR v1` should be the mode-local contract, with unequal roles rather than three selectable styles.** Resolve higher authority first, then emit `{surface, briefDigest, ownedSystemDigest?, register, dials, corpusGeneration, request, anchor, contrast?, rejectedDefault?, influenceAxes[], identityLocks[], targetDrivenDeltas[], prohibitedReuse[], fallback}`. `anchor` is the one mode-selected coherent source and the only full `DESIGN.md` hydration; `contrast` is a card or heading-bounded critique reference that sharpens a named decision; `rejectedDefault` records the plausible generic direction the interface deliberately refused. Each role carries `{styleId, contentHash, source, capturedAt, rightsStatus, rationale}`, but none is user-facing as a preset. The interface remains taste authority because it supplies the requirements, selects or rejects candidates, names influence axes, and may choose `anchor:null` when no source fits. [SOURCE: .opencode/skills/sk-design/design-interface/SKILL.md:14-32] [SOURCE: .opencode/skills/sk-design/design-interface/SKILL.md:71-92] [SOURCE: .opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:98-145] [INFERENCE: unequal role semantics prevent candidate cards from becoming a chooser]
+
+2. **The exact insertion flow is register/dials -> context manifest -> relational exemplar decision -> direction/transform work -> real-render critique -> preflight -> source-aware handoff.** Register, dials, the user brief, and any owned system are locked before the corpus request. The context manifest gains `CORPUS GENERATION`, `ANCHOR`, `CONTRAST`, `REJECTED DEFAULT`, `INFLUENCE AXES`, and `PROHIBITED REUSE`. Direction and redesign lanes may then transform relationships, but must log target reasons. A ready claim still requires the existing render and mechanical gates; corpus evidence cannot substitute for a rendered target. The handoff adds only applied decisions, transformation reasons, source IDs/hashes, remaining risks, and verification demands—not source prose, assets, screenshots, or copyable token dumps. [SOURCE: .opencode/skills/sk-design/shared/context_loading_contract.md:44-80] [SOURCE: .opencode/skills/sk-design/shared/context_loading_contract.md:270-281] [SOURCE: .opencode/skills/sk-design/design-interface/manual_testing_playbook/real_ui_loop/render_fidelity_check.md:32-45] [SOURCE: .opencode/skills/sk-design/design-interface/assets/interface_preflight_card.md:159-165] [SOURCE: .opencode/skills/sk-design/shared/sk_code_handoff.md:23-35] [SOURCE: .opencode/skills/sk-design/shared/sk_code_handoff.md:93-107] [INFERENCE: these insertion points preserve existing proof and implementation ownership]
+
+3. **Kobu and 19-86 validate a relational “compare, do not combine” fixture.** Kobu's identity locks include warm parchment, photography as the only color, a humanist-plus-monospace editorial hierarchy, image-led property cards, and 60-80px section rhythm. 19-86 locks black-on-white, one hairline typeface, a flat ledger of ruled rows, 24px rhythm, no imagery, and a 490px numeral watermark. For an image-led travel brief, interface may select Kobu as anchor and use 19-86 only to ask whether structure can become more index-like; it must reject 19-86's no-imagery and watermark signatures unless the target independently requires them. For a spare project index, the roles reverse. Combining the photography-led composition, giant watermark, both type systems, or their spacing values would create a third unowned identity and must fail. [SOURCE: .opencode/skills/sk-design/styles/kobu/DESIGN.md:1-36] [SOURCE: .opencode/skills/sk-design/styles/kobu/DESIGN.md:90-137] [SOURCE: .opencode/skills/sk-design/styles/19-86/DESIGN.md:1-31] [SOURCE: .opencode/skills/sk-design/styles/19-86/DESIGN.md:58-88] [SOURCE: .opencode/skills/sk-design/styles/19-86/DESIGN.md:105-137] [SOURCE: .opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:149-170] [INFERENCE: incompatible locks make cross-source motif transfer mechanically reviewable]
+
+4. **Three smart ideas survive when expressed as relational evidence rather than novelty scoring.** (a) A `COUNTERFACTUAL CRITIQUE` records the likely no-corpus default and names which brief-specific decisions improved after grounding. (b) A `RELATIONAL DISTANCE BUDGET` uses per-axis states `preserve|transform-for-target|reject` plus a target reason; it is not a scalar distance or quality score. (c) `CONTROLLED_VARIATION_SEEDS` create at most three directions from the same anchor, each varying one brief-owned free axis while keeping identity locks constant; switching anchors is a new decision, not a seed. These ideas directly strengthen anti-default critique and variation diversity without offering reusable vibes. [SOURCE: .opencode/skills/sk-design/design-interface/SKILL.md:169-209] [SOURCE: .opencode/skills/sk-design/design-interface/manual_testing_playbook/real_ui_loop/native_image_visual_direction_branch.md:27-45] [SOURCE: .opencode/skills/sk-design/design-interface/manual_testing_playbook/real_ui_loop/reuse_before_generate_with_design_system.md:31-44] [SOURCE: .opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:172-189] [INFERENCE: fixed-anchor, one-axis variation generates diversity without multi-style synthesis]
+
+5. **A source-aware handoff lock closes the copy path.** `INTERFACE_CORPUS_HANDOFF v1` should carry `{briefDigest, ownedSystemDigest?, corpusGeneration, anchorId, anchorContentHash, provenance, rightsStatus, appliedInfluences[], rejectedInfluences[], targetDrivenDeltas[], identityLocksPreserved[], prohibitedReuse[], targetEvidence[], validationPlan}`. Every `appliedInfluence` names a relationship or constraint and target reason; exact source-specific values, text, assets, screenshots, and signature motifs are refused when rights are unknown. `sk-code` receives accepted target decisions and implementation constraints, never authority to revisit the corpus or silently redesign. [SOURCE: .opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:172-191] [SOURCE: .opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:350-364] [SOURCE: .opencode/skills/sk-design/shared/sk_code_handoff.md:23-35] [SOURCE: .opencode/skills/sk-design/shared/sk_code_handoff.md:93-107] [INFERENCE: decision-only carry preserves provenance while denying raw source transfer]
+
+6. **Failure behavior is fail-closed for source use but fail-open for the ordinary interface workflow; the complete slice is medium cost.** A generation mismatch refuses hydration and requires re-query/reselection. Missing provenance or unknown rights blocks exact reuse. Conflict with the brief or owned system rejects the corpus candidate. No fitting candidate records `anchor:null` and continues with target-derived interface judgment; unavailable retrieval likewise continues with `corpusGrounding:unavailable`, never with stale evidence. Suggested sequence: schema plus positive/negative fixtures (2-3 engineer-days); context/proof/handoff fields and validators (3-5 days); counterfactual/distance/controlled-variation fixtures (3-4 days). Total: roughly 8-12 engineer-days after the phase-001 retrieval API exists, with no Open Design or md-generator dependency. [SOURCE: .opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:130-145] [SOURCE: .opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:243-255] [SOURCE: .opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:350-364] [INFERENCE: effort is decomposed by independently testable contract slices]
+
+## Questions Answered
+
+- How should `design-interface` use coherent style exemplars for grounding, anti-default critique, variation diversity, and handoff without becoming a style chooser or copy path? Answer: use `INTERFACE_RELATIONAL_EXEMPLAR v1` with one coherent anchor, optional non-equivalent contrast and rejected-default roles, fixed-anchor one-axis variation, fail-closed source use, real-target proof, and a decision-only source-aware handoff.
+
+## Questions Remaining
+
+1. How should `design-foundations` turn captured token axes and relationships into safe starting systems, compatibility maps, and implementation-ready evidence without averaging values or claiming accessibility proof?
+2. How should `design-motion` discover and use sparse temporal evidence, infer no motion from static styles safely, and build motion-specific exemplars or negative baselines under its restraint gate?
+3. Reducer reconciliation remains for the audit/Open Design question already substantively answered in iteration 2; this leaf did not edit reducer-owned state.
+
+## Dead Ends
+
+- **Three equal exemplar choices:** rejected because equal presentation becomes a style chooser and erases mode-owned role semantics. [SOURCE: .opencode/skills/sk-design/design-interface/manual_testing_playbook/real_ui_loop/reuse_before_generate_with_design_system.md:31-44] [INFERENCE: anchor/contrast/rejection roles must remain unequal]
+- **Contrast as a second identity source:** rejected because Kobu and 19-86 have incompatible imagery, typography, rhythm, and signature locks; combining them yields an unowned third identity. [SOURCE: .opencode/skills/sk-design/styles/kobu/DESIGN.md:1-36] [SOURCE: .opencode/skills/sk-design/styles/19-86/DESIGN.md:1-31]
+- **Scalar distance or genericness score:** rejected because it cannot encode authority, target reason, or whether a difference should be preserved, transformed, or refused. [SOURCE: .opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:174-189] [INFERENCE: per-axis relational states are reviewable where a scalar is not]
+- **Raw corpus payload in the implementation handoff:** rejected because handoff ownership is accepted design decisions and constraints, while unknown rights prohibit exact source-specific reuse. [SOURCE: .opencode/skills/sk-design/shared/sk_code_handoff.md:23-35] [SOURCE: .opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:350-364]
+
+## Assessment
+
+- New information ratio: 0.92
+- Novelty calculation: 5 of 6 findings are fully new interface contracts, fixture conclusions, ideas, or failure/cost details; 1 partially refines iteration 1's relational-exemplar proposal: `(5 + 0.5 × 1) / 6 = 0.92`.
+- Questions addressed: the full `design-interface` exemplar-consumption question.
+- Questions answered: 1 this iteration; 3 of 5 substantively across iteration evidence, while the reducer currently records 1 of 5.
+- Edge cases: none. Corpus retrieval itself was not implemented or invoked; checked-in contracts and two captured bundles were sufficient to close the workflow question.
+
+## Reflection
+
+- What worked and why: assigning non-equivalent anchor, contrast, and rejection roles before testing ideas prevented a three-card retrieval result from becoming three selectable presets.
+- What did not work and why: a scalar “distance budget” could not distinguish intentional target transformation from incoherent drift, so it was replaced by per-axis relational states with reasons.
+- What I would do differently: freeze positive and negative fixture cards for Kobu-anchor, 19-86-anchor, no-fit, generation-mismatch, owned-system-conflict, and unknown-rights cases before wiring any interface adapter.
+
+## Sources Consulted
+
+- `.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/deep-research-config.json:1-74`
+- `.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/deep-research-state.jsonl:1-4`
+- `.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/deep-research-strategy.md:17-178`
+- `.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/findings-registry.json:8-160`
+- `.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/iterations/iteration-001.md:14-91`
+- `.opencode/specs/sk-design/011-sk-design-styles-utilization/003-global-modes-utilization/research/lineages/sol/iterations/iteration-002.md:14-76`
+- `.opencode/specs/sk-design/011-sk-design-styles-utilization/001-research-utilization/research/lineages/sol/research.md:37-191`
+- `.opencode/skills/sk-design/design-interface/SKILL.md:14-209`
+- `.opencode/skills/sk-design/shared/context_loading_contract.md:20-80`
+- `.opencode/skills/sk-design/shared/context_loading_contract.md:270-328`
+- `.opencode/skills/sk-design/shared/sk_code_handoff.md:23-107`
+- `.opencode/skills/sk-design/design-interface/assets/interface_preflight_card.md:34-165`
+- `.opencode/skills/sk-design/design-interface/manual_testing_playbook/real_ui_loop/native_image_visual_direction_branch.md:27-45`
+- `.opencode/skills/sk-design/design-interface/manual_testing_playbook/real_ui_loop/render_fidelity_check.md:32-45`
+- `.opencode/skills/sk-design/design-interface/manual_testing_playbook/real_ui_loop/reuse_before_generate_with_design_system.md:31-44`
+- `.opencode/skills/sk-design/styles/kobu/DESIGN.md:1-140`
+- `.opencode/skills/sk-design/styles/kobu/source.md:1-12`
+- `.opencode/skills/sk-design/styles/19-86/DESIGN.md:1-140`
+- `.opencode/skills/sk-design/styles/19-86/source.md:1-12`
+
+## Recommended Next Focus
+
+Define and fixture-test `design-foundations`' axis-compatibility contract: requested axes, one exclusive owner per axis, relationship preservation, conflict/refusal states, no averaging, provenance, unverified accessibility fields, and implementation-ready token handoff cost.

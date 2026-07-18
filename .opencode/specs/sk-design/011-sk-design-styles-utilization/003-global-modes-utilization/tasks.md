@@ -61,8 +61,8 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T003 Dispatch the research lineage via `fanout-run.cjs --loop-type research` over the global-modes topic (`research/`).
-- [ ] T004 Iterate to convergence or the 10-iteration ceiling (`research/`).
+- [x] T003 Dispatch the research lineage via `fanout-run.cjs --loop-type research` over the global-modes topic (`research/`). [EVIDENCE: job `b4bebls5v` ran to `exitCode 0`, status `fulfilled`.]
+- [x] T004 Iterate to convergence or the 10-iteration ceiling (`research/`). [EVIDENCE: 6 iterations in `deep-research-state.jsonl`; `stall_detected` stopped it below the ceiling.]
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -70,8 +70,8 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T005 Confirm `research/research.md` ranks per-mode integration strategies with evidence + rough cost (`research/research.md`).
-- [ ] T006 Confirm the non-md-generator modes + hub are covered and 001 is extended, not duplicated (`research/research.md`).
+- [x] T005 Confirm `research/research.md` ranks per-mode integration strategies with evidence + rough cost (`research/research.md`). [EVIDENCE: `research.md` §11 ranks six consumers with per-strategy cost (`2-4 days`, `8-12 days`).]
+- [x] T006 Confirm the non-md-generator modes + hub are covered and 001 is extended, not duplicated (`research/research.md`). [EVIDENCE: `research.md` §5-§10 cover hub/interface/foundations/motion/audit/open-design; §3 inherits the 001 baseline.]
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -79,9 +79,9 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] Loop converged (or ceiling reached); research.md written
-- [ ] Per-mode strategies ranked with evidence + cost
-- [ ] Non-md-generator modes + hub covered
+- [x] Loop converged (or ceiling reached); research.md written
+- [x] Per-mode strategies ranked with evidence + cost
+- [x] Non-md-generator modes + hub covered
 <!-- /ANCHOR:completion -->
 
 ---
