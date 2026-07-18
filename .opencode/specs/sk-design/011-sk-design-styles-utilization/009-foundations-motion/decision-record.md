@@ -43,7 +43,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-07-18 |
 | **Deciders** | sk-design maintainers |
 
@@ -141,7 +141,7 @@ design-foundations needs to express how tokens relate across the corpus. The tem
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-07-18 |
 | **Deciders** | sk-design maintainers |
 

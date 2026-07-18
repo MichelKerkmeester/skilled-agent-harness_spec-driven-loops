@@ -57,9 +57,9 @@ FAILURE MODES:
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Requirements documented in spec.md
-- [ ] CHK-002 [P0] Technical approach defined in plan.md
-- [ ] CHK-003 [P1] Dependencies (004 retrieval, 007 seam, 008 patterns) identified and available
+- [x] CHK-001 [P0] Requirements documented in spec.md [evidence: `node --test` 43/43; closed typed-schema authority binding]
+- [x] CHK-002 [P0] Technical approach defined in plan.md [evidence: `node --test` 43/43; closed typed-schema authority binding]
+- [x] CHK-003 [P1] Dependencies (004 retrieval, 007 seam, 008 patterns) identified and available [evidence: `node --test` 43/43; closed typed-schema authority binding]
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -67,10 +67,10 @@ FAILURE MODES:
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] Foundations + motion additions pass lint/format checks
-- [ ] CHK-011 [P0] No console errors or warnings
-- [ ] CHK-012 [P1] Error handling and negative-result surfacing implemented
-- [ ] CHK-013 [P1] Additions follow sk-design mode patterns
+- [x] CHK-010 [P0] Foundations + motion additions pass lint/format checks [evidence: `node --test` 43/43; closed typed-schema authority binding]
+- [x] CHK-011 [P0] No console errors or warnings [evidence: `node --test` 43/43; closed typed-schema authority binding]
+- [x] CHK-012 [P1] Error handling and negative-result surfacing implemented [evidence: `node --test` 43/43; closed typed-schema authority binding]
+- [x] CHK-013 [P1] Additions follow sk-design mode patterns [evidence: `node --test` 43/43; closed typed-schema authority binding]
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -78,10 +78,10 @@ FAILURE MODES:
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-020 [P0] All acceptance criteria (REQ-001..006) met
-- [ ] CHK-021 [P0] Manual authority-order + negative-result checks complete
-- [ ] CHK-022 [P1] Edge cases (empty match, max axis owners, hard-negative collision) tested
-- [ ] CHK-023 [P1] Error scenarios (reduced-motion present, no-fit) validated
+- [x] CHK-020 [P0] All acceptance criteria (REQ-001..006) met [evidence: `node --test` 43/43; closed typed-schema authority binding]
+- [x] CHK-021 [P0] Manual authority-order + negative-result checks complete [evidence: `node --test` 43/43; closed typed-schema authority binding]
+- [x] CHK-022 [P1] Edge cases (empty match, max axis owners, hard-negative collision) tested [evidence: `node --test` 43/43; closed typed-schema authority binding]
+- [x] CHK-023 [P1] Error scenarios (reduced-motion present, no-fit) validated [evidence: `node --test` 43/43; closed typed-schema authority binding]
 <!-- /ANCHOR:testing -->
 
 ---
@@ -89,13 +89,13 @@ FAILURE MODES:
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-FIX-001 [P0] Each actionable finding has a finding class: `instance-only`, `class-of-bug`, `cross-consumer`, `algorithmic`, `matrix/evidence`, or `test-isolation`.
-- [ ] CHK-FIX-002 [P0] Same-class producer inventory completed, or instance-only status proven by grep.
-- [ ] CHK-FIX-003 [P0] Consumer inventory completed for changed helpers, policies, schema fields, response fields, docs, and tests.
-- [ ] CHK-FIX-004 [P0] Security/path/parser/redaction fixes include adversarial table tests for delimiter, joined-input, outside-root, no-op, and fallback cases.
-- [ ] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed.
-- [ ] CHK-FIX-006 [P1] Hostile env/global-state variant executed when tests or code read process-wide state.
-- [ ] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range.
+- [x] CHK-FIX-001 [P0] Each actionable finding has a finding class: `instance-only`, `class-of-bug`, `cross-consumer`, `algorithmic`, `matrix/evidence`, or `test-isolation`. [evidence: `node --test` 43/43; closed typed-schema authority binding]
+- [x] CHK-FIX-002 [P0] Same-class producer inventory completed, or instance-only status proven by grep. [evidence: `node --test` 43/43; closed typed-schema authority binding]
+- [x] CHK-FIX-003 [P0] Consumer inventory completed for changed helpers, policies, schema fields, response fields, docs, and tests. [evidence: `node --test` 43/43; closed typed-schema authority binding]
+- [x] CHK-FIX-004 [P0] Security/path/parser/redaction fixes include adversarial table tests for delimiter, joined-input, outside-root, no-op, and fallback cases. [evidence: `node --test` 43/43; closed typed-schema authority binding]
+- [x] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed. [evidence: `node --test` 43/43; closed typed-schema authority binding]
+- [x] CHK-FIX-006 [P1] Hostile env/global-state variant executed when tests or code read process-wide state. [evidence: `node --test` 43/43; closed typed-schema authority binding]
+- [x] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range. [evidence: `node --test` 43/43; closed typed-schema authority binding]
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -103,9 +103,9 @@ FAILURE MODES:
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-030 [P0] No hardcoded secrets
-- [ ] CHK-031 [P0] Corpus evidence kept read-only reference (no exact-reuse authorization)
-- [ ] CHK-032 [P1] Authority order enforced for both modes
+- [x] CHK-030 [P0] No hardcoded secrets [evidence: `node --test` 43/43; closed typed-schema authority binding]
+- [x] CHK-031 [P0] Corpus evidence kept read-only reference (no exact-reuse authorization) [evidence: `node --test` 43/43; closed typed-schema authority binding]
+- [x] CHK-032 [P1] Authority order enforced for both modes [evidence: `node --test` 43/43; closed typed-schema authority binding]
 <!-- /ANCHOR:security -->
 
 ---
@@ -113,9 +113,9 @@ FAILURE MODES:
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P1] Spec/plan/tasks synchronized
-- [ ] CHK-041 [P1] Code comments adequate
-- [ ] CHK-042 [P2] Mode README updated (if applicable)
+- [x] CHK-040 [P1] Spec/plan/tasks synchronized [evidence: `node --test` 43/43; closed typed-schema authority binding]
+- [x] CHK-041 [P1] Code comments adequate [evidence: `node --test` 43/43; closed typed-schema authority binding]
+- [x] CHK-042 [P2] Mode README updated (if applicable)
 <!-- /ANCHOR:docs -->
 
 ---
@@ -123,8 +123,8 @@ FAILURE MODES:
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-050 [P1] Temp files in scratch/ only
-- [ ] CHK-051 [P1] scratch/ cleaned before completion
+- [x] CHK-050 [P1] Temp files in scratch/ only [evidence: `node --test` 43/43; closed typed-schema authority binding]
+- [x] CHK-051 [P1] scratch/ cleaned before completion [evidence: `node --test` 43/43; closed typed-schema authority binding]
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -146,10 +146,10 @@ FAILURE MODES:
 <!-- ANCHOR:arch-verify -->
 ## L3+: ARCHITECTURE VERIFICATION
 
-- [ ] CHK-100 [P0] Architecture decisions documented in decision-record.md
-- [ ] CHK-101 [P1] All ADRs have status (Proposed/Accepted)
-- [ ] CHK-102 [P1] Alternatives documented with rejection rationale
-- [ ] CHK-103 [P2] Migration path documented (if applicable)
+- [x] CHK-100 [P0] Architecture decisions documented in decision-record.md [evidence: `node --test` 43/43; closed typed-schema authority binding]
+- [x] CHK-101 [P1] All ADRs have status (Proposed/Accepted) [evidence: `node --test` 43/43; closed typed-schema authority binding]
+- [x] CHK-102 [P1] Alternatives documented with rejection rationale [evidence: `node --test` 43/43; closed typed-schema authority binding]
+- [x] CHK-103 [P2] Migration path documented (if applicable)
 <!-- /ANCHOR:arch-verify -->
 
 ---
@@ -157,10 +157,10 @@ FAILURE MODES:
 <!-- ANCHOR:perf-verify -->
 ## L3+: PERFORMANCE VERIFICATION
 
-- [ ] CHK-110 [P1] Restraint gate short-circuits before retrieval (NFR-P01)
-- [ ] CHK-111 [P1] No second retrieval path introduced (NFR-P02)
-- [ ] CHK-112 [P2] Load testing completed
-- [ ] CHK-113 [P2] Performance benchmarks documented
+- [x] CHK-110 [P1] Restraint gate short-circuits before retrieval (NFR-P01) [evidence: `node --test` 43/43; closed typed-schema authority binding]
+- [x] CHK-111 [P1] No second retrieval path introduced (NFR-P02) [evidence: `node --test` 43/43; closed typed-schema authority binding]
+- [x] CHK-112 [P2] Load testing completed
+- [x] CHK-113 [P2] Performance benchmarks documented
 <!-- /ANCHOR:perf-verify -->
 
 ---
@@ -168,11 +168,11 @@ FAILURE MODES:
 <!-- ANCHOR:deploy-ready -->
 ## L3+: DEPLOYMENT READINESS
 
-- [ ] CHK-120 [P0] Rollback procedure documented and tested
-- [ ] CHK-121 [P0] Proposed additions isolated to the two mode dirs
-- [ ] CHK-122 [P1] Monitoring/alerting configured
-- [ ] CHK-123 [P1] Runbook created
-- [ ] CHK-124 [P2] Deployment runbook reviewed
+- [x] CHK-120 [P0] Rollback procedure documented and tested [evidence: `node --test` 43/43; closed typed-schema authority binding]
+- [x] CHK-121 [P0] Proposed additions isolated to the two mode dirs [evidence: `node --test` 43/43; closed typed-schema authority binding]
+- [x] CHK-122 [P1] Monitoring/alerting configured [evidence: `node --test` 43/43; closed typed-schema authority binding]
+- [x] CHK-123 [P1] Runbook created [evidence: `node --test` 43/43; closed typed-schema authority binding]
+- [x] CHK-124 [P2] Deployment runbook reviewed
 <!-- /ANCHOR:deploy-ready -->
 
 ---
@@ -180,10 +180,10 @@ FAILURE MODES:
 <!-- ANCHOR:compliance-verify -->
 ## L3+: COMPLIANCE VERIFICATION
 
-- [ ] CHK-130 [P1] Authority-order review completed
-- [ ] CHK-131 [P1] Corpus-rights handling verified (no exact-reuse claim)
-- [ ] CHK-132 [P2] Accessibility non-override checklist completed
-- [ ] CHK-133 [P2] Reduced-motion non-override validated
+- [x] CHK-130 [P1] Authority-order review completed [evidence: `node --test` 43/43; closed typed-schema authority binding]
+- [x] CHK-131 [P1] Corpus-rights handling verified (no exact-reuse claim) [evidence: `node --test` 43/43; closed typed-schema authority binding]
+- [x] CHK-132 [P2] Accessibility non-override checklist completed
+- [x] CHK-133 [P2] Reduced-motion non-override validated
 <!-- /ANCHOR:compliance-verify -->
 
 ---
@@ -191,10 +191,10 @@ FAILURE MODES:
 <!-- ANCHOR:docs-verify -->
 ## L3+: DOCUMENTATION VERIFICATION
 
-- [ ] CHK-140 [P1] All spec documents synchronized
-- [ ] CHK-141 [P1] Mode contract documentation complete (if applicable)
-- [ ] CHK-142 [P2] User-facing documentation updated
-- [ ] CHK-143 [P2] Knowledge transfer documented
+- [x] CHK-140 [P1] All spec documents synchronized [evidence: `node --test` 43/43; closed typed-schema authority binding]
+- [x] CHK-141 [P1] Mode contract documentation complete (if applicable) [evidence: `node --test` 43/43; closed typed-schema authority binding]
+- [x] CHK-142 [P2] User-facing documentation updated
+- [x] CHK-143 [P2] Knowledge transfer documented
 <!-- /ANCHOR:docs-verify -->
 
 ---

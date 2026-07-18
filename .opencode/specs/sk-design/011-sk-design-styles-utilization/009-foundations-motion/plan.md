@@ -64,14 +64,14 @@ Two parallel mode workstreams consume the phase-007 seam: foundations builds a t
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Phase 007 seam contract is stable enough to consume
-- [ ] Phase 008 proof/provenance/fallback fixtures are published
-- [ ] Success criteria in spec.md are measurable
+- [x] Phase 007 seam contract is stable enough to consume
+- [x] Phase 008 proof/provenance/fallback fixtures are published
+- [x] Success criteria in spec.md are measurable
 
 ### Definition of Done
-- [ ] Foundations emits typed edges + transformation ledger, never averaged tokens
-- [ ] Motion runs the restraint gate before retrieval and blocks hard-negative false positives
-- [ ] Corpus reference-only authority order holds for both modes
+- [x] Foundations emits typed edges + transformation ledger, never averaged tokens
+- [x] Motion runs the restraint gate before retrieval and blocks hard-negative false positives
+- [x] Corpus reference-only authority order holds for both modes
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -111,19 +111,19 @@ Foundations: token set → seam envelope → typed edges → blueprint + ledger 
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Confirm the phase-007 seam contract and the phase-008 fixtures are consumable
-- [ ] Fix the foundations and motion contract shapes against the 003 Phase C recommendations
+- [x] Confirm the phase-007 seam contract and the phase-008 fixtures are consumable
+- [x] Fix the foundations and motion contract shapes against the 003 Phase C recommendations
 
 ### Phase 2: Core Implementation
-- [ ] Build the foundations typed compatibility graph + relationship blueprint (proposed additions under `design-foundations/`)
-- [ ] Build the foundations transformation ledger + `not-assessed` downstream checks
-- [ ] Build the motion restraint-first query gate ahead of retrieval (proposed additions under `design-motion/`)
-- [ ] Build motion polarity-aware eligibility with hard negatives, archetypes, and negative baselines
+- [x] Build the foundations typed compatibility graph + relationship blueprint (proposed additions under `design-foundations/`)
+- [x] Build the foundations transformation ledger + `not-assessed` downstream checks
+- [x] Build the motion restraint-first query gate ahead of retrieval (proposed additions under `design-motion/`)
+- [x] Build motion polarity-aware eligibility with hard negatives, archetypes, and negative baselines
 
 ### Phase 3: Verification
-- [ ] Verify foundations never emits averaged/interpolated tokens or co-presence compatibility
-- [ ] Verify motion blocks hard-negative false positives and gates before retrieval
-- [ ] Verify corpus reference-only authority order for both modes
+- [x] Verify foundations never emits averaged/interpolated tokens or co-presence compatibility
+- [x] Verify motion blocks hard-negative false positives and gates before retrieval
+- [x] Verify corpus reference-only authority order for both modes
 <!-- /ANCHOR:phases -->
 
 ---
@@ -194,8 +194,8 @@ Phase 008 (pilots) ────┘                  009 motion ──┴──�
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] Proposed additions isolated to the two mode dirs
-- [ ] Seam and retrieval surfaces confirmed untouched
+- [x] Proposed additions isolated to the two mode dirs
+- [x] Seam and retrieval surfaces confirmed untouched
 
 ### Rollback Procedure
 1. Remove the proposed `design-foundations/` and `design-motion/` additions

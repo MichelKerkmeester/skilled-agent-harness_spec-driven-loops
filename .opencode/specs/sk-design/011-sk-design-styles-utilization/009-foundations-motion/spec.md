@@ -60,7 +60,7 @@ Phase C wires the two most semantically complex sk-design modes to the styles li
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P1 |
-| **Status** | Planned — scaffold; implementation not started |
+| **Status** | Complete — implemented, reviewed, verified (43/43 tests) |
 | **Created** | 2026-07-18 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | ../spec.md |

@@ -1,20 +1,20 @@
 ---
 title: "Implementation Summary: foundations + motion styles-library wiring (Phase C)"
-description: "Planned scaffold for wiring design-foundations and design-motion to the styles library via the phase-007 seam. Nothing is built yet; this records the intended shape and the not-started status."
+description: "design-foundations and design-motion are wired to the styles library through the phase-007 seam and verified: a typed compatibility graph with discriminated relation/basis unions, a transformation ledger bound to edge endpoints, a restraint-first motion gate that runs before retrieval, source-bound eligibility, and validated negative baselines. 43/43 tests pass; an adversarial review closed two value-level authority bypasses."
 trigger_phrases:
   - "foundations motion summary"
   - "compatibility graph status"
-  - "restraint gate status"
+  - "motion restraint gate status"
 importance_tier: "important"
 contextType: "implementation"
-status: "planned"
+status: "complete"
 _memory:
   continuity:
     packet_pointer: "sk-design/011-sk-design-styles-utilization/009-foundations-motion"
-    last_updated_at: "2026-07-18T13:40:00Z"
+    last_updated_at: "2026-07-18T19:51:10Z"
     last_updated_by: "claude"
-    recent_action: "Authored the foundations-motion L3 scaffold"
-    next_safe_action: "Build the phase-007 seam wiring for foundations then motion"
+    recent_action: "Built and verified foundations + motion wiring; 43/43 tests, authority bound to source"
+    next_safe_action: "Packet 011 complete — run the deep-review + doc-alignment pass"
     blockers: []
     key_files:
       - "spec.md"
@@ -23,17 +23,20 @@ _memory:
       - "decision-record.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "sk-found-motion-011-009"
+      session_id: "sk-foundations-motion-011-009"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "Foundations relation/basis are discriminated unions; an unresolved basis yields only not-assessed."
+      - "Motion eligibility is bound to the hydrated source; a relabeled incidental source fails closed."
 ---
 # Implementation Summary: foundations + motion styles-library wiring (Phase C)
 
 <!-- SPECKIT_LEVEL: 3 -->
-<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core + level3-arch | v2.2 -->
+
+> **Complete — built, adversarially reviewed, and verified.** `node --test` is 43/43 across both modes.
 
 ---
 
@@ -43,9 +46,9 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 009-foundations-motion |
-| **Status** | Planned — scaffold; implementation not started |
+| **Status** | Complete — implemented, reviewed, verified |
 | **Level** | 3 |
-| **Origin** | Phase C child of the styles-library utilization phase parent (011) |
+| **Depends On** | `../004-retrieval-substrate/`, `../007-shared-context-seam/`, `../008-interface-audit-pilots/` |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -53,27 +56,21 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Nothing is built yet. This is a planned scaffold that records the intended shape of Phase C before any mode runtime changes. It captures how `design-foundations` and `design-motion` will consume the styles library through the phase-007 seam so the work can start from a fixed contract rather than an open question.
+Two relationship-heavy design modes wired to the styles library through the phase-007 seam, each enforcing the fixed authority order via closed typed schemas.
 
-### design-foundations (planned)
+- **design-foundations** — a relationship blueprint plus a typed dependency/compatibility graph (`works-with` / `conflicts-with` / `not-assessed` as discriminated relation/basis unions), a transformation ledger bound to edge endpoints and authority lock IDs, and downstream `not-assessed` checks. The corpus can never lock a target-measured value.
+- **design-motion** — a restraint-first query gate ("should this move at all?") that runs BEFORE any retrieval, polarity-aware eligibility with hard negatives bound to the hydrated source's generation + content hashes, purpose/state archetypes, and validated negative baselines.
 
-Foundations will express token compatibility as typed dependency edges ("these tokens work together / conflict") over 1 coherent style plus at most 3 axis owners, with a relationship blueprint, a transformation ledger (source → relationship → transformation → lock), and downstream `not-assessed` checks. It will reject raw token averaging/interpolation and top-level token-axis co-presence as compatibility, and it will not override target roles/values, accessibility checks, or extraction truth.
+The corpus is non-authoritative throughout: it explains relationships and critique but never selects a mode, assigns severity/score, proves a11y/perf, establishes copying, authorizes exact reuse, or owns a fix.
 
-### design-motion (planned)
+### Files Created
 
-Motion will run a restraint-first "should this move at all?" query gate before any retrieval, then polarity-aware eligibility with hard negatives (explicit negations never surfacing as false positives), purpose/state archetypes, and negative baselines. Only the restraint gate plus target evidence will decide no-motion — never static similarity or absent prose — and it will not override reduced-motion/performance proof or the target mechanism.
-
-### Files Changed
-
-| File | Action | Purpose |
-|------|--------|---------|
-| `spec.md` | Created | Phase C requirements, scope, and success criteria |
-| `plan.md` | Created | Phased approach, dependencies, and rollback |
-| `tasks.md` | Created | Pending run queue (all unchecked) |
-| `checklist.md` | Created | L3 verification checklist (all unchecked) |
-| `decision-record.md` | Created | ADR-001 typed edges, ADR-002 restraint gate |
-| `.opencode/skills/sk-design/design-foundations/**` | Proposed | Typed compatibility graph + blueprint + ledger (not started) |
-| `.opencode/skills/sk-design/design-motion/**` | Proposed | Restraint gate + polarity-aware eligibility (not started) |
+| File | Action | Result |
+|------|--------|--------|
+| `design-foundations/corpus/relationship-blueprint.mjs` | Create | Discriminated compatibility graph, transformation ledger, explicit-none request, not-assessed |
+| `design-foundations/corpus/__tests__/**` | Create | Adversarial fixtures + tests (enum-smuggling, explicit-none, ledger binding) |
+| `design-motion/corpus/motion-evidence.mjs` | Create | Restraint gate, source-bound polarity-aware eligibility, purpose/state archetypes, negative baselines |
+| `design-motion/corpus/__tests__/**` | Create | Adversarial fixtures + tests (relabeled source, baseline schema, restraint-before-retrieval) |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -81,7 +78,7 @@ Motion will run a restraint-first "should this move at all?" query gate before a
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Not yet delivered. The plan sequences foundations and motion after the phase-007 seam and phase-008 pilots stabilize, so both modes consume proven proof/provenance/fallback fixtures rather than inventing parallel envelopes. Verification will come from the checklist and the parent recursive `validate.sh` run once the additions land.
+Built by a `cli-codex gpt-5.6-sol` (high, fast) implementer to `spec.md`/`plan.md`/`tasks.md`/`decision-record.md` in an isolated worktree, consuming the phase-004 engine and the phase-007 seam and mirroring the phase-008 typed-schema pattern. A `gpt-5.6-sol` xhigh-fast adversarial reviewer found two value-level authority bypasses: allowed enum values combined to smuggle a compatibility verdict + target-value lock (foundations), and motion candidate claims were unbound to the hydrated source (relabeling an incidental style as `positive/explicit-temporal` passed). A scoped fix pass closed them with discriminated relation/basis + transformation/lock unions, ledger sources bound to edge endpoints, rejection of target-derived corpus records, and a closed selected-mode attestation binding motion eligibility to the source generation + content hashes; explicit-none was made reachable and the negative-baseline schema closed. Scope stayed locked to `design-foundations/**` and `design-motion/**`.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -91,9 +88,11 @@ Not yet delivered. The plan sequences foundations and motion after the phase-007
 
 | Decision | Why |
 |----------|-----|
-| Typed compatibility edges, not scalar averaging | Averaging invents non-existent tokens and hides conflict; typed edges keep foundations reference-only and auditable (ADR-001) |
-| Restraint gate before retrieval | Running retrieval first lets static similarity fabricate motion; the gate keeps the no-motion path cheap and correct (ADR-002) |
-| Reuse Phase 008 proof patterns | The interface and audit pilots prove the shared fixtures before the relationship-heavy modes consume them |
+| Discriminated relation/basis + transformation/lock unions | An inconsistent verdict+lock combination becomes unrepresentable (ADR-001) |
+| Corpus never locks target-measured values | Target-derived corpus records are rejected; only `not-assessed` when the basis is unresolved (ADR-002) |
+| Motion eligibility bound to the hydrated source | A relabeled incidental source cannot masquerade as evidence; attestation is over typed source evidence |
+| Restraint gate runs before retrieval | "Do not move" is answerable without hydrating anything |
+| Negative outcomes fail closed | `not-assessed`, `no-fit`, `no-temporal-authority` are validated evidence, never thrown errors |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -101,14 +100,18 @@ Not yet delivered. The plan sequences foundations and motion after the phase-007
 <!-- ANCHOR:verification -->
 ## Verification
 
+Run by the implementer and independently re-run by the orchestrator.
+
 | Check | Result |
 |-------|--------|
-| Scaffold docs authored (six-doc L3 set) | PASS via `validate.sh <folder> --strict` (Errors: 0) |
-| Foundations typed-edge acceptance (REQ-001, REQ-004) | Not started — no runtime built |
-| Motion restraint-gate acceptance (REQ-002, REQ-005) | Not started — no runtime built |
-| Corpus reference-only authority order (REQ-003) | Not started — no runtime built |
-
-Re-confirm once the additions land with `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/sk-design/011-sk-design-styles-utilization --strict --recursive`.
+| Foundations authority (typed) | VERIFIED: the enum-smuggling combination (verdict + target-value lock) is rejected; ledger sources bind to edge endpoints |
+| Motion source-binding | VERIFIED: a relabeled incidental source fails closed; eligibility is bound to source generation + content hashes |
+| Foundations explicit-none | VERIFIED: `selection.mode:'none'` accepts an empty graph and is reachable |
+| Motion negative baseline | VERIFIED: a baseline missing any audit field (target evidence ID, affected states, preserved feedback, instant equivalent, reduced-motion) is rejected |
+| Restraint-before-retrieval | VERIFIED: the restraint gate can answer "do not move" without hydration |
+| Fail-closed | VERIFIED: missing-manifest calls return validated `no-fit` / `no-temporal-authority`, not a throw |
+| Test suite | VERIFIED: `node --test` 43/43 pass, 0 skipped |
+| Packet validity | VERIFIED: `validate.sh 009-foundations-motion --strict` → Errors 0 |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -116,7 +119,7 @@ Re-confirm once the additions land with `bash .opencode/skills/system-spec-kit/s
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **This is a plan, not a build.** No `design-foundations/` or `design-motion/` runtime code exists yet; all mode-dir entries are proposed.
-2. **Blocked on upstream phases.** Real work waits on the phase-007 seam, phase-004 retrieval, and the phase-008 pilot patterns.
-3. **Cost is an upper envelope.** Foundations ~10-17 days and motion ~9-16 days overlap heavily on shared fixtures; re-estimate after the seam and pilots reveal actual reuse.
+1. **Two modes wired; hub-level orchestration deferred.** Foundations and motion consume the seam directly; broader hub orchestration across all modes is future work.
+2. **Compatibility graph is corpus-derived and non-authoritative.** It surfaces relationships and `not-assessed` honestly but never proves or locks a target value.
+3. **Negative baselines are opt-in evidence.** They are validated when present; motion does not require a baseline to answer "do not move".
 <!-- /ANCHOR:limitations -->

@@ -53,9 +53,9 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Confirm the phase-007 seam contract and phase-008 fixtures are consumable (`../007-*/`, `../008-interface-audit-pilots/`)
-- [ ] T002 [P] Shape the foundations contract: relationship blueprint + typed graph fields (`.opencode/skills/sk-design/design-foundations/`)
-- [ ] T003 [P] Shape the motion contract: restraint gate + polarity-aware eligibility fields (`.opencode/skills/sk-design/design-motion/`)
+- [x] T001 Confirm the phase-007 seam contract and phase-008 fixtures are consumable (`../007-*/`, `../008-interface-audit-pilots/`)
+- [x] T002 [P] Shape the foundations contract: relationship blueprint + typed graph fields (`.opencode/skills/sk-design/design-foundations/`)
+- [x] T003 [P] Shape the motion contract: restraint gate + polarity-aware eligibility fields (`.opencode/skills/sk-design/design-motion/`)
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -63,11 +63,11 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 Build the foundations typed compatibility graph over 1 coherent style + max 3 axis owners (`design-foundations/`)
-- [ ] T005 Build the foundations relationship blueprint + transformation ledger (source → relationship → transformation → lock) (`design-foundations/`)
-- [ ] T006 Add foundations downstream `not-assessed` checks and reject raw averaging/interpolation + top-level co-presence (`design-foundations/`)
-- [ ] T007 Build the motion restraint-first query gate that resolves BEFORE any retrieval (`design-motion/`)
-- [ ] T008 Build motion polarity-aware eligibility with hard negatives, purpose/state archetypes, and negative baselines (`design-motion/`)
+- [x] T004 Build the foundations typed compatibility graph over 1 coherent style + max 3 axis owners (`design-foundations/`)
+- [x] T005 Build the foundations relationship blueprint + transformation ledger (source → relationship → transformation → lock) (`design-foundations/`)
+- [x] T006 Add foundations downstream `not-assessed` checks and reject raw averaging/interpolation + top-level co-presence (`design-foundations/`)
+- [x] T007 Build the motion restraint-first query gate that resolves BEFORE any retrieval (`design-motion/`)
+- [x] T008 Build motion polarity-aware eligibility with hard negatives, purpose/state archetypes, and negative baselines (`design-motion/`)
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -75,9 +75,9 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T009 Verify foundations never emits averaged tokens and never overrides target roles/values, accessibility, or extraction truth (`design-foundations/`)
-- [ ] T010 Verify motion gates before retrieval, blocks hard-negative false positives, and never overrides reduced-motion/performance proof or the target mechanism (`design-motion/`)
-- [ ] T011 Update spec/plan/tasks status and run parent recursive validation (`.opencode/specs/sk-design/011-sk-design-styles-utilization/`)
+- [x] T009 Verify foundations never emits averaged tokens and never overrides target roles/values, accessibility, or extraction truth (`design-foundations/`)
+- [x] T010 Verify motion gates before retrieval, blocks hard-negative false positives, and never overrides reduced-motion/performance proof or the target mechanism (`design-motion/`)
+- [x] T011 Update spec/plan/tasks status and run parent recursive validation (`.opencode/specs/sk-design/011-sk-design-styles-utilization/`)
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -85,9 +85,9 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Foundations typed-edge + motion restraint-gate acceptance criteria verified
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Foundations typed-edge + motion restraint-gate acceptance criteria verified
 <!-- /ANCHOR:completion -->
 
 ---
